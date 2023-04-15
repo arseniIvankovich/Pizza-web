@@ -70,7 +70,7 @@ function loadData() {
     }
 }
 
-localStorage.clear();
+//localStorage.clear();
 
 loadData();
 
