@@ -13,7 +13,7 @@ import java.util.List;
 public class VacancyDaoImpl extends Util implements VacancyDao {
     Connection connection = getConnection();
     @Override
-    public List<Vacancy> findAll() {
+    public List<Vacancy> findAll() throws SQLException{
         final String SQL_SELECT_ALL = "SELECT \"VacancyID\", \"Salary\", \"Trial\", \"Name\"\n" +
                 "\tFROM public.\"Vacancy\";";
         final String SQL_INNER = "SELECT \"UserID\"\n" +
@@ -44,9 +44,6 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
                     }
                     vacancy.setUser(users);
                 }
-                catch (SQLException e){
-                    e.printStackTrace();
-                }
                 finally {
                     close(statement1);
                 }
@@ -64,7 +61,7 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
     }
 
     @Override
-    public Vacancy findEntityById(Long id) {
+    public Vacancy findEntityById(Long id) throws SQLException{
         PreparedStatement preparedStatement = null;
         PreparedStatement preparedStatement1 = null;
         Vacancy vacancy = new Vacancy();
@@ -95,9 +92,6 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
                 vacancy.setUser(users);
             }
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
@@ -106,7 +100,7 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
     }
 
     @Override
-    public boolean delete(Vacancy vacancy) {
+    public boolean delete(Vacancy vacancy) throws SQLException{
         final String SQL_DELETE_BY_NAME = "DELETE FROM public.\"Vacancy\"\n" +
                 "\tWHERE \"Name\" = ?;";
         PreparedStatement preparedStatement = null;
@@ -117,17 +111,14 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
 
             preparedStatement.executeUpdate();
             return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
         } finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(Long id) throws SQLException{
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Vacancy\"\n" +
                 "\tWHERE \"VacancyID\" = ?;";
         PreparedStatement preparedStatement = null;
@@ -138,17 +129,15 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
 
             preparedStatement.executeUpdate();
             return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
         } finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public boolean create(Vacancy vacancy) {
+    public boolean create(Vacancy vacancy) throws SQLException{
+
         final String SQL_CREATE_ADDRESS = "INSERT INTO public.\"Vacancy\"(\n" +
                 "\t\"Salary\", \"Trial\", \"Name\")\n" +
                 "\tVALUES (?, ?, ?);";
@@ -179,18 +168,15 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
 
             return true;
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public void update(Vacancy vacancy) {
+    public void update(Vacancy vacancy) throws SQLException {
+
         final String SQL_UPDATE = "UPDATE public.\"Vacancy\"\n" +
                 "\tSET \"Salary\"=?, \"Trial\"=?, \"Name\"=?\n" +
                 "\tWHERE \"VacancyID\" = ?;";
@@ -206,9 +192,6 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
 
             preparedStatement.executeUpdate();
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
@@ -216,12 +199,12 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
     }
 
     @Override
-    public List<Vacancy> findByTitle(String pattern) {
+    public List<Vacancy> findByTitle(String pattern) throws SQLException {
         return null;
     }
 
     @Override
-    public void AddToMMUserVacancy(Long userId, Long vacancyId) {
+    public void AddToMMUserVacancy(Long userId, Long vacancyId) throws SQLException {
         final String SQL_LAST_ID = "INSERT INTO public.\"User_Vacancy\"(\n" +
                 "\t\"VacancyID\", \"UserID\")\n" +
                 "\tVALUES (?, ?);";
@@ -234,16 +217,14 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
             preparedStatement.executeUpdate();
 
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
         }
     }
 
-    private Long getLastID () {
+    private Long getLastID () throws SQLException{
+
         final String SQL_LAST_ID = "SELECT \"UserID\"\n" +
                 "\tFROM public.\"User\" ORDER BY \"UserID\" DESC LIMIT 1;";
         PreparedStatement preparedStatement = null;
@@ -255,9 +236,6 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
             while (resultSet.next()) {
                 index = resultSet.getLong("OrderID");
             }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
         }
         finally {
             close(preparedStatement);

@@ -11,7 +11,7 @@ import java.util.List;
 public class DrinkDaoImpl extends Util implements DrinkDao {
     Connection connection = getConnection();
     @Override
-    public List<Drink> findAll() {
+    public List<Drink> findAll() throws SQLException {
         final String SQL_SELECT_ALL = "SELECT \"DrinkID\", \"Name\", \"Capacity\", \"Price\"\n" +
                 "\tFROM public.\"Drink\";";
         List<Drink> drinksList = new ArrayList<>();
@@ -31,9 +31,6 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
                 drinksList.add(drink);
             }
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(statement);
             close(connection);
@@ -42,7 +39,7 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
     }
 
     @Override
-    public Drink findEntityById(Long id) {
+    public Drink findEntityById(Long id) throws SQLException {
         PreparedStatement preparedStatement = null;
         Drink drink = new Drink();
         final String SQL_SELECT_BY_ID = "SELECT \"DrinkID\", \"Name\", \"Capacity\", \"Price\"\n" +
@@ -59,9 +56,6 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
                 drink.setPrice(resultSet.getDouble("Price"));
             }
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
@@ -70,7 +64,7 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
     }
 
     @Override
-    public boolean delete(Drink drink) {
+    public boolean delete(Drink drink) throws SQLException {
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Drink\"\n" +
                 "\tWHERE \"Name\" = ?;";
         PreparedStatement preparedStatement = null;
@@ -82,18 +76,14 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
             preparedStatement.executeUpdate();
             return true;
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(Long id) throws SQLException {
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Drink\"\n" +
                 "\tWHERE \"DrinkID\" = ?;";
         PreparedStatement preparedStatement = null;
@@ -105,18 +95,15 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
             preparedStatement.executeUpdate();
             return true;
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
+
     }
 
     @Override
-    public boolean create(Drink drink) {
+    public boolean create(Drink drink) throws SQLException {
         final String SQL_CREATE_ADDRESS = "INSERT INTO public.\"Drink\"(\n" +
                 "\t\"Name\", \"Capacity\", \"Price\")\n" +
                 "\tVALUES (?, ?, ?);";
@@ -132,18 +119,14 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
             preparedStatement.executeUpdate();
             return true;
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public void update(Drink drink) {
+    public void update(Drink drink) throws SQLException{
         final String SQL_UPDATE = "UPDATE public.\"Drink\"\n" +
                 "\tSET  \"Name\"=?, \"Capacity\"=?, \"Price\"=?\n" +
                 "\tWHERE \"DrinkID\" = ?;";
@@ -159,9 +142,6 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
 
             preparedStatement.executeUpdate();
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
@@ -169,7 +149,7 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
     }
 
     @Override
-    public Drink findByNameCapacity(String name, Double capacity) {
+    public Drink findByNameCapacity(String name, Double capacity) throws SQLException {
         PreparedStatement preparedStatement = null;
         Drink drink = new Drink();
         final String SQL_SELECT_BY_NAME_CAPACITY = "SELECT \"DrinkID\", \"Name\", \"Capacity\", \"Price\"\n" +
@@ -186,9 +166,6 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
                 drink.setCapacity(resultSet.getDouble("Capacity"));
                 drink.setPrice(resultSet.getDouble("Price"));
             }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
         }
         finally {
             close(preparedStatement);

@@ -9,12 +9,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public interface BaseDao <K, T extends Entity>{
-    List<T> findAll();
-    T findEntityById(K id);
-    boolean delete(T t);
-    boolean delete(K id);
-    boolean create(T t);
-    void update(T t);
+    List<T> findAll() throws SQLException;
+    T findEntityById(K id) throws SQLException;
+    boolean delete(T t) throws SQLException;
+    boolean delete(K id) throws SQLException;
+    boolean create(T t) throws SQLException;
+    void update(T t) throws SQLException;
 
     default void close(Statement statement) {
         try {

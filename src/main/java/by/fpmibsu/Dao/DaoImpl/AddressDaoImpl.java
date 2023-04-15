@@ -8,9 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddressDaoImpl extends Util implements AddressDao {
+public class AddressDaoImpl extends Util implements AddressDao  {
     Connection connection = getConnection();
-    public List<Address> findAllByStreet(String pattern) {
+    public List<Address> findAllByStreet(String pattern) throws SQLException{
         final String SQL_SELECT_BY_STREET = "SELECT \"AddressID\", \"StreetName\", \"Entrance\", \"HouseNumber\", \"FlatNumber\" FROM public.\"Address\"\n" +
                 "                WHERE \"StreetName\" = ?;";
         List<Address> addressList = new ArrayList<>();
@@ -31,9 +31,6 @@ public class AddressDaoImpl extends Util implements AddressDao {
                 addressList.add(address);
             }
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
@@ -42,7 +39,7 @@ public class AddressDaoImpl extends Util implements AddressDao {
     }
 
     @Override
-    public List<Address> findAll()  {
+    public List<Address> findAll() throws SQLException {
         final String SQL_SELECT_ALL = "SELECT  \"AddressID\", \"StreetName\", \"HouseNumber\", \"Entrance\", \"FlatNumber\"\n" +
                 "\tFROM public.\"Address\";";
         List<Address> addressList = new ArrayList<>();
@@ -63,9 +60,6 @@ public class AddressDaoImpl extends Util implements AddressDao {
                 addressList.add(address);
             }
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(statement);
             close(connection);
@@ -74,7 +68,7 @@ public class AddressDaoImpl extends Util implements AddressDao {
     }
 
     @Override
-    public Address findEntityById(Long id)  {
+    public Address findEntityById(Long id)  throws SQLException{
         final String SQL_SELECT_BY_ID = "SELECT  \"AddressID\", \"StreetName\", \"HouseNumber\", \"Entrance\", \"FlatNumber\"\n" +
                 "\tFROM public.\"Address\" WHERE \"AddressID\" = ?;";
 
@@ -93,9 +87,6 @@ public class AddressDaoImpl extends Util implements AddressDao {
                 address.setFlatNumber(resultSet.getInt("FlatNumber"));
             }
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
@@ -104,7 +95,7 @@ public class AddressDaoImpl extends Util implements AddressDao {
     }
 
     @Override
-    public boolean delete(Address address) {
+    public boolean delete(Address address) throws SQLException{
         final String SQL_DELETE_BY_STREET = "DELETE FROM public.\"Address\"\n" +
                 "\tWHERE \"StreetName\" = ?;";
         PreparedStatement preparedStatement = null;
@@ -116,43 +107,35 @@ public class AddressDaoImpl extends Util implements AddressDao {
             preparedStatement.executeUpdate();
             return true;
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(Long id) throws SQLException{
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Address\"\n" +
                 "\tWHERE \"AddressID\" = ?;";
 
         PreparedStatement preparedStatement = null;
 
-        try{
+        try {
             preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID);
-            preparedStatement.setLong(1,id);
+            preparedStatement.setLong(1, id);
 
             preparedStatement.executeUpdate();
             return true;
-        }
-        catch (SQLException e){
-            e.printStackTrace();
         }
         finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public boolean create(Address address) {
+    public boolean create(Address address) throws SQLException{
         final String SQL_CREATE_ADDRESS = "INSERT INTO public.\"Address\"(\n" +
                 "\t\"StreetName\", \"HouseNumber\", \"Entrance\", \"FlatNumber\")\n" +
                 "\tVALUES (?, ?, ?, ?);";
@@ -168,18 +151,14 @@ public class AddressDaoImpl extends Util implements AddressDao {
             preparedStatement.executeUpdate();
             return true;
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public void update(Address address) {
+    public void update(Address address) throws SQLException{
         final String SQL_UPDATE = "UPDATE public.\"Address\"\n" +
                 "\tSET  \"StreetName\"=?, \"HouseNumber\"=?, \"Entrance\"=?, \"FlatNumber\"=?\n" +
                 "\tWHERE \"AddressID\" = ?;";
@@ -195,9 +174,6 @@ public class AddressDaoImpl extends Util implements AddressDao {
             preparedStatement.setLong(5,address.getAddressID());
 
             preparedStatement.executeUpdate();
-        }
-        catch (SQLException e){
-            e.printStackTrace();
         }
         finally {
             close(preparedStatement);

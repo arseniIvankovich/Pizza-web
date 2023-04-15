@@ -9,7 +9,7 @@ import java.util.List;
 public class OrderDaoImpl extends Util implements OrderDao {
     Connection connection = getConnection();
     @Override
-    public List<Order> findAll() {
+    public List<Order> findAll() throws SQLException {
         final String SQL_SELECT_ALL = "SELECT \"OrderID\", \"Status\", \"DeliveryDate\", \"PaymentMethod\"\n" +
                 "\tFROM public.\"Order\";";
         final String SQL_INNER_1 = "SELECT \"DrinkID\"\n" +
@@ -53,18 +53,12 @@ public class OrderDaoImpl extends Util implements OrderDao {
                     order.setDrinks(drinks);
                     order.setPizzas(pizzas);
                 }
-                catch (SQLException e){
-                    e.printStackTrace();
-                }
                 finally {
                     close(statement1);
                     close(statement2);
                 }
                 orders.add(order);
             }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
         }
         finally {
             close(statement);
@@ -74,7 +68,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
     }
 
     @Override
-    public Order findEntityById(Long id) {
+    public Order findEntityById(Long id) throws SQLException{
         PreparedStatement preparedStatement = null;
         PreparedStatement preparedStatement1 = null;
         PreparedStatement preparedStatement2 = null;
@@ -117,9 +111,6 @@ public class OrderDaoImpl extends Util implements OrderDao {
                 order.setPizzas(pizzas);
             }
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
@@ -128,12 +119,12 @@ public class OrderDaoImpl extends Util implements OrderDao {
     }
 
     @Override
-    public boolean delete(Order order) {
+    public boolean delete(Order order) throws SQLException {
         return false;
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(Long id) throws SQLException {
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Order\"\n" +
                 "\tWHERE \"OrderID\" = ?;";
         PreparedStatement preparedStatement = null;
@@ -144,17 +135,14 @@ public class OrderDaoImpl extends Util implements OrderDao {
 
             preparedStatement.executeUpdate();
             return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
         } finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public boolean create(Order order) {
+    public boolean create(Order order) throws SQLException {
         final String SQL_CREATE_ADDRESS = "INSERT INTO public.\"Order\"(\n" +
                 "\t\"Status\", \"DeliveryDate\", \"PaymentMethod\")\n" +
                 "\tVALUES (?, ?, ?);";
@@ -194,22 +182,16 @@ public class OrderDaoImpl extends Util implements OrderDao {
                 preparedStatement2.setLong(2,index);
                 preparedStatement2.executeUpdate();
             }
-
-
             return true;
-        }
-        catch (SQLException e){
-            e.printStackTrace();
         }
         finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public void update(Order order) {
+    public void update(Order order) throws SQLException {
         final String SQL_UPDATE = "UPDATE public.\"Order\"\n" +
                 "\tSET \"Status\"=?, \"DeliveryDate\"=?, \"PaymentMethod\"=?\n" +
                 "\tWHERE \"OrderID\" = ?;";
@@ -227,16 +209,13 @@ public class OrderDaoImpl extends Util implements OrderDao {
 
             preparedStatement.executeUpdate();
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
         }
     }
 
-    private Long getLastID () {
+    private Long getLastID () throws SQLException {
         final String SQL_LAST_ID = "SELECT \"OrderID\"\n" +
                 "\tFROM public.\"Order\" ORDER BY \"OrderID\" DESC LIMIT 1;";
         PreparedStatement preparedStatement = null;
@@ -248,9 +227,6 @@ public class OrderDaoImpl extends Util implements OrderDao {
             while (resultSet.next()) {
                 index = resultSet.getLong("OrderID");
             }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
         }
         finally {
             close(preparedStatement);

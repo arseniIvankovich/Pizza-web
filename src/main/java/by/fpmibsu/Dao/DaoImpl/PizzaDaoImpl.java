@@ -10,7 +10,7 @@ import java.util.List;
 public class PizzaDaoImpl extends Util implements PizzaDao {
     Connection connection = getConnection();
     @Override
-    public List<Pizza> findAll() {
+    public List<Pizza> findAll() throws SQLException{
         final String SQL_SELECT_ALL = "SELECT \"PizzaID\", \"Name\", \"Ingredients\", \"TypeDrough\", \"BasicWeight\", \"Price\", \"Size\"\n" +
                 "\tFROM public.\"Pizza\"";
         List<Pizza> pizzaList = new ArrayList<>();
@@ -33,9 +33,6 @@ public class PizzaDaoImpl extends Util implements PizzaDao {
                 pizzaList.add(pizza);
             }
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(statement);
             close(connection);
@@ -44,7 +41,7 @@ public class PizzaDaoImpl extends Util implements PizzaDao {
     }
 
     @Override
-    public Pizza findEntityById(Long id) {
+    public Pizza findEntityById(Long id) throws SQLException {
         PreparedStatement preparedStatement = null;
         Pizza pizza = new Pizza();
         final String SQL_SELECT_BY_ID = "SELECT \"PizzaID\", \"Name\", \"Ingredients\", \"TypeDrough\", \"BasicWeight\", \"Price\", \"Size\"\n" +
@@ -63,9 +60,6 @@ public class PizzaDaoImpl extends Util implements PizzaDao {
                 pizza.setSize(resultSet.getBoolean("Size"));
             }
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
@@ -74,7 +68,7 @@ public class PizzaDaoImpl extends Util implements PizzaDao {
     }
 
     @Override
-    public boolean delete(Pizza pizza) {
+    public boolean delete(Pizza pizza) throws SQLException{
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Pizza\"\n" +
                 "\tWHERE \"Name\" = ?;";
         PreparedStatement preparedStatement = null;
@@ -86,18 +80,14 @@ public class PizzaDaoImpl extends Util implements PizzaDao {
             preparedStatement.executeUpdate();
             return true;
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(Long id) throws SQLException{
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Pizza\"\n" +
                 "\tWHERE \"PizzaID\" = ?;";
         PreparedStatement preparedStatement = null;
@@ -109,18 +99,14 @@ public class PizzaDaoImpl extends Util implements PizzaDao {
             preparedStatement.executeUpdate();
             return true;
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public boolean create(Pizza pizza) {
+    public boolean create(Pizza pizza) throws SQLException{
         final String SQL_CREATE_ADDRESS = "INSERT INTO public.\"Pizza\"(\n" +
                 "\t\"Name\", \"Ingredients\", \"TypeDrough\", \"BasicWeight\", \"Price\", \"Size\")\n" +
                 "\tVALUES (?, ?, ?, ?, ?, ?);";
@@ -139,18 +125,14 @@ public class PizzaDaoImpl extends Util implements PizzaDao {
             preparedStatement.executeUpdate();
             return true;
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public void update(Pizza pizza) {
+    public void update(Pizza pizza) throws SQLException{
         final String SQL_UPDATE = "UPDATE public.\"Pizza\"\n" +
                 "\tSET  \"Name\"=?, \"Ingredients\"=?, \"TypeDrough\"=?, \"BasicWeight\"=?, \"Price\"=?, \"Size\"=?\n" +
                 "\tWHERE \"PizzaID\"=?;";
@@ -169,9 +151,6 @@ public class PizzaDaoImpl extends Util implements PizzaDao {
 
             preparedStatement.executeUpdate();
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
@@ -179,12 +158,12 @@ public class PizzaDaoImpl extends Util implements PizzaDao {
     }
 
     @Override
-    public List<Pizza> findInRange(Double lowerBound, Double upperBound) {
+    public List<Pizza> findInRange(Double lowerBound, Double upperBound) throws SQLException{
         return null;
     }
 
     @Override
-    public Pizza findByNameTypeDroughSize(String name, Boolean typeDrough, Boolean size) {
+    public Pizza findByNameTypeDroughSize(String name, Boolean typeDrough, Boolean size) throws SQLException{
         PreparedStatement preparedStatement = null;
         Pizza pizza = new Pizza();
         final String SQL_SELECT_BY_NAME_TYPE_SIZE = "SELECT \"PizzaID\", \"Name\", \"Ingredients\", \"TypeDrough\", \"BasicWeight\", \"Price\", \"Size\"\n" +
@@ -206,9 +185,6 @@ public class PizzaDaoImpl extends Util implements PizzaDao {
                 pizza.setWeight(resultSet.getDouble("Price"));
                 pizza.setSize(resultSet.getBoolean("Size"));
             }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
         }
         finally {
             close(preparedStatement);

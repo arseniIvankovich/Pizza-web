@@ -12,7 +12,7 @@ import java.util.List;
 public class UserDaoImpl extends Util implements UserDao {
     Connection connection = getConnection();
     @Override
-    public List<User> findAll() {
+    public List<User> findAll() throws SQLException{
         final String SQL_SELECT_ALL = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
                 "\tFROM public.\"User\";";
 
@@ -35,9 +35,6 @@ public class UserDaoImpl extends Util implements UserDao {
                 user.setOrder(new OrderDaoImpl().findEntityById(resultSet.getLong("Order_id")));
             }
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(statement);
             close(connection);
@@ -46,7 +43,7 @@ public class UserDaoImpl extends Util implements UserDao {
     }
 
     @Override
-    public User findEntityById(Long id) {
+    public User findEntityById(Long id) throws SQLException{
         PreparedStatement preparedStatement = null;
         User user = new User();
         final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
@@ -67,9 +64,6 @@ public class UserDaoImpl extends Util implements UserDao {
                 user.setOrder(new OrderDaoImpl().findEntityById(resultSet.getLong("Order_id")));
             }
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
@@ -77,10 +71,8 @@ public class UserDaoImpl extends Util implements UserDao {
         return user;
     }
 
-
-
     @Override
-    public boolean delete(User user) {
+    public boolean delete(User user) throws SQLException{
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"User\"\n" +
                 "\tWHERE \"First_SecondName\" = ?;";
         PreparedStatement preparedStatement = null;
@@ -92,18 +84,14 @@ public class UserDaoImpl extends Util implements UserDao {
             preparedStatement.executeUpdate();
             return true;
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public boolean delete(Long id) {
+    public boolean delete(Long id) throws SQLException{
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"User\"\n" +
                 "\tWHERE \"UserID\" = ?;";
         PreparedStatement preparedStatement = null;
@@ -115,18 +103,14 @@ public class UserDaoImpl extends Util implements UserDao {
             preparedStatement.executeUpdate();
             return true;
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public boolean create(User user) {
+    public boolean create(User user) throws SQLException{
         final String SQL_CREATE_USER = "INSERT INTO public.\"User\"(\n" +
                 "\t\"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\")\n" +
                 "\tVALUES (?, ?, ?, ?, ?, ?, ?);";
@@ -146,18 +130,14 @@ public class UserDaoImpl extends Util implements UserDao {
             preparedStatement.executeUpdate();
             return true;
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
         }
-        return false;
     }
 
     @Override
-    public void update(User user) {
+    public void update(User user) throws SQLException{
         final String SQL_UPDATE = "UPDATE public.\"User\"\n" +
                 "\tSET \"Role_id\"=?, \"First_SecondName\"=?, \"Password\"=?, \"Email\"=?, \"Phone_number\"=?, \"Address_id\"=?, \"Order_id\"=?\n" +
                 "\tWHERE \"UserID\" = ?;";
@@ -176,9 +156,6 @@ public class UserDaoImpl extends Util implements UserDao {
             preparedStatement.setLong(8,user.getUserId());
             preparedStatement.executeUpdate();
         }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
         finally {
             close(preparedStatement);
             close(connection);
@@ -186,7 +163,7 @@ public class UserDaoImpl extends Util implements UserDao {
     }
 
     @Override
-    public User findByName(String string) {
+    public User findByName(String string) throws SQLException{
         PreparedStatement preparedStatement = null;
         User user = new User();
         final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
@@ -207,8 +184,31 @@ public class UserDaoImpl extends Util implements UserDao {
                 user.setOrder(new OrderDaoImpl().findEntityById(resultSet.getLong("Order_id")));
             }
         }
-        catch (SQLException e){
-            e.printStackTrace();
+        finally {
+            close(preparedStatement);
+            close(connection);
+        }
+        return user;
+    }
+
+    @Override
+    public User checkLogin(String email, String password) throws SQLException{
+        PreparedStatement preparedStatement = null;
+        User user = new User();
+        final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Phone_number\", \"Address_id\", \"Order_id\", \"Email\"\n" +
+                "\tFROM public.\"User\" WHERE \"Email\" = ? AND \"Password\" = ?;";
+        try {
+            preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID);
+            preparedStatement.setString(1,email);
+            preparedStatement.setString(2,password);
+            ResultSet resultSet= preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                user.setUserId(resultSet.getLong("UserID"));
+                user.setRole(new RoleDaoImpl().findEntityById(resultSet.getLong("Role_id")));
+                user.setFirstName_lastName(resultSet.getString("First_SecondName"));
+                user.setEmail(resultSet.getString("Email"));
+            }
         }
         finally {
             close(preparedStatement);
