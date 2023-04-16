@@ -2,6 +2,7 @@ package by.fpmibsu.Dao.DaoImpl;
 
 import by.fpmibsu.Dao.AddressDao;
 import by.fpmibsu.Entity.Address;
+import by.fpmibsu.Entity.Drink;
 import by.fpmibsu.Services.Util;
 
 import java.sql.*;
@@ -36,6 +37,36 @@ public class AddressDaoImpl extends Util implements AddressDao  {
             close(connection);
         }
         return addressList;
+    }
+
+    @Override
+    public Address findByStreetHouseEntranceFlat(String street, Integer house, Integer entrance, Integer flat) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        Address address = new Address();
+        final String SQL_SELECT_BY_STREET_HOUSE_ENTRANCE_FLAT = "SELECT \"AddressID\", \"StreetName\", \"HouseNumber\", \"Entrance\", \"FlatNumber\"\n" +
+                "\tFROM public.\"Address\" WHERE \"StreetName\" = ? AND \"HouseNumber\" = ? \n" +
+                "\tAND \"Entrance\" = ? AND \"FlatNumber\" = ?;";
+        try {
+            preparedStatement = connection.prepareStatement(SQL_SELECT_BY_STREET_HOUSE_ENTRANCE_FLAT);
+            preparedStatement.setString(1,street);
+            preparedStatement.setInt(2,house);
+            preparedStatement.setInt(3,entrance);
+            preparedStatement.setInt(4,flat);
+            ResultSet resultSet= preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                address.setAddressID(resultSet.getLong("AddressID"));
+                address.setStreet(resultSet.getString("StreetName"));
+                address.setEntrance(resultSet.getInt("Entrance"));
+                address.setHouseNumber(resultSet.getInt("HouseNumber"));
+                address.setFlatNumber(resultSet.getInt("FlatNumber"));
+            }
+        }
+        finally {
+            close(preparedStatement);
+            close(connection);
+        }
+        return address;
     }
 
     @Override
