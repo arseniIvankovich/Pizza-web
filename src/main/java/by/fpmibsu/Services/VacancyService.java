@@ -22,5 +22,4 @@ public class VacancyService {
         return vacancyDao.findByName(pattern);
     }
 
-
 }
