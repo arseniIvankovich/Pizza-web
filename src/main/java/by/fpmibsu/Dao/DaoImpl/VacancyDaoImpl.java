@@ -189,7 +189,6 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
         }
     }
 
-
     @Override
     public Vacancy findByName(String pattern) throws SQLException {
         PreparedStatement preparedStatement = null;
