@@ -5,6 +5,7 @@ import by.fpmibsu.Entity.*;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 public class OrderDaoImpl extends Util implements OrderDao {
     Connection connection = getConnection();
@@ -12,10 +13,10 @@ public class OrderDaoImpl extends Util implements OrderDao {
     public List<Order> findAll() throws SQLException {
         final String SQL_SELECT_ALL = "SELECT \"OrderID\", \"Status\", \"DeliveryDate\", \"PaymentMethod\"\n" +
                 "\tFROM public.\"Order\";";
-        final String SQL_INNER_1 = "SELECT \"DrinkID\"\n" +
+        final String SQL_INNER_1 = "SELECT \"DrinkID\",  \"NumberOfDrinks\"\n" +
                 "\tFROM public.\"Drink_order\" WHERE \"OrderID\" = ?;";
 
-        final String SQL_INNER_2 = "SELECT \"PizzaID\"\n" +
+        final String SQL_INNER_2 = "SELECT \"PizzaID\", \"NumberOfPizzas\"\n" +
                 "\tFROM public.\"Pizza_Order\" WHERE \"OrderID\" = ?;";
 
         List<Order> orders = new ArrayList<>();
@@ -41,14 +42,15 @@ public class OrderDaoImpl extends Util implements OrderDao {
                     ResultSet resultSet1 = statement1.executeQuery(SQL_INNER_1);
                     ResultSet resultSet2 = statement2.executeQuery(SQL_INNER_2);
 
-                    ArrayList<Drink> drinks = new ArrayList<>();
-                    ArrayList<Pizza> pizzas = new ArrayList<>();
-
-                    while (resultSet2.next())
-                        pizzas.add(new PizzaDaoImpl().findEntityById(resultSet2.getLong("PizzaId")));
+                    HashMap<Drink,Integer> drinks = new HashMap<>();
+                    HashMap<Pizza,Integer> pizzas = new HashMap<>();
 
                     while (resultSet1.next())
-                        drinks.add(new DrinkDaoImpl().findEntityById(resultSet1.getLong("DrinkID")));
+                        drinks.put(new DrinkDaoImpl().findEntityById(resultSet1.getLong("DrinkID")),resultSet1.getInt("NumberOfDrinks"));
+
+
+                    while (resultSet2.next())
+                        pizzas.put(new PizzaDaoImpl().findEntityById(resultSet2.getLong("PizzaId")),resultSet2.getInt("NumberOfPizzas"));
 
                     order.setDrinks(drinks);
                     order.setPizzas(pizzas);
@@ -76,10 +78,10 @@ public class OrderDaoImpl extends Util implements OrderDao {
         final String SQL_SELECT_BY_ID = "SELECT \"OrderID\", \"Status\", \"DeliveryDate\", \"PaymentMethod\"\n" +
                 "\tFROM public.\"Order\" WHERE \"OrderID\" = ?;";
 
-        final String SQL_INNER_1 = "SELECT \"DrinkID\"\n" +
+        final String SQL_INNER_1 = "SELECT \"DrinkID\",  \"NumberOfDrinks\"\n" +
                 "\tFROM public.\"Drink_order\" WHERE \"OrderID\" = ?;";
 
-        final String SQL_INNER_2 = "SELECT \"PizzaID\"\n" +
+        final String SQL_INNER_2 = "SELECT \"PizzaID\", \"NumberOfPizzas\"\n" +
                 "\tFROM public.\"Pizza_Order\" WHERE \"OrderID\" = ?;";
         try {
             preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID);
@@ -98,14 +100,15 @@ public class OrderDaoImpl extends Util implements OrderDao {
                 order.setDeliveryDate(resultSet.getDate("DeliveryDate"));
                 order.setPaymentMethod(resultSet.getString("PaymentMethod"));
 
-                ArrayList<Drink> drinks = new ArrayList<>();
-                ArrayList<Pizza> pizzas = new ArrayList<>();
-
-                while (resultSet2.next())
-                    pizzas.add(new PizzaDaoImpl().findEntityById(resultSet2.getLong("PizzaID")));
+                HashMap<Drink,Integer> drinks = new HashMap<>();
+                HashMap<Pizza,Integer> pizzas = new HashMap<>();
 
                 while (resultSet1.next())
-                    drinks.add(new DrinkDaoImpl().findEntityById(resultSet1.getLong("DrinkID")));
+                    drinks.put(new DrinkDaoImpl().findEntityById(resultSet1.getLong("DrinkID")),resultSet1.getInt("NumberOfDrinks"));
+
+
+                while (resultSet2.next())
+                    pizzas.put(new PizzaDaoImpl().findEntityById(resultSet2.getLong("PizzaId")),resultSet2.getInt("NumberOfPizzas"));
 
                 order.setDrinks(drinks);
                 order.setPizzas(pizzas);
@@ -147,17 +150,9 @@ public class OrderDaoImpl extends Util implements OrderDao {
                 "\t\"Status\", \"DeliveryDate\", \"PaymentMethod\")\n" +
                 "\tVALUES (?, ?, ?);";
 
-        final String SQL_INNER_PIZZA = "INSERT INTO public.\"Pizza_Order\"(\n" +
-                "\t\"PizzaID\", \"OrderID\")\n" +
-                "\tVALUES (?, ?);";
-
-        final String SQL_INNER_DRINK = "INSERT INTO public.\"Drink_order\"(\n" +
-                "\t \"OrderID\", \"DrinkID\")\n" +
-                "\tVALUES (?, ?);";
 
         PreparedStatement preparedStatement = null;
         PreparedStatement preparedStatement1 = null;
-        PreparedStatement preparedStatement2 = null;
 
         try {
             preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS);
@@ -166,22 +161,15 @@ public class OrderDaoImpl extends Util implements OrderDao {
             preparedStatement.setDate(2,  order.getDeliveryDate());
             preparedStatement.setString(3,order.getPaymentMethod());
             preparedStatement.executeUpdate();
-            Long index = this.getLastID();
-            ArrayList<Drink> drinks = order.getDrinks();
-            for (Drink drink : drinks) {
-                preparedStatement1 = connection.prepareStatement(SQL_INNER_DRINK);
-                preparedStatement1.setLong(1, index);
-                preparedStatement1.setLong(2, drink.getDrinkID());
-                preparedStatement1.executeUpdate();
-            }
 
-            ArrayList<Pizza> pizzas = order.getPizzas();
-            for (Pizza pizza : pizzas) {
-                preparedStatement2 = connection.prepareStatement(SQL_INNER_PIZZA);
-                preparedStatement2.setLong(1,pizza.getPizzaId());
-                preparedStatement2.setLong(2,index);
-                preparedStatement2.executeUpdate();
-            }
+            Long index = this.getLastID();
+
+            for (Pizza pizza : order.getPizzas().keySet())
+                addToMMPizza(index,pizza.getPizzaId(),order.getPizzas().get(pizza));
+
+            for (Drink drink : order.getDrinks().keySet())
+                addToMMDrink(index,drink.getDrinkID(),order.getDrinks().get(drink));
+
             return true;
         }
         finally {
@@ -205,8 +193,6 @@ public class OrderDaoImpl extends Util implements OrderDao {
             preparedStatement.setString(3,order.getPaymentMethod());
             preparedStatement.setLong(4,order.getId());
 
-
-
             preparedStatement.executeUpdate();
         }
         finally {
@@ -215,7 +201,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
         }
     }
 
-    private Long getLastID () throws SQLException {
+    private  Long getLastID () throws SQLException {
         final String SQL_LAST_ID = "SELECT \"OrderID\"\n" +
                 "\tFROM public.\"Order\" ORDER BY \"OrderID\" DESC LIMIT 1;";
         PreparedStatement preparedStatement = null;
@@ -232,5 +218,51 @@ public class OrderDaoImpl extends Util implements OrderDao {
             close(preparedStatement);
         }
         return index;
+    }
+
+
+    @Override
+    public void addToMMDrink(Long orderId, Long drinkId, Integer numberOfDrinks) throws SQLException {
+        final String SQL_INNER_DRINK = "INSERT INTO public.\"Drink_order\"(\n" +
+                "\t\"OrderID\", \"DrinkID\", \"NumberOfDrinks\")\n" +
+                "\tVALUES ?, ?, ?);";
+
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(SQL_INNER_DRINK);
+
+            preparedStatement.setLong(1, orderId);
+            preparedStatement.setLong(2, drinkId);
+            preparedStatement.setInt(3,numberOfDrinks);
+            preparedStatement.executeUpdate();
+
+        }
+        finally {
+            close(preparedStatement);
+            close(connection);
+        }
+
+    }
+
+    @Override
+    public void addToMMPizza(Long orderId, Long pizzaId, Integer numberOfPizzas) throws SQLException {
+        final String SQL_INNER_PIZZA = "INSERT INTO public.\"Pizza_Order\"(\n" +
+                "\t\"PizzaID\", \"OrderID\", \"NumberOfPizzas\")\n" +
+                "\tVALUES (?, ?, ?);";
+
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(SQL_INNER_PIZZA);
+
+            preparedStatement.setLong(1, pizzaId);
+            preparedStatement.setLong(2, orderId);
+            preparedStatement.setInt(3,numberOfPizzas);
+            preparedStatement.executeUpdate();
+
+        }
+        finally {
+            close(preparedStatement);
+            close(connection);
+        }
     }
 }

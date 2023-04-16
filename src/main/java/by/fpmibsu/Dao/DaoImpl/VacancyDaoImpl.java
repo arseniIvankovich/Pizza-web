@@ -204,7 +204,7 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
     }
 
     @Override
-    public void AddToMMUserVacancy(Long userId, Long vacancyId) throws SQLException {
+    public void addToMMUserVacancy(Long userId, Long vacancyId) throws SQLException {
         final String SQL_LAST_ID = "INSERT INTO public.\"User_Vacancy\"(\n" +
                 "\t\"VacancyID\", \"UserID\")\n" +
                 "\tVALUES (?, ?);";

@@ -8,5 +8,5 @@ import java.util.List;
 public interface VacancyDao extends BaseDao<Long, Vacancy> {
     List<Vacancy> findByTitle(String pattern) throws SQLException;
 
-    void AddToMMUserVacancy(Long userId, Long vacancyId) throws SQLException;
+    void addToMMUserVacancy(Long userId, Long vacancyId) throws SQLException;
 }

@@ -2,18 +2,19 @@ package by.fpmibsu.Entity;
 
 import java.util.ArrayList;
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Order extends Entity{
-    private ArrayList<Drink> drinks;
-    private ArrayList<Pizza> pizzas;
+    private HashMap<Drink,Integer> drinks;
+    private HashMap<Pizza,Integer> pizzas;
     private Boolean status;
     private Date deliveryDate;
     private String paymentMethod;
 
     public Order(){}
 
-    public Order(ArrayList<Drink> drinks, ArrayList<Pizza> pizzas, Boolean status, Date deliveryDate, String paymentMethod) {
+    public Order(HashMap<Drink, Integer> drinks, HashMap<Pizza, Integer> pizzas, Boolean status, Date deliveryDate, String paymentMethod) {
         this.drinks = drinks;
         this.pizzas = pizzas;
         this.status = status;
@@ -21,28 +22,28 @@ public class Order extends Entity{
         this.paymentMethod = paymentMethod;
     }
 
-    public Order(Long orderID, ArrayList<Pizza> pizzas, ArrayList<Drink> drinks, Boolean status, Date deliveryDate, String paymentMethod) {
-        super(orderID);
-        this.pizzas = pizzas;
+    public Order(Long id, HashMap<Drink, Integer> drinks, HashMap<Pizza, Integer> pizzas, Boolean status, Date deliveryDate, String paymentMethod) {
+        super(id);
         this.drinks = drinks;
+        this.pizzas = pizzas;
         this.status = status;
         this.deliveryDate = deliveryDate;
         this.paymentMethod = paymentMethod;
     }
 
-    public ArrayList<Drink> getDrinks() {
+    public HashMap<Drink, Integer> getDrinks() {
         return drinks;
     }
 
-    public void setDrinks(ArrayList<Drink> food) {
-        this.drinks = food;
+    public void setDrinks(HashMap<Drink, Integer> drinks) {
+        this.drinks = drinks;
     }
 
-    public ArrayList<Pizza> getPizzas() {
+    public HashMap<Pizza, Integer> getPizzas() {
         return pizzas;
     }
 
-    public void setPizzas(ArrayList<Pizza> pizzas) {
+    public void setPizzas(HashMap<Pizza, Integer> pizzas) {
         this.pizzas = pizzas;
     }
 
@@ -86,8 +87,8 @@ public class Order extends Entity{
     @Override
     public String toString() {
         return "Order{" +
-                "drinks=" + drinks +
-                ", pizzas=" + pizzas +
+                "drinks=" + drinks.keySet() +
+                ", pizzas=" + pizzas.keySet() +
                 ", status=" + status +
                 ", deliveryDate=" + deliveryDate +
                 ", paymentMethod='" + paymentMethod + '\'' +
