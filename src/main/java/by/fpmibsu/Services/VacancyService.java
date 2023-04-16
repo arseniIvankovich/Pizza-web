@@ -22,4 +22,8 @@ public class VacancyService {
         return vacancyDao.findByName(pattern);
     }
 
+    public void addToMMUserVacancy(Long userId, Long vacancyId) throws SQLException {
+        vacancyDao.addToMMUserVacancy(userId,vacancyId);
+    }
+
 }
