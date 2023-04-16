@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class DrinkService {
-    DrinkDaoImpl drinkDao;
+    final DrinkDaoImpl drinkDao;
 
     public DrinkService(DrinkDaoImpl drinkDao) {
         this.drinkDao = drinkDao;
