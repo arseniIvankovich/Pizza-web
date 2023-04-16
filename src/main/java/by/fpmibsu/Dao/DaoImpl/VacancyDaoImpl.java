@@ -79,7 +79,7 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
             ResultSet resultSet1 = preparedStatement1.executeQuery();
 
             while (resultSet.next()) {
-                vacancy.setId(resultSet.getLong("OrderID"));
+                vacancy.setId(resultSet.getLong("VacancyID"));
                 vacancy.setSalary(resultSet.getDouble("Salary"));
                 vacancy.setTrial(resultSet.getInt("Trial"));
                 vacancy.setName(resultSet.getString("Name"));
@@ -147,7 +147,6 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
                 "\tVALUES (?, ?);";
 
         PreparedStatement preparedStatement = null;
-        PreparedStatement preparedStatement1 = null;
 
         try {
             preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS);
@@ -156,15 +155,7 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
             preparedStatement.setInt(2,vacancy.getTrial());
             preparedStatement.setString(3,vacancy.getName());
 
-            HashSet<User> users = vacancy.getUser();
             preparedStatement.executeUpdate();
-            Long index = this.getLastID();
-            for (User user : users) {
-                preparedStatement1 = connection.prepareStatement(SQL_INNER);
-                preparedStatement1.setLong(1, vacancy.getId());
-                preparedStatement1.setLong(2, index);
-                preparedStatement1.executeUpdate();
-            }
 
             return true;
         }
@@ -198,9 +189,31 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
         }
     }
 
+
     @Override
-    public List<Vacancy> findByTitle(String pattern) throws SQLException {
-        return null;
+    public Vacancy findByName(String pattern) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        Vacancy vacancy = new Vacancy();
+        final String SQL_SELECT_BY_NAME_TYPE_SIZE = "SELECT \"VacancyID\", \"Salary\", \"Trial\", \"Name\"\n" +
+                "\tFROM public.\"Vacancy\" WHERE \"Name\" = ?;";
+
+        try {
+            preparedStatement = connection.prepareStatement(SQL_SELECT_BY_NAME_TYPE_SIZE);
+            preparedStatement.setString(1,pattern);
+            ResultSet resultSet= preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                vacancy.setVacancyID(resultSet.getLong("VacancyID"));
+                vacancy.setSalary(resultSet.getDouble("Salary"));
+                vacancy.setTrial(resultSet.getInt("Trial"));
+                vacancy.setName(resultSet.getString("Name"));
+            }
+        }
+        finally {
+            close(preparedStatement);
+            close(connection);
+        }
+        return vacancy;
     }
 
     @Override

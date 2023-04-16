@@ -150,9 +150,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
                 "\t\"Status\", \"DeliveryDate\", \"PaymentMethod\")\n" +
                 "\tVALUES (?, ?, ?);";
 
-
         PreparedStatement preparedStatement = null;
-        PreparedStatement preparedStatement1 = null;
 
         try {
             preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS);
