@@ -264,7 +264,7 @@ function registerRefClicked() {
         document.querySelector('#login-form-phone-label').style.display = 'block';
         document.querySelector('#login-form-phone').style.display = 'block';
         document.querySelector('.login-sign-in-button').textContent = 'Зарегистрироваться';
-        document.querySelector('.login-form-ref').style.display = 'none';
+        //document.querySelector('.login-form-ref').style.display = 'none';
         document.querySelector('.login-form-register-text').textContent = 'Уже есть аккаунт?';
         document.querySelector('.login-form-register-ref').textContent = 'Войти';
         document.querySelector('.login-box').style.marginTop = '-210px';
@@ -278,7 +278,7 @@ function registerRefClicked() {
         document.querySelector('#login-form-phone-label').style.display = 'none';
         document.querySelector('#login-form-phone').style.display = 'none';
         document.querySelector('.login-sign-in-button').textContent = 'Войти';
-        document.querySelector('.login-form-ref').style.display = 'block';
+        //document.querySelector('.login-form-ref').style.display = 'block';
         document.querySelector('.login-form-register-text').textContent = "Еще нет аккаунта?";
         document.querySelector('.login-form-register-ref').textContent = 'Зарегистрироваться';
         document.querySelector('.login-box').style.marginTop = '-150px';
