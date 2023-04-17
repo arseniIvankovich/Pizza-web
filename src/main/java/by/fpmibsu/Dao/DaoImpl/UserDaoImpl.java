@@ -192,6 +192,35 @@ public class UserDaoImpl extends Util implements UserDao {
     }
 
     @Override
+    public User findByEmail(String email) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        User user = new User();
+        final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
+                "\tFROM public.\"User\" WHERE \"Email\" = ?;";
+        try {
+            preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID);
+            preparedStatement.setString(1,email);
+            ResultSet resultSet= preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                user.setUserId(resultSet.getLong("UserID"));
+                user.setRole(new RoleDaoImpl().findEntityById(resultSet.getLong("Role_id")));
+                user.setFirstName_lastName(resultSet.getString("First_SecondName"));
+                user.setPassword(resultSet.getString("Password"));
+                user.setEmail(resultSet.getString("Email"));
+                user.setTelephone(resultSet.getString("Phone_number"));
+                user.setAddresses(new AddressDaoImpl().findEntityById(resultSet.getLong("Address_id")));
+                user.setOrder(new OrderDaoImpl().findEntityById(resultSet.getLong("Order_id")));
+            }
+        }
+        finally {
+            close(preparedStatement);
+            close(connection);
+        }
+        return user;
+    }
+
+    @Override
     public User checkLogin(String email, String password) throws SQLException{
         PreparedStatement preparedStatement = null;
         User user = new User();

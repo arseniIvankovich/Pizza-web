@@ -9,6 +9,7 @@ public class Pizza extends Entity{
     private Boolean doughType;
     private Double price;
 
+    private Integer counter = 0;
     private Double weight;
 
     public Pizza(){}
@@ -30,6 +31,14 @@ public class Pizza extends Entity{
         this.size = size;
         this.doughType = doughType;
         this.price = price;
+    }
+
+    public Integer getCounter() {
+        return counter;
+    }
+
+    public void setCounter(Integer counter) {
+        this.counter = counter;
     }
 
     public Double getWeight() {

@@ -7,6 +7,8 @@ public class Drink extends Entity{
     private Double capacity;
     private Double price;
 
+    private Integer counter = 0;
+
     public Drink(){}
 
     public Drink(String name, Double capacity, Double price) {
@@ -32,6 +34,14 @@ public class Drink extends Entity{
 
     public Long getDrinkID() {
         return getId();
+    }
+
+    public Integer getCounter() {
+        return counter;
+    }
+
+    public void setCounter(Integer counter) {
+        this.counter = counter;
     }
 
     public void setDrinkID(Long drinkID) {
