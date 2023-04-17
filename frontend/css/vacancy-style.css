@@ -495,6 +495,180 @@ body {
     height: 42px;
 }
 
+.header-telephone-basket {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+
+    width: 380px;
+}
+
+.header-telephone-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+
+    width: 160px;
+}
+
+.call {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+
+    width: 120px;
+}
+
+.header-phone-pic {
+    height: 32px;
+}
+
+.call-number {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 36px;
+    /* identical to box height */
+
+    color: #000000;
+}
+
+.work-time {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 32px;
+    /* identical to box height */
+
+    text-decoration-line: underline;
+
+    color: #000000;
+}
+
+.header-busket-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+    padding: 0px;
+
+    width: 180px;
+}
+
+.header-busket-pic {
+    height: 32px;
+}
+
+.busket {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+
+    width: 170px;
+    transition: 0.2s;
+}
+
+.busket:hover {
+    transform: scale(1.05);
+}
+
+.busket-text {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 28px;
+    text-decoration-line: underline;
+
+    color: #000000;
+}
+
+.busket-link {
+    text-decoration: none;
+}
+
+.busket-quantity {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+}
+
+.busket-button-orig {
+    height: fit-content;
+    max-width: 160px;
+    padding: auto 0;
+
+    background: #E13333;
+    border-radius: 50px;
+    border: none;
+}
+
+.busket-button {
+    height:fit-content;
+    max-width: 160px;
+    padding: auto 0;
+
+    background: #E13333;
+    border-radius: 50px;
+    border: none;
+}
+
+.busket-button-quantity {
+    height:fit-content;
+    max-width: 160px;
+    padding: auto 0;
+
+    background: #E13333;
+    border-radius: 50px;
+    border: none;
+}
+
+.busket-button-text-orig {
+    padding: 4px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.busket-button-text {
+    padding: 4px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.busket-button-quantity-text {
+    padding: 0px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
 
 
 
