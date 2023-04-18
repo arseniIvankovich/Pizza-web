@@ -223,7 +223,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
     public void addToMMDrink(Long orderId, Long drinkId, Integer numberOfDrinks) throws SQLException {
         final String SQL_INNER_DRINK = "INSERT INTO public.\"Drink_order\"(\n" +
                 "\t\"OrderID\", \"DrinkID\", \"NumberOfDrinks\")\n" +
-                "\tVALUES ?, ?, ?);";
+                "\tVALUES (?, ?, ?);";
 
         PreparedStatement preparedStatement = null;
         try{

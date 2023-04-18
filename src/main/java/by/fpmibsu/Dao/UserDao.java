@@ -9,5 +9,7 @@ public interface UserDao extends BaseDao<Long, User>{
 
     User findByEmail (String email) throws SQLException;
 
+    Boolean checkUserByEmail (String email) throws SQLException;
+
     User checkLogin (String email, String password) throws SQLException;
 }
