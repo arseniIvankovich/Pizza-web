@@ -199,7 +199,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
         }
     }
 
-    private  Long getLastID () throws SQLException {
+    public Long getLastID () throws SQLException {
         final String SQL_LAST_ID = "SELECT \"OrderID\"\n" +
                 "\tFROM public.\"Order\" ORDER BY \"OrderID\" DESC LIMIT 1;";
         PreparedStatement preparedStatement = null;

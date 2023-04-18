@@ -70,6 +70,32 @@ public class AddressDaoImpl extends Util implements AddressDao  {
     }
 
     @Override
+    public boolean checkByStreetHouseEntranceFlat(String street, Integer house, Integer entrance, Integer flat) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        Address address = new Address();
+        final String SQL_SELECT_BY_STREET_HOUSE_ENTRANCE_FLAT = "SELECT \"AddressID\", \"StreetName\", \"HouseNumber\", \"Entrance\", \"FlatNumber\"\n" +
+                "\tFROM public.\"Address\" WHERE \"StreetName\" = ? AND \"HouseNumber\" = ? \n" +
+                "\tAND \"Entrance\" = ? AND \"FlatNumber\" = ?;";
+        try {
+            preparedStatement = connection.prepareStatement(SQL_SELECT_BY_STREET_HOUSE_ENTRANCE_FLAT);
+            preparedStatement.setString(1,street);
+            preparedStatement.setInt(2,house);
+            preparedStatement.setInt(3,entrance);
+            preparedStatement.setInt(4,flat);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next() == false)
+                return false;
+            else
+                return true;
+        }
+        finally {
+            close(preparedStatement);
+            close(connection);
+        }
+    }
+
+    @Override
     public List<Address> findAll() throws SQLException {
         final String SQL_SELECT_ALL = "SELECT  \"AddressID\", \"StreetName\", \"HouseNumber\", \"Entrance\", \"FlatNumber\"\n" +
                 "\tFROM public.\"Address\";";
