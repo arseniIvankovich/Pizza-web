@@ -199,7 +199,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
         }
     }
 
-    private  Long getLastID () throws SQLException {
+    public Long getLastID () throws SQLException {
         final String SQL_LAST_ID = "SELECT \"OrderID\"\n" +
                 "\tFROM public.\"Order\" ORDER BY \"OrderID\" DESC LIMIT 1;";
         PreparedStatement preparedStatement = null;
@@ -223,7 +223,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
     public void addToMMDrink(Long orderId, Long drinkId, Integer numberOfDrinks) throws SQLException {
         final String SQL_INNER_DRINK = "INSERT INTO public.\"Drink_order\"(\n" +
                 "\t\"OrderID\", \"DrinkID\", \"NumberOfDrinks\")\n" +
-                "\tVALUES ?, ?, ?);";
+                "\tVALUES (?, ?, ?);";
 
         PreparedStatement preparedStatement = null;
         try{

@@ -11,4 +11,6 @@ public interface AddressDao extends BaseDao<Long, Address> {
     List<Address> findAllByStreet(String pattern) throws SQLException;
 
     Address findByStreetHouseEntranceFlat (String street, Integer house, Integer entrance, Integer flat) throws SQLException;
+
+    boolean checkByStreetHouseEntranceFlat (String street, Integer house, Integer entrance, Integer flat) throws SQLException;
 }

@@ -221,6 +221,29 @@ public class UserDaoImpl extends Util implements UserDao {
     }
 
     @Override
+    public Boolean checkUserByEmail(String email) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        User user = new User();
+        final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
+                "\tFROM public.\"User\" WHERE \"Email\" = ?;";
+        try {
+            preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID);
+            preparedStatement.setString(1,email);
+            ResultSet resultSet= preparedStatement.executeQuery();
+
+            if (resultSet.next() == false)
+                return false;
+            else
+                return true;
+        }
+        finally {
+            close(preparedStatement);
+            close(connection);
+        }
+    }
+
+
+    @Override
     public User checkLogin(String email, String password) throws SQLException{
         PreparedStatement preparedStatement = null;
         User user = new User();
