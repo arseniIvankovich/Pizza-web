@@ -476,6 +476,31 @@ body {
     height: 64px;
 }
 
+.header-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 15px;
+
+    width: 120px;
+}
+
+.header-link {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    text-decoration-line: underline;
+
+    color: #000000;
+}
+
+.header-link:hover, .header-link:focus, .header-link:active {
+    opacity: .85;
+}
+
 .header-form-link {
     text-decoration: none;
 }
