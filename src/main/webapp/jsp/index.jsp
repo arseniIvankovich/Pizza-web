@@ -36,7 +36,7 @@
                         <a href="#drinks" class="header-link js-scroll">Меню</a>
                     </li>
                     <li class="header-item">
-                        <a href="../WEB-INF/view/frontend/html/vacancy.html" class="header-link">Вакансии</a>
+                        <a href="../jsp/vacancy.jsp" class="header-link">Вакансии</a>
                     </li>
                 </ul>
             </nav>
@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="header-busket-box">
-                    <a href="../WEB-INF/view/frontend/html/order.html" class="busket-link">
+                    <a href="../jsp/order.jsp" class="busket-link">
                         <div class="busket">
                             <div class="busket-quantity">
                                 <button class="busket-button-quantity">
