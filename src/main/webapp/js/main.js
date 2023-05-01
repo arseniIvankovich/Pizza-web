@@ -211,10 +211,13 @@ pizza_buskets.forEach(element => {
         let object = JSON.parse(localStorage["pizza"]);
         let flag = false;
         let ind = 0;
+        let bool_size1 = true, bool_dough1 = true;
+        if (pizza_card.querySelector(".size-select").options[0].textContent === "Большой") bool_size1 = false;
+        if (pizza_card.querySelector(".dough-select").options[0].textContent === "Толстое") bool_size1 = false;
         for (let i = 0; i < object.length; i++) {
             if (object[i].name === pizza_card.querySelector(".pizza-card-title").textContent
-                && object[i].size === pizza_card.querySelector(".size-select").options[0].textContent
-                && object[i].doughType === pizza_card.querySelector(".dough-select").options[0].textContent)
+                && object[i].size === bool_size1
+                && object[i].doughType === bool_dough1)
             {
                 flag = true;
                 ind = i;
@@ -244,8 +247,8 @@ pizza_buskets.forEach(element => {
             let pizza_item = {
                 id: ids[element_id - 1] + addition,
                 name: pizza_card.querySelector(".pizza-card-title").textContent,
-                size: pizza_card.querySelector(".size-select").options[0].textContent,
-                doughType: pizza_card.querySelector(".dough-select").options[0].textContent,
+                size: bool_size,
+                doughType: bool_dough,
                 counter: 1,
                 weight: 500 + w,
                 ingredients: pizza_card.querySelector(".ingredients-text").textContent,

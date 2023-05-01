@@ -31,12 +31,15 @@ function loadPizza() {
 
     let pizza = JSON.parse(localStorage["pizza"]);
     for (let i = 0; i < pizza.length; i++) {
+        let size = "Средний", dough = "Тонкое";
+        if (pizza[i].size === false) size = "Большой";
+        if (pizza[i].doughType === false) dough = "Толстое";
         next_elem.insertAdjacentHTML("beforebegin", `<div id="` + (i + 1) + `" class="order-item">
         <img src="` + pizza_images.get(pizza[i].name) + `" alt="Order item" class="order-item-pic">
         <div class="description-box">
         <p class="order-item-title">` + pizza[i].name + `</p>
-        <p class="order-item-size">` + pizza[i].size + `</p>
-        <p class="order-item-dough">` + pizza[i].doughType + `</p>
+        <p class="order-item-size">` + size + `</p>
+        <p class="order-item-dough">` + dough + `</p>
         </div>
         <div class="order-item-quantity">
             <input type="image" src="../img/minus-svgrepo-com.svg" alt="Order item sign" class="order-item-sign-minus">
@@ -177,13 +180,16 @@ order_item.forEach(element => {
         if (element.id / 10000 >= 1) flag = true;//drink
         let object;
         let ind;
+        let bool_size = true, bool_dough = true;
         if (!flag) {
+            if (element.querySelector(".order-item-size").textContent === "Большой") bool_size = false;
+            if (element.querySelector(".order-item-dough").textContent === "Толстое") bool_dough = false;
             object = JSON.parse(localStorage["pizza"]);
             ind = -1;
             for (let i = 0; i < object.length; i++) {
                 if (object[i].name === element.querySelector(".order-item-title").textContent
-                    && object[i].size === element.querySelector(".order-item-size").textContent
-                    && object[i].doughType === element.querySelector(".order-item-dough").textContent)
+                    && object[i].size === bool_size
+                    && object[i].doughType === bool_dough)
                 {
                     ind = i;
                     break;
@@ -243,13 +249,16 @@ order_item.forEach(element => {
         if (element.id / 10000 >= 1) flag = true;//drink
         let object;
         let ind;
+        let bool_size = true, bool_dough = true;
         if (!flag) {
+            if (element.querySelector(".order-item-size").textContent === "Большой") bool_size = false;
+            if (element.querySelector(".order-item-dough").textContent === "Толстое") bool_dough = false;
             object = JSON.parse(localStorage["pizza"]);
             ind = -1;
             for (let i = 0; i < object.length; i++) {
                 if (object[i].name === element.querySelector(".order-item-title").textContent
-                    && object[i].size === element.querySelector(".order-item-size").textContent
-                    && object[i].doughType === element.querySelector(".order-item-dough").textContent)
+                    && object[i].size === bool_size
+                    && object[i].doughType === bool_dough)
                 {
                     ind = i;
                     break;
