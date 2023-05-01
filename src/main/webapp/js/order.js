@@ -133,15 +133,15 @@ element1.forEach(element => {
     }
 
     loginButton.addEventListener("click", function (e) {
-        if (localStorage["is-logged-in"] == 'false') {
-            e.stopPropagation();
-            toggleForm();
-        }
-        else {
-            let loginButton = document.querySelector(".profile-button-orig");
-            let loginText = document.querySelector(".profile-button-text-orig");
-            window.open("../jsp/profile.jsp", "_self");
-        }
+        //if (localStorage["is-logged-in"] === 'false') {
+        e.stopPropagation();
+        toggleForm();
+        // }
+        // else {
+        //     let loginButton = document.querySelector(".profile-button-orig");
+        //     let loginText = document.querySelector(".profile-button-text-orig");
+        //     window.open("../jsp/profile.jsp", "_self");
+        // }
     });
 
     document.addEventListener("click", function (e) {
@@ -153,14 +153,6 @@ element1.forEach(element => {
         if (!its_form && !its_button && form_is_active) {
             toggleForm();
         }
-    });
-}());
-
-(function () {
-    const button = document.querySelector('.login-sign-in-button');
-    button.addEventListener("click", function () {
-        localStorage["is-logged-in"] = 'true';
-        profileButton.textContent = 'Личный кабинет';
     });
 }());
 
