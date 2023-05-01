@@ -98,7 +98,7 @@
             <span class="login-form-empty-line"></span>
             <div class="login-form-register-ref-box">
                 <p class="login-form-register-text">Еще нет аккаунта?</p>
-                <a href="../WEB-INF/view/frontend/html/register.html" class="login-form-register-ref">
+                <a href="./register.jsp" class="login-form-register-ref">
                     Зарегистрироваться
                 </a>
             </div>
@@ -137,9 +137,7 @@
                         <option value="Thin" selected="selected">Тонкое</option>
                     </select>
                 </div>
-                <p class="ingredients-text">
-                    пицца-соус, пепперони, сыр моцарелла, базилик
-                </p>
+                <p class="ingredients-text">пицца-соус, пепперони, сыр моцарелла, базилик</p>
                 <div class="pizza-card-buttons">
                     <button class="busket-button">
                         <p class="busket-button-text" id="price-1">16.99 BYN</p>
@@ -168,9 +166,7 @@
                         <option value="Thin" selected="selected">Тонкое</option>
                     </select>
                 </div>
-                <p class="ingredients-text">
-                    сырный соус, сливочный сыр, сыр фета, сыр дорблю (может отличаться от изображения на сайте), сыр моцарелла, базилик
-                </p>
+                <p class="ingredients-text">сырный соус, сливочный сыр, сыр фета, сыр дорблю (может отличаться от изображения на сайте), сыр моцарелла, базилик</p>
                 <div class="pizza-card-buttons">
                     <button class="busket-button">
                         <p class="busket-button-text" id="price-2">18.99 BYN</p>
@@ -199,10 +195,7 @@
                         <option value="Thin" selected="selected">Тонкое</option>
                     </select>
                 </div>
-                <p class="ingredients-text">
-                    сырный соус, ветчина, филе цыпленка, ананасы,
-                    сыр моцарелла, базилик
-                </p>
+                <p class="ingredients-text">сырный соус, ветчина, филе цыпленка, ананасы, сыр моцарелла, базилик</p>
                 <div class="pizza-card-buttons">
                     <button class="busket-button">
                         <p class="busket-button-text" id="price-3">12.99 BYN</p>
@@ -231,10 +224,7 @@
                         <option value="Thin" selected="selected">Тонкое</option>
                     </select>
                 </div>
-                <p class="ingredients-text">
-                    пицца-соус, грудинка (свинина), филе цыпленка,
-                    свежий лук, соус барбекю, сыр моцарелла, базилик
-                </p>
+                <p class="ingredients-text">пицца-соус, грудинка (свинина), филе цыпленка, свежий лук, соус барбекю, сыр моцарелла, базилик</p>
                 <div class="pizza-card-buttons">
                     <button class="busket-button">
                         <p class="busket-button-text" id="price-4">16.99 BYN</p>
@@ -263,10 +253,7 @@
                         <option value="Thin" selected="selected">Тонкое</option>
                     </select>
                 </div>
-                <p class="ingredients-text">
-                    соус пармеджано, креветки, сливочный сыр,
-                    сыр моцарелла, базилик
-                </p>
+                <p class="ingredients-text">соус пармеджано, креветки, сливочный сыр, сыр моцарелла, базилик</p>
                 <div class="pizza-card-buttons">
                     <button class="busket-button">
                         <p class="busket-button-text" id="price-5">14.99 BYN</p>
@@ -295,10 +282,7 @@
                         <option value="Thin" selected="selected">Тонкое</option>
                     </select>
                 </div>
-                <p class="ingredients-text">
-                    американский соус ранч, грудинка (свинина), свежий лук,
-                    соленые огурцы, свежие шампиньоны, сыр моцарелла, базилик
-                </p>
+                <p class="ingredients-text">американский соус ранч, грудинка (свинина), свежий лук, соленые огурцы, свежие шампиньоны, сыр моцарелла, базилик</p>
                 <div class="pizza-card-buttons">
                     <button class="busket-button">
                         <p class="busket-button-text" id="price-6">18.99 BYN</p>

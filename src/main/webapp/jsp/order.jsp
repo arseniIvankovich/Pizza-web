@@ -79,7 +79,7 @@
                 <span class="login-form-empty-line"></span>
                 <div class="login-form-register-ref-box">
                     <p class="login-form-register-text">Еще нет аккаунта?</p>
-                    <a href="../html/register.html" class="login-form-register-ref">
+                    <a href="./register.jsp" class="login-form-register-ref">
                         Зарегистрироваться
                     </a>
                 </div>

@@ -1,6 +1,13 @@
+let ids = [
+    1, 5, 9, 13, 17, 21
+]
+
+let capacities = [
+    0.5, 1, 0.5, 1, 0.5, 1, 0.5, 1, 0.5, 0.5
+]
 
 let pizza_images = [
-    "../img/pizzas/пепперони.jpg",
+    "../img/pizzas/peperoni.jpg",
     "../img/pizzas/4_сыра.jpg",
     "../img/pizzas/гавайская.jpg",
     "../img/pizzas/барбекю.jpg",
@@ -26,13 +33,19 @@ let profileButton = document.querySelector('.profile-button-text-orig');
 function loadData() {
     var busket = document.querySelector(".busket-button-text-orig");
     var busket_quantity = document.querySelector(".busket-button-quantity-text");
+    if (typeof localStorage["pizza"] === 'undefined') {
+        localStorage["pizza"] = JSON.stringify([]);
+    }
+    if (typeof localStorage["drinks"] === 'undefined') {
+        localStorage["drinks"] = JSON.stringify([]);
+    }
     if (typeof localStorage["is-logged-in"] === 'undefined') {
         localStorage["is-logged-in"] = 'false';
     }
-    if (localStorage["is-logged-in"] == 'true') {
+    if (localStorage["is-logged-in"] === 'true') {
         profileButton.textContent = 'Личный кабинет';
     }
-    else if (localStorage["is-logged-in"] == 'false') {
+    else if (localStorage["is-logged-in"] === 'false') {
         profileButton.textContent = 'Войти';
     }
     if (typeof localStorage["busket-price"] === 'undefined') {
@@ -43,40 +56,11 @@ function loadData() {
     }
     busket.textContent = localStorage["busket-price"] + " BYN";
     busket_quantity.textContent = localStorage["busket-quantity"];
-
-    //for pizza
-
-    for (let index = 1; index <= 6; index++) {
-        if (typeof localStorage["quantity-pizza-Mid-Thin-" + index] === 'undefined') {
-            localStorage["quantity-pizza-Mid-Thin-" + index] = 0; 
-        }
-        if (typeof localStorage["quantity-pizza-Mid-Thick-" + index] === 'undefined') {
-            localStorage["quantity-pizza-Mid-Thick-" + index] = 0; 
-        }
-        if (typeof localStorage["quantity-pizza-Big-Thin-" + index] === 'undefined') {
-            localStorage["quantity-pizza-Big-Thin-" + index] = 0; 
-        }
-        if (typeof localStorage["quantity-pizza-Big-Thick-" + index] === 'undefined') {
-            localStorage["quantity-pizza-Big-Thick-" + index] = 0; 
-        }
-    }
-
-    //for drinks
-
-    for (let index = 1; index <= 10; index++) {
-        if (typeof localStorage["quantity-drink-" + index] === 'undefined') {
-            localStorage["quantity-drink-" + index] = 0;
-        }
-    }
 }
 
 //localStorage.clear();
 
 loadData();
-
-for (let index = 1; index <= 6; index++) {
-    console.log(localStorage["quantity-pizza-" + index]);
-}
 
 //pizza price according to size
 
@@ -87,13 +71,13 @@ size_select_elements.forEach(element => {
     element.addEventListener("change", function() {
         var text = document.getElementById(price_name).textContent;
         var index = text.search(" ");
-        if (element.options[0].value == "Big") {
+        if (element.options[0].value === "Big") {
             document.getElementById(price_name).textContent
-            = (parseFloat(document.getElementById(price_name).textContent.substring(0, index)) + 5).toFixed(2) + " BYN";
+                = (parseFloat(document.getElementById(price_name).textContent.substring(0, index)) + 5).toFixed(2) + " BYN";
         }
         else {
             document.getElementById(price_name).textContent
-            = (parseFloat(document.getElementById(price_name).textContent.substring(0, index)) - 5).toFixed(2) + " BYN";
+                = (parseFloat(document.getElementById(price_name).textContent.substring(0, index)) - 5).toFixed(2) + " BYN";
         }
     });
 });
@@ -107,82 +91,18 @@ dough_select_elements.forEach(element => {
     element.addEventListener("change", function() {
         var text = document.getElementById(price_name).textContent;
         var index = text.search(" ");
-        if (element.options[0].value == "Thick") {
+        if (element.options[0].value === "Thick") {
             document.getElementById(price_name).textContent
-            = (parseFloat(document.getElementById(price_name).textContent.substring(0, index)) + 2).toFixed(2) + " BYN";
+                = (parseFloat(document.getElementById(price_name).textContent.substring(0, index)) + 2).toFixed(2) + " BYN";
         }
         else {
             document.getElementById(price_name).textContent
-            = (parseFloat(document.getElementById(price_name).textContent.substring(0, index)) - 2).toFixed(2) + " BYN";
+                = (parseFloat(document.getElementById(price_name).textContent.substring(0, index)) - 2).toFixed(2) + " BYN";
         }
     });
 });
 
-//
 
-var busket = document.querySelector(".busket-button-text-orig");
-var busket_quantity = document.querySelector(".busket-button-quantity-text");
-
-var pizza_buskets = document.querySelectorAll(".profile-button");
-pizza_buskets.forEach(element => {
-    const element_id = element.id.charAt(7);
-    const price_name = "price-" + element_id;
-    const pizza = document.getElementById("pizza-" + element_id);
-    element.addEventListener("click", function() {
-        var text = document.getElementById(price_name).textContent;
-        var index = text.search(" ");
-        var busket_index = busket.textContent.search(" ");
-        const prev_price = parseFloat(busket.textContent.substring(0, busket_index));
-        var new_price = prev_price + parseFloat(document.getElementById(price_name).textContent.substring(0, index));
-        localStorage["busket-price"] = new_price.toFixed(2);
-        busket.textContent = new_price.toFixed(2) + " BYN";
-        const new_quantity = parseInt(busket_quantity.textContent) + 1;
-
-        localStorage['busket-quantity'] = new_quantity;
-        localStorage["quantity-pizza-" + pizza.querySelector(".size-select").options[0].value +
-         "-" + pizza.querySelector(".dough-select").options[0].value + "-" + element_id] =
-        parseInt(localStorage["quantity-pizza-" + pizza.querySelector(".size-select").options[0].value +
-        "-" + pizza.querySelector(".dough-select").options[0].value + "-" + element_id]) + 1;
-        localStorage["pizza-name-" + element_id] = pizza.querySelector(".pizza-card-title").textContent;
-        console.log(localStorage["pizza-name-" + element_id]);
-        localStorage["pizza-image-" + element_id] = pizza_images[element_id - 1];
-        localStorage["price-pizza-" + pizza.querySelector(".size-select").options[0].value +
-        "-" + pizza.querySelector(".dough-select").options[0].value + "-" + element_id] = 
-        (parseFloat(document.getElementById(price_name).textContent.substring(0, index)) *
-        parseFloat(localStorage["quantity-pizza-" + pizza.querySelector(".size-select").options[0].value +
-         "-" + pizza.querySelector(".dough-select").options[0].value + "-" + element_id])).toFixed(2);
-
-        busket_quantity.textContent = new_quantity;
-    });
-});
-
-var drink_buskets = document.querySelectorAll(".drink-button");
-drink_buskets.forEach(element => {
-    var button_index = element.id.search("-");
-    const element_id = element.id.substring(button_index + 1);
-    const price_name = "dprice-" + element_id;
-    const pizza = document.getElementById("drink-" + element_id);
-    element.addEventListener("click", function() {
-        var text = document.getElementById(price_name).textContent;
-        var index = text.search(" ");
-        var busket_index = busket.textContent.search(" ");
-        const prev_price = parseFloat(busket.textContent.substring(0, busket_index));
-        var new_price = prev_price + parseFloat(document.getElementById(price_name).textContent.substring(0, index));
-        localStorage["busket-price"] = new_price.toFixed(2);
-        busket.textContent = new_price.toFixed(2) + " BYN";
-        const new_quantity = parseInt(busket_quantity.textContent) + 1;
-        localStorage['busket-quantity'] = new_quantity;
-        localStorage["quantity-drink-" + element_id] = parseInt(localStorage["quantity-drink-" + element_id]) + 1;
-        localStorage["drink-name-" + element_id] = pizza.querySelector(".drink-card-title").textContent;
-        localStorage["drink-image-" + element_id] = drink_images[element_id - 1];
-        localStorage["price-drink-" + element_id] = parseFloat(document.getElementById(price_name).textContent.substring(0, index)).toFixed(2)
-         * localStorage["quantity-drink-" + element_id];
-
-        busket_quantity.textContent = new_quantity;
-    });
-});
-
-//
 
 const element1 = document.querySelectorAll(".menu-choices");
 
@@ -201,21 +121,21 @@ element1.forEach(element => {
     }
 
     loginButton.addEventListener("click", function (e) {
-        if (localStorage["is-logged-in"] == 'false') {
+        if (localStorage["is-logged-in"] === 'false') {
             e.stopPropagation();
             toggleForm();
         }
         else {
             let loginButton = document.querySelector(".profile-button-orig");
             let loginText = document.querySelector(".profile-button-text-orig");
-            window.open("./frontend/html/profile.html", "_self");
+            window.open("../jsp/profile.jsp", "_self");
         }
     });
 
     document.addEventListener("click", function (e) {
         const target = e.target;
-        const its_form = target == loginForm || loginForm.contains(target);
-        const its_button = target == loginButton;
+        const its_form = target === loginForm || loginForm.contains(target);
+        const its_button = target === loginButton;
         const form_is_active = loginForm.classList.contains("open");
 
         if (!its_form && !its_button && form_is_active) {
@@ -243,14 +163,14 @@ document.querySelector('#login-form-phone').style.display = 'none';
         let targetPosition = target.getBoundingClientRect().top;
         let startPosition = window.pageYOffset;
         let startTime = null;
-    
+
         const ease = function(t,b,c,d) {
             t /= d / 2;
             if (t < 1) return c / 2 * t * t + b;
             t--;
             return -c / 2 * (t * (t - 2) - 1) + b;
         };
-    
+
         const animation = function(currentTime){
             if (startTime === null) startTime = currentTime;
             const timeElapsed = currentTime - startTime;
@@ -273,3 +193,127 @@ document.querySelector('#login-form-phone').style.display = 'none';
     };
     scrollTo();
 }());
+
+////////////////////////////////////////////////////////////////////////////////////
+
+var busket = document.querySelector(".busket-button-text-orig");
+var busket_quantity = document.querySelector(".busket-button-quantity-text");
+
+var pizza_buskets = document.querySelectorAll(".profile-button");
+
+var drink_buskets = document.querySelectorAll(".drink-button");
+
+pizza_buskets.forEach(element => {
+    element.addEventListener("click", function() {
+        const element_id = element.id.charAt(7);
+        const price_name = "price-" + element_id;
+        let pizza_card = document.getElementById("pizza-" + element_id);
+        let object = JSON.parse(localStorage["pizza"]);
+        let flag = false;
+        let ind = 0;
+        for (let i = 0; i < object.length; i++) {
+            if (object[i].name === pizza_card.querySelector(".pizza-card-title").textContent
+                && object[i].size === pizza_card.querySelector(".size-select").options[0].textContent
+                && object[i].doughType === pizza_card.querySelector(".dough-select").options[0].textContent)
+            {
+                flag = true;
+                ind = i;
+            }
+        }
+        if (flag) object[ind].counter = object[ind].counter + 1;
+        else {
+            let pizza_index = pizza_card.querySelector(".busket-button-text").textContent.search(" ");
+            let pizza_price = parseFloat(pizza_card.querySelector(".busket-button-text").textContent.substring(0, pizza_index));
+            let addition = 0;
+            let w = 0;
+            let bool_size = true, bool_dough = true;
+            if (pizza_card.querySelector(".size-select").options[0].textContent === "Большой") bool_size = false;
+            if (pizza_card.querySelector(".dough-select").options[0].textContent === "Толстое") bool_size = false;
+            if (!bool_dough && bool_size) {
+                addition = 1;
+                w = 50;
+            }
+            if (bool_dough && !bool_size) {
+                addition = 2;
+                w = 150;
+            }
+            if (!bool_dough && !bool_size) {
+                addition = 3;
+                w = 200;
+            }
+            let pizza_item = {
+                id: ids[element_id - 1] + addition,
+                name: pizza_card.querySelector(".pizza-card-title").textContent,
+                size: pizza_card.querySelector(".size-select").options[0].textContent,
+                doughType: pizza_card.querySelector(".dough-select").options[0].textContent,
+                counter: 1,
+                weight: 500 + w,
+                ingredients: pizza_card.querySelector(".ingredients-text").textContent,
+                price: pizza_price.toFixed(2)
+            }
+            object.push(pizza_item);
+        }
+        localStorage["pizza"] = JSON.stringify(object);
+        console.log(object);
+
+        var text = document.getElementById(price_name).textContent;
+        var index = text.search(" ");
+        var busket_index = busket.textContent.search(" ");
+        const prev_price = parseFloat(busket.textContent.substring(0, busket_index));
+        var new_price = prev_price + parseFloat(document.getElementById(price_name).textContent.substring(0, index));
+        localStorage["busket-price"] = new_price.toFixed(2);
+        busket.textContent = new_price.toFixed(2) + " BYN";
+        const new_quantity = parseInt(busket_quantity.textContent) + 1;
+        localStorage['busket-quantity'] = new_quantity;
+
+        busket_quantity.textContent = new_quantity;
+    });
+});
+
+drink_buskets.forEach(element => {
+    element.addEventListener("click", function() {
+        var button_index = element.id.search("-");
+        const element_id = element.id.substring(button_index + 1);
+        const price_name = "dprice-" + element_id;
+
+        let drink_card = document.getElementById("drink-" + element_id);
+        let object = JSON.parse(localStorage["drinks"]);
+        let flag = false;
+        let ind = 0;
+        for (let i = 0; i < object.length; i++) {
+            if ((object[i].name + ", " + object[i].capacity) === drink_card.querySelector(".drink-card-title").textContent)
+            {
+                flag = true;
+                ind = i;
+            }
+        }
+        if (flag) object[ind].counter = object[ind].counter + 1;
+        else {
+            let name_index = drink_card.querySelector(".drink-card-title").textContent.search(",");
+            let drink_index = drink_card.querySelector(".drink-price-button-text").textContent.search(" ");
+            let drink_price = parseFloat(drink_card.querySelector(".drink-price-button-text").textContent.substring(0, drink_index));
+            let drink_item = {
+                id: element_id,
+                name: drink_card.querySelector(".drink-card-title").textContent.substring(0, name_index),
+                counter: 1,
+                capacity: capacities[element_id - 1],
+                price: drink_price.toFixed(2)
+            }
+            object.push(drink_item);
+        }
+        localStorage["drinks"] = JSON.stringify(object);
+        console.log(object);
+
+        var text = document.getElementById(price_name).textContent;
+        var index = text.search(" ");
+        var busket_index = busket.textContent.search(" ");
+        const prev_price = parseFloat(busket.textContent.substring(0, busket_index));
+        var new_price = prev_price + parseFloat(document.getElementById(price_name).textContent.substring(0, index));
+        localStorage["busket-price"] = new_price.toFixed(2);
+        busket.textContent = new_price.toFixed(2) + " BYN";
+        const new_quantity = parseInt(busket_quantity.textContent) + 1;
+        localStorage['busket-quantity'] = new_quantity;
+
+        busket_quantity.textContent = new_quantity;
+    });
+});
