@@ -121,36 +121,20 @@ element1.forEach(element => {
     }
 
     loginButton.addEventListener("click", function (e) {
-        //if (localStorage["is-logged-in"] === 'false') {
-            e.stopPropagation();
-            toggleForm();
-        // }
-        // else {
-        //     let loginButton = document.querySelector(".profile-button-orig");
-        //     let loginText = document.querySelector(".profile-button-text-orig");
-        //     window.open("../jsp/profile.jsp", "_self");
-        // }
+        e.stopPropagation();
+        toggleForm();
     });
 
     document.addEventListener("click", function (e) {
         const target = e.target;
         const its_form = target === loginForm || loginForm.contains(target);
-        const its_button = target === loginButton;
         const form_is_active = loginForm.classList.contains("open");
 
-        if (!its_form && !its_button && form_is_active) {
+        if (!its_form && form_is_active) {
             toggleForm();
         }
     });
 }());
-
-// (function () {
-//     const button = document.querySelector('.login-sign-in-button');
-//     button.addEventListener("click", function () {
-//         localStorage["is-logged-in"] = 'true';
-//         profileButton.textContent = 'Личный кабинет';
-//     });
-// }());
 
 
 // Scroll to anchors
