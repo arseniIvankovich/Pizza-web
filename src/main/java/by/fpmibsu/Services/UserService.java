@@ -69,7 +69,6 @@ public class UserService {
 
 
     public boolean createUser (User user) throws SQLException {
-        user.setRole(roleDao.findEntityById(3L));
         return userDao.create(user);
     }
 

@@ -20,45 +20,43 @@
 <div class="wrapper">
     <div class="main">
         <div class="form-section">
-            <form action="" class="left-form">
+            <form method="post" action="/register" class="left-form">
                 <div class="personal-header"><p class="personal-header-text">Регистрация</p></div>
                 <div class="input-box">
                     <label for="login-form-street">Улица</label>
-                    <input type="text" class="login-form-input" id="login-form-street">
+                    <input type="text" class="login-form-input" id="login-form-street" name="street">
                 </div>
                 <div class="input-box">
                     <label for="login-form-house">Дом</label>
-                    <input type="text" class="login-form-input" id="login-form-house">
+                    <input type="text" class="login-form-input" id="login-form-house" name="house">
                 </div>
                 <div class="input-box">
                     <label for="login-form-entrance">Подъезд</label>
-                    <input type="text" class="login-form-input" id="login-form-entrance">
+                    <input type="text" class="login-form-input" id="login-form-entrance" name="entrance">
                 </div>
 
                 <div class="input-box">
                     <label for="login-form-flat">Квартира</label>
-                    <input type="text" class="login-form-input" id="login-form-flat">
+                    <input type="text" class="login-form-input" id="login-form-flat" name="flat">
                 </div>
                 <div class="input-box">
                     <label for="login-form-name">Имя и Фамилия</label>
-                    <input type="text" class="login-form-input" id="login-form-name">
+                    <input type="text" class="login-form-input" id="login-form-name" name="firstSecondName">
                 </div>
                 <div class="input-box">
                     <label for="login-form-email">Email</label>
-                    <input type="text" class="login-form-input" id="login-form-email">
+                    <input type="text" class="login-form-input" id="login-form-email" name="email">
                 </div>
                 <div class="input-box">
                     <label for="login-form-phone">Телефон</label>
-                    <input type="text" class="login-form-input" id="login-form-phone">
+                    <input type="text" class="login-form-input" id="login-form-phone" name="telephone">
                 </div>
                 <div class="input-box">
-                    <label for="login-form-date">Дата рождения</label>
-                    <input type="text" class="login-form-input" id="login-form-date">
+                    <label for="login-form-date">Пароль</label>
+                    <input type="text" class="login-form-input" id="login-form-date" name="password">
                 </div>
                 <div class="button-box">
-                    <button type="button" class="save-button">
-                        <p class="save-button-text">Зарегистрироваться</p>
-                    </button>
+                    <input type="submit" value="Зарегистрироваться" class="save-button">
                 </div>
                 <div>
                     <a href="/" class="login-form-register-ref">

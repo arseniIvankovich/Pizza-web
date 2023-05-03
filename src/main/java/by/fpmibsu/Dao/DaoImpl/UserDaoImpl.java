@@ -112,8 +112,8 @@ public class UserDaoImpl extends Util implements UserDao {
     @Override
     public boolean create(User user) throws SQLException{
         final String SQL_CREATE_USER = "INSERT INTO public.\"User\"(\n" +
-                "\t\"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\")\n" +
-                "\tVALUES (?, ?, ?, ?, ?, ?, ?);";
+                "\t\"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\")\n" +
+                "\tVALUES (?, ?, ?, ?, ?, ?);";
 
         PreparedStatement preparedStatement = null;
 
@@ -125,7 +125,6 @@ public class UserDaoImpl extends Util implements UserDao {
             preparedStatement.setString(4,user.getEmail());
             preparedStatement.setString(5,user.getTelephone());
             preparedStatement.setLong(6,user.getAddresses().getId());
-            preparedStatement.setLong(7,user.getOrder().getId());
 
             preparedStatement.executeUpdate();
             return true;

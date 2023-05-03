@@ -21,6 +21,14 @@ public class User extends Entity{
 
     public User(){}
 
+    public User(Address addresses, String firstName_lastName, String password, String email, String telephone, Role role) {
+        this.addresses = addresses;
+        this.firstName_lastName = firstName_lastName;
+        this.password = password;
+        Email = email;
+        Telephone = telephone;
+        this.role = role;
+    }
     public User(Address addresses, Order order, String firstName_lastName, String password, String email, String telephone, Role role) {
         this.addresses = addresses;
         this.order = order;
