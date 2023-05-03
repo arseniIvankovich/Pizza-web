@@ -64,7 +64,7 @@ public class RegisterServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        req.getRequestDispatcher("/").forward(req,resp);
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 
 }
