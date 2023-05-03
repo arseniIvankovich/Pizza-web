@@ -525,15 +525,12 @@ label {
 .save-button {
     height:fit-content;
     width: fit-content;
-    /*padding: auto 0;*/
 
     background: #E13333;
     border-radius: 50px;
     border: none;
-}
 
-.save-button-text {
-    padding: 10px 5px;
+    padding: 18px 18px;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
@@ -541,6 +538,10 @@ label {
     line-height: 24px;
     text-align: center;
     color: #FFFFFF;
+}
+
+.save-button-text {
+
 }
 
 .login-form-register-ref {
