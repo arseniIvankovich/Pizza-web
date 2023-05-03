@@ -19,7 +19,7 @@
 <header class="header">
     <div class="wrapper">
         <div class="header-wrapper">
-            <a href="./index.jsp" class="header-logo-link">
+            <a href="/" class="header-logo-link">
                 <div class="header-logo-box">
                     <img src="../img/pizza-5-svgrepo-com.svg" alt="Pizzeria Logo" class="header-logo-pic">
                     <p class="header-logo-text">
@@ -34,7 +34,7 @@
                         <a href="./index.jsp" class="header-link">Меню</a>
                     </li>
                     <li class="header-item">
-                        <a href="./vacancy.jsp" class="header-link">Вакансии</a>
+                        <a href="/vacancy" class="header-link">Вакансии</a>
                     </li>
                 </ul>
             </nav>
@@ -42,7 +42,7 @@
             <a href="#form" class="header-form-link js-scroll">
                 <div class="header-logo-box">
                     <div class="header-busket-box">
-                        <a href="./order.jsp" class="busket-link">
+                        <a href="/order" class="busket-link">
                             <div class="busket">
                                 <div class="busket-quantity">
                                     <button class="busket-button-quantity">

@@ -61,7 +61,7 @@
                     </button>
                 </div>
                 <div>
-                    <a href="./index.jsp" class="login-form-register-ref">
+                    <a href="/" class="login-form-register-ref">
                         Вернуться на главную
                     </a>
                 </div>

@@ -20,7 +20,7 @@
 <header class="header">
     <div class="wrapper">
         <div class="header-wrapper">
-            <a href="./index.jsp" class="header-logo-link">
+            <a href="/" class="header-logo-link">
                 <div class="header-logo-box">
                     <img src="../img/pizza-5-svgrepo-com.svg" alt="Pizzeria Logo" class="header-logo-pic">
                     <p class="header-logo-text">
@@ -32,7 +32,7 @@
             <nav class="header-nav">
                 <ul class="header-list">
                     <li class="header-item">
-                        <a href="./index.jsp" class="header-link">Меню</a>
+                        <a href="/" class="header-link">Меню</a>
                     </li>
                 </ul>
             </nav>
@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="header-busket-box">
-                    <a href="./order.jsp" class="busket-link">
+                    <a href="/order" class="busket-link">
                         <div class="busket">
                             <div class="busket-quantity">
                                 <button class="busket-button-quantity">
@@ -178,7 +178,7 @@
         </div>
 
         <div class="form-section">
-            <form action="" class="left-form">
+            <form method="post" action="/vacancy" class="left-form">
                 <div class="input-box">
                     <label for="login-form-street">Улица</label>
                     <input type="text" class="login-form-input" id="login-form-street">
@@ -200,7 +200,6 @@
                     <label for="login-form-name">Имя и Фамилия</label>
                     <input type="text" class="login-form-input" id="login-form-name">
                 </div>
-            </form>
             <div class="right-form">
                 <div class="input-box">
                     <label for="login-form-date">Дата рождения</label>
@@ -222,14 +221,10 @@
                         <option value="Mid" selected="selected">Пеший курьер</option>
                     </select>
                 </div>
+                <input type="submit" value="Отправить заявку" class="order-button">
             </div>
+            </form>
         </div>
-
-        <button class="order-button">
-            <p class="order-button-text">
-                Отправить заявку
-            </p>
-        </button>
     </div>
 </div>
 

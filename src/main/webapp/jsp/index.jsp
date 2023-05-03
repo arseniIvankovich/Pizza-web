@@ -33,10 +33,10 @@
             <nav class="header-nav">
                 <ul class="header-list">
                     <li class="header-item">
-                        <a href="#drinks" class="header-link js-scroll">Меню</a>
+                        <a href="#drinks" class="header-link js-scroll">Напитки</a>
                     </li>
                     <li class="header-item">
-                        <a href="../jsp/vacancy.jsp" class="header-link">Вакансии</a>
+                        <a href="/vacancy" class="header-link">Вакансии</a>
                     </li>
                 </ul>
             </nav>
@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="header-busket-box">
-                    <a href="../jsp/order.jsp" class="busket-link">
+                    <a href="/order" class="busket-link">
                         <div class="busket">
                             <div class="busket-quantity">
                                 <button class="busket-button-quantity">
@@ -87,18 +87,18 @@
             Войти в аккаунт
         </h3>
 
-        <form action="" class="login-form">
+        <form method="post" action="/" class="login-form" >
             <label for="login-form-phone" id="login-form-phone-label">Телефон</label>
             <input type="text" class="login-form-input" id="login-form-phone">
             <label for="login-form-e-mail">E-mail</label>
-            <input type="text" class="login-form-input" id="login-form-e-mail">
+            <input type="text" class="login-form-input" id="login-form-e-mail" name="">
             <label for="login-form-password">Пароль</label>
             <input type="text" class="login-form-input" id="login-form-password">
-            <button type="submit" class="login-sign-in-button">Войти</button>
+            <input type="submit" class="login-sign-in-button" value="Войти">
             <span class="login-form-empty-line"></span>
             <div class="login-form-register-ref-box">
                 <p class="login-form-register-text">Еще нет аккаунта?</p>
-                <a href="./register.jsp" class="login-form-register-ref">
+                <a href="/register" class="login-form-register-ref">
                     Зарегистрироваться
                 </a>
             </div>

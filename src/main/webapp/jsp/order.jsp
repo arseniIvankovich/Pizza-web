@@ -20,7 +20,7 @@
     <header class="header">
         <div class="wrapper">
             <div class="header-wrapper">
-                <a href="./index.jsp" class="header-logo-link">
+                <a href="/" class="header-logo-link">
                     <div class="header-logo-box">
                         <img src="../img/pizza-5-svgrepo-com.svg" alt="Pizzeria Logo" class="header-logo-pic">
                         <p class="header-logo-text">
@@ -32,10 +32,10 @@
                 <nav class="header-nav">
                     <ul class="header-list">
                         <li class="header-item">
-                            <a href="./index.jsp" class="header-link">Меню</a>
+                            <a href="/" class="header-link">Меню</a>
                         </li>
                         <li class="header-item">
-                            <a href="./vacancy.jsp" class="header-link">Вакансии</a>
+                            <a href="/vacancy" class="header-link">Вакансии</a>
                         </li>
                     </ul>
                 </nav>
@@ -79,7 +79,7 @@
                 <span class="login-form-empty-line"></span>
                 <div class="login-form-register-ref-box">
                     <p class="login-form-register-text">Еще нет аккаунта?</p>
-                    <a href="./register.jsp" class="login-form-register-ref">
+                    <a href="/register" class="login-form-register-ref">
                         Зарегистрироваться
                     </a>
                 </div>
@@ -97,7 +97,7 @@
                 <p class="busket-header">Корзина</p>
 
                 <div class="order-refs">
-                    <a href="../../index.html" class="change-order">Изменить заказ</a>
+                    <a href="/" class="change-order">Изменить заказ</a>
                     <button class="busket-button">
                         <p class="busket-button-text">0.00 BYN</p>
                     </button>
@@ -114,7 +114,7 @@
 
                 <ul type="disc" class="info-text-vacancy">
                     <li class="current-address">Текущий адрес</li>
-                    <li class="point-change-address"><a href="../html/profile.html" class="change-address">Изменить адрес</a></li>
+                    <li class="point-change-address"><a href="/profile" class="change-address">Изменить адрес</a></li>
                 </ul>
 
                 <p class="address-header">Способ оплаты:</p>
