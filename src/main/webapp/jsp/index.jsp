@@ -88,8 +88,6 @@
         </h3>
 
         <form method="post" action="/" class="login-form" >
-            <label for="login-form-phone" id="login-form-phone-label">Телефон</label>
-            <input type="text" class="login-form-input" id="login-form-phone">
             <label for="login-form-e-mail">E-mail</label>
             <input type="text" class="login-form-input" id="login-form-e-mail" name="">
             <label for="login-form-password">Пароль</label>

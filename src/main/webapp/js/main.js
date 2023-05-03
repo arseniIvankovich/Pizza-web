@@ -152,8 +152,6 @@ element1.forEach(element => {
 //     });
 // }());
 
-document.querySelector('#login-form-phone-label').style.display = 'none';
-document.querySelector('#login-form-phone').style.display = 'none';
 
 // Scroll to anchors
 (function () {
