@@ -17,6 +17,9 @@
     </head>
 
     <body>
+
+    <input type="submit" class="session" name="sessionAttribute" value="${sessionScope.userId}">
+
     <header class="header">
         <div class="wrapper">
             <div class="header-wrapper">
@@ -53,9 +56,7 @@
                         </p>
                     </div>
 
-                    <button class="profile-button-orig">
-                        <p class="profile-button-text-orig">Войти</p>
-                    </button>
+                    <input type="submit" class="profile-button-orig" name="profileButton" value="Войти">
                 </div>
 
 

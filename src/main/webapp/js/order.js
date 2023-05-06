@@ -27,6 +27,10 @@ let drink_images = new Map([
 let profileButton = document.querySelector('.profile-button-text-orig');
 
 function loadPizza() {
+    if (document.querySelector(".session").value !== '') {
+        document.querySelector(".profile-button-orig").value = "Личный кабинет";
+    }
+
     let next_elem = document.querySelector(".order-refs");
 
     let pizza = JSON.parse(localStorage["pizza"]);
