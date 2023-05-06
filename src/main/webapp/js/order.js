@@ -132,29 +132,6 @@ element1.forEach(element => {
 
 
 
-(function () {
-    const loginButton = document.querySelector('.profile-button-orig');
-    const loginForm = document.querySelector('.login-box');
-    const toggleForm = function () {
-        loginForm.classList.toggle("open");
-    }
-
-    loginButton.addEventListener("click", function (e) {
-        e.stopPropagation();
-        toggleForm();
-    });
-
-    document.addEventListener("click", function (e) {
-        const target = e.target;
-        const its_form = target === loginForm || loginForm.contains(target);
-        const form_is_active = loginForm.classList.contains("open");
-
-        if (!its_form && form_is_active) {
-            toggleForm();
-        }
-    });
-}());
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

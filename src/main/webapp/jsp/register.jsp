@@ -63,7 +63,11 @@
                         Вернуться на главную
                     </a>
                 </div>
-
+                <div>
+                    <a href="/login" class="login-form-register-ref">
+                        Уже есть аккаунт?
+                    </a>
+                </div>
             </form>
         </div>
     </div>
