@@ -79,9 +79,7 @@
                 </div>
             </div>
 
-            <button class="profile-button-orig">
-                <p class="profile-button-text-orig">Войти</p>
-            </button>
+            <input type="submit" class="profile-button-orig" name="profileButton" value="Войти">
         </div>
     </div>
 

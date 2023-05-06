@@ -28,11 +28,11 @@ let drink_images = [
     "../img/drinks/water.png"
 ]
 
-let profileButton = document.querySelector('.profile-button-text-orig');
+
 
 function loadData() {
     if (document.querySelector(".session").value !== '') {
-        document.querySelector(".profile-button-text-orig").textContent = "Личный кабинет";
+        document.querySelector(".profile-button-orig").value = "Личный кабинет";
     }
 
     var busket = document.querySelector(".busket-button-text-orig");
@@ -43,15 +43,6 @@ function loadData() {
     if (typeof localStorage["drinks"] === 'undefined') {
         localStorage["drinks"] = JSON.stringify([]);
     }
-    // if (typeof localStorage["is-logged-in"] === 'undefined') {
-    //     localStorage["is-logged-in"] = 'false';
-    // }
-    // if (localStorage["is-logged-in"] === 'true') {
-    //     profileButton.textContent = 'Личный кабинет';
-    // }
-    // else if (localStorage["is-logged-in"] === 'false') {
-    //     profileButton.textContent = 'Войти';
-    // }
     if (typeof localStorage["busket-price"] === 'undefined') {
         localStorage["busket-price"] = '0.00';
     }

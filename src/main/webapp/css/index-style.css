@@ -673,14 +673,22 @@ body {
 
 .profile-button-orig {
     height: fit-content;
-    max-width: 140px;
+    max-width: 240px;
     /* width: fit-content; */
-    padding: auto 0;
 
     background: #E13333;
     border-radius: 50px;
     border: none;
     transition: .3s;
+
+    padding: 14px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #FFFFFF;
 }
 
 .profile-button {
