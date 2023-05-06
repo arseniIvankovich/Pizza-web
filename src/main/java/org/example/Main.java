@@ -16,6 +16,8 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-
+        String s = BCrypt.hashpw("sf",BCrypt.gensalt());
+        if (BCrypt.checkpw("sf",s))
+            System.out.println("sf");
     }
 }

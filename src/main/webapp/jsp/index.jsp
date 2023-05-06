@@ -89,9 +89,9 @@
 
         <form method="post" action="/" class="login-form" >
             <label for="login-form-e-mail">E-mail</label>
-            <input type="text" class="login-form-input" id="login-form-e-mail" name="">
+            <input type="text" class="login-form-input" id="login-form-e-mail" name="email">
             <label for="login-form-password">Пароль</label>
-            <input type="text" class="login-form-input" id="login-form-password">
+            <input type="text" class="login-form-input" id="login-form-password" name="password">
             <input type="submit" class="login-sign-in-button" value="Войти">
             <span class="login-form-empty-line"></span>
             <div class="login-form-register-ref-box">

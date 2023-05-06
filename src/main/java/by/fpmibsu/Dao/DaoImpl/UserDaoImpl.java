@@ -4,6 +4,7 @@ package by.fpmibsu.Dao.DaoImpl;
 import by.fpmibsu.Services.Util;
 import by.fpmibsu.Dao.UserDao;
 import by.fpmibsu.Entity.*;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -247,18 +248,22 @@ public class UserDaoImpl extends Util implements UserDao {
         PreparedStatement preparedStatement = null;
         User user = new User();
         final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Phone_number\", \"Address_id\", \"Order_id\", \"Email\"\n" +
-                "\tFROM public.\"User\" WHERE \"Email\" = ? AND \"Password\" = ?;";
+                "\tFROM public.\"User\" WHERE \"Email\" = ?;";
         try {
             preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID);
             preparedStatement.setString(1,email);
-            preparedStatement.setString(2,password);
             ResultSet resultSet= preparedStatement.executeQuery();
 
             while (resultSet.next()) {
+                String hashedPassword = resultSet.getString("Password");
+                if (BCrypt.checkpw(password, hashedPassword)) {
                 user.setUserId(resultSet.getLong("UserID"));
                 user.setRole(new RoleDaoImpl().findEntityById(resultSet.getLong("Role_id")));
                 user.setFirstName_lastName(resultSet.getString("First_SecondName"));
                 user.setEmail(resultSet.getString("Email"));
+                }
+                else
+                    throw new SQLException();
             }
         }
         finally {
