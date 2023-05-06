@@ -31,6 +31,10 @@ let drink_images = [
 let profileButton = document.querySelector('.profile-button-text-orig');
 
 function loadData() {
+    if (document.querySelector(".session").value !== '') {
+        document.querySelector(".profile-button-text-orig").textContent = "Личный кабинет";
+    }
+
     var busket = document.querySelector(".busket-button-text-orig");
     var busket_quantity = document.querySelector(".busket-button-quantity-text");
     if (typeof localStorage["pizza"] === 'undefined') {

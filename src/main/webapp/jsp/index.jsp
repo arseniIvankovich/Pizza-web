@@ -18,7 +18,11 @@
 </head>
 
 <body>
+
+<input type="submit" class="session" name="sessionAttribute" value="${sessionScope.userId}">
+
 <header class="header">
+
     <div class="wrapper">
         <div class="header-wrapper">
             <a href="/" class="header-logo-link">
@@ -119,6 +123,7 @@
         </div>
 
         <div class="pizza-section">
+
             <div class="pizza-card" id="pizza-1">
                 <div class="pizza-card-pic-box">
                     <img src="../img/pizzas/peperoni.jpg" alt="Pizza"
