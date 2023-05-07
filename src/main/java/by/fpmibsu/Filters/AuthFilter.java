@@ -21,6 +21,7 @@ public class AuthFilter implements Filter {
         if (session == null || session.getAttribute("userId") == null)
            servletRequest.getServletContext().getRequestDispatcher("/").forward(req,resp);
 
+
         filterChain.doFilter(req,resp);
     }
 }

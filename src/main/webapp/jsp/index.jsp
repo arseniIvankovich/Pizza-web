@@ -79,8 +79,9 @@
                     </button>
                 </div>
             </div>
-
+            <form method="post" action="/" class="login-form">
             <input type="submit" class="profile-button-orig" name="profileButton" value="Войти">
+            </form>
         </div>
     </div>
 
@@ -90,7 +91,7 @@
             Войти в аккаунт
         </h3>
 
-        <form method="post" action="/" class="login-form" >
+        <form method="post" action="/login" class="login-form">
             <label for="login-form-e-mail">E-mail</label>
             <input type="text" class="login-form-input" id="login-form-e-mail" name="email">
             <label for="login-form-password">Пароль</label>
@@ -122,7 +123,6 @@
         </div>
 
         <div class="pizza-section">
-
             <div class="pizza-card" id="pizza-1">
                 <div class="pizza-card-pic-box">
                     <img src="../img/pizzas/peperoni.jpg" alt="Pizza"
