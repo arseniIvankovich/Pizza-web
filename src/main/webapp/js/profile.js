@@ -1,9 +1,3 @@
-// const logoutButton = document.querySelector('.profile-button-orig');
-//
-// logoutButton.addEventListener("click", function () {
-//     localStorage["is-logged-in"] = 'false';
-//     window.open("../jsp/index.jsp", "_self");
-// });
 
 function loadData() {
     var busket = document.querySelector(".busket-button-text-orig");

@@ -60,8 +60,8 @@
                             <p class="busket-button-text-orig">0.00 BYN</p>
                         </button>
                     </div>
-                    <form method="get" action="/logout" class="left-form">
-                    <input type="submit" name="logout" value="Выйти">
+                    <form method="get" action="/logout">
+                        <input type="submit" name="logout" class=".logout-button" value="Выйти">
                     </form>
                 </div>
             </a>
@@ -106,9 +106,8 @@
                     <label for="login-form-phone">Телефон</label>
                     <input type="text" class="login-form-input" id="login-form-phone" name="telephoneP">
                 </div>
-                <div class="button-box">
-                    <input type="submit" name="logout" value="Сохранить информацию">
-                </div>
+
+                <input type="submit" name="logout" class="save-changes-button" value="Сохранить информацию">
             </form>
         </div>
     </div>
