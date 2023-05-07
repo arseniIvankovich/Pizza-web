@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <html lang="en">
 
 <head lang="ru">
@@ -75,36 +76,36 @@
 <div class="wrapper">
     <div class="main">
         <div class="form-section">
-            <form action="/profile" class="left-form">
+            <form  action="" class="left-form">
                 <div class="personal-header"><p>Личные данные профиля</p></div>
                 <div class="input-box">
                     <label for="login-form-street">Улица</label>
-                    <input type="text" class="login-form-input" id="login-form-street" name="streetP" value="<%= request.getParameter("streetP") %>">
+                    <input type="text" class="login-form-input" id="login-form-street" name="streetP" value="<c:out value="${user.addresses.street}"/>">
                 </div>
                 <div class="input-box">
                     <label for="login-form-house">Дом</label>
-                    <input type="text" class="login-form-input" id="login-form-house" name="houseP">
+                    <input type="text" class="login-form-input" id="login-form-house" name="houseP" value="<c:out value="${user.addresses.houseNumber}"/>">
                 </div>
                 <div class="input-box">
                     <label for="login-form-entrance">Подъезд</label>
-                    <input type="text" class="login-form-input" id="login-form-entrance" name="entranceP">
+                    <input type="text" class="login-form-input" id="login-form-entrance" name="entranceP" value="<c:out value="${user.addresses.entrance}"/>">
                 </div>
 
                 <div class="input-box">
                     <label for="login-form-flat">Квартира</label>
-                    <input type="text" class="login-form-input" id="login-form-flat" name="flatP">
+                    <input type="text" class="login-form-input" id="login-form-flat" name="flatP" value="<c:out value="${user.addresses.flatNumber}"/>">
                 </div>
                 <div class="input-box">
                     <label for="login-form-name">Имя и Фамилия</label>
-                    <input type="text" class="login-form-input" id="login-form-name" name="firstSecondP">
+                    <input type="text" class="login-form-input" id="login-form-name" name="firstSecondP" value="<c:out value="${user.firstName_lastName}"/>">
                 </div>
                 <div class="input-box">
                     <label for="login-form-email">Email</label>
-                    <input type="text" class="login-form-input" id="login-form-email" name="emailP">
+                    <input type="text" class="login-form-input" id="login-form-email" name="emailP" value="<c:out value="${user.email}"/>">
                 </div>
                 <div class="input-box">
                     <label for="login-form-phone">Телефон</label>
-                    <input type="text" class="login-form-input" id="login-form-phone" name="telephoneP">
+                    <input type="text" class="login-form-input" id="login-form-phone" name="telephoneP" value="<c:out value="${user.telephone}"/>">
                 </div>
 
                 <input type="submit" name="logout" class="save-changes-button" value="Сохранить информацию">

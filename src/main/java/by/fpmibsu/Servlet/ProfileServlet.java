@@ -4,6 +4,7 @@ import by.fpmibsu.Dao.DaoImpl.AddressDaoImpl;
 import by.fpmibsu.Dao.DaoImpl.OrderDaoImpl;
 import by.fpmibsu.Dao.DaoImpl.RoleDaoImpl;
 import by.fpmibsu.Dao.DaoImpl.UserDaoImpl;
+import by.fpmibsu.Entity.User;
 import by.fpmibsu.Services.AddressService;
 import by.fpmibsu.Services.RoleSetvice;
 import by.fpmibsu.Services.UserService;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/profile")
 public class ProfileServlet extends HttpServlet {
@@ -28,7 +30,14 @@ public class ProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("streetP","affs");
+        Long id = (Long) req.getSession().getAttribute("userId");
+        User user;
+        try {
+            user = userService.findEntityById(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        req.setAttribute("user",user);
         req.getRequestDispatcher("/jsp/profile.jsp").forward(req,resp);
     }
 
