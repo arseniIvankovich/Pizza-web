@@ -60,11 +60,9 @@
                             <p class="busket-button-text-orig">0.00 BYN</p>
                         </button>
                     </div>
-                    <button class="profile-button-orig">
-                        <p class="profile-button-text-orig">
-                            Выйти
-                        </p>
-                    </button>
+                    <form method="get" action="/logout" class="left-form">
+                    <input type="submit" name="logout" value="Выйти">
+                    </form>
                 </div>
             </a>
         </div>
