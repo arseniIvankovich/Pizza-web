@@ -88,25 +88,6 @@ function loadData() {
     }
     busket.textContent = localStorage["busket-price"] + " BYN";
 
-    if (typeof localStorage["is-logged-in"] === 'undefined') {
-        localStorage["is-logged-in"] = 'false';
-    }
-    if (localStorage["is-logged-in"] === 'true') {
-        profileButton.textContent = 'Личный кабинет';
-    }
-    else if (localStorage["is-logged-in"] === 'false') {
-        profileButton.textContent = 'Войти';
-    }
-
-    if (localStorage["is-logged-in"] === 'false') {
-        document.querySelector('.current-address').textContent = 'Для начала войдите в аккаунт или зарегистрируйтесь';
-        document.querySelector('.point-change-address').style.display = 'none';
-    }
-    else if (localStorage["is-logged-in"] === 'true') {
-        document.querySelector('.current-address').textContent = 'Текущий адрес';
-        document.querySelector('.point-change-address').style.display = 'block';
-    }
-
     loadPizza();
 
     loadDrinks();

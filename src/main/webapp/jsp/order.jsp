@@ -100,11 +100,7 @@
                     <button class="busket-button">
                         <p class="busket-button-text">0.00 BYN</p>
                     </button>
-                    <button class="order-button">
-                        <p class="order-button-text">
-                            Оформить заказ
-                        </p>
-                    </button>
+                    <input type="submit" name="order" class="order-button" value="Оформить заказ">
                 </div>
             </div>
 
