@@ -76,7 +76,7 @@
 <div class="wrapper">
     <div class="main">
         <div class="form-section">
-            <form  action="" class="left-form">
+            <form  method="post" action="/profile" class="left-form">
                 <div class="personal-header"><p>Личные данные профиля</p></div>
                 <div class="input-box">
                     <label for="login-form-street">Улица</label>
