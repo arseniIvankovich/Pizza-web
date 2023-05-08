@@ -46,9 +46,9 @@
                         <a href="/order" class="busket-link">
                             <div class="busket">
                                 <div class="busket-quantity">
-                                    <button class="busket-button-quantity">
+                                    <div class="busket-button-quantity">
                                         <p class="busket-button-quantity-text">0</p>
-                                    </button>
+                                    </div>
                                     <img src="../img/trolley-svgrepo-com (1).svg" alt="Busket Logo"
                                          class="header-busket-pic">
                                 </div>
@@ -57,12 +57,12 @@
                                 </p>
                             </div>
                         </a>
-                        <button class="busket-button-orig">
+                        <div class="busket-button-orig">
                             <p class="busket-button-text-orig">0.00 BYN</p>
-                        </button>
+                        </div>
                     </div>
                     <form method="get" action="/logout">
-                        <input type="submit" name="logout" class=".logout-button" value="Выйти">
+                        <input type="submit" name="logout" class="logout-button" value="Выйти">
                     </form>
                 </div>
             </a>

@@ -579,6 +579,7 @@ body {
 
 .busket-button-text-orig {
     padding: 4px;
+    margin: 1px 5px;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
@@ -599,7 +600,7 @@ body {
 }
 
 .busket-button-quantity-text {
-    padding: 0px;
+    margin: 3px 6px;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
@@ -752,7 +753,7 @@ label {
     border-radius: 50px;
     border: none;
 
-    padding: 10px 5px;
+    padding: 10px 10px;
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
