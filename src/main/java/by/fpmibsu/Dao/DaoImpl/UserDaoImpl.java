@@ -47,7 +47,7 @@ public class UserDaoImpl extends Util implements UserDao {
     public User findEntityById(Long id) throws SQLException{
         PreparedStatement preparedStatement = null;
         User user = new User();
-        final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
+        final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\"\n" +
                 "\tFROM public.\"User\" WHERE \"UserID\" = ?;";
         try {
             preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID);
@@ -62,7 +62,6 @@ public class UserDaoImpl extends Util implements UserDao {
                 user.setEmail(resultSet.getString("Email"));
                 user.setTelephone(resultSet.getString("Phone_number"));
                 user.setAddresses(new AddressDaoImpl().findEntityById(resultSet.getLong("Address_id")));
-                user.setOrder(new OrderDaoImpl().findEntityById(resultSet.getLong("Order_id")));
             }
         }
         finally {
@@ -139,26 +138,23 @@ public class UserDaoImpl extends Util implements UserDao {
     @Override
     public void update(User user) throws SQLException{
         final String SQL_UPDATE = "UPDATE public.\"User\"\n" +
-                "\tSET \"Role_id\"=?, \"First_SecondName\"=?, \"Password\"=?, \"Email\"=?, \"Phone_number\"=?, \"Address_id\"=?, \"Order_id\"=?\n" +
+                "\tSET  \"First_SecondName\"=?, \"Email\"=?, \"Phone_number\"=?, \"Address_id\"=?\n" +
                 "\tWHERE \"UserID\" = ?;";
 
         PreparedStatement preparedStatement = null;
         try{
             preparedStatement = connection.prepareStatement(SQL_UPDATE);
 
-            preparedStatement.setLong(1,user.getRole().getId());
-            preparedStatement.setString(2,user.getFirstName_lastName());
-            preparedStatement.setString(3,user.getPassword());
-            preparedStatement.setString(4,user.getEmail());
-            preparedStatement.setString(5,user.getTelephone());
-            preparedStatement.setLong(6,user.getAddresses().getId());
-            preparedStatement.setLong(7,user.getOrder().getId());
-            preparedStatement.setLong(8,user.getUserId());
+            preparedStatement.setString(1,user.getFirstName_lastName());
+            preparedStatement.setString(2,user.getEmail());
+            preparedStatement.setString(3,user.getTelephone());
+            preparedStatement.setLong(4,user.getAddresses().getId());
+            preparedStatement.setLong(5,user.getUserId());
             preparedStatement.executeUpdate();
         }
         finally {
             close(preparedStatement);
-            close(connection);
+            //close(connection);
         }
     }
 

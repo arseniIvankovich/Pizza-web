@@ -64,7 +64,7 @@ public class AddressDaoImpl extends Util implements AddressDao  {
         }
         finally {
             close(preparedStatement);
-            close(connection);
+            //close(connection);
         }
         return address;
     }
@@ -91,7 +91,7 @@ public class AddressDaoImpl extends Util implements AddressDao  {
         }
         finally {
             close(preparedStatement);
-            close(connection);
+       //     close(connection);
         }
     }
 
@@ -146,7 +146,7 @@ public class AddressDaoImpl extends Util implements AddressDao  {
         }
         finally {
             close(preparedStatement);
-            close(connection);
+          //  close(connection);
         }
         return address;
     }

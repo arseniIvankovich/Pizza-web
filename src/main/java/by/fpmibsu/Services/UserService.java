@@ -55,8 +55,6 @@ public class UserService {
         if (addressDao.checkByStreetHouseEntranceFlat(newUser.getAddresses().getStreet(),newUser.getAddresses().getHouseNumber(),
                 newUser.getAddresses().getEntrance(), newUser.getAddresses().getFlatNumber()))
             oldUser.setAddresses(newUser.getAddresses());
-        if (newUser.getRole() != null)
-            oldUser.setRole(newUser.getRole());
         if (newUser.getEmail() != null)
             oldUser.setEmail(newUser.getEmail());
         if (newUser.getTelephone() != null)

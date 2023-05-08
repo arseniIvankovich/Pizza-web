@@ -4,6 +4,7 @@ import by.fpmibsu.Dao.DaoImpl.AddressDaoImpl;
 import by.fpmibsu.Dao.DaoImpl.OrderDaoImpl;
 import by.fpmibsu.Dao.DaoImpl.RoleDaoImpl;
 import by.fpmibsu.Dao.DaoImpl.UserDaoImpl;
+import by.fpmibsu.Entity.Address;
 import by.fpmibsu.Entity.User;
 import by.fpmibsu.Services.AddressService;
 import by.fpmibsu.Services.RoleSetvice;
@@ -43,6 +44,26 @@ public class ProfileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        req.setCharacterEncoding("UTF-8");
+        String street = req.getParameter("streetP");
+        Integer houseNumber = Integer.parseInt(req.getParameter("houseP"));
+        Integer entrance = Integer.parseInt(req.getParameter("entranceP"));
+        Integer flatNumber = Integer.parseInt(req.getParameter("flatP"));
+        String firstSecondName = req.getParameter("firstSecondP");
+        String email = req.getParameter("emailP");
+        String telephone = req.getParameter("telephoneP");
+        Address address;
+        try {
+            address = addressService.findByStreetHouseEntranceFlat(street,houseNumber,entrance,flatNumber);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        User newUser = new User(address,firstSecondName,email,telephone);
+        try {
+            userService.edit(userService.findEntityById((Long) req.getSession().getAttribute("userId")).getUserId(),newUser);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        resp.sendRedirect(req.getContextPath() + "/profile");
     }
 }
