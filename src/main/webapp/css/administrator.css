@@ -465,6 +465,10 @@ body {
     background-color: #FFF1C7;
 }
 
+.styled-table tbody tr:hover {
+    filter: brightness(95%);
+}
+
 .styled-table tbody tr:nth-of-type(even) {
     background-color: #ffee90;
 }
