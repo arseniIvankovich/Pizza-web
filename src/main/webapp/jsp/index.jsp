@@ -41,7 +41,7 @@
                         <a href="#drinks" class="header-link js-scroll">Напитки</a>
                     </li>
                     <li class="header-item">
-                        <a href="/vacancy" class="header-link">Вакансии</a>
+                        <a href="/vacancy" id="vacancy-link" class="header-link" onclick="alert_vacancy()">Вакансии</a>
                     </li>
                 </ul>
             </nav>
@@ -60,12 +60,12 @@
                 </div>
 
                 <div class="header-busket-box">
-                    <a href="/order" class="busket-link">
+                    <a href="/order" class="busket-link" onclick="alert_busket()">
                         <div class="busket">
                             <div class="busket-quantity">
-                                <button class="busket-button-quantity">
+                                <div class="busket-button-quantity">
                                     <p class="busket-button-quantity-text">0</p>
-                                </button>
+                                </div>
                                 <img src="../img/trolley-svgrepo-com%20(1).svg" alt="Busket Logo"
                                      class="header-busket-pic">
                             </div>
@@ -74,9 +74,9 @@
                             </p>
                         </div>
                     </a>
-                    <button class="busket-button-orig">
+                    <div class="busket-button-orig">
                         <p class="busket-button-text-orig">0.00 BYN</p>
-                    </button>
+                    </div>
                 </div>
             </div>
             <form method="post" action="/" class="login-form">

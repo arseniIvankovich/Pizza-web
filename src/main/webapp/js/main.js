@@ -29,7 +29,19 @@ let drink_images = [
     "../img/drinks/water.png"
 ]
 
+function alert_vacancy() {
+    if (document.querySelector(".session").value === '') {
+        event.preventDefault();
+        alert("Для доступа к разделу \"Вакансии\" необходимо войти в аккаунт");
+    }
+}
 
+function alert_busket(e) {
+    if (document.querySelector(".session").value === '') {
+        event.preventDefault();
+        alert("Для доступа к корзине необходимо войти в аккаунт");
+    }
+}
 
 function loadData() {
     if (document.querySelector(".session").value !== '') {
