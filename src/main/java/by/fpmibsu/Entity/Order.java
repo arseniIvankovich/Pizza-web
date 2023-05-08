@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Order extends Entity{
+public class Order extends Entity {
     private HashMap<Drink,Integer> drinks;
     private HashMap<Pizza,Integer> pizzas;
     private Boolean status;
