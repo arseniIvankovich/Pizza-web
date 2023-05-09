@@ -1,7 +1,11 @@
 package by.fpmibsu.Entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.util.Objects;
 
+@JsonPropertyOrder({"id","name","size","droughtype","counter","weight","ingredients","price"})
 public class Pizza extends Entity{
     private String name;
     private String ingredients;

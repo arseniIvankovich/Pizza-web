@@ -8,10 +8,14 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class UserDaoImpl extends Util implements UserDao {
     Connection connection = getConnection();
+
+
+
     @Override
     public List<User> findAll() throws SQLException{
         final String SQL_SELECT_ALL = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +

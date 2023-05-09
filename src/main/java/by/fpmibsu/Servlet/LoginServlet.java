@@ -43,7 +43,12 @@ public class LoginServlet extends HttpServlet {
         }
         HttpSession session = req.getSession();
         session.setAttribute("userId", user.getUserId());
-        resp.sendRedirect(req.getContextPath() + "/profile");
 
+        if (user.getRole().getRole().equals("Администратор"))
+            resp.sendRedirect(req.getContextPath() + "/admin");
+        else if (user.getRole().getRole().equals("Курьер"))
+            resp.sendRedirect(req.getContextPath() + "/courier");
+        else
+            resp.sendRedirect(req.getContextPath() + "/profile");
     }
 }

@@ -32,7 +32,7 @@
             <nav class="header-nav">
                 <ul class="header-list">
                     <li class="header-item">
-                        <a href="./index.jsp" class="header-link">Меню</a>
+                        <a href="/" class="header-link">Меню</a>
                     </li>
                     <li class="header-item">
                         <a href="/vacancy" class="header-link">Вакансии</a>

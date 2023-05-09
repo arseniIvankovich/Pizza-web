@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
 <html lang="en">
 
     <head lang="ru">
@@ -55,8 +57,9 @@
                             8:00-23:00
                         </p>
                     </div>
-
+                    <form method="post" action="/" class="login-form">
                     <input type="submit" class="profile-button-orig" name="profileButton" value="Войти">
+                    </form>
                 </div>
 
 
@@ -74,7 +77,7 @@
                 <input type="text" class="login-form-input" id="login-form-e-mail">
                 <label for="login-form-password">Пароль</label>
                 <input type="text" class="login-form-input" id="login-form-password">
-                <button type="submit" class="login-sign-in-button">Войти</button>
+                <input type="submit" class="login-sign-in-button">Войти
                 <span class="login-form-empty-line"></span>
                 <div class="login-form-register-ref-box">
                     <p class="login-form-register-text">Еще нет аккаунта?</p>
@@ -92,6 +95,7 @@
     <div class="wrapper">
         <div class="menu">
             <div class="left-box">
+                <form method="post" action="/order">
                 <p class="order-header">Оформление заказа</p>
                 <p class="busket-header">Корзина</p>
 
@@ -108,7 +112,8 @@
                 <p class="address-header">Адрес доставки:</p>
 
                 <ul type="disc" class="info-text-vacancy">
-                    <li class="current-address">Текущий адрес</li>
+                    <li class="current-address"><c:out value="${user.addresses.street}"/> Дом <c:out value="${user.addresses.houseNumber}"/>
+                        Пд.<c:out value="${user.addresses.entrance}"/> Кв.<c:out value="${user.addresses.flatNumber}"/></li>
                     <li class="point-change-address"><a href="/profile" class="change-address">Изменить адрес</a></li>
                 </ul>
 
@@ -122,6 +127,7 @@
                 <p class="address-header">Комментарий к заказу:</p>
                 <textarea type="text" class="text-area"></textarea>
             </div>
+            </form>
         </div>
     </div>
 
