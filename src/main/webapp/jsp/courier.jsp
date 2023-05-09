@@ -27,14 +27,27 @@
             <th>Время доставки</th>
             <th>Способ оплаты</th>
             <th>Статус заказа</th>
-            <th>Изменить статус заказа</th>
         </tr>
         </thead>
 
-        <tbody>
 
+        <tbody>
+        <tr>
+            <td class="email-field"></td>
+            <td></td>
+            <td></td>
+            <td class="status"></td>
+        </tr>
         </tbody>
     </table>
+
+    <form class="status-form">
+        <div class="input-box">
+            <label for="status-form-input">E-mail</label>
+            <input type="text" class="status-form-input" id="status-form-input" name="email">
+        </div>
+        <input type="submit" class="status-button" value="Изменить статус">
+    </form>
 </div>
 
 <script src="../js/courier.js"></script>
