@@ -20,8 +20,7 @@
 
     <body>
 
-    <input type="text" class="pizza" name="pizza">
-    <input type="text" class="drinks" name="drinks">
+
 
     <input type="submit" class="session" name="sessionAttribute" value="${sessionScope.userId}">
 
@@ -107,6 +106,9 @@
                     <button class="busket-button">
                         <p class="busket-button-text">0.00 BYN</p>
                     </button>
+                    <form method="post" action="/order">
+                        <input type="text" class="pizza" name="pizza">
+                        <input type="text" class="drinks" name="drinks">
                     <input type="submit" name="order" class="order-button" value="Оформить заказ">
                 </div>
             </div>
@@ -119,7 +121,7 @@
                         Пд.<c:out value="${user.addresses.entrance}"/> Кв.<c:out value="${user.addresses.flatNumber}"/></li>
                     <li class="point-change-address"><a href="/profile" class="change-address">Изменить адрес</a></li>
                 </ul>
-                <form method="post" action="/order">
+
                 <p class="address-header">Способ оплаты:</p>
 
                 <select class="payment-form-select">

@@ -57,10 +57,6 @@ function loadData() {
         localStorage["drinks"] = JSON.stringify([]);
     }
 
-    document.cookie = "pizza=" + localStorage["pizza"];
-
-    document.cookie = "drinks=" + localStorage["drinks"];
-
     if (typeof localStorage["busket-price"] === 'undefined') {
         localStorage["busket-price"] = '0.00';
     }
@@ -229,7 +225,6 @@ pizza_buskets.forEach(element => {
             object.push(pizza_item);
         }
         localStorage["pizza"] = JSON.stringify(object);
-        document.cookie = "pizza=" + localStorage["pizza"];
         console.log(object);
 
         var text = document.getElementById(price_name).textContent;
@@ -279,8 +274,6 @@ drink_buskets.forEach(element => {
         }
         localStorage["drinks"] = JSON.stringify(object);
 
-
-        document.cookie = "drinks=" + localStorage["drinks"];
         console.log(object);
 
         var text = document.getElementById(price_name).textContent;

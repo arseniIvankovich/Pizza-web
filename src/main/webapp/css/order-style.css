@@ -1278,3 +1278,11 @@ label {
 
     color: #000000;
 }
+
+.pizza {
+    display: none;
+}
+
+.drinks {
+    display: none;
+}
