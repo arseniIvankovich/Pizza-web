@@ -20,6 +20,9 @@
 
     <body>
 
+    <input type="text" class="pizza" name="pizza">
+    <input type="text" class="drinks" name="drinks">
+
     <input type="submit" class="session" name="sessionAttribute" value="${sessionScope.userId}">
 
     <header class="header">
@@ -95,7 +98,7 @@
     <div class="wrapper">
         <div class="menu">
             <div class="left-box">
-                <form method="post" action="/order">
+
                 <p class="order-header">Оформление заказа</p>
                 <p class="busket-header">Корзина</p>
 
@@ -116,7 +119,7 @@
                         Пд.<c:out value="${user.addresses.entrance}"/> Кв.<c:out value="${user.addresses.flatNumber}"/></li>
                     <li class="point-change-address"><a href="/profile" class="change-address">Изменить адрес</a></li>
                 </ul>
-
+                <form method="post" action="/order">
                 <p class="address-header">Способ оплаты:</p>
 
                 <select class="payment-form-select">

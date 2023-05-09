@@ -1,5 +1,6 @@
 
 
+
 let pizza_images = new Map([
     ['Пепперони', "../img/pizzas/peperoni.jpg"],
     ['4 сыра', "../img/pizzas/4_сыра.jpg"],
@@ -91,6 +92,10 @@ function loadData() {
     loadPizza();
 
     loadDrinks();
+
+    document.querySelector(".pizza").value = "pizza=" + localStorage["pizza"];
+
+    document.querySelector(".drinks").value = "drinks=" + localStorage["drinks"];
 
     document.cookie = "pizza=" + localStorage["pizza"];
 
@@ -186,10 +191,12 @@ order_item.forEach(element => {
 
         if (!flag) {
             localStorage["pizza"] = JSON.stringify(object);
+            document.querySelector(".pizza").value = "pizza=" + localStorage["pizza"];
             document.cookie = "pizza=" + localStorage["pizza"];
         }
         else {
             localStorage["drinks"] = JSON.stringify(object);
+            document.querySelector(".drinks").value = "drinks=" + localStorage["drinks"];
             document.cookie = "drinks=" + localStorage["drinks"];
         }
     });
@@ -242,10 +249,12 @@ order_item.forEach(element => {
 
         if (!flag) {
             localStorage["pizza"] = JSON.stringify(object);
+            document.querySelector(".pizza").value = "pizza=" + localStorage["pizza"];
             document.cookie = "pizza=" + localStorage["pizza"];
         }
         else {
             localStorage["drinks"] = JSON.stringify(object);
+            document.querySelector(".drinks").value = "drinks=" + localStorage["drinks"];
             document.cookie = "drinks=" + localStorage["drinks"];
         }
     });
