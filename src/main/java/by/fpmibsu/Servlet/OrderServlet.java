@@ -80,5 +80,6 @@ public class OrderServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }
