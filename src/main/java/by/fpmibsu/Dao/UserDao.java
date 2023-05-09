@@ -12,4 +12,6 @@ public interface UserDao extends BaseDao<Long, User>{
     Boolean checkUserByEmail (String email) throws SQLException;
 
     User checkLogin (String email, String password) throws SQLException;
+
+    void updateOrder(User user) throws SQLException;
 }

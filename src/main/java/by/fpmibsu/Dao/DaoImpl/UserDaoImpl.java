@@ -14,8 +14,6 @@ import java.util.List;
 public class UserDaoImpl extends Util implements UserDao {
     Connection connection = getConnection();
 
-
-
     @Override
     public List<User> findAll() throws SQLException{
         final String SQL_SELECT_ALL = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
@@ -154,6 +152,25 @@ public class UserDaoImpl extends Util implements UserDao {
             preparedStatement.setString(3,user.getTelephone());
             preparedStatement.setLong(4,user.getAddresses().getId());
             preparedStatement.setLong(5,user.getUserId());
+            preparedStatement.executeUpdate();
+        }
+        finally {
+            close(preparedStatement);
+            //close(connection);
+        }
+    }
+    @Override
+    public void updateOrder(User user) throws SQLException{
+        final String SQL_UPDATE = "UPDATE public.\"User\"\n" +
+                "\tSET  \"Order_id\"=?\n" +
+                "\tWHERE \"UserID\"=?";
+
+        PreparedStatement preparedStatement = null;
+        try{
+            preparedStatement = connection.prepareStatement(SQL_UPDATE);
+
+            preparedStatement.setLong(1,user.getOrder().getId());
+            preparedStatement.setLong(2,user.getUserId());
             preparedStatement.executeUpdate();
         }
         finally {

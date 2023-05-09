@@ -62,7 +62,7 @@ public class PizzaDaoImpl extends Util implements PizzaDao {
         }
         finally {
             close(preparedStatement);
-            close(connection);
+      //      close(connection);
         }
         return pizza;
     }

@@ -42,15 +42,21 @@ public class OrderDaoImpl extends Util implements OrderDao {
                     ResultSet resultSet1 = statement1.executeQuery(SQL_INNER_1);
                     ResultSet resultSet2 = statement2.executeQuery(SQL_INNER_2);
 
-                    HashMap<Drink,Integer> drinks = new HashMap<>();
-                    HashMap<Pizza,Integer> pizzas = new HashMap<>();
+                    List<Drink> drinks = new ArrayList<>();
+                    List<Pizza> pizzas = new ArrayList<>();
 
-                    while (resultSet1.next())
-                        drinks.put(new DrinkDaoImpl().findEntityById(resultSet1.getLong("DrinkID")),resultSet1.getInt("NumberOfDrinks"));
+                    while (resultSet1.next()){
+                        Drink drink = new DrinkDaoImpl().findEntityById(resultSet1.getLong("DrinkID"));
+                        drink.setCounter(resultSet1.getInt("NumberOfDrinks"));
+                        drinks.add(drink);
+                    }
 
 
-                    while (resultSet2.next())
-                        pizzas.put(new PizzaDaoImpl().findEntityById(resultSet2.getLong("PizzaId")),resultSet2.getInt("NumberOfPizzas"));
+                    while (resultSet2.next()){
+                        Pizza pizza = new PizzaDaoImpl().findEntityById(resultSet2.getLong("PizzaId"));
+                        pizza.setCounter(resultSet2.getInt("NumberOfPizzas"));
+                        pizzas.add(pizza);
+                    }
 
                     order.setDrinks(drinks);
                     order.setPizzas(pizzas);
@@ -100,15 +106,21 @@ public class OrderDaoImpl extends Util implements OrderDao {
                 order.setDeliveryDate(resultSet.getDate("DeliveryDate"));
                 order.setPaymentMethod(resultSet.getString("PaymentMethod"));
 
-                HashMap<Drink,Integer> drinks = new HashMap<>();
-                HashMap<Pizza,Integer> pizzas = new HashMap<>();
+                List<Drink> drinks = new ArrayList<>();
+                List<Pizza> pizzas = new ArrayList<>();
 
-                while (resultSet1.next())
-                    drinks.put(new DrinkDaoImpl().findEntityById(resultSet1.getLong("DrinkID")),resultSet1.getInt("NumberOfDrinks"));
+                while (resultSet1.next()){
+                    Drink drink = new DrinkDaoImpl().findEntityById(resultSet1.getLong("DrinkID"));
+                    drink.setCounter(resultSet1.getInt("NumberOfDrinks"));
+                    drinks.add(drink);
+                }
 
 
-                while (resultSet2.next())
-                    pizzas.put(new PizzaDaoImpl().findEntityById(resultSet2.getLong("PizzaId")),resultSet2.getInt("NumberOfPizzas"));
+                while (resultSet2.next()){
+                    Pizza pizza = new PizzaDaoImpl().findEntityById(resultSet2.getLong("PizzaId"));
+                    pizza.setCounter(resultSet2.getInt("NumberOfPizzas"));
+                    pizzas.add(pizza);
+                }
 
                 order.setDrinks(drinks);
                 order.setPizzas(pizzas);
@@ -116,7 +128,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
         }
         finally {
             close(preparedStatement);
-            close(connection);
+           // close(connection);
         }
         return order;
     }
@@ -162,17 +174,17 @@ public class OrderDaoImpl extends Util implements OrderDao {
 
             Long index = this.getLastID();
 
-            for (Pizza pizza : order.getPizzas().keySet())
-                addToMMPizza(index,pizza.getPizzaId(),order.getPizzas().get(pizza));
+            for (Pizza pizza : order.getPizzas())
+                addToMMPizza(index,pizza.getPizzaId(), pizza.getCounter());
 
-            for (Drink drink : order.getDrinks().keySet())
-                addToMMDrink(index,drink.getDrinkID(),order.getDrinks().get(drink));
+            for (Drink drink : order.getDrinks())
+                addToMMDrink(index,drink.getDrinkID(), drink.getCounter());
 
             return true;
         }
         finally {
             close(preparedStatement);
-            close(connection);
+       //     close(connection);
         }
     }
 
@@ -237,7 +249,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
         }
         finally {
             close(preparedStatement);
-            close(connection);
+    //        close(connection);
         }
 
     }
@@ -260,7 +272,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
         }
         finally {
             close(preparedStatement);
-            close(connection);
+          //  close(connection);
         }
     }
 }

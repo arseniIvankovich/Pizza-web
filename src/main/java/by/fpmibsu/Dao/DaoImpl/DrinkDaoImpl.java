@@ -58,7 +58,7 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
         }
         finally {
             close(preparedStatement);
-            close(connection);
+      //      close(connection);
         }
         return drink;
     }

@@ -124,7 +124,7 @@
 
                 <p class="address-header">Способ оплаты:</p>
 
-                <select class="payment-form-select">
+                <select name="select" class="payment-form-select" >
                     <option value="Mid">Картой</option>
                     <option value="Big" selected="selected">Наличными</option>
                 </select>

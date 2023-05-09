@@ -70,6 +70,9 @@ public class UserService {
         return userDao.create(user);
     }
 
+    public void editOrder (User user) throws SQLException {
+        userDao.updateOrder(user);
+    }
     public void editOrder (User user, Order order) throws SQLException {
         Long index = orderDao.getLastID();
         user.setOrder(orderDao.findEntityById(index));

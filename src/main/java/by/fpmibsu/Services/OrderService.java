@@ -17,6 +17,7 @@ public class OrderService {
     public boolean createOrder (Order order) throws SQLException {
         order.setStatus(false);
         order.setDeliveryDate(new Date(new java.util.Date().getTime() + 3600000));
+
         return orderDao.create(order);
     }
 
