@@ -28,19 +28,24 @@
                 <th>E-mail</th>
                 <th>Имя и фамилия</th>
                 <th>Телефон</th>
+                <th>Роль</th>
             </tr>
         </thead>
 
         <tbody>
+        <c:forEach var="user" items="${users}">
         <tr>
+            <td>${user.firstName_lastName}</td>
+            <td>${user.email}</td>
+            <td>${user.telephone}</td>
+            <td>${user.role.role}</td>
             <td class="email-field"></td>
-            <td></td>
-            <td></td>
         </tr>
+        </c:forEach>
         </tbody>
     </table>
 
-    <form class="user-form">
+    <form class="user-form" method="post" action="/admin">
         <div class="input-box">
             <label for="user-form-input">E-mail</label>
             <input type="text" class="user-form-input" id="user-form-input" name="email">

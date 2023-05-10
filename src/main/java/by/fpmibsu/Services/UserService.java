@@ -46,8 +46,11 @@ public class UserService {
         return userDao.checkLogin(email,password);
     }
     public void delete(Long id) throws SQLException {
-        orderDao.delete(userDao.findEntityById(id).getOrder().getId());
         userDao.delete(id);
+    }
+
+    public void delete (String email) throws SQLException {
+        userDao.delete(userDao.findByEmail(email));
     }
 
     public void edit (Long id, User newUser) throws SQLException{
@@ -88,4 +91,9 @@ public class UserService {
 
         return orderedUsers;
     }
+
+    public List<User> getAllNotdAmin() throws SQLException {
+        return userDao.getAllNotAdmin();
+    }
+
 }

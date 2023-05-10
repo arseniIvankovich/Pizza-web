@@ -17,4 +17,5 @@ public interface UserDao extends BaseDao<Long, User>{
     void updateOrder(User user) throws SQLException;
 
     List<User> getOrderedUsers() throws SQLException;
+    List<User> getAllNotAdmin() throws SQLException;
 }

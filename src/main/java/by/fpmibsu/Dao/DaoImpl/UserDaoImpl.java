@@ -68,7 +68,7 @@ public class UserDaoImpl extends Util implements UserDao {
         }
         finally {
             close(preparedStatement);
-          //  close(connection);
+            close(connection);
         }
         return user;
     }
@@ -76,12 +76,12 @@ public class UserDaoImpl extends Util implements UserDao {
     @Override
     public boolean delete(User user) throws SQLException{
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"User\"\n" +
-                "\tWHERE \"First_SecondName\" = ?;";
+                "\tWHERE \"Email\" = ?;";
         PreparedStatement preparedStatement = null;
 
         try{
             preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID);
-            preparedStatement.setString(1,user.getFirstName_lastName());
+            preparedStatement.setString(1,user.getEmail());
 
             preparedStatement.executeUpdate();
             return true;
@@ -156,7 +156,7 @@ public class UserDaoImpl extends Util implements UserDao {
         }
         finally {
             close(preparedStatement);
-            //close(connection);
+            close(connection);
         }
     }
     @Override
@@ -175,7 +175,7 @@ public class UserDaoImpl extends Util implements UserDao {
         }
         finally {
             close(preparedStatement);
-            //close(connection);
+            close(connection);
         }
     }
 
@@ -183,6 +183,37 @@ public class UserDaoImpl extends Util implements UserDao {
     public List<User> getOrderedUsers() throws SQLException {
         final String SQL_SELECT_ALL = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Phone_number\", \"Address_id\", \"Order_id\", \"Email\"\n" +
                 "\tFROM public.\"User\" WHERE \"Order_id\" IS NOT NULL;";
+
+        List<User> users = new ArrayList<>();
+
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
+
+            while (resultSet.next()) {
+                User user = new User();
+                user.setUserId(resultSet.getLong("UserID"));
+                user.setRole(new RoleDaoImpl().findEntityById(resultSet.getLong("Role_id")));
+                user.setFirstName_lastName(resultSet.getString("First_SecondName"));
+                user.setEmail(resultSet.getString("Email"));
+                user.setTelephone(resultSet.getString("Phone_number"));
+                user.setAddresses(new AddressDaoImpl().findEntityById(resultSet.getLong("Address_id")));
+                user.setOrder(new OrderDaoImpl().findEntityById(resultSet.getLong("Order_id")));
+                users.add(user);
+            }
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return users;
+    }
+
+    @Override
+    public List<User> getAllNotAdmin() throws SQLException {
+        final String SQL_SELECT_ALL = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Phone_number\", \"Address_id\", \"Order_id\", \"Email\"\n" +
+                "\tFROM public.\"User\" WHERE \"Role_id\" != 1;";
 
         List<User> users = new ArrayList<>();
 
@@ -263,7 +294,7 @@ public class UserDaoImpl extends Util implements UserDao {
         }
         finally {
             close(preparedStatement);
-            close(connection);
+            //close(connection);
         }
         return user;
     }
