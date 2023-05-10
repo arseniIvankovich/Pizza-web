@@ -1,7 +1,7 @@
 package by.fpmibsu.Entity;
 
 import java.util.ArrayList;
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -10,12 +10,12 @@ public class Order extends Entity {
     private List<Drink> drinks;
     private List<Pizza> pizzas;
     private Boolean status;
-    private Date deliveryDate;
+    private Timestamp deliveryDate;
     private String paymentMethod;
 
     public Order(){}
 
-    public Order(List<Drink> drinks, List<Pizza> pizzas, Boolean status, Date deliveryDate, String paymentMethod) {
+    public Order(List<Drink> drinks, List<Pizza> pizzas, Boolean status, Timestamp deliveryDate, String paymentMethod) {
         this.drinks = drinks;
         this.pizzas = pizzas;
         this.status = status;
@@ -23,7 +23,7 @@ public class Order extends Entity {
         this.paymentMethod = paymentMethod;
     }
 
-    public Order(Long id, List<Drink> drinks, List<Pizza> pizzas, Boolean status, Date deliveryDate, String paymentMethod) {
+    public Order(Long id, List<Drink> drinks, List<Pizza> pizzas, Boolean status, Timestamp deliveryDate, String paymentMethod) {
         super(id);
         this.drinks = drinks;
         this.pizzas = pizzas;
@@ -62,11 +62,11 @@ public class Order extends Entity {
         this.status = status;
     }
 
-    public Date getDeliveryDate() {
+    public Timestamp getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(Date deliveryDate) {
+    public void setDeliveryDate(Timestamp deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 

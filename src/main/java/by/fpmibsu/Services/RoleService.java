@@ -6,10 +6,10 @@ import by.fpmibsu.Entity.Role;
 import java.sql.SQLException;
 import java.util.List;
 
-public class RoleSetvice {
+public class RoleService {
     final RoleDaoImpl roleDao;
 
-    public RoleSetvice(RoleDaoImpl roleDao) {
+    public RoleService(RoleDaoImpl roleDao) {
         this.roleDao = roleDao;
     }
 

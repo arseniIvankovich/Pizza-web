@@ -30,7 +30,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
                 Order order = new Order();
                 order.setId(resultSet.getLong("OrderID"));
                 order.setStatus(resultSet.getBoolean("Status"));
-                order.setDeliveryDate(resultSet.getDate("DeliveryDate"));
+                order.setDeliveryDate(resultSet.getTimestamp("DeliveryDate"));
                 order.setPaymentMethod(resultSet.getString("PaymentMethod"));
 
                 Statement statement1 = null;
@@ -103,7 +103,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
             while (resultSet.next()) {
                 order.setId(resultSet.getLong("OrderID"));
                 order.setStatus(resultSet.getBoolean("Status"));
-                order.setDeliveryDate(resultSet.getDate("DeliveryDate"));
+                order.setDeliveryDate(resultSet.getTimestamp("DeliveryDate"));
                 order.setPaymentMethod(resultSet.getString("PaymentMethod"));
 
                 List<Drink> drinks = new ArrayList<>();
@@ -157,7 +157,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
     }
 
     @Override
-    public boolean create(Order order) throws SQLException {
+    public Order create(Order order) throws SQLException {
         final String SQL_CREATE_ADDRESS = "INSERT INTO public.\"Order\"(\n" +
                 "\t\"Status\", \"DeliveryDate\", \"PaymentMethod\")\n" +
                 "\tVALUES (?, ?, ?);";
@@ -168,7 +168,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
             preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS);
 
             preparedStatement.setBoolean(1,order.getStatus());
-            preparedStatement.setDate(2,  order.getDeliveryDate());
+            preparedStatement.setTimestamp(2,  order.getDeliveryDate());
             preparedStatement.setString(3,order.getPaymentMethod());
             preparedStatement.executeUpdate();
 
@@ -180,11 +180,12 @@ public class OrderDaoImpl extends Util implements OrderDao {
             for (Drink drink : order.getDrinks())
                 addToMMDrink(index,drink.getDrinkID(), drink.getCounter());
 
-            return true;
+            order.setId(index);
+            return order;
         }
         finally {
             close(preparedStatement);
-       //     close(connection);
+          //  close(connection);
         }
     }
 
@@ -199,7 +200,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
             preparedStatement = connection.prepareStatement(SQL_UPDATE);
 
             preparedStatement.setBoolean(1,order.getStatus());
-            preparedStatement.setDate(2,  order.getDeliveryDate());
+            preparedStatement.setTimestamp(2,  order.getDeliveryDate());
             preparedStatement.setString(3,order.getPaymentMethod());
             preparedStatement.setLong(4,order.getId());
 
@@ -207,7 +208,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
         }
         finally {
             close(preparedStatement);
-            close(connection);
+        //    close(connection);
         }
     }
 
@@ -249,7 +250,6 @@ public class OrderDaoImpl extends Util implements OrderDao {
         }
         finally {
             close(preparedStatement);
-    //        close(connection);
         }
 
     }
@@ -272,7 +272,8 @@ public class OrderDaoImpl extends Util implements OrderDao {
         }
         finally {
             close(preparedStatement);
-          //  close(connection);
         }
     }
+
+
 }

@@ -13,7 +13,7 @@ public interface BaseDao <K, T extends Entity>{
     T findEntityById(K id) throws SQLException;
     boolean delete(T t) throws SQLException;
     boolean delete(K id) throws SQLException;
-    boolean create(T t) throws SQLException;
+    T create(T t) throws SQLException;
     void update(T t) throws SQLException;
 
     default void close(Statement statement) {

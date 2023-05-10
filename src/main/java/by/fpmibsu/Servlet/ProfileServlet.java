@@ -7,7 +7,6 @@ import by.fpmibsu.Dao.DaoImpl.UserDaoImpl;
 import by.fpmibsu.Entity.Address;
 import by.fpmibsu.Entity.User;
 import by.fpmibsu.Services.AddressService;
-import by.fpmibsu.Services.RoleSetvice;
 import by.fpmibsu.Services.UserService;
 
 import javax.servlet.ServletException;
@@ -20,17 +19,9 @@ import java.sql.SQLException;
 
 @WebServlet("/profile")
 public class ProfileServlet extends HttpServlet {
-    private UserService userService;
-    private AddressService addressService;
-
-    @Override
-    public void init() throws ServletException {
-        this.addressService = new AddressService(new AddressDaoImpl());
-        this.userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
-    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
         Long id = (Long) req.getSession().getAttribute("userId");
         User user;
         try {
@@ -45,6 +36,8 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
+        AddressService addressService = new AddressService(new AddressDaoImpl());
         String street = req.getParameter("streetP");
         Integer houseNumber = Integer.parseInt(req.getParameter("houseP"));
         Integer entrance = Integer.parseInt(req.getParameter("entranceP"));

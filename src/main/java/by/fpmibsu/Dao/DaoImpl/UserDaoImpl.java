@@ -112,7 +112,7 @@ public class UserDaoImpl extends Util implements UserDao {
     }
 
     @Override
-    public boolean create(User user) throws SQLException{
+    public User create(User user) throws SQLException{
         final String SQL_CREATE_USER = "INSERT INTO public.\"User\"(\n" +
                 "\t\"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\")\n" +
                 "\tVALUES (?, ?, ?, ?, ?, ?);";
@@ -129,7 +129,7 @@ public class UserDaoImpl extends Util implements UserDao {
             preparedStatement.setLong(6,user.getAddresses().getId());
 
             preparedStatement.executeUpdate();
-            return true;
+            return user;
         }
         finally {
             close(preparedStatement);
@@ -177,6 +177,37 @@ public class UserDaoImpl extends Util implements UserDao {
             close(preparedStatement);
             //close(connection);
         }
+    }
+
+    @Override
+    public List<User> getOrderedUsers() throws SQLException {
+        final String SQL_SELECT_ALL = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Phone_number\", \"Address_id\", \"Order_id\", \"Email\"\n" +
+                "\tFROM public.\"User\" WHERE \"Order_id\" IS NOT NULL;";
+
+        List<User> users = new ArrayList<>();
+
+        Statement statement = null;
+        try {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
+
+            while (resultSet.next()) {
+                User user = new User();
+                user.setUserId(resultSet.getLong("UserID"));
+                user.setRole(new RoleDaoImpl().findEntityById(resultSet.getLong("Role_id")));
+                user.setFirstName_lastName(resultSet.getString("First_SecondName"));
+                user.setEmail(resultSet.getString("Email"));
+                user.setTelephone(resultSet.getString("Phone_number"));
+                user.setAddresses(new AddressDaoImpl().findEntityById(resultSet.getLong("Address_id")));
+                user.setOrder(new OrderDaoImpl().findEntityById(resultSet.getLong("Order_id")));
+                users.add(user);
+            }
+        }
+        finally {
+            close(statement);
+            close(connection);
+        }
+        return users;
     }
 
     @Override
@@ -285,7 +316,7 @@ public class UserDaoImpl extends Util implements UserDao {
         }
         finally {
             close(preparedStatement);
-          //  close(connection);
+            close(connection);
         }
         return user;
     }

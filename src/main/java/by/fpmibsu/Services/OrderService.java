@@ -5,6 +5,7 @@ import by.fpmibsu.Entity.Order;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class OrderService {
@@ -14,10 +15,9 @@ public class OrderService {
         this.orderDao = orderDao;
     }
 
-    public boolean createOrder (Order order) throws SQLException {
+    public Order createOrder (Order order) throws SQLException {
         order.setStatus(false);
-        order.setDeliveryDate(new Date(new java.util.Date().getTime() + 3600000));
-
+        order.setDeliveryDate(new Timestamp(new java.util.Date().getTime() + 3600000));
         return orderDao.create(order);
     }
 
@@ -37,7 +37,6 @@ public class OrderService {
         orderDao.addToMMPizza(orderId,pizzaId,numberOfPizzas);
     }
 
-    public Long getLastID () throws SQLException {
-        return orderDao.getLastID();
-    }
+
+
 }

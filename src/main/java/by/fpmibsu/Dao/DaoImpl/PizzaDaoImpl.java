@@ -62,7 +62,7 @@ public class PizzaDaoImpl extends Util implements PizzaDao {
         }
         finally {
             close(preparedStatement);
-      //      close(connection);
+            close(connection);
         }
         return pizza;
     }
@@ -106,7 +106,7 @@ public class PizzaDaoImpl extends Util implements PizzaDao {
     }
 
     @Override
-    public boolean create(Pizza pizza) throws SQLException{
+    public Pizza create(Pizza pizza) throws SQLException{
         final String SQL_CREATE_ADDRESS = "INSERT INTO public.\"Pizza\"(\n" +
                 "\t\"Name\", \"Ingredients\", \"TypeDrough\", \"BasicWeight\", \"Price\", \"Size\")\n" +
                 "\tVALUES (?, ?, ?, ?, ?, ?);";
@@ -123,7 +123,7 @@ public class PizzaDaoImpl extends Util implements PizzaDao {
             preparedStatement.setBoolean(6,pizza.getDoughType());
 
             preparedStatement.executeUpdate();
-            return true;
+            return pizza;
         }
         finally {
             close(preparedStatement);

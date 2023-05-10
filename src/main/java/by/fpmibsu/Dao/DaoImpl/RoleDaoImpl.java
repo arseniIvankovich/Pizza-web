@@ -100,7 +100,7 @@ public class RoleDaoImpl extends Util implements RoleDao {
     }
 
     @Override
-    public boolean create(Role role) throws SQLException{
+    public Role create(Role role) throws SQLException{
 
         final String SQL_CREATE_ADDRESS = "INSERT INTO public.\"Role\"(\n" +
                 "\t\"Name\")\n" +
@@ -113,7 +113,7 @@ public class RoleDaoImpl extends Util implements RoleDao {
             preparedStatement.setString(1,role.getRole());
 
             preparedStatement.executeUpdate();
-            return true;
+            return role;
         }
         finally {
             close(preparedStatement);

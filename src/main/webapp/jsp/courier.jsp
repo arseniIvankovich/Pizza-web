@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: arseni
@@ -31,12 +32,17 @@
         </thead>
 
         <tbody>
+        <c:forEach var="user" items="${users}">
         <tr>
+            <td>${user.email}</td>
+            <td>${user.firstName_lastName}</td>
+            <td>${user.telephone}</td>
+            <td>${user.order.status}</td>
             <td class="email-field"></td>
-            <td></td>
-            <td></td>
             <td class="status"></td>
         </tr>
+        </c:forEach>
+
         </tbody>
     </table>
 

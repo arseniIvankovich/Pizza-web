@@ -27,19 +27,10 @@ import java.util.List;
 
 @WebServlet("/order")
 public class OrderServlet extends HttpServlet {
-    private UserService userService;
-    private AddressService addressService;
 
-    private OrderService orderService;
-
-    @Override
-    public void init() throws ServletException {
-        this.addressService = new AddressService(new AddressDaoImpl());
-        this.userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
-        this.orderService = new OrderService(new OrderDaoImpl());
-    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
         Long id = (Long) req.getSession().getAttribute("userId");
         User user;
         try {
@@ -53,6 +44,8 @@ public class OrderServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
+        OrderService orderService = new OrderService(new OrderDaoImpl());
         req.setCharacterEncoding("UTF-8");
         String pizza = req.getParameter("pizza");
         String drink = req.getParameter("drinks");
@@ -70,7 +63,6 @@ public class OrderServlet extends HttpServlet {
         Order order = new Order(drinks,pizzas,"Наличные");
         try {
             orderService.createOrder(order);
-            order.setId(orderService.getLastID());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

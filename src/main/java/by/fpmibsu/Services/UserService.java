@@ -8,6 +8,7 @@ import by.fpmibsu.Entity.Order;
 import by.fpmibsu.Entity.User;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
@@ -66,7 +67,7 @@ public class UserService {
     }
 
 
-    public boolean createUser (User user) throws SQLException {
+    public User createUser (User user) throws SQLException {
         return userDao.create(user);
     }
 
@@ -76,5 +77,15 @@ public class UserService {
     public void editOrder (User user, Order order) throws SQLException {
         Long index = orderDao.getLastID();
         user.setOrder(orderDao.findEntityById(index));
+    }
+
+    public List<User> getUndeliveredOrdersForUsers() throws SQLException {
+        List<User> users = (ArrayList<User>)userDao.getOrderedUsers();
+        List<User> orderedUsers = new ArrayList<>();
+        for (User user: users)
+            if (user.getOrder().getStatus() == false)
+                orderedUsers.add(user);
+
+        return orderedUsers;
     }
 }

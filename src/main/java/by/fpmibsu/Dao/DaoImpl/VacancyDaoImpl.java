@@ -136,7 +136,7 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
     }
 
     @Override
-    public boolean create(Vacancy vacancy) throws SQLException{
+    public Vacancy create(Vacancy vacancy) throws SQLException{
 
         final String SQL_CREATE_ADDRESS = "INSERT INTO public.\"Vacancy\"(\n" +
                 "\t\"Salary\", \"Trial\", \"Name\")\n" +
@@ -157,7 +157,7 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
 
             preparedStatement.executeUpdate();
 
-            return true;
+            return vacancy;
         }
         finally {
             close(preparedStatement);

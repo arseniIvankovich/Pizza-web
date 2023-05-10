@@ -91,7 +91,7 @@ public class AddressDaoImpl extends Util implements AddressDao  {
         }
         finally {
             close(preparedStatement);
-       //     close(connection);
+            close(connection);
         }
     }
 
@@ -146,7 +146,7 @@ public class AddressDaoImpl extends Util implements AddressDao  {
         }
         finally {
             close(preparedStatement);
-          //  close(connection);
+           close(connection);
         }
         return address;
     }
@@ -192,7 +192,7 @@ public class AddressDaoImpl extends Util implements AddressDao  {
     }
 
     @Override
-    public boolean create(Address address) throws SQLException{
+    public Address create(Address address) throws SQLException{
         final String SQL_CREATE_ADDRESS = "INSERT INTO public.\"Address\"(\n" +
                 "\t\"StreetName\", \"HouseNumber\", \"Entrance\", \"FlatNumber\")\n" +
                 "\tVALUES (?, ?, ?, ?);";
@@ -206,7 +206,7 @@ public class AddressDaoImpl extends Util implements AddressDao  {
             preparedStatement.setInt(4,address.getFlatNumber());
 
             preparedStatement.executeUpdate();
-            return true;
+            return address;
         }
         finally {
             close(preparedStatement);

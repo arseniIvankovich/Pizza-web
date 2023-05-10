@@ -8,7 +8,7 @@ import by.fpmibsu.Entity.Address;
 import by.fpmibsu.Entity.Role;
 import by.fpmibsu.Entity.User;
 import by.fpmibsu.Services.AddressService;
-import by.fpmibsu.Services.RoleSetvice;
+import by.fpmibsu.Services.RoleService;
 import by.fpmibsu.Services.UserService;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -22,17 +22,6 @@ import java.sql.SQLException;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
-    private UserService userService;
-    private AddressService addressService;
-
-    private RoleSetvice roleSetvice;
-    @Override
-    public void init() throws ServletException {
-        this.addressService = new AddressService(new AddressDaoImpl());
-        this.userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
-        this.roleSetvice = new RoleSetvice(new RoleDaoImpl());
-
-    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/jsp/register.jsp").forward(req,resp);
@@ -41,6 +30,9 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+        AddressService addressService = new AddressService(new AddressDaoImpl());
+        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
+        RoleService roleSetvice = new RoleService(new RoleDaoImpl());
         String street = req.getParameter("street");
         int houseNumber = Integer.parseInt(req.getParameter("house"));
         int entrance = Integer.parseInt(req.getParameter("entrance"));

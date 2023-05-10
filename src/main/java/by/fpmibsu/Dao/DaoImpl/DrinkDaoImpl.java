@@ -58,7 +58,7 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
         }
         finally {
             close(preparedStatement);
-      //      close(connection);
+            close(connection);
         }
         return drink;
     }
@@ -103,7 +103,7 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
     }
 
     @Override
-    public boolean create(Drink drink) throws SQLException {
+    public Drink create(Drink drink) throws SQLException {
         final String SQL_CREATE_ADDRESS = "INSERT INTO public.\"Drink\"(\n" +
                 "\t\"Name\", \"Capacity\", \"Price\")\n" +
                 "\tVALUES (?, ?, ?);";
@@ -117,7 +117,7 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
             preparedStatement.setDouble(3,drink.getPrice());
 
             preparedStatement.executeUpdate();
-            return true;
+            return drink;
         }
         finally {
             close(preparedStatement);
