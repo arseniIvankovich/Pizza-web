@@ -46,14 +46,15 @@
         </tbody>
     </table>
 
-    <form class="status-form">
+    <form class="status-form" action="/courier" method="post">
         <div class="input-box">
             <label for="status-form-input">E-mail</label>
             <input type="text" class="status-form-input" id="status-form-input" name="email">
         </div>
-        <input type="submit" class="status-button" value="Изменить статус">
+        <input type="submit" class="status-button" value="Изменить статус" >
     </form>
 </div>
+
 
 <script src="../js/courier.js"></script>
 </body>

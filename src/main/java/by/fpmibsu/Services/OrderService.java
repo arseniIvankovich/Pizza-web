@@ -37,6 +37,9 @@ public class OrderService {
         orderDao.addToMMPizza(orderId,pizzaId,numberOfPizzas);
     }
 
+    public void update(Order order) throws SQLException {
+         orderDao.update(order);
+    }
 
 
 }

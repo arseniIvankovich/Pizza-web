@@ -33,4 +33,21 @@ public class CourierServlet extends HttpServlet {
         req.setAttribute("users",users);
         req.getRequestDispatcher("/jsp/courier.jsp").forward(req,resp);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        String email = req.getParameter("email");
+        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
+        OrderService orderService = new OrderService(new OrderDaoImpl());
+        User user;
+        try {
+            user = userService.findByEmail(email);
+            user.getOrder().setStatus(true);
+            orderService.update(user.getOrder());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        doGet(req,resp);
+    }
 }
