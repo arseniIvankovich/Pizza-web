@@ -256,5 +256,10 @@ order_item.forEach(element => {
 
 let orderButton = document.querySelector(".order-button");
 orderButton.addEventListener("click", function (e) {
-
+    localStorage["pizza"] = JSON.stringify([]);
+    localStorage["drinks"] = JSON.stringify([]);
+    localStorage["busket-price"] = '0.00';
+    localStorage["busket-quantity"] = '0';
+    location.reload();
 });
+

@@ -30,7 +30,6 @@
         </tr>
         </thead>
 
-
         <tbody>
         <tr>
             <td class="email-field"></td>

@@ -26,14 +26,25 @@
                 <th>E-mail</th>
                 <th>Имя и фамилия</th>
                 <th>Телефон</th>
-                <th>Удалить пользователя</th>
             </tr>
         </thead>
 
         <tbody>
-
+        <tr>
+            <td class="email-field"></td>
+            <td></td>
+            <td></td>
+        </tr>
         </tbody>
     </table>
+
+    <form class="user-form">
+        <div class="input-box">
+            <label for="user-form-input">E-mail</label>
+            <input type="text" class="user-form-input" id="user-form-input" name="email">
+        </div>
+        <input type="submit" class="user-button" value="Удалить пользователя">
+    </form>
 </div>
 
 <script src="../js/administrator.js"></script>

@@ -26,7 +26,7 @@
 
     <div class="wrapper">
         <div class="header-wrapper">
-            <a href="../jsp/order.jsp" class="header-logo-link">
+            <a href="/" class="header-logo-link">
                 <div class="header-logo-box">
                     <img src="../img/pizza-5-svgrepo-com.svg" alt="Pizzeria Logo" class="header-logo-pic">
                     <p class="header-logo-text">

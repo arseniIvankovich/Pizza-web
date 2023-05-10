@@ -558,18 +558,3 @@ label {
 
     color: #000000;
 }
-
-.text-area {
-    height: 80px;
-    width: 100%;
-    padding: 10px;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 18px;
-
-    border: none;
-    background: rgba(255, 255, 255);
-    border-radius: 10px;
-}
