@@ -10,9 +10,16 @@ function loadData() {
     }
     busket.textContent = localStorage["busket-price"] + " BYN";
     busket_quantity.textContent = localStorage["busket-quantity"];
-}
 
-//localStorage.clear();
+    ///////////////////////////////////////////////////
+
+    let vacancyText = JSON.parse(document.querySelector(".vacancy-json").value);
+    let form = document.querySelector(".left-form");
+    form.querySelector("#address").textContent = "Ул. " + vacancyText.addresses.street + ", Д. " + vacancyText.addresses.houseNumber + ", Пд. " + vacancyText.addresses.entrance + ", Кв. " + vacancyText.addresses.flatNumber;
+    form.querySelector("#name").textContent = vacancyText.firstName_lastName;
+    form.querySelector("#email").textContent = vacancyText.email;
+    form.querySelector("#phone").textContent = vacancyText.telephone;
+}
 
 loadData();
 

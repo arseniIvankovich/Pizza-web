@@ -180,26 +180,23 @@
 
         <div class="form-section">
             <form method="post" action="/vacancy" class="left-form">
+                <input type="text" class="vacancy-json" value="<c:out value="${user}"/>">
                 <div class="input-box">
                     <label>Адрес:</label>
-                    <p></p>
+                    <p class="request-text" id="address"></p>
                 </div>
 
                 <div class="input-box">
                     <label>Имя и Фамилия:</label>
-                    <p class="request-text"></p>
-                </div>
-                <div class="input-box">
-                    <label>Дата рождения:</label>
-                    <p class="request-text"></p>
+                    <p class="request-text" id="name"></p>
                 </div>
                 <div class="input-box">
                     <label>Email:</label>
-                    <p class="request-text"></p>
+                    <p class="request-text" id="email"></p>
                 </div>
                 <div class="input-box">
                     <label>Телефон:</label>
-                    <p class="request-text"></p>
+                    <p class="request-text" id="phone"></p>
                 </div>
                 <div class="input-box">
                     <label for="login-form-position">Должность:</label>
