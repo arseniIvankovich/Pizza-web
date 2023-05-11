@@ -294,7 +294,7 @@ public class UserDaoImpl extends Util implements UserDao {
         }
         finally {
             close(preparedStatement);
-            //close(connection);
+            close(connection);
         }
         return user;
     }

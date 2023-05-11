@@ -210,7 +210,7 @@ public class VacancyDaoImpl extends Util implements VacancyDao {
         }
         finally {
             close(preparedStatement);
-            close(connection);
+            //close(connection);
         }
         return vacancy;
     }

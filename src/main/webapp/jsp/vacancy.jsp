@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: arseni
@@ -180,22 +181,11 @@
         <div class="form-section">
             <form method="post" action="/vacancy" class="left-form">
                 <div class="input-box">
-                    <label for="login-form-street">Улица</label>
-                    <input type="text" class="login-form-input" id="login-form-street">
-                </div>
-                <div class="input-box">
-                    <label for="login-form-house">Дом</label>
-                    <input type="text" class="login-form-input" id="login-form-house">
-                </div>
-                <div class="input-box">
-                    <label for="login-form-entrance">Подъезд</label>
-                    <input type="text" class="login-form-input" id="login-form-entrance">
+                    <label>Адрес:</label>
+                    <li class="current-address"><c:out value="${user.addresses.street}"/> Дом <c:out value="${user.addresses.houseNumber}"/>
+                        Пд.<c:out value="${user.addresses.entrance}"/> Кв.<c:out value="${user.addresses.flatNumber}"/></li>
                 </div>
 
-                <div class="input-box">
-                    <label for="login-form-flat">Квартира</label>
-                    <input type="text" class="login-form-input" id="login-form-flat">
-                </div>
                 <div class="input-box">
                     <label for="login-form-name">Имя и Фамилия</label>
                     <input type="text" class="login-form-input" id="login-form-name">
@@ -215,10 +205,10 @@
                 </div>
                 <div class="input-box">
                     <label for="login-form-position">Должность</label>
-                    <select class="login-form-select" id="login-form-position">
-                        <option value="Big">Пиццер</option>
-                        <option value="Mid">Водитель-курьер</option>
-                        <option value="Mid" selected="selected">Пеший курьер</option>
+                    <select class="login-form-select" id="login-form-position" name="choicer">
+                        <option value="Пиццер">Пиццер</option>
+                        <option value="одитель-курьер">Водитель-курьер</option>
+                        <option value="Пеший курьер" selected="selected">Пеший курьер</option>
                     </select>
                 </div>
                 <input type="submit" value="Отправить заявку" class="order-button">

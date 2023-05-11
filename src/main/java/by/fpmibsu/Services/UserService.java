@@ -50,7 +50,7 @@ public class UserService {
     }
 
     public void delete (String email) throws SQLException {
-        userDao.delete(userDao.findByEmail(email));
+        userDao.delete( new UserDaoImpl().findByEmail(email));
     }
 
     public void edit (Long id, User newUser) throws SQLException{
