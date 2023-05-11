@@ -38,6 +38,7 @@ public class OrderServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
         req.setAttribute("user",user);
         req.getRequestDispatcher("/jsp/order.jsp").forward(req,resp);
     }

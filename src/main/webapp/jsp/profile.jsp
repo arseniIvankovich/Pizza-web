@@ -77,35 +77,36 @@
     <div class="main">
         <div class="form-section">
             <form  method="post" action="/profile" class="left-form">
+                <input type="text" value="<c:out value="${user}"/>">
                 <div class="personal-header"><p>Личные данные профиля</p></div>
                 <div class="input-box">
                     <label for="login-form-street">Улица</label>
-                    <input type="text" class="login-form-input" id="login-form-street" name="streetP" value="<c:out value="${user.addresses.street}"/>">
+                    <input type="text" class="login-form-input" id="login-form-street" name="streetP" value="">
                 </div>
                 <div class="input-box">
                     <label for="login-form-house">Дом</label>
-                    <input type="text" class="login-form-input" id="login-form-house" name="houseP" value="<c:out value="${user.addresses.houseNumber}"/>">
+                    <input type="text" class="login-form-input" id="login-form-house" name="houseP" value="">
                 </div>
                 <div class="input-box">
                     <label for="login-form-entrance">Подъезд</label>
-                    <input type="text" class="login-form-input" id="login-form-entrance" name="entranceP" value="<c:out value="${user.addresses.entrance}"/>">
+                    <input type="text" class="login-form-input" id="login-form-entrance" name="entranceP" value="">
                 </div>
 
                 <div class="input-box">
                     <label for="login-form-flat">Квартира</label>
-                    <input type="text" class="login-form-input" id="login-form-flat" name="flatP" value="<c:out value="${user.addresses.flatNumber}"/>">
+                    <input type="text" class="login-form-input" id="login-form-flat" name="flatP" value="">
                 </div>
                 <div class="input-box">
                     <label for="login-form-name">Имя и Фамилия</label>
-                    <input type="text" class="login-form-input" id="login-form-name" name="firstSecondP" value="<c:out value="${user.firstName_lastName}"/>">
+                    <input type="text" class="login-form-input" id="login-form-name" name="firstSecondP" value="">
                 </div>
                 <div class="input-box">
                     <label for="login-form-email">Email</label>
-                    <input type="text" class="login-form-input" id="login-form-email" name="emailP" value="<c:out value="${user.email}"/>">
+                    <input type="text" class="login-form-input" id="login-form-email" name="emailP" value="">
                 </div>
                 <div class="input-box">
                     <label for="login-form-phone">Телефон</label>
-                    <input type="text" class="login-form-input" id="login-form-phone" name="telephoneP" value="<c:out value="${user.telephone}"/>">
+                    <input type="text" class="login-form-input" id="login-form-phone" name="telephoneP" value="">
                 </div>
 
                 <input type="submit" name="logout" class="save-changes-button" value="Сохранить информацию">

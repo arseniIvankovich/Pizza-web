@@ -8,6 +8,7 @@ import by.fpmibsu.Entity.Address;
 import by.fpmibsu.Entity.User;
 import by.fpmibsu.Services.AddressService;
 import by.fpmibsu.Services.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +30,8 @@ public class ProfileServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        req.setAttribute("user",user);
+        String s = new ObjectMapper().writeValueAsString(user);
+        req.setAttribute("user",s);
         req.getRequestDispatcher("/jsp/profile.jsp").forward(req,resp);
     }
 
