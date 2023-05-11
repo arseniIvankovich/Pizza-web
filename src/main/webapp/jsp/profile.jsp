@@ -77,7 +77,7 @@
     <div class="main">
         <div class="form-section">
             <form  method="post" action="/profile" class="left-form">
-                <input type="text" value="<c:out value="${user}"/>">
+                <input type="text" class="profile-json" value="<c:out value="${user}"/>">
                 <div class="personal-header"><p>Личные данные профиля</p></div>
                 <div class="input-box">
                     <label for="login-form-street">Улица</label>

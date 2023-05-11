@@ -939,3 +939,7 @@ label {
 .sponsor-pic {
     width: 64px;
 }
+
+.profile-json {
+    display: none;
+}
