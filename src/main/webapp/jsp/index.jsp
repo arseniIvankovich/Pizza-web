@@ -133,7 +133,7 @@
                     <select id="size-1" class="menu-choices size-select">
                         <option value="Big">Большой</option>
                         <option value="Mid" selected="selected">Средний</option>
-                    </select>
+                    </select>1
                     <select id="dough-1" class="menu-choices dough-select">
                         <option value="Thick">Толстое</option>
                         <option value="Thin" selected="selected">Тонкое</option>

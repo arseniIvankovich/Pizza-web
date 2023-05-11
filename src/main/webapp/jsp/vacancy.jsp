@@ -182,37 +182,38 @@
             <form method="post" action="/vacancy" class="left-form">
                 <div class="input-box">
                     <label>Адрес:</label>
-                    <li class="current-address"><c:out value="${user.addresses.street}"/> Дом <c:out value="${user.addresses.houseNumber}"/>
-                        Пд.<c:out value="${user.addresses.entrance}"/> Кв.<c:out value="${user.addresses.flatNumber}"/></li>
+                    <p class="current-address request-text"><c:out value="${user.addresses.street}"/> Дом <c:out value="${user.addresses.houseNumber}"/>
+                        Пд.<c:out value="${user.addresses.entrance}"/> Кв.<c:out value="${user.addresses.flatNumber}"/></p>
                 </div>
 
                 <div class="input-box">
-                    <label for="login-form-name">Имя и Фамилия</label>
-                    <input type="text" class="login-form-input" id="login-form-name">
-                </div>
-            <div class="right-form">
-                <div class="input-box">
-                    <label for="login-form-date">Дата рождения</label>
-                    <input type="text" class="login-form-input" id="login-form-date">
+                    <label>Имя и Фамилия:</label>
+                    <p class="request-text"></p>
                 </div>
                 <div class="input-box">
-                    <label for="login-form-email">Email</label>
-                    <input type="text" class="login-form-input" id="login-form-email">
+                    <label>Дата рождения:</label>
+                    <p class="request-text"></p>
                 </div>
                 <div class="input-box">
-                    <label for="login-form-phone">Телефон</label>
-                    <input type="text" class="login-form-input" id="login-form-phone">
+                    <label>Email:</label>
+                    <p class="request-text"></p>
                 </div>
                 <div class="input-box">
-                    <label for="login-form-position">Должность</label>
+                    <label>Телефон:</label>
+                    <p class="request-text"></p>
+                </div>
+                <div class="input-box">
+                    <label for="login-form-position">Должность:</label>
                     <select class="login-form-select" id="login-form-position" name="choicer">
                         <option value="Пиццер">Пиццер</option>
-                        <option value="одитель-курьер">Водитель-курьер</option>
+                        <option value="Водитель-курьер">Водитель-курьер</option>
                         <option value="Пеший курьер" selected="selected">Пеший курьер</option>
                     </select>
                 </div>
-                <input type="submit" value="Отправить заявку" class="order-button">
-            </div>
+                <div class="send-buttons">
+                    <input type="submit" value="Отправить заявку" class="order-button">
+                    <a href="/profile" class="change-profile">Изменить данные</a>
+                </div>
             </form>
         </div>
     </div>
