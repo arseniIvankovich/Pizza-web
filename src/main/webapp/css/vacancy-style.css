@@ -886,7 +886,6 @@ body {
 .input-box {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
     padding: 15px;
     width: 100%;
@@ -900,7 +899,7 @@ label {
     line-height: 28px;
     width: fit-content;
     /* identical to box height */
-
+    margin-right: 40px;
     color: #000000;
 }
 
