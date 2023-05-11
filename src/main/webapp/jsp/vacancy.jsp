@@ -182,8 +182,7 @@
             <form method="post" action="/vacancy" class="left-form">
                 <div class="input-box">
                     <label>Адрес:</label>
-                    <p class="current-address request-text"><c:out value="${user.addresses.street}"/> Дом <c:out value="${user.addresses.houseNumber}"/>
-                        Пд.<c:out value="${user.addresses.entrance}"/> Кв.<c:out value="${user.addresses.flatNumber}"/></p>
+                    <p></p>
                 </div>
 
                 <div class="input-box">

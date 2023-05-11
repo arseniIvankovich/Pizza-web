@@ -30,8 +30,8 @@ public class ProfileServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        String s = new ObjectMapper().writeValueAsString(user);
-        req.setAttribute("user",s);
+        String jsonString = new ObjectMapper().writeValueAsString(user);
+        req.setAttribute("user",jsonString);
         req.getRequestDispatcher("/jsp/profile.jsp").forward(req,resp);
     }
 

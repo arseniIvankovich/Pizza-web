@@ -6,6 +6,7 @@ import by.fpmibsu.Entity.User;
 import by.fpmibsu.Entity.Vacancy;
 import by.fpmibsu.Services.UserService;
 import by.fpmibsu.Services.VacancyService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +29,8 @@ public class VacancyServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        req.setAttribute("user",user);
+        String jsonString = new ObjectMapper().writeValueAsString(user);
+        req.setAttribute("user",jsonString);
         req.getRequestDispatcher("/jsp/vacancy.jsp").forward(req,resp);
     }
 
