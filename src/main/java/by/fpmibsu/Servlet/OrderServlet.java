@@ -25,12 +25,8 @@ public class OrderServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService = new UserService();
         Long id = (Long) req.getSession().getAttribute("userId");
-        User user;
-        try {
-            user = userService.findEntityById(id);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        User user = userService.findEntityById(id);
+
         req.setAttribute("user", user);
         req.getRequestDispatcher("/jsp/order.jsp").forward(req, resp);
     }
