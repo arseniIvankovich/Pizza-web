@@ -39,7 +39,6 @@ public class VacancyServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService = new UserService();
         req.setCharacterEncoding("UTF-8");
         Long id = (Long) req.getSession().getAttribute("userId");
         String choicer = req.getParameter("choicer");

@@ -24,7 +24,6 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RoleService roleSetvice = new RoleService();
         UserService userService = new UserService();
         req.setCharacterEncoding("UTF-8");
         String value = req.getParameter("profileButton");

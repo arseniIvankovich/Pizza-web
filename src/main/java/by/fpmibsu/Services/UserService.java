@@ -40,7 +40,7 @@ public class UserService {
     }
 
     public void edit (Long id, User newUser) throws SQLException{
-      /*  User oldUser = new UserDaoImpl().findEntityById(id);
+        User oldUser = new UserDaoImpl().findEntityById(id);
 
         if (new AddressDaoImpl().checkByStreetHouseEntranceFlat(newUser.getAddresses().getStreet(),newUser.getAddresses().getHouseNumber(),
                 newUser.getAddresses().getEntrance(), newUser.getAddresses().getFlatNumber()))
@@ -52,7 +52,7 @@ public class UserService {
         if (newUser.getFirstName_lastName() != null)
             oldUser.setFirstName_lastName(newUser.getFirstName_lastName());
 
-        userDao.update(oldUser);*/
+        userDao.update(oldUser);
     }
 
 

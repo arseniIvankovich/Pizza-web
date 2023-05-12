@@ -1,9 +1,5 @@
 package by.fpmibsu.Servlet;
 
-import by.fpmibsu.Dao.DaoImpl.AddressDaoImpl;
-import by.fpmibsu.Dao.DaoImpl.OrderDaoImpl;
-import by.fpmibsu.Dao.DaoImpl.RoleDaoImpl;
-import by.fpmibsu.Dao.DaoImpl.UserDaoImpl;
 import by.fpmibsu.Entity.Address;
 import by.fpmibsu.Entity.User;
 import by.fpmibsu.Services.AddressService;
