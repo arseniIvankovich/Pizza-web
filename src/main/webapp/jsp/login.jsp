@@ -28,7 +28,7 @@
                 </div>
                 <div class="input-box">
                     <label for="login-form-date">Пароль</label>
-                    <input type="text" class="login-form-input" id="login-form-date" name="password">
+                    <input type="password" class="login-form-input" id="login-form-date" name="password">
                 </div>
                 <div class="button-box">
                     <input type="submit" value="Войти" class="save-button">
