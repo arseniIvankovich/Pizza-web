@@ -2,8 +2,6 @@ package by.fpmibsu.Services;
 
 import by.fpmibsu.Dao.AddressDao;
 import by.fpmibsu.Dao.DaoImpl.AddressDaoImpl;
-import by.fpmibsu.Dao.DaoImpl.UserDaoImpl;
-import by.fpmibsu.Dao.UserDao;
 import by.fpmibsu.Entity.Address;
 
 import java.sql.SQLException;
@@ -16,15 +14,15 @@ public class AddressService {
         this.addressDao = new AddressDaoImpl();
     }
 
-    public List<Address> findAllByStreet(String pattern) throws SQLException {
+    public List<Address> findAllByStreet(String pattern) {
         return  addressDao.findAllByStreet(pattern);
     }
 
-    public Address findByStreetHouseEntranceFlat(String street, Integer house, Integer entrance, Integer flat) throws SQLException {
+    public Address findByStreetHouseEntranceFlat(String street, Integer house, Integer entrance, Integer flat)  {
         return addressDao.findByStreetHouseEntranceFlat(street,house,entrance,flat);
     }
 
-    public Address findEntityById(Long id)  throws SQLException {
+    public Address findEntityById(Long id) {
         return addressDao.findEntityById(id);
     }
 

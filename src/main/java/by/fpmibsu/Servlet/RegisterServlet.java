@@ -1,9 +1,5 @@
 package by.fpmibsu.Servlet;
 
-import by.fpmibsu.Dao.DaoImpl.AddressDaoImpl;
-import by.fpmibsu.Dao.DaoImpl.OrderDaoImpl;
-import by.fpmibsu.Dao.DaoImpl.RoleDaoImpl;
-import by.fpmibsu.Dao.DaoImpl.UserDaoImpl;
 import by.fpmibsu.Entity.Address;
 import by.fpmibsu.Entity.Role;
 import by.fpmibsu.Entity.User;
@@ -24,7 +20,7 @@ import java.sql.SQLException;
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/jsp/register.jsp").forward(req,resp);
+        req.getRequestDispatcher("/jsp/register.jsp").forward(req, resp);
     }
 
     @Override
@@ -41,21 +37,13 @@ public class RegisterServlet extends HttpServlet {
         String email = req.getParameter("email");
         String telephone = req.getParameter("telephone");
         String passwordInput = req.getParameter("password");
-        String password = BCrypt.hashpw(passwordInput,BCrypt.gensalt());
-        Address address;
-        Role role;
-        try {
-            address = addressService.findByStreetHouseEntranceFlat(street,houseNumber,entrance,flatNumber);
-            role = roleSetvice.findEntityById(3L);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        User user = new User(address,firstSecondName,password,email,"+" + telephone,role);
-        try {
-            userService.createUser(user);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        String password = BCrypt.hashpw(passwordInput, BCrypt.gensalt());
+        Address address = addressService.findByStreetHouseEntranceFlat(street, houseNumber, entrance, flatNumber);
+        Role role = roleSetvice.findEntityById(3L);
+
+        User user = new User(address, firstSecondName, password, email, "+" + telephone, role);
+        userService.createUser(user);
+
         resp.sendRedirect(req.getContextPath() + "/");
     }
 

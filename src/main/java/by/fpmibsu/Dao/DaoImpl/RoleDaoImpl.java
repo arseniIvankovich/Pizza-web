@@ -1,23 +1,20 @@
 package by.fpmibsu.Dao.DaoImpl;
 
 import by.fpmibsu.Dao.HikariCPDataSource;
-import by.fpmibsu.Services.Util;
 import by.fpmibsu.Dao.RoleDao;
 import by.fpmibsu.Entity.Role;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class RoleDaoImpl extends Util implements RoleDao {
+public class RoleDaoImpl  implements RoleDao {
     private final DataSource dataSource;
     public RoleDaoImpl () {
         this.dataSource = HikariCPDataSource.getDataSource();
     }
 
     @Override
-    public Role findEntityById(Long id) throws SQLException{
+    public Role findEntityById(Long id) {
         Role role = new Role();
         final String SQL_SELECT_BY_ID = "SELECT \"RoleID\", \"Name\"\n" +
                 "\tFROM public.\"Role\" WHERE \"RoleID\" = ?;";
@@ -29,12 +26,15 @@ public class RoleDaoImpl extends Util implements RoleDao {
                 role.setId(resultSet.getLong("RoleID"));
                 role.setRole(resultSet.getString("Name"));
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
         return role;
     }
 
     @Override
-    public boolean delete(Role role) throws SQLException{
+    public boolean delete(Role role) {
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Role\"\n" +
                 "\tWHERE \"Name\" = ?;";
 
@@ -44,11 +44,14 @@ public class RoleDaoImpl extends Util implements RoleDao {
 
             preparedStatement.executeUpdate();
             return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return false;
     }
 
     @Override
-    public boolean delete(Long id) throws SQLException{
+    public boolean delete(Long id) {
 
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Role\"\n" +
                 "\tWHERE \"RoleID\" = ?;";
@@ -59,11 +62,14 @@ public class RoleDaoImpl extends Util implements RoleDao {
 
             preparedStatement.executeUpdate();
             return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    return false;
     }
 
     @Override
-    public Role create(Role role) throws SQLException{
+    public Role create(Role role) {
 
         final String SQL_CREATE_ADDRESS = "INSERT INTO public.\"Role\"(\n" +
                 "\t\"Name\")\n" +
@@ -74,12 +80,15 @@ public class RoleDaoImpl extends Util implements RoleDao {
             preparedStatement.setString(1,role.getRole());
 
             preparedStatement.executeUpdate();
-            return role;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return role;
     }
 
     @Override
-    public void update(Role role) throws SQLException{
+    public void update(Role role) {
 
         final String SQL_UPDATE = "UPDATE public.\"Role\"\n" +
                 "\tSET \"Name\"=?\n" +
@@ -92,7 +101,10 @@ public class RoleDaoImpl extends Util implements RoleDao {
             preparedStatement.setLong(2,role.getId());
 
             preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
 
     }
 }

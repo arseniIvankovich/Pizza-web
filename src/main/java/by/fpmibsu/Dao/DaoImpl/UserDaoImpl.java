@@ -1,25 +1,24 @@
 package by.fpmibsu.Dao.DaoImpl;
 
 import by.fpmibsu.Dao.HikariCPDataSource;
-import by.fpmibsu.Services.Util;
 import by.fpmibsu.Dao.UserDao;
 import by.fpmibsu.Entity.*;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Comparator;
 import javax.sql.DataSource;
 import java.util.List;
 
-public class UserDaoImpl extends Util implements UserDao {
+public class UserDaoImpl  implements UserDao {
     private DataSource dataSource;
     public UserDaoImpl () {
         this.dataSource = HikariCPDataSource.getDataSource();
     }
 
     @Override
-    public User findEntityById(Long id) throws SQLException{User user = new User();
+    public User findEntityById(Long id) {
+        User user = new User();
         final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\"\n" +
                 "\tFROM public.\"User\" WHERE \"UserID\" = ?;";
         try (Connection connection = dataSource.getConnection();
@@ -37,12 +36,15 @@ public class UserDaoImpl extends Util implements UserDao {
                 user.setTelephone(resultSet.getString("Phone_number"));
                 user.setAddresses(new AddressDaoImpl().findEntityById(resultSet.getLong("Address_id")));
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
         return user;
     }
 
     @Override
-    public boolean delete(User user) throws SQLException{
+    public boolean delete(User user) {
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"User\"\n" +
                 "\tWHERE \"Email\" = ?;";
         try (Connection connection = dataSource.getConnection();
@@ -52,11 +54,14 @@ public class UserDaoImpl extends Util implements UserDao {
 
             preparedStatement.executeUpdate();
             return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    return false;
     }
 
     @Override
-    public boolean delete(Long id) throws SQLException{
+    public boolean delete(Long id) {
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"User\"\n" +
                 "\tWHERE \"UserID\" = ?;";
 
@@ -66,11 +71,14 @@ public class UserDaoImpl extends Util implements UserDao {
 
             preparedStatement.executeUpdate();
             return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    return false;
     }
 
     @Override
-    public User create(User user) throws SQLException{
+    public User create(User user) {
         final String SQL_CREATE_USER = "INSERT INTO public.\"User\"(\n" +
                 "\t\"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\")\n" +
                 "\tVALUES (?, ?, ?, ?, ?, ?);";
@@ -85,13 +93,16 @@ public class UserDaoImpl extends Util implements UserDao {
             preparedStatement.setString(5,user.getTelephone());
             preparedStatement.setLong(6,user.getAddresses().getId());
             preparedStatement.executeUpdate();
-            return user;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return user;
 
     }
 
     @Override
-    public void update(User user) throws SQLException{
+    public void update(User user) {
         final String SQL_UPDATE = "UPDATE public.\"User\"\n" +
                 "\tSET  \"First_SecondName\"=?, \"Email\"=?, \"Phone_number\"=?, \"Address_id\"=?\n" +
                 "\tWHERE \"UserID\" = ?;";
@@ -106,10 +117,13 @@ public class UserDaoImpl extends Util implements UserDao {
             preparedStatement.setLong(4,user.getAddresses().getId());
             preparedStatement.setLong(5,user.getUserId());
             preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
     }
     @Override
-    public void updateOrder(User user) throws SQLException{
+    public void updateOrder(User user) {
         final String SQL_UPDATE = "UPDATE public.\"User\"\n" +
                 "\tSET  \"Order_id\"=?\n" +
                 "\tWHERE \"UserID\"=?";
@@ -120,11 +134,14 @@ public class UserDaoImpl extends Util implements UserDao {
             preparedStatement.setLong(1,user.getOrder().getId());
             preparedStatement.setLong(2,user.getUserId());
             preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
     }
 
     @Override
-    public List<User> getOrderedUsers() throws SQLException {
+    public List<User> getOrderedUsers()  {
         final String SQL_SELECT_ALL = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Phone_number\", \"Address_id\", \"Order_id\", \"Email\"\n" +
                 "\tFROM public.\"User\" WHERE \"Order_id\" IS NOT NULL;";
 
@@ -147,12 +164,15 @@ public class UserDaoImpl extends Util implements UserDao {
                 user.setOrder(new OrderDaoImpl().findEntityById(resultSet.getLong("Order_id")));
                 users.add(user);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
         return users;
     }
 
     @Override
-    public List<User> getAllNotAdmin() throws SQLException {
+    public List<User> getAllNotAdmin() {
         final String SQL_SELECT_ALL = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Phone_number\", \"Address_id\", \"Order_id\", \"Email\"\n" +
                 "\tFROM public.\"User\" WHERE \"Role_id\" != 1;";
 
@@ -175,14 +195,17 @@ public class UserDaoImpl extends Util implements UserDao {
                 user.setOrder(new OrderDaoImpl().findEntityById(resultSet.getLong("Order_id")));
                 users.add(user);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
         return users;
     }
 
 
 
     @Override
-    public User findByEmail(String email) throws SQLException {
+    public User findByEmail(String email)  {
         User user = new User();
         final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
                 "\tFROM public.\"User\" WHERE \"Email\" = ?;";
@@ -201,13 +224,16 @@ public class UserDaoImpl extends Util implements UserDao {
                 user.setAddresses(new AddressDaoImpl().findEntityById(resultSet.getLong("Address_id")));
                 user.setOrder(new OrderDaoImpl().findEntityById(resultSet.getLong("Order_id")));
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
 
         return user;
     }
 
     @Override
-    public Boolean checkUserByEmail(String email) throws SQLException {
+    public Boolean checkUserByEmail(String email)  {
 
         User user = new User();
         final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
@@ -221,13 +247,16 @@ public class UserDaoImpl extends Util implements UserDao {
                 return false;
             else
                 return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
+    return false;
     }
 
 
     @Override
-    public User checkLogin(String email, String password) throws SQLException{
+    public User checkLogin(String email, String password) {
         User user = new User();
         final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Phone_number\", \"Address_id\", \"Order_id\", \"Email\"\n" +
                 "\tFROM public.\"User\" WHERE \"Email\" = ?;";
@@ -247,7 +276,10 @@ public class UserDaoImpl extends Util implements UserDao {
                 else
                     throw new SQLException();
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
         return user;
     }
 }

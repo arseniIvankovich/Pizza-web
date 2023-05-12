@@ -19,11 +19,11 @@ public class VacancyService {
     }
 
 
-    public Vacancy findByName(String pattern) throws SQLException {
+    public Vacancy findByName(String pattern) {
         return new VacancyDaoImpl().findByName(pattern);
     }
 
-    public void addApplication(Long userId, Long vacancyId) throws SQLException {
+    public void addApplication(Long userId, Long vacancyId)  {
         new VacancyDaoImpl().addToMMUserVacancy(userId,vacancyId);
     }
 }

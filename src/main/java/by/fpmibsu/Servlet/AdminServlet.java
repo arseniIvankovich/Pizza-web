@@ -1,9 +1,5 @@
 package by.fpmibsu.Servlet;
 
-import by.fpmibsu.Dao.DaoImpl.AddressDaoImpl;
-import by.fpmibsu.Dao.DaoImpl.OrderDaoImpl;
-import by.fpmibsu.Dao.DaoImpl.RoleDaoImpl;
-import by.fpmibsu.Dao.DaoImpl.UserDaoImpl;
 import by.fpmibsu.Entity.User;
 import by.fpmibsu.Services.UserService;
 
@@ -22,12 +18,8 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService = new UserService();
-        List<User> users;
-        try {
-            users = (ArrayList<User>)userService.getAllNotdAmin();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        List<User> users = (ArrayList<User>)userService.getAllNotdAmin();
+
         req.setAttribute("users",users);
         req.getRequestDispatcher("/jsp/administrator.jsp").forward(req,resp);
     }
@@ -37,11 +29,8 @@ public class AdminServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         String email = req.getParameter("email");
         UserService userService = new UserService();
-        try {
-            userService.delete(email);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        userService.delete(email);
+
         doGet(req,resp);
     }
 }

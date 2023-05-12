@@ -20,15 +20,11 @@ public class ProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService = new UserService();
         Long id = (Long) req.getSession().getAttribute("userId");
-        User user;
-        try {
-            user = userService.findEntityById(id);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        User user = userService.findEntityById(id);
+
         String jsonString = new ObjectMapper().writeValueAsString(user);
-        req.setAttribute("user",jsonString);
-        req.getRequestDispatcher("/jsp/profile.jsp").forward(req,resp);
+        req.setAttribute("user", jsonString);
+        req.getRequestDispatcher("/jsp/profile.jsp").forward(req, resp);
     }
 
     @Override
@@ -43,18 +39,10 @@ public class ProfileServlet extends HttpServlet {
         String firstSecondName = req.getParameter("firstSecondP");
         String email = req.getParameter("emailP");
         String telephone = req.getParameter("telephoneP");
-        Address address;
-        try {
-            address = addressService.findByStreetHouseEntranceFlat(street,houseNumber,entrance,flatNumber);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        User newUser = new User(address,firstSecondName,email,telephone);
-        try {
-            userService.edit(userService.findEntityById((Long) req.getSession().getAttribute("userId")).getUserId(),newUser);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        Address address = addressService.findByStreetHouseEntranceFlat(street, houseNumber, entrance, flatNumber);
+        User newUser = new User(address, firstSecondName, email, telephone);
+        userService.edit(userService.findEntityById((Long) req.getSession().getAttribute("userId")).getUserId(), newUser);
+
         resp.sendRedirect(req.getContextPath() + "/profile");
     }
 }

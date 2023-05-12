@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface UserDao extends BaseDao<Long, User>{
 
-    User findByEmail (String email) throws SQLException;
+    User findByEmail (String email);
 
-    Boolean checkUserByEmail (String email) throws SQLException;
+    Boolean checkUserByEmail (String email);
 
-    User checkLogin (String email, String password) throws SQLException;
+    User checkLogin (String email, String password);
 
-    void updateOrder(User user) throws SQLException;
+    void updateOrder(User user);
 
-    List<User> getOrderedUsers() throws SQLException;
-    List<User> getAllNotAdmin() throws SQLException;
+    List<User> getOrderedUsers();
+    List<User> getAllNotAdmin();
 }

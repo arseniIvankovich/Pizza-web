@@ -1,14 +1,9 @@
 package by.fpmibsu.Servlet;
 
-import by.fpmibsu.Dao.DaoImpl.AddressDaoImpl;
-import by.fpmibsu.Dao.DaoImpl.OrderDaoImpl;
-import by.fpmibsu.Dao.DaoImpl.RoleDaoImpl;
-import by.fpmibsu.Dao.DaoImpl.UserDaoImpl;
 import by.fpmibsu.Entity.Drink;
 import by.fpmibsu.Entity.Order;
 import by.fpmibsu.Entity.Pizza;
 import by.fpmibsu.Entity.User;
-import by.fpmibsu.Services.AddressService;
 import by.fpmibsu.Services.OrderService;
 import by.fpmibsu.Services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,12 +11,10 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.*;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -38,8 +31,8 @@ public class OrderServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        req.setAttribute("user",user);
-        req.getRequestDispatcher("/jsp/order.jsp").forward(req,resp);
+        req.setAttribute("user", user);
+        req.getRequestDispatcher("/jsp/order.jsp").forward(req, resp);
     }
 
     @Override
@@ -54,24 +47,13 @@ public class OrderServlet extends HttpServlet {
         TypeFactory typeFactory = objectMapper.getTypeFactory();
         List<Pizza> pizzas = objectMapper.readValue(pizza, typeFactory.constructCollectionType(List.class, Pizza.class));
         List<Drink> drinks = objectMapper.readValue(drink, typeFactory.constructCollectionType(List.class, Drink.class));
-        User user;
-        try {
-            user = userService.findEntityById((Long) req.getSession().getAttribute("userId"));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        Order order = new Order(drinks,pizzas,"Наличные");
-        try {
-            orderService.createOrder(order);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        User user = userService.findEntityById((Long) req.getSession().getAttribute("userId"));
+
+        Order order = new Order(drinks, pizzas, paymentMethod);
+        orderService.createOrder(order);
         user.setOrder(order);
-        try {
-            userService.editOrder(user);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        userService.editOrder(user);
+
         resp.sendRedirect(req.getContextPath() + "/");
     }
 }

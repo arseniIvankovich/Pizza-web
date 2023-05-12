@@ -85,16 +85,16 @@
                 </div>
                 <div class="input-box">
                     <label for="login-form-house">Дом</label>
-                    <input type="text" class="login-form-input" id="login-form-house" name="houseP" value="">
+                    <input type="number" onkeydown="return event.keyCode !== 69" class="login-form-input" id="login-form-house" name="houseP" value="">
                 </div>
                 <div class="input-box">
                     <label for="login-form-entrance">Подъезд</label>
-                    <input type="number" class="login-form-input" id="login-form-entrance" name="entranceP" value="">
+                    <input type="number" onkeydown="return event.keyCode !== 69" class="login-form-input" id="login-form-entrance" name="entranceP" value="">
                 </div>
 
                 <div class="input-box">
                     <label for="login-form-flat">Квартира</label>
-                    <input type="number" class="login-form-input" id="login-form-flat" name="flatP" value="">
+                    <input type="number" onkeydown="return event.keyCode !== 69" class="login-form-input" id="login-form-flat" name="flatP" value="">
                 </div>
                 <div class="input-box">
                     <label for="login-form-name">Имя и Фамилия</label>
