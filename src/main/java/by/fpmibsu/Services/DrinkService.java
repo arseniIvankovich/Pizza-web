@@ -7,21 +7,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class DrinkService {
-    final DrinkDaoImpl drinkDao;
-
-    public DrinkService(DrinkDaoImpl drinkDao) {
-        this.drinkDao = drinkDao;
-    }
 
     public List<Drink> findAll() throws SQLException {
-        return drinkDao.findAll();
+        return new DrinkDaoImpl().findAll();
     }
 
     public Drink findEntityById(Long id) throws SQLException {
-        return drinkDao.findEntityById(id);
+        return new DrinkDaoImpl().findEntityById(id);
     }
 
     public Drink findByNameCapacity(String name, Double capacity) throws SQLException {
-        return drinkDao.findByNameCapacity(name,capacity);
+        return new DrinkDaoImpl().findByNameCapacity(name,capacity);
     }
 }

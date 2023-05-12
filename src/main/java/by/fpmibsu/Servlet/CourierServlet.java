@@ -23,7 +23,7 @@ import java.util.List;
 public class CourierServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
+        UserService userService = new UserService();
         List<User> users;
         try {
             users = (ArrayList<User>)userService.getUndeliveredOrdersForUsers();
@@ -38,8 +38,8 @@ public class CourierServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         String email = req.getParameter("email");
-        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
-        OrderService orderService = new OrderService(new OrderDaoImpl());
+        UserService userService = new UserService();
+        OrderService orderService = new OrderService();
         User user;
         try {
             user = userService.findByEmail(email);

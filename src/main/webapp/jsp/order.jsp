@@ -124,9 +124,9 @@
 
                 <p class="address-header">Способ оплаты:</p>
 
-                <select name="select" class="payment-form-select" >
-                    <option value="Mid">Картой</option>
-                    <option value="Big" selected="selected">Наличными</option>
+                <select name="select" class="payment-form-select" name="select">
+                    <option value="Картой">Картой</option>
+                    <option value="Наличными" selected="selected">Наличными</option>
                 </select>
 
                 <p class="address-header">Комментарий к заказу:</p>

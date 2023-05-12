@@ -21,7 +21,7 @@ import java.util.List;
 public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
+        UserService userService = new UserService();
         List<User> users;
         try {
             users = (ArrayList<User>)userService.getAllNotdAmin();
@@ -36,7 +36,7 @@ public class AdminServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         String email = req.getParameter("email");
-        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
+        UserService userService = new UserService();
         try {
             userService.delete(email);
         } catch (SQLException e) {

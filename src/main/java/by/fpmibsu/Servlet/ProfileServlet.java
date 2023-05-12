@@ -22,7 +22,7 @@ import java.sql.SQLException;
 public class ProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
+        UserService userService = new UserService();
         Long id = (Long) req.getSession().getAttribute("userId");
         User user;
         try {
@@ -38,8 +38,8 @@ public class ProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
-        AddressService addressService = new AddressService(new AddressDaoImpl());
+        UserService userService = new UserService();
+        AddressService addressService = new AddressService();
         String street = req.getParameter("streetP");
         Integer houseNumber = Integer.parseInt(req.getParameter("houseP"));
         Integer entrance = Integer.parseInt(req.getParameter("entranceP"));

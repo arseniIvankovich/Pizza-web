@@ -30,7 +30,7 @@ public class OrderServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
+        UserService userService = new UserService();
         Long id = (Long) req.getSession().getAttribute("userId");
         User user;
         try {
@@ -38,15 +38,14 @@ public class OrderServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         req.setAttribute("user",user);
         req.getRequestDispatcher("/jsp/order.jsp").forward(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
-        OrderService orderService = new OrderService(new OrderDaoImpl());
+        UserService userService = new UserService();
+        OrderService orderService = new OrderService();
         req.setCharacterEncoding("UTF-8");
         String pizza = req.getParameter("pizza");
         String drink = req.getParameter("drinks");

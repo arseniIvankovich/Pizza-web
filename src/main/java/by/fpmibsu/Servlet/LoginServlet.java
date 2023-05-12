@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
+        UserService userService = new UserService();
         req.setCharacterEncoding("UTF-8");
         String email = req.getParameter("email");
         String password = req.getParameter("password");

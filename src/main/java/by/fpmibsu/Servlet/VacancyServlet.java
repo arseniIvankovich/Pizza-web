@@ -7,6 +7,7 @@ import by.fpmibsu.Entity.Vacancy;
 import by.fpmibsu.Services.UserService;
 import by.fpmibsu.Services.VacancyService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zaxxer.hikari.HikariDataSource;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,9 +20,11 @@ import java.sql.SQLException;
 
 @WebServlet("/vacancy")
 public class VacancyServlet extends HttpServlet {
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
+        UserService userService = new UserService();
         Long id = (Long) req.getSession().getAttribute("userId");
         User user;
         try {
@@ -36,11 +39,11 @@ public class VacancyServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
+        UserService userService = new UserService();
         req.setCharacterEncoding("UTF-8");
         Long id = (Long) req.getSession().getAttribute("userId");
         String choicer = req.getParameter("choicer");
-        VacancyService vacancyService = new VacancyService(new VacancyDaoImpl(), new UserDaoImpl());
+        VacancyService vacancyService = new VacancyService();
         Vacancy vacancy;
         try {
             vacancy = vacancyService.findByName(choicer);

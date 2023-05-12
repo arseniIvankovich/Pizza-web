@@ -8,24 +8,16 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class VacancyService {
-    final VacancyDaoImpl vacancyDao;
-
-    final UserDaoImpl userDao;
-
-    public VacancyService(VacancyDaoImpl vacancyDao, UserDaoImpl userDao) {
-        this.vacancyDao = vacancyDao;
-        this.userDao = userDao;
-    }
 
     public List<Vacancy> findAll() throws SQLException {
-        return vacancyDao.findAll();
+        return new VacancyDaoImpl().findAll();
     }
 
     public Vacancy findByName(String pattern) throws SQLException {
-        return vacancyDao.findByName(pattern);
+        return new VacancyDaoImpl().findByName(pattern);
     }
 
     public void addApplication(Long userId, Long vacancyId) throws SQLException {
-        vacancyDao.addToMMUserVacancy(userId,vacancyId);
+        new VacancyDaoImpl().addToMMUserVacancy(userId,vacancyId);
     }
 }

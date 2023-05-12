@@ -7,17 +7,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class RoleService {
-    final RoleDaoImpl roleDao;
-
-    public RoleService(RoleDaoImpl roleDao) {
-        this.roleDao = roleDao;
-    }
-
     public List<Role> findAll() throws SQLException {
-        return roleDao.findAll();
+        return new RoleDaoImpl().findAll();
     }
 
     public Role findEntityById(Long id) throws SQLException {
-        return roleDao.findEntityById(id);
+        return new RoleDaoImpl().findEntityById(id);
     }
 }

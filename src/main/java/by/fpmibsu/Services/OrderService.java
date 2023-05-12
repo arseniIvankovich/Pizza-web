@@ -9,36 +9,31 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class OrderService {
-    final OrderDaoImpl orderDao;
-
-    public OrderService(OrderDaoImpl orderDao) {
-        this.orderDao = orderDao;
-    }
 
     public Order createOrder (Order order) throws SQLException {
         order.setStatus(false);
         order.setDeliveryDate(new Timestamp(new java.util.Date().getTime() + 3600000));
-        return orderDao.create(order);
+        return new OrderDaoImpl().create(order);
     }
 
     public List<Order> findAll() throws SQLException {
-        return orderDao.findAll();
+        return new OrderDaoImpl().findAll();
     }
 
     public Order findEntityById(Long id) throws SQLException {
-        return orderDao.findEntityById(id);
+        return new OrderDaoImpl().findEntityById(id);
     }
 
     public void addToMMDrink(Long orderId, Long drinkId, Integer numberOfDrinks) throws SQLException {
-        orderDao.addToMMDrink(orderId,drinkId,numberOfDrinks);
+        new OrderDaoImpl().addToMMDrink(orderId,drinkId,numberOfDrinks);
     }
 
     public void addToMMPizza(Long orderId, Long pizzaId, Integer numberOfPizzas) throws SQLException {
-        orderDao.addToMMPizza(orderId,pizzaId,numberOfPizzas);
+        new OrderDaoImpl().addToMMPizza(orderId,pizzaId,numberOfPizzas);
     }
 
     public void update(Order order) throws SQLException {
-         orderDao.update(order);
+        new OrderDaoImpl().update(order);
     }
 
 

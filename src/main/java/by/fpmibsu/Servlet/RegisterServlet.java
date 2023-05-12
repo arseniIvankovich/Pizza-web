@@ -30,9 +30,9 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        AddressService addressService = new AddressService(new AddressDaoImpl());
-        UserService userService = new UserService(new UserDaoImpl(),new OrderDaoImpl(), new AddressDaoImpl(), new RoleDaoImpl());
-        RoleService roleSetvice = new RoleService(new RoleDaoImpl());
+        AddressService addressService = new AddressService();
+        UserService userService = new UserService();
+        RoleService roleSetvice = new RoleService();
         String street = req.getParameter("street");
         int houseNumber = Integer.parseInt(req.getParameter("house"));
         int entrance = Integer.parseInt(req.getParameter("entrance"));

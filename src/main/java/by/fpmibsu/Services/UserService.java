@@ -4,28 +4,21 @@ import by.fpmibsu.Dao.DaoImpl.AddressDaoImpl;
 import by.fpmibsu.Dao.DaoImpl.OrderDaoImpl;
 import by.fpmibsu.Dao.DaoImpl.RoleDaoImpl;
 import by.fpmibsu.Dao.DaoImpl.UserDaoImpl;
+import by.fpmibsu.Dao.UserDao;
 import by.fpmibsu.Entity.Order;
 import by.fpmibsu.Entity.User;
+import com.zaxxer.hikari.HikariDataSource;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
-    final UserDaoImpl userDao;
-    final OrderDaoImpl orderDao;
-    final AddressDaoImpl addressDao;
+    private  UserDao userDao;
 
-    final RoleDaoImpl roleDao;
-
-
-    public UserService(UserDaoImpl userDao, OrderDaoImpl orderDao, AddressDaoImpl addressDao, RoleDaoImpl roleDao) {
-        this.userDao = userDao;
-        this.orderDao = orderDao;
-        this.addressDao = addressDao;
-        this.roleDao = roleDao;
+    public UserService() {
+        this.userDao = new UserDaoImpl();
     }
-
     public List<User> findAll () throws SQLException {
         return userDao.findAll();
     }
@@ -38,10 +31,6 @@ public class UserService {
         return userDao.findByEmail(email);
     }
 
-    public User findByName(String name) throws SQLException {
-        return userDao.findByName(name);
-    }
-
     public User checkLogin(String email, String password) throws SQLException {
         return userDao.checkLogin(email,password);
     }
@@ -50,13 +39,13 @@ public class UserService {
     }
 
     public void delete (String email) throws SQLException {
-        userDao.delete( new UserDaoImpl().findByEmail(email));
+        userDao.delete(userDao.findByEmail(email));
     }
 
     public void edit (Long id, User newUser) throws SQLException{
-        User oldUser = userDao.findEntityById(id);
+      /*  User oldUser = new UserDaoImpl().findEntityById(id);
 
-        if (addressDao.checkByStreetHouseEntranceFlat(newUser.getAddresses().getStreet(),newUser.getAddresses().getHouseNumber(),
+        if (new AddressDaoImpl().checkByStreetHouseEntranceFlat(newUser.getAddresses().getStreet(),newUser.getAddresses().getHouseNumber(),
                 newUser.getAddresses().getEntrance(), newUser.getAddresses().getFlatNumber()))
             oldUser.setAddresses(newUser.getAddresses());
         if (newUser.getEmail() != null)
@@ -66,7 +55,7 @@ public class UserService {
         if (newUser.getFirstName_lastName() != null)
             oldUser.setFirstName_lastName(newUser.getFirstName_lastName());
 
-        userDao.update(oldUser);
+        userDao.update(oldUser);*/
     }
 
 
@@ -77,13 +66,9 @@ public class UserService {
     public void editOrder (User user) throws SQLException {
         userDao.updateOrder(user);
     }
-    public void editOrder (User user, Order order) throws SQLException {
-        Long index = orderDao.getLastID();
-        user.setOrder(orderDao.findEntityById(index));
-    }
 
     public List<User> getUndeliveredOrdersForUsers() throws SQLException {
-        List<User> users = (ArrayList<User>)userDao.getOrderedUsers();
+        List<User> users = (ArrayList<User>) userDao.getOrderedUsers();
         List<User> orderedUsers = new ArrayList<>();
         for (User user: users)
             if (user.getOrder().getStatus() == false)
