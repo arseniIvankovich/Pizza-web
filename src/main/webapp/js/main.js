@@ -50,17 +50,17 @@ function loadData() {
 
     var busket = document.querySelector(".busket-button-text-orig");
     var busket_quantity = document.querySelector(".busket-button-quantity-text");
-    if (typeof localStorage["pizza"] === 'undefined') {
+    if (typeof localStorage["pizza"] === 'undefined' || document.querySelector(".session").value === '') {
         localStorage["pizza"] = JSON.stringify([]);
     }
-    if (typeof localStorage["drinks"] === 'undefined') {
+    if (typeof localStorage["drinks"] === 'undefined' || document.querySelector(".session").value === '') {
         localStorage["drinks"] = JSON.stringify([]);
     }
 
-    if (typeof localStorage["busket-price"] === 'undefined') {
+    if (typeof localStorage["busket-price"] === 'undefined' || document.querySelector(".session").value === '') {
         localStorage["busket-price"] = '0.00';
     }
-    if (typeof localStorage["busket-quantity"] === 'undefined') {
+    if (typeof localStorage["busket-quantity"] === 'undefined' || document.querySelector(".session").value === '') {
         localStorage["busket-quantity"] = '0';
     }
     busket.textContent = localStorage["busket-price"] + " BYN";

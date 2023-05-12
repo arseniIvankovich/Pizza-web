@@ -131,12 +131,12 @@
                 <p class="pizza-card-title">Пепперони</p>
                 <div class="box-choices">
                     <select id="size-1" class="menu-choices size-select">
-                        <option value="Big">Большой</option>
                         <option value="Mid" selected="selected">Средний</option>
+                        <option value="Big">Большой</option>
                     </select>1
                     <select id="dough-1" class="menu-choices dough-select">
-                        <option value="Thick">Толстое</option>
                         <option value="Thin" selected="selected">Тонкое</option>
+                        <option value="Thick">Толстое</option>
                     </select>
                 </div>
                 <p class="ingredients-text">пицца-соус, пепперони, сыр моцарелла, базилик</p>
@@ -160,12 +160,12 @@
                 <p class="pizza-card-title">4 сыра</p>
                 <div class="box-choices">
                     <select name="" id="size-2" class="menu-choices size-select">
-                        <option value="Big">Большой</option>
                         <option value="Mid" selected="selected">Средний</option>
+                        <option value="Big">Большой</option>
                     </select>
                     <select name="" id="dough-2" class="menu-choices dough-select">
-                        <option value="Thick">Толстое</option>
                         <option value="Thin" selected="selected">Тонкое</option>
+                        <option value="Thick">Толстое</option>
                     </select>
                 </div>
                 <p class="ingredients-text">сырный соус, сливочный сыр, сыр фета, сыр дорблю (может отличаться от изображения на сайте), сыр моцарелла, базилик</p>
@@ -189,12 +189,12 @@
                 <p class="pizza-card-title">Гавайская</p>
                 <div class="box-choices">
                     <select name="" id="size-3" class="menu-choices size-select">
-                        <option value="Big">Большой</option>
                         <option value="Mid" selected="selected">Средний</option>
+                        <option value="Big">Большой</option>
                     </select>
                     <select name="" id="dough-3" class="menu-choices dough-select">
-                        <option value="Thick">Толстое</option>
                         <option value="Thin" selected="selected">Тонкое</option>
+                        <option value="Thick">Толстое</option>
                     </select>
                 </div>
                 <p class="ingredients-text">сырный соус, ветчина, филе цыпленка, ананасы, сыр моцарелла, базилик</p>
@@ -218,12 +218,12 @@
                 <p class="pizza-card-title">Барбекю</p>
                 <div class="box-choices">
                     <select name="" id="size-4" class="menu-choices size-select">
-                        <option value="Big">Большой</option>
                         <option value="Mid" selected="selected">Средний</option>
+                        <option value="Big">Большой</option>
                     </select>
                     <select name="" id="dough-4" class="menu-choices dough-select">
-                        <option value="Thick">Толстое</option>
                         <option value="Thin" selected="selected">Тонкое</option>
+                        <option value="Thick">Толстое</option>
                     </select>
                 </div>
                 <p class="ingredients-text">пицца-соус, грудинка (свинина), филе цыпленка, свежий лук, соус барбекю, сыр моцарелла, базилик</p>
@@ -247,12 +247,12 @@
                 <p class="pizza-card-title">Сальмоне</p>
                 <div class="box-choices">
                     <select name="" id="size-5" class="menu-choices size-select">
-                        <option value="Big">Большой</option>
                         <option value="Mid" selected="selected">Средний</option>
+                        <option value="Big">Большой</option>
                     </select>
                     <select name="" id="dough-5" class="menu-choices dough-select">
-                        <option value="Thick">Толстое</option>
                         <option value="Thin" selected="selected">Тонкое</option>
+                        <option value="Thick">Толстое</option>
                     </select>
                 </div>
                 <p class="ingredients-text">соус пармеджано, креветки, сливочный сыр, сыр моцарелла, базилик</p>
@@ -276,12 +276,12 @@
                 <p class="pizza-card-title">Деревенская</p>
                 <div class="box-choices">
                     <select name="" id="size-6" class="menu-choices size-select">
-                        <option value="Big">Большой</option>
                         <option value="Mid" selected="selected">Средний</option>
+                        <option value="Big">Большой</option>
                     </select>
                     <select name="" id="dough-6" class="menu-choices dough-select">
-                        <option value="Thick">Толстое</option>
                         <option value="Thin" selected="selected">Тонкое</option>
+                        <option value="Thick">Толстое</option>
                     </select>
                 </div>
                 <p class="ingredients-text">американский соус ранч, грудинка (свинина), свежий лук, соленые огурцы, свежие шампиньоны, сыр моцарелла, базилик</p>
