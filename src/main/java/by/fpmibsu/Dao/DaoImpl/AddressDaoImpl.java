@@ -87,28 +87,6 @@ public class AddressDaoImpl extends Util implements AddressDao  {
         }
     }
 
-    @Override
-    public List<Address> findAll() throws SQLException {
-        final String SQL_SELECT_ALL = "SELECT  \"AddressID\", \"StreetName\", \"HouseNumber\", \"Entrance\", \"FlatNumber\"\n" +
-                "\tFROM public.\"Address\";";
-        List<Address> addressList = new ArrayList<>();
-        try (Connection connection = dataSource.getConnection();
-             Statement statement = connection.createStatement();){
-            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
-
-            while (resultSet.next()) {
-                Address address = new Address();
-                address.setAddressID(resultSet.getLong("AddressID"));
-                address.setStreet(resultSet.getString("StreetName"));
-                address.setEntrance(resultSet.getInt("Entrance"));
-                address.setHouseNumber(resultSet.getInt("HouseNumber"));
-                address.setFlatNumber(resultSet.getInt("FlatNumber"));
-
-                addressList.add(address);
-            }
-        }
-        return addressList;
-    }
 
     @Override
     public Address findEntityById(Long id)  throws SQLException{

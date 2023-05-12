@@ -24,10 +24,6 @@ public class AddressService {
         return addressDao.findByStreetHouseEntranceFlat(street,house,entrance,flat);
     }
 
-    public List<Address> findAll() throws SQLException {
-        return addressDao.findAll();
-    }
-
     public Address findEntityById(Long id)  throws SQLException {
         return addressDao.findEntityById(id);
     }

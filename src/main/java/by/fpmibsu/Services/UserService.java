@@ -19,9 +19,6 @@ public class UserService {
     public UserService() {
         this.userDao = new UserDaoImpl();
     }
-    public List<User> findAll () throws SQLException {
-        return userDao.findAll();
-    }
 
     public User findEntityById (Long id) throws SQLException {
         return userDao.findEntityById(id);

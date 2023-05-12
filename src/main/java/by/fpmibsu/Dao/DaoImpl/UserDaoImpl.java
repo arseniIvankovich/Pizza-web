@@ -4,7 +4,6 @@ import by.fpmibsu.Dao.HikariCPDataSource;
 import by.fpmibsu.Services.Util;
 import by.fpmibsu.Dao.UserDao;
 import by.fpmibsu.Entity.*;
-import com.zaxxer.hikari.HikariDataSource;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
@@ -17,32 +16,6 @@ public class UserDaoImpl extends Util implements UserDao {
     private DataSource dataSource;
     public UserDaoImpl () {
         this.dataSource = HikariCPDataSource.getDataSource();
-    }
-
-    @Override
-    public List<User> findAll() throws SQLException{
-        final String SQL_SELECT_ALL = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
-                "\tFROM public.\"User\";";
-
-        List<User> users = new ArrayList<>();
-        try (Connection connection = dataSource.getConnection();
-        Statement statement = connection.createStatement()) {
-
-            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
-
-            while (resultSet.next()) {
-                User user = new User();
-                user.setUserId(resultSet.getLong("UserID"));
-                user.setRole(new RoleDaoImpl().findEntityById(resultSet.getLong("Role_id")));
-                user.setFirstName_lastName(resultSet.getString("First_SecondName"));
-                user.setPassword(resultSet.getString("Password"));
-                user.setEmail(resultSet.getString("Email"));
-                user.setTelephone(resultSet.getString("Phone_number"));
-                user.setAddresses(new AddressDaoImpl().findEntityById(resultSet.getLong("Address_id")));
-                user.setOrder(new OrderDaoImpl().findEntityById(resultSet.getLong("Order_id")));
-            }
-        }
-        return users;
     }
 
     @Override
@@ -89,7 +62,6 @@ public class UserDaoImpl extends Util implements UserDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)){
-
             preparedStatement.setLong(1,id);
 
             preparedStatement.executeUpdate();
