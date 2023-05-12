@@ -1,51 +1,29 @@
 package by.fpmibsu.Dao.DaoImpl;
 
 import by.fpmibsu.Dao.DrinkDao;
+import by.fpmibsu.Dao.HikariCPDataSource;
 import by.fpmibsu.Entity.Drink;
 import by.fpmibsu.Services.Util;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class DrinkDaoImpl extends Util implements DrinkDao {
-    Connection connection = getConnection();
-    @Override
-    public List<Drink> findAll() throws SQLException {
-        final String SQL_SELECT_ALL = "SELECT \"DrinkID\", \"Name\", \"Capacity\", \"Price\"\n" +
-                "\tFROM public.\"Drink\";";
-        List<Drink> drinksList = new ArrayList<>();
-        Statement statement = null;
-        try {
-            statement = connection.createStatement();
-
-            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
-
-            while (resultSet.next()) {
-                Drink drink = new Drink();
-                drink.setDrinkID(resultSet.getLong("DrinkID"));
-                drink.setName(resultSet.getString("Name"));
-                drink.setCapacity(resultSet.getDouble("Capacity"));
-                drink.setPrice(resultSet.getDouble("Price"));
-
-                drinksList.add(drink);
-            }
-        }
-        finally {
-            close(statement);
-            close(connection);
-        }
-        return drinksList;
+    private final DataSource dataSource;
+    public DrinkDaoImpl () {
+        this.dataSource = HikariCPDataSource.getDataSource();
     }
 
     @Override
     public Drink findEntityById(Long id) throws SQLException {
-        PreparedStatement preparedStatement = null;
         Drink drink = new Drink();
         final String SQL_SELECT_BY_ID = "SELECT \"DrinkID\", \"Name\", \"Capacity\", \"Price\"\n" +
                 "\tFROM public.\"Drink\" WHERE \"DrinkID\" = ?;";
-        try {
-            preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID);
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)) {
             preparedStatement.setLong(1,id);
             ResultSet resultSet= preparedStatement.executeQuery();
 
@@ -56,10 +34,6 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
                 drink.setPrice(resultSet.getDouble("Price"));
             }
         }
-        finally {
-            close(preparedStatement);
-            close(connection);
-        }
         return drink;
     }
 
@@ -67,37 +41,28 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
     public boolean delete(Drink drink) throws SQLException {
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Drink\"\n" +
                 "\tWHERE \"Name\" = ?;";
-        PreparedStatement preparedStatement = null;
 
-        try{
-            preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID);
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)){
             preparedStatement.setString(1,drink.getName());
 
             preparedStatement.executeUpdate();
             return true;
         }
-        finally {
-            close(preparedStatement);
-            close(connection);
-        }
+
     }
 
     @Override
     public boolean delete(Long id) throws SQLException {
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Drink\"\n" +
                 "\tWHERE \"DrinkID\" = ?;";
-        PreparedStatement preparedStatement = null;
 
-        try{
-            preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID);
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)){
             preparedStatement.setLong(1,id);
 
             preparedStatement.executeUpdate();
             return true;
-        }
-        finally {
-            close(preparedStatement);
-            close(connection);
         }
 
     }
@@ -108,10 +73,8 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
                 "\t\"Name\", \"Capacity\", \"Price\")\n" +
                 "\tVALUES (?, ?, ?);";
 
-        PreparedStatement preparedStatement = null;
-
-        try {
-            preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS);
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS)){
             preparedStatement.setString(1,drink.getName());
             preparedStatement.setDouble(2,drink.getCapacity());
             preparedStatement.setDouble(3,drink.getPrice());
@@ -119,10 +82,7 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
             preparedStatement.executeUpdate();
             return drink;
         }
-        finally {
-            close(preparedStatement);
-            close(connection);
-        }
+
     }
 
     @Override
@@ -131,10 +91,8 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
                 "\tSET  \"Name\"=?, \"Capacity\"=?, \"Price\"=?\n" +
                 "\tWHERE \"DrinkID\" = ?;";
 
-        PreparedStatement preparedStatement = null;
-        try{
-            preparedStatement = connection.prepareStatement(SQL_UPDATE);
-
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)){
             preparedStatement.setString(1,drink.getName());
             preparedStatement.setDouble(2,drink.getCapacity());
             preparedStatement.setDouble(3,drink.getPrice());
@@ -142,20 +100,16 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
 
             preparedStatement.executeUpdate();
         }
-        finally {
-            close(preparedStatement);
-            close(connection);
-        }
+
     }
 
     @Override
     public Drink findByNameCapacity(String name, Double capacity) throws SQLException {
-        PreparedStatement preparedStatement = null;
         Drink drink = new Drink();
         final String SQL_SELECT_BY_NAME_CAPACITY = "SELECT \"DrinkID\", \"Name\", \"Capacity\", \"Price\"\n" +
                 "\tFROM public.\"Drink\" WHERE \"Name\" = ? AND \"Capacity\" = ?;";
-        try {
-            preparedStatement = connection.prepareStatement(SQL_SELECT_BY_NAME_CAPACITY);
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_NAME_CAPACITY)){
             preparedStatement.setString(1,name);
             preparedStatement.setDouble(2,capacity);
             ResultSet resultSet= preparedStatement.executeQuery();
@@ -166,10 +120,6 @@ public class DrinkDaoImpl extends Util implements DrinkDao {
                 drink.setCapacity(resultSet.getDouble("Capacity"));
                 drink.setPrice(resultSet.getDouble("Price"));
             }
-        }
-        finally {
-            close(preparedStatement);
-            close(connection);
         }
         return drink;
     }

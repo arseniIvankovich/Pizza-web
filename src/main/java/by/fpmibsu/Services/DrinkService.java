@@ -1,15 +1,19 @@
 package by.fpmibsu.Services;
 
+import by.fpmibsu.Dao.AddressDao;
+import by.fpmibsu.Dao.DaoImpl.AddressDaoImpl;
 import by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl;
+import by.fpmibsu.Dao.DrinkDao;
 import by.fpmibsu.Entity.Drink;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class DrinkService {
+    private DrinkDao drinkDao;
 
-    public List<Drink> findAll() throws SQLException {
-        return new DrinkDaoImpl().findAll();
+    public DrinkService() {
+        this.drinkDao = new DrinkDaoImpl();
     }
 
     public Drink findEntityById(Long id) throws SQLException {

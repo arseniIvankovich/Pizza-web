@@ -1,85 +1,21 @@
 package by.fpmibsu.Dao.DaoImpl;
+import by.fpmibsu.Dao.HikariCPDataSource;
 import by.fpmibsu.Services.Util;
 import by.fpmibsu.Dao.OrderDao;
 import by.fpmibsu.Entity.*;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 public class OrderDaoImpl extends Util implements OrderDao {
-    Connection connection = getConnection();
-    @Override
-    public List<Order> findAll() throws SQLException {
-        final String SQL_SELECT_ALL = "SELECT \"OrderID\", \"Status\", \"DeliveryDate\", \"PaymentMethod\"\n" +
-                "\tFROM public.\"Order\";";
-        final String SQL_INNER_1 = "SELECT \"DrinkID\",  \"NumberOfDrinks\"\n" +
-                "\tFROM public.\"Drink_order\" WHERE \"OrderID\" = ?;";
-
-        final String SQL_INNER_2 = "SELECT \"PizzaID\", \"NumberOfPizzas\"\n" +
-                "\tFROM public.\"Pizza_Order\" WHERE \"OrderID\" = ?;";
-
-        List<Order> orders = new ArrayList<>();
-
-        Statement statement = null;
-        try {
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
-
-            while (resultSet.next()) {
-                Order order = new Order();
-                order.setId(resultSet.getLong("OrderID"));
-                order.setStatus(resultSet.getBoolean("Status"));
-                order.setDeliveryDate(resultSet.getTimestamp("DeliveryDate"));
-                order.setPaymentMethod(resultSet.getString("PaymentMethod"));
-
-                Statement statement1 = null;
-                Statement statement2 = null;
-                try {
-                    statement1 = connection.createStatement();
-                    statement2 = connection.createStatement();
-
-                    ResultSet resultSet1 = statement1.executeQuery(SQL_INNER_1);
-                    ResultSet resultSet2 = statement2.executeQuery(SQL_INNER_2);
-
-                    List<Drink> drinks = new ArrayList<>();
-                    List<Pizza> pizzas = new ArrayList<>();
-
-                    while (resultSet1.next()){
-                        Drink drink = new DrinkDaoImpl().findEntityById(resultSet1.getLong("DrinkID"));
-                        drink.setCounter(resultSet1.getInt("NumberOfDrinks"));
-                        drinks.add(drink);
-                    }
-
-
-                    while (resultSet2.next()){
-                        Pizza pizza = new PizzaDaoImpl().findEntityById(resultSet2.getLong("PizzaId"));
-                        pizza.setCounter(resultSet2.getInt("NumberOfPizzas"));
-                        pizzas.add(pizza);
-                    }
-
-                    order.setDrinks(drinks);
-                    order.setPizzas(pizzas);
-                }
-                finally {
-                    close(statement1);
-                    close(statement2);
-                }
-                orders.add(order);
-            }
-        }
-        finally {
-            close(statement);
-            close(connection);
-        }
-        return orders;
+    private DataSource dataSource;
+    public OrderDaoImpl () {
+        this.dataSource = HikariCPDataSource.getDataSource();
     }
-
     @Override
     public Order findEntityById(Long id) throws SQLException{
-        PreparedStatement preparedStatement = null;
-        PreparedStatement preparedStatement1 = null;
-        PreparedStatement preparedStatement2 = null;
         Order order = new Order();
         final String SQL_SELECT_BY_ID = "SELECT \"OrderID\", \"Status\", \"DeliveryDate\", \"PaymentMethod\"\n" +
                 "\tFROM public.\"Order\" WHERE \"OrderID\" = ?;";
@@ -89,12 +25,12 @@ public class OrderDaoImpl extends Util implements OrderDao {
 
         final String SQL_INNER_2 = "SELECT \"PizzaID\", \"NumberOfPizzas\"\n" +
                 "\tFROM public.\"Pizza_Order\" WHERE \"OrderID\" = ?;";
-        try {
-            preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID);
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID);
+             PreparedStatement preparedStatement1 = connection.prepareStatement(SQL_INNER_1);
+             PreparedStatement preparedStatement2 = connection.prepareStatement(SQL_INNER_2)){
             preparedStatement.setLong(1, id);
-            preparedStatement1 = connection.prepareStatement(SQL_INNER_1);
             preparedStatement1.setLong(1, id);
-            preparedStatement2 = connection.prepareStatement(SQL_INNER_2);
             preparedStatement2.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             ResultSet resultSet1 = preparedStatement1.executeQuery();
@@ -126,10 +62,6 @@ public class OrderDaoImpl extends Util implements OrderDao {
                 order.setPizzas(pizzas);
             }
         }
-        finally {
-            close(preparedStatement);
-           // close(connection);
-        }
         return order;
     }
 
@@ -142,17 +74,14 @@ public class OrderDaoImpl extends Util implements OrderDao {
     public boolean delete(Long id) throws SQLException {
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Order\"\n" +
                 "\tWHERE \"OrderID\" = ?;";
-        PreparedStatement preparedStatement = null;
 
-        try {
-            preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID);
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)){
+
             preparedStatement.setLong(1, id);
 
             preparedStatement.executeUpdate();
             return true;
-        } finally {
-            close(preparedStatement);
-            close(connection);
         }
     }
 
@@ -162,10 +91,11 @@ public class OrderDaoImpl extends Util implements OrderDao {
                 "\t\"Status\", \"DeliveryDate\", \"PaymentMethod\")\n" +
                 "\tVALUES (?, ?, ?);";
 
-        PreparedStatement preparedStatement = null;
 
-        try {
-            preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS);
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS)){
+
 
             preparedStatement.setBoolean(1,order.getStatus());
             preparedStatement.setTimestamp(2,  order.getDeliveryDate());
@@ -183,10 +113,7 @@ public class OrderDaoImpl extends Util implements OrderDao {
             order.setId(index);
             return order;
         }
-        finally {
-            close(preparedStatement);
-          //  close(connection);
-        }
+
     }
 
     @Override
@@ -195,9 +122,9 @@ public class OrderDaoImpl extends Util implements OrderDao {
                 "\tSET \"Status\"=?, \"DeliveryDate\"=?, \"PaymentMethod\"=?\n" +
                 "\tWHERE \"OrderID\" = ?;";
 
-        PreparedStatement preparedStatement = null;
-        try{
-            preparedStatement = connection.prepareStatement(SQL_UPDATE);
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)){
 
             preparedStatement.setBoolean(1,order.getStatus());
             preparedStatement.setTimestamp(2,  order.getDeliveryDate());
@@ -206,27 +133,22 @@ public class OrderDaoImpl extends Util implements OrderDao {
 
             preparedStatement.executeUpdate();
         }
-        finally {
-            close(preparedStatement);
-        //    close(connection);
-        }
+
     }
 
     public Long getLastID () throws SQLException {
         final String SQL_LAST_ID = "SELECT \"OrderID\"\n" +
                 "\tFROM public.\"Order\" ORDER BY \"OrderID\" DESC LIMIT 1;";
-        PreparedStatement preparedStatement = null;
+
         Long index = 0L;
-        try{
-            preparedStatement = connection.prepareStatement(SQL_LAST_ID);
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_LAST_ID)){
+
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 index = resultSet.getLong("OrderID");
             }
-        }
-        finally {
-            close(preparedStatement);
         }
         return index;
     }
@@ -238,9 +160,8 @@ public class OrderDaoImpl extends Util implements OrderDao {
                 "\t\"OrderID\", \"DrinkID\", \"NumberOfDrinks\")\n" +
                 "\tVALUES (?, ?, ?);";
 
-        PreparedStatement preparedStatement = null;
-        try{
-            preparedStatement = connection.prepareStatement(SQL_INNER_DRINK);
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_INNER_DRINK)){
 
             preparedStatement.setLong(1, orderId);
             preparedStatement.setLong(2, drinkId);
@@ -248,10 +169,6 @@ public class OrderDaoImpl extends Util implements OrderDao {
             preparedStatement.executeUpdate();
 
         }
-        finally {
-            close(preparedStatement);
-        }
-
     }
 
     @Override
@@ -260,18 +177,14 @@ public class OrderDaoImpl extends Util implements OrderDao {
                 "\t\"PizzaID\", \"OrderID\", \"NumberOfPizzas\")\n" +
                 "\tVALUES (?, ?, ?);";
 
-        PreparedStatement preparedStatement = null;
-        try{
-            preparedStatement = connection.prepareStatement(SQL_INNER_PIZZA);
 
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_INNER_PIZZA)){
             preparedStatement.setLong(1, pizzaId);
             preparedStatement.setLong(2, orderId);
             preparedStatement.setInt(3,numberOfPizzas);
             preparedStatement.executeUpdate();
 
-        }
-        finally {
-            close(preparedStatement);
         }
     }
 
