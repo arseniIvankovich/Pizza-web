@@ -45,7 +45,7 @@
                 </div>
                 <div class="input-box">
                     <label for="login-form-email">Email</label>
-                    <input type="text" class="login-form-input" id="login-form-email" name="email">
+                    <input type="email" class="login-form-input" id="login-form-email" name="email">
                 </div>
                 <div class="input-box">
                     <label for="login-form-phone">Телефон</label>

@@ -498,6 +498,7 @@ body {
     line-height: 20px;
     text-align: center;
     color: #FFFFFF;
+    margin-top: 15px;
 }
 
 .user-button:hover {
@@ -516,7 +517,6 @@ body {
     justify-content: space-between;
     align-items: center;
     margin: auto;
-    padding: 15px;
     width: 500px;
 }
 

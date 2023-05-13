@@ -53,6 +53,9 @@
         </div>
         <input type="submit" class="status-button" value="Изменить статус" >
     </form>
+    <form class="status-form" method="post" action="/logout">
+        <input type="submit" class="status-button" value="Выйти">
+    </form>
 </div>
 
 

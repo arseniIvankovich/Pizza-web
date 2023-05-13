@@ -51,7 +51,12 @@
             <input type="text" class="user-form-input" id="user-form-input" name="email">
         </div>
         <input type="submit" class="user-button" value="Удалить пользователя">
+
     </form>
+    <form class="user-form" method="post" action="/logout">
+        <input type="submit" class="user-button" value="Выйти">
+    </form>
+
 </div>
 
 <script src="../js/administrator.js"></script>
