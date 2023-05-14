@@ -449,15 +449,16 @@ body {
     text-align: center;
 }
 
-.styled-table thead tr {
-    background-color: #FF981E;
-    color: black;
-    font-weight: bold;
-}
+/*.styled-table thead tr {*/
+/*    background-color: #FF981E;*/
+/*    color: black;*/
+/*    font-weight: bold;*/
+/*}*/
 
 .styled-table th,
 .styled-table td {
-    padding: 12px 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .styled-table tbody tr {
@@ -557,4 +558,42 @@ label {
     /* identical to box height */
 
     color: #000000;
+}
+
+input[type="button"] {
+    transition: all .3s;
+    border: 2px solid #ddd;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 13px;
+    font-size: 18px;
+    font-family: 'Montserrat';
+    font-weight: 500;
+
+}
+
+input[type="button"]:not(.active) {
+    background-color:transparent;
+}
+
+.active {
+    background: #E13333;
+    color :#fff;
+}
+
+input[type="button"]:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.outer-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.header {
+    background-color: #FF981E;
+    color: black;
+    font-weight: bold;
 }

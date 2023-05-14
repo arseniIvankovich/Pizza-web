@@ -22,27 +22,22 @@
 <div class="wrapper">
     <p class="administrator-text">Список пользователей</p>
 
-    <table class="styled-table">
-        <thead>
-            <tr>
+    <table class="styled-table" id="styled-table">
+            <tr class="header">
                 <th>E-mail</th>
                 <th>Имя и фамилия</th>
                 <th>Телефон</th>
                 <th>Роль</th>
             </tr>
-        </thead>
 
-        <tbody>
         <c:forEach var="user" items="${users}">
         <tr>
             <td>${user.firstName_lastName}</td>
             <td>${user.email}</td>
             <td>${user.telephone}</td>
             <td>${user.role.role}</td>
-            <td class="email-field"></td>
         </tr>
         </c:forEach>
-        </tbody>
     </table>
 
     <form class="user-form" method="post" action="/admin">
@@ -53,7 +48,7 @@
         <input type="submit" class="user-button" value="Удалить пользователя">
 
     </form>
-    <form class="user-form" method="post" action="/logout">
+    <form class="user-form" method="get" action="/logout">
         <input type="submit" class="user-button" value="Выйти">
     </form>
 

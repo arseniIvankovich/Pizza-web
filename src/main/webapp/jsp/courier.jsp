@@ -21,29 +21,23 @@
 <div class="wrapper">
     <p class="courier-text">Список заказов</p>
 
-    <table class="styled-table">
-        <thead>
-        <tr>
+    <table class="styled-table" id="styled-table">
+        <tr class="header">
             <th>E-mail</th>
             <th>Время доставки</th>
             <th>Способ оплаты</th>
             <th>Статус заказа</th>
         </tr>
-        </thead>
 
-        <tbody>
         <c:forEach var="user" items="${users}">
         <tr>
             <td>${user.email}</td>
             <td>${user.firstName_lastName}</td>
             <td>${user.telephone}</td>
             <td>${user.order.status}</td>
-            <td class="email-field"></td>
-            <td class="status"></td>
         </tr>
         </c:forEach>
 
-        </tbody>
     </table>
 
     <form class="status-form" action="/courier" method="post">
@@ -53,7 +47,7 @@
         </div>
         <input type="submit" class="status-button" value="Изменить статус" >
     </form>
-    <form class="status-form" method="post" action="/logout">
+    <form class="status-form" method="get" action="/logout">
         <input type="submit" class="status-button" value="Выйти">
     </form>
 </div>
