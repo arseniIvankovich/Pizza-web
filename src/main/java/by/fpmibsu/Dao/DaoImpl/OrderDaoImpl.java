@@ -7,11 +7,9 @@ import by.fpmibsu.Entity.Order;
 import by.fpmibsu.Entity.Pizza;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class OrderDaoImpl implements OrderDao {
@@ -113,7 +111,7 @@ public class OrderDaoImpl implements OrderDao {
             preparedStatement.setString(3, order.getPaymentMethod());
             preparedStatement.executeUpdate();
 
-            Long index = this.getLastID();
+            Long index = this.getLastID(order.getStatus(),order.getDeliveryDate(),order.getPaymentMethod());
 
             for (Pizza pizza : order.getPizzas())
                 addToMMPizza(index, pizza.getPizzaId(), pizza.getCounter());
@@ -151,19 +149,18 @@ public class OrderDaoImpl implements OrderDao {
 
     }
 
-    public Long getLastID()  {
-        final String SQL_LAST_ID = "SELECT \"OrderID\"\n" +
-                "\tFROM public.\"Order\" ORDER BY \"OrderID\" DESC LIMIT 1;";
+    public Long getLastID(Boolean status,Timestamp deliveryDate,String paymentMethod)  {
+        final String SQL_LAST_ID = "SELECT \"OrderID\" FROM public.\"Order\" WHERE \"Status\" = ? AND \"DeliveryDate\" = ? AND \"PaymentMethod\" = ? ORDER BY \"OrderID\" DESC LIMIT 1;";
 
         Long index = 0L;
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_LAST_ID)) {
-
+            preparedStatement.setBoolean(1,status);
+            preparedStatement.setTimestamp(2,deliveryDate);
+            preparedStatement.setString(3,paymentMethod);
             ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
+            while (resultSet.next())
                 index = resultSet.getLong("OrderID");
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -207,6 +204,7 @@ public class OrderDaoImpl implements OrderDao {
             e.printStackTrace();
         }
     }
+
 
 
 }

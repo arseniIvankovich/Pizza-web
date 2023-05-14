@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: arseni
@@ -19,6 +20,16 @@
 
 <div class="wrapper">
     <div class="main">
+        <c:if test="${emailError == true}">
+            <script>
+                alert("Неверный email");
+            </script>
+        </c:if>
+        <c:if test="${passwordError == true}">
+            <script>
+                alert("Неверный пароль");
+            </script>
+        </c:if>
         <div class="form-section">
             <form method="post" action="/login" class="left-form">
                 <div class="personal-header"><p class="personal-header-text">Вход в аккаунт</p></div>

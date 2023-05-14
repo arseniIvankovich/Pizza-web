@@ -33,7 +33,7 @@ public class ProfileServlet extends HttpServlet {
         UserService userService = new UserService();
         AddressService addressService = new AddressService();
         String street = req.getParameter("streetP");
-        Integer houseNumber = Integer.parseInt(req.getParameter("houseP"));
+        Integer houseNumber = Integer.parseInt( req.getParameter("houseP"));
         Integer entrance = Integer.parseInt(req.getParameter("entranceP"));
         Integer flatNumber = Integer.parseInt(req.getParameter("flatP"));
         String firstSecondName = req.getParameter("firstSecondP");

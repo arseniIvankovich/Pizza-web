@@ -15,18 +15,34 @@ import java.sql.SQLException;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
+    final String path = "/jsp/login.jsp";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/jsp/login.jsp").forward(req, resp);
+        req.getRequestDispatcher(path).forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService = new UserService();
         req.setCharacterEncoding("UTF-8");
-        String email = req.getParameter("email");
+        String email = req.getParameter("email").trim();
+        if (email.equals("") || !userService.checkEmail(email)) {
+            req.setAttribute("emailError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
         String password = req.getParameter("password");
-        User user = userService.checkLogin(email, password);
+        User user = userService.findByEmail(email);
+        if (password.equals("")) {
+            req.setAttribute("passwordError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
+        if (!userService.checkLoginPassword(user.getEmail(),password)) {
+            req.setAttribute("passwordError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
 
         HttpSession session = req.getSession();
         session.setAttribute("userId", user.getUserId());

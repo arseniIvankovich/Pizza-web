@@ -25,8 +25,13 @@ public class UserService {
         return userDao.findByEmail(email);
     }
 
-    public User checkLogin(String email, String password)  {
-        return userDao.checkLogin(email, password);
+
+    public Boolean checkLoginPassword(String email, String password)  {
+        User user = userDao.findByEmail(email);
+       if (BCrypt.checkpw(password,user.getPassword()))
+           return true;
+       else
+           return false;
     }
 
     public void delete(Long id) {
@@ -75,6 +80,10 @@ public class UserService {
 
     public List<User> getAllNotdAmin()  {
         return userDao.getAllNotAdmin();
+    }
+
+    public Boolean checkEmail (String email) {
+        return userDao.checkUserByEmail(email);
     }
 
 }

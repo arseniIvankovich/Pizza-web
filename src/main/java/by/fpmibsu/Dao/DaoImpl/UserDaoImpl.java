@@ -241,45 +241,12 @@ public class UserDaoImpl  implements UserDao {
         try (Connection connection = dataSource.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)){
             preparedStatement.setString(1,email);
-            ResultSet resultSet= preparedStatement.executeQuery();
-
-            if (resultSet.next() == false)
-                return false;
-            else
-                return true;
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     return false;
     }
 
-
-    @Override
-    public User checkLogin(String email, String password) {
-        User user = new User();
-        final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Phone_number\", \"Address_id\", \"Order_id\", \"Email\"\n" +
-                "\tFROM public.\"User\" WHERE \"Email\" = ?;";
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)){
-            preparedStatement.setString(1,email);
-            ResultSet resultSet= preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                String hashedPassword = resultSet.getString("Password");
-                if (BCrypt.checkpw(password, hashedPassword)) {
-                user.setUserId(resultSet.getLong("UserID"));
-                user.setRole(new RoleDaoImpl().findEntityById(resultSet.getLong("Role_id")));
-                user.setFirstName_lastName(resultSet.getString("First_SecondName"));
-                user.setEmail(resultSet.getString("Email"));
-                }
-                else
-                    throw new SQLException();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return user;
-    }
 }

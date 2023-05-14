@@ -11,8 +11,6 @@ public interface UserDao extends BaseDao<Long, User>{
 
     Boolean checkUserByEmail (String email);
 
-    User checkLogin (String email, String password);
-
     void updateOrder(User user);
 
     List<User> getOrderedUsers();
