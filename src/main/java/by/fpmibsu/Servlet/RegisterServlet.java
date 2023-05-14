@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Objects;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -85,16 +86,15 @@ public class RegisterServlet extends HttpServlet {
             req.getRequestDispatcher(path).forward(req,resp);
             return;
         }
-        String passwordInput = req.getParameter("password");
-        if (passwordInput.equals("")) {
+        String password = req.getParameter("password");
+        if (password.equals("")) {
             req.setAttribute("passwordError",true);
             req.getRequestDispatcher(path).forward(req,resp);
             return;
         }
-        String password = BCrypt.hashpw(passwordInput, BCrypt.gensalt());
-        Address address = addressService.findByStreetHouseEntranceFlat(street, houseNumber, entrance, flatNumber);
-        Role role = roleService.findEntityById(3L);
 
+        Address address = addressService.create(new Address(street, houseNumber, entrance, flatNumber));
+        Role role = roleService.findEntityById(3L);
         User user = new User(address, firstSecondName, password, email, "+" + telephone, role);
         userService.createUser(user);
 

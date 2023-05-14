@@ -14,10 +14,6 @@ public class AddressService {
         this.addressDao = new AddressDaoImpl();
     }
 
-    public List<Address> findAllByStreet(String pattern) {
-        return  addressDao.findAllByStreet(pattern);
-    }
-
     public Address findByStreetHouseEntranceFlat(String street, String house, Integer entrance, Integer flat)  {
         return addressDao.findByStreetHouseEntranceFlat(street,house,entrance,flat);
     }
@@ -26,5 +22,8 @@ public class AddressService {
         return addressDao.findEntityById(id);
     }
 
+    public Address create (Address address) {
+        return addressDao.create(address);
+    }
 
 }

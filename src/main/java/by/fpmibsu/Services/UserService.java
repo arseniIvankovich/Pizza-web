@@ -4,6 +4,7 @@ import by.fpmibsu.Dao.DaoImpl.AddressDaoImpl;
 import by.fpmibsu.Dao.DaoImpl.UserDaoImpl;
 import by.fpmibsu.Dao.UserDao;
 import by.fpmibsu.Entity.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class UserService {
 
 
     public User createUser(User user)  {
+        user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
         return userDao.create(user);
     }
 
