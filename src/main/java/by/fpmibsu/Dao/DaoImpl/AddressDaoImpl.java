@@ -81,8 +81,7 @@ public class AddressDaoImpl implements AddressDao {
             preparedStatement.setInt(4, flat);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if (resultSet.next() == false) return false;
-            else return true;
+            return resultSet.next();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -119,7 +118,6 @@ public class AddressDaoImpl implements AddressDao {
         try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_STREET)) {
 
             preparedStatement.setString(1, address.getStreet());
-
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {

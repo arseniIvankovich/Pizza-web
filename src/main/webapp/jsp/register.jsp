@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: arseni
@@ -19,6 +20,11 @@
 
 <div class="wrapper">
     <div class="main">
+        <c:if test="${streetError == true}">
+            <script>
+                alert("");
+            </script>
+        </c:if>
         <div class="form-section">
             <form method="post" action="/register" class="left-form">
                 <div class="personal-header"><p class="personal-header-text">Регистрация</p></div>
@@ -32,12 +38,12 @@
                 </div>
                 <div class="input-box">
                     <label for="login-form-entrance">Подъезд</label>
-                    <input type="text" class="login-form-input" id="login-form-entrance" name="entrance">
+                    <input type="number" class="login-form-input" id="login-form-entrance" name="entrance">
                 </div>
 
                 <div class="input-box">
                     <label for="login-form-flat">Квартира</label>
-                    <input type="text" class="login-form-input" id="login-form-flat" name="flat">
+                    <input type="number" class="login-form-input" id="login-form-flat" name="flat">
                 </div>
                 <div class="input-box">
                     <label for="login-form-name">Имя и Фамилия</label>
@@ -68,6 +74,7 @@
                         Уже есть аккаунт?
                     </a>
                 </div>
+
             </form>
         </div>
     </div>

@@ -26,7 +26,6 @@ public class OrderServlet extends HttpServlet {
         UserService userService = new UserService();
         Long id = (Long) req.getSession().getAttribute("userId");
         User user = userService.findEntityById(id);
-
         req.setAttribute("user", user);
         req.getRequestDispatcher("/jsp/order.jsp").forward(req, resp);
     }

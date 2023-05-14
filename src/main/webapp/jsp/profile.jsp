@@ -81,32 +81,32 @@
                 <div class="personal-header"><p>Личные данные профиля</p></div>
                 <div class="input-box">
                     <label for="login-form-street">Улица</label>
-                    <input type="text" class="login-form-input" id="login-form-street" name="streetP" value="">
+                    <input type="text" class="login-form-input" id="login-form-street" name="streetP">
                 </div>
                 <div class="input-box">
                     <label for="login-form-house">Дом</label>
-                    <input type="number" onkeydown="return event.keyCode !== 69" class="login-form-input" id="login-form-house" name="houseP" value="">
+                    <input type="number"  class="login-form-input" id="login-form-house" name="houseP" >
                 </div>
                 <div class="input-box">
                     <label for="login-form-entrance">Подъезд</label>
-                    <input type="number" onkeydown="return event.keyCode !== 69" class="login-form-input" id="login-form-entrance" name="entranceP" value="">
+                    <input type="number" class="login-form-input" id="login-form-entrance" name="entranceP" >
                 </div>
 
                 <div class="input-box">
                     <label for="login-form-flat">Квартира</label>
-                    <input type="number" onkeydown="return event.keyCode !== 69" class="login-form-input" id="login-form-flat" name="flatP" value="">
+                    <input type="number"  class="login-form-input" id="login-form-flat" name="flatP" >
                 </div>
                 <div class="input-box">
                     <label for="login-form-name">Имя и Фамилия</label>
-                    <input type="text" class="login-form-input" id="login-form-name" name="firstSecondP" value="">
+                    <input type="text" class="login-form-input" id="login-form-name" name="firstSecondP">
                 </div>
                 <div class="input-box">
                     <label for="login-form-email">Email</label>
-                    <input type="text" class="login-form-input" id="login-form-email" name="emailP" value="">
+                    <input type="text" class="login-form-input" id="login-form-email" name="emailP">
                 </div>
                 <div class="input-box">
                     <label for="login-form-phone">Телефон</label>
-                    <input type="text" class="login-form-input" id="login-form-phone" name="telephoneP" value="">
+                    <input type="text" class="login-form-input" id="login-form-phone" name="telephoneP">
                 </div>
 
                 <input type="submit" name="logout" class="save-changes-button" value="Сохранить информацию">
