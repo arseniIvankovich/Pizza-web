@@ -4,20 +4,20 @@ import java.util.Objects;
 
 public class Address extends Entity{
     private String street;
-    private Integer houseNumber;
+    private String houseNumber;
     private Integer entrance;
     private Integer flatNumber;
 
     public Address() {}
 
-    public Address(String street, Integer houseNumber, Integer entrance, Integer flatNumber) {
+    public Address(String street, String houseNumber, Integer entrance, Integer flatNumber) {
         this.street = street;
         this.houseNumber = houseNumber;
         this.entrance = entrance;
         this.flatNumber = flatNumber;
     }
 
-    public Address(Long addressID, String street, Integer houseNumber, Integer entrance, Integer flatNumber) {
+    public Address(Long addressID, String street, String houseNumber, Integer entrance, Integer flatNumber) {
         super(addressID);
         this.street = street;
         this.houseNumber = houseNumber;
@@ -41,11 +41,11 @@ public class Address extends Entity{
         this.street = street;
     }
 
-    public Integer getHouseNumber() {
+    public String getHouseNumber() {
         return this.houseNumber;
     }
 
-    public void setHouseNumber(Integer houseNumber) {
+    public void setHouseNumber(String houseNumber) {
         this.houseNumber = houseNumber;
     }
 

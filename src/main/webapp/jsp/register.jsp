@@ -22,7 +22,42 @@
     <div class="main">
         <c:if test="${streetError == true}">
             <script>
-                alert("");
+                alert("Нет такой улицы");
+            </script>
+        </c:if>
+        <c:if test="${houseNumberError == true}">
+            <script>
+                alert("Введен неверный номер дома");
+            </script>
+        </c:if>
+        <c:if test="${entranceError == true}">
+            <script>
+                alert("Введите неверный подъезд");
+            </script>
+        </c:if>
+        <c:if test="${stringFlatNumber == true}">
+            <script>
+                alert("Введен неврный номер квартиры");
+            </script>
+        </c:if>
+        <c:if test="${nameError == true}">
+            <script>
+                alert("Введите имя");
+            </script>
+        </c:if>
+        <c:if test="${emailError == true}">
+            <script>
+                alert("Введите email");
+            </script>
+        </c:if>
+        <c:if test="${telephoneError == true}">
+            <script>
+                alert("Введите телефон");
+            </script>
+        </c:if>
+        <c:if test="${passwordError == true}">
+            <script>
+                alert("Введите пароль");
             </script>
         </c:if>
         <div class="form-section">

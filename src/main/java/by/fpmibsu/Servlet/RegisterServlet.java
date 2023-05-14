@@ -36,17 +36,61 @@ public class RegisterServlet extends HttpServlet {
         if (street == null || !baseAddressService.checkValidStreet(street)) {
             req.setAttribute("streetError",true);
             req.getRequestDispatcher(path).forward(req,resp);
+            return;
         }
-        int houseNumber = Integer.parseInt(req.getParameter("house"));
-        if (houseNumber > 300) {
+        String houseNumber = req.getParameter("house");
+        if (houseNumber.equals("")) {
             req.setAttribute("houseNumberError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
         }
-        int entrance = Integer.parseInt(req.getParameter("entrance"));
-        int flatNumber = Integer.parseInt(req.getParameter("flat"));
+        String stringEntrance = req.getParameter("entrance");
+        if (stringEntrance.equals("")) {
+            req.setAttribute("entranceError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+        }
+        int entrance = Integer.parseInt(stringEntrance);
+        if (entrance > 20 || entrance < 0) {
+            req.setAttribute("",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
+        String stringFlatNumber = req.getParameter("flat");
+        if (stringFlatNumber.equals("")) {
+            req.setAttribute("flatNumberError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
+        int flatNumber = Integer.parseInt(stringFlatNumber);
+        if (flatNumber <= 0 || flatNumber > 200 ) {
+            req.setAttribute("flatNumberError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
         String firstSecondName = req.getParameter("firstSecondName");
+        if (firstSecondName.equals("")) {
+            req.setAttribute("nameError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
         String email = req.getParameter("email");
+        if (email.equals("")) {
+            req.setAttribute("emailError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
         String telephone = req.getParameter("telephone");
+        if (telephone.equals("")) {
+            req.setAttribute("telephoneError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
         String passwordInput = req.getParameter("password");
+        if (passwordInput.equals("")) {
+            req.setAttribute("passwordError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
         String password = BCrypt.hashpw(passwordInput, BCrypt.gensalt());
         Address address = addressService.findByStreetHouseEntranceFlat(street, houseNumber, entrance, flatNumber);
         Role role = roleService.findEntityById(3L);
