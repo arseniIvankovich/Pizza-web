@@ -10,7 +10,7 @@ import java.util.List;
 public interface AddressDao extends BaseDao<Long, Address> {
     List<Address> findAllByStreet(String pattern);
 
-    Address findByStreetHouseEntranceFlat (String street, String house, Integer entrance, Integer flat);
+    Address findByStreetHouseEntranceFlat (String street, Integer house, Integer entrance, Integer flat);
 
-    boolean checkByStreetHouseEntranceFlat (String street, String house, Integer entrance, Integer flat);
+    boolean checkByStreetHouseEntranceFlat (String street, Integer house, Integer entrance, Integer flat);
 }

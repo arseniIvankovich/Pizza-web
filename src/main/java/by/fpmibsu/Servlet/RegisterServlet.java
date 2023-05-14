@@ -39,8 +39,14 @@ public class RegisterServlet extends HttpServlet {
             req.getRequestDispatcher(path).forward(req,resp);
             return;
         }
-        String houseNumber = req.getParameter("house");
-        if (houseNumber.equals("")) {
+        String stringHouseNumber = req.getParameter("house");
+        if (stringHouseNumber.equals("")) {
+            req.setAttribute("houseNumberError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
+        Integer houseNumber = Integer.parseInt(stringHouseNumber);
+        if (houseNumber <= 0 || houseNumber > 300) {
             req.setAttribute("houseNumberError",true);
             req.getRequestDispatcher(path).forward(req,resp);
             return;
@@ -93,9 +99,10 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-        Address address = addressService.create(new Address(street, houseNumber, entrance, flatNumber));
+        addressService.create(new Address(street, houseNumber, entrance, flatNumber));
+        Address address = addressService.findByStreetHouseEntranceFlat(street,houseNumber,entrance,flatNumber);
         Role role = roleService.findEntityById(3L);
-        User user = new User(address, firstSecondName, password, email, "+" + telephone, role);
+        User user = new User(address, firstSecondName, password, email, telephone, role);
         userService.createUser(user);
 
         resp.sendRedirect(req.getContextPath() + "/");

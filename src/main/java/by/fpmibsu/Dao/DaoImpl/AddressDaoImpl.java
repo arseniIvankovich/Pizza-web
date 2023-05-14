@@ -32,7 +32,7 @@ public class AddressDaoImpl implements AddressDao {
                 address.setAddressID(resultSet.getLong("AddressID"));
                 address.setStreet(resultSet.getString("StreetName"));
                 address.setEntrance(resultSet.getInt("Entrance"));
-                address.setHouseNumber(resultSet.getString("HouseNumber"));
+                address.setHouseNumber(resultSet.getInt("HouseNumber"));
                 address.setFlatNumber(resultSet.getInt("FlatNumber"));
 
                 addressList.add(address);
@@ -45,12 +45,12 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     @Override
-    public Address findByStreetHouseEntranceFlat(String street, String house, Integer entrance, Integer flat) {
+    public Address findByStreetHouseEntranceFlat(String street, Integer house, Integer entrance, Integer flat) {
         Address address = new Address();
-        final String SQL_SELECT_BY_STREET_HOUSE_ENTRANCE_FLAT = "SELECT \"AddressID\", \"StreetName\", \"HouseNumber\", \"Entrance\", \"FlatNumber\"\n" + "\tFROM public.\"Address\" WHERE \"StreetName\" = ? AND \"HouseNumber\" = ? \n" + "\tAND \"Entrance\" = ? AND \"FlatNumber\" = ?;";
+        final String SQL_SELECT_BY_STREET_HOUSE_ENTRANCE_FLAT = "SELECT \"AddressID\", \"StreetName\", \"HouseNumber\", \"Entrance\", \"FlatNumber\"\n" + "\tFROM public.\"Address\" WHERE \"StreetName\" = ? AND \"HouseNumber\" = ? \n" + "\tAND \"Entrance\" = ? AND \"FlatNumber\" = ? LIMIT 1;";
         try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_STREET_HOUSE_ENTRANCE_FLAT)) {
             preparedStatement.setString(1, street);
-            preparedStatement.setString(2, house);
+            preparedStatement.setInt(2, house);
             preparedStatement.setInt(3, entrance);
             preparedStatement.setInt(4, flat);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -59,7 +59,7 @@ public class AddressDaoImpl implements AddressDao {
                 address.setAddressID(resultSet.getLong("AddressID"));
                 address.setStreet(resultSet.getString("StreetName"));
                 address.setEntrance(resultSet.getInt("Entrance"));
-                address.setHouseNumber(resultSet.getString("HouseNumber"));
+                address.setHouseNumber(resultSet.getInt("HouseNumber"));
                 address.setFlatNumber(resultSet.getInt("FlatNumber"));
             }
         } catch (SQLException e) {
@@ -70,13 +70,13 @@ public class AddressDaoImpl implements AddressDao {
     }
 
     @Override
-    public boolean checkByStreetHouseEntranceFlat(String street, String house, Integer entrance, Integer flat) {
+    public boolean checkByStreetHouseEntranceFlat(String street, Integer house, Integer entrance, Integer flat) {
 
         Address address = new Address();
         final String SQL_SELECT_BY_STREET_HOUSE_ENTRANCE_FLAT = "SELECT \"AddressID\", \"StreetName\", \"HouseNumber\", \"Entrance\", \"FlatNumber\"\n" + "\tFROM public.\"Address\" WHERE \"StreetName\" = ? AND \"HouseNumber\" = ? \n" + "\tAND \"Entrance\" = ? AND \"FlatNumber\" = ?;";
         try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_STREET_HOUSE_ENTRANCE_FLAT)) {
             preparedStatement.setString(1, street);
-            preparedStatement.setString(2, house);
+            preparedStatement.setInt(2, house);
             preparedStatement.setInt(3, entrance);
             preparedStatement.setInt(4, flat);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -102,7 +102,7 @@ public class AddressDaoImpl implements AddressDao {
                 address.setId(resultSet.getLong("AddressID"));
                 address.setStreet(resultSet.getString("StreetName"));
                 address.setEntrance(resultSet.getInt("Entrance"));
-                address.setHouseNumber(resultSet.getString("HouseNumber"));
+                address.setHouseNumber(resultSet.getInt("HouseNumber"));
                 address.setFlatNumber(resultSet.getInt("FlatNumber"));
             }
         } catch (SQLException e) {
@@ -149,7 +149,7 @@ public class AddressDaoImpl implements AddressDao {
 
         try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS)) {
             preparedStatement.setString(1, address.getStreet());
-            preparedStatement.setString(2, address.getHouseNumber());
+            preparedStatement.setInt(2, address.getHouseNumber());
             preparedStatement.setInt(3, address.getEntrance());
             preparedStatement.setInt(4, address.getFlatNumber());
             preparedStatement.executeUpdate();
@@ -170,7 +170,7 @@ public class AddressDaoImpl implements AddressDao {
             preparedStatement.setString(1, address.getStreet());
             preparedStatement.setInt(2, address.getEntrance());
             preparedStatement.setInt(3, address.getFlatNumber());
-            preparedStatement.setString(4, address.getHouseNumber());
+            preparedStatement.setInt(4, address.getHouseNumber());
             preparedStatement.setLong(5, address.getAddressID());
 
             preparedStatement.executeUpdate();

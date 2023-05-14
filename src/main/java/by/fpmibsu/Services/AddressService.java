@@ -14,7 +14,7 @@ public class AddressService {
         this.addressDao = new AddressDaoImpl();
     }
 
-    public Address findByStreetHouseEntranceFlat(String street, String house, Integer entrance, Integer flat)  {
+    public Address findByStreetHouseEntranceFlat(String street, Integer house, Integer entrance, Integer flat)  {
         return addressDao.findByStreetHouseEntranceFlat(street,house,entrance,flat);
     }
 
