@@ -96,6 +96,7 @@
 
     <div class="wrapper">
         <div class="menu">
+            <form method="post" action="/order">
             <div class="left-box">
 
                 <p class="order-header">Оформление заказа</p>
@@ -106,7 +107,6 @@
                     <button class="busket-button">
                         <p class="busket-button-text">0.00 BYN</p>
                     </button>
-                    <form method="post" action="/order">
                         <input type="text" class="pizza" name="pizza">
                         <input type="text" class="drinks" name="drinks">
                     <input type="submit" name="order" class="order-button" value="Оформить заказ">
@@ -124,7 +124,7 @@
 
                 <p class="address-header">Способ оплаты:</p>
 
-                <select name="select" class="payment-form-select" name="select">
+                <select name="select" class="payment-form-select">
                     <option value="Картой">Картой</option>
                     <option value="Наличными" selected="selected">Наличными</option>
                 </select>

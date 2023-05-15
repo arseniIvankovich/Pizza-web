@@ -35,7 +35,7 @@
                 alert("Введите неверный подъезд");
             </script>
         </c:if>
-        <c:if test="${stringFlatNumber == true}">
+        <c:if test="${flatNumberError == true}">
             <script>
                 alert("Введен неврный номер квартиры");
             </script>

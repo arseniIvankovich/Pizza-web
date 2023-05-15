@@ -75,38 +75,73 @@
 
 <div class="wrapper">
     <div class="main">
+        <c:if test="${streetError == true}">
+            <script>
+                alert("Нет такой улицы");
+            </script>
+        </c:if>
+        <c:if test="${houseNumberError == true}">
+            <script>
+                alert("Введен неверный номер дома");
+            </script>
+        </c:if>
+        <c:if test="${entranceError == true}">
+            <script>
+                alert("Введите неверный подъезд");
+            </script>
+        </c:if>
+        <c:if test="${flatNumberError == true}">
+            <script>
+                alert("Введен неврный номер квартиры");
+            </script>
+        </c:if>
+        <c:if test="${nameError == true}">
+            <script>
+                alert("Введите имя");
+            </script>
+        </c:if>
+        <c:if test="${emailError == true}">
+            <script>
+                alert("Введите email");
+            </script>
+        </c:if>
+        <c:if test="${telephoneError == true}">
+            <script>
+                alert("Введите телефон");
+            </script>
+        </c:if>
         <div class="form-section">
             <form  method="post" action="/profile" class="left-form">
                 <input type="text" class="profile-json" value="<c:out value="${user}"/>">
                 <div class="personal-header"><p>Личные данные профиля</p></div>
                 <div class="input-box">
                     <label for="login-form-street">Улица</label>
-                    <input type="text" class="login-form-input" id="login-form-street" name="streetP">
+                    <input type="text" class="login-form-input" id="login-form-street" name="street">
                 </div>
                 <div class="input-box">
                     <label for="login-form-house">Дом</label>
-                    <input type="number"  class="login-form-input" id="login-form-house" name="houseP" >
+                    <input type="number"  class="login-form-input" id="login-form-house" name="house" >
                 </div>
                 <div class="input-box">
                     <label for="login-form-entrance">Подъезд</label>
-                    <input type="number" class="login-form-input" id="login-form-entrance" name="entranceP" >
+                    <input type="number" class="login-form-input" id="login-form-entrance" name="entrance" >
                 </div>
 
                 <div class="input-box">
                     <label for="login-form-flat">Квартира</label>
-                    <input type="number"  class="login-form-input" id="login-form-flat" name="flatP" >
+                    <input type="number"  class="login-form-input" id="login-form-flat" name="flat" >
                 </div>
                 <div class="input-box">
                     <label for="login-form-name">Имя и Фамилия</label>
-                    <input type="text" class="login-form-input" id="login-form-name" name="firstSecondP">
+                    <input type="text" class="login-form-input" id="login-form-name" name="firstSecond">
                 </div>
                 <div class="input-box">
                     <label for="login-form-email">Email</label>
-                    <input type="text" class="login-form-input" id="login-form-email" name="emailP">
+                    <input type="text" class="login-form-input" id="login-form-email" name="email">
                 </div>
                 <div class="input-box">
                     <label for="login-form-phone">Телефон</label>
-                    <input type="text" class="login-form-input" id="login-form-phone" name="telephoneP">
+                    <input type="text" class="login-form-input" id="login-form-phone" name="telephone">
                 </div>
 
                 <input type="submit" name="logout" class="save-changes-button" value="Сохранить информацию">

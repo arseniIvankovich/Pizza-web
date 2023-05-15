@@ -69,7 +69,7 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
         int flatNumber = Integer.parseInt(stringFlatNumber);
-        if (flatNumber <= 0 || flatNumber > 200 ) {
+        if (flatNumber <= 0 || flatNumber > 400) {
             req.setAttribute("flatNumberError",true);
             req.getRequestDispatcher(path).forward(req,resp);
             return;
