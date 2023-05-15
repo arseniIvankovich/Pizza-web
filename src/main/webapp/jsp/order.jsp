@@ -95,8 +95,8 @@
 
 
     <div class="wrapper">
-        <div class="menu">
-            <form method="post" action="/order">
+<%--        <div >--%>
+            <form class="menu" method="post" action="/order">
             <div class="left-box">
 
                 <p class="order-header">Оформление заказа</p>
@@ -133,7 +133,7 @@
                 <textarea type="text" class="text-area"></textarea>
             </div>
             </form>
-        </div>
+<%--        </div>--%>
     </div>
 
 
