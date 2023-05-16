@@ -8,6 +8,8 @@ import by.fpmibsu.Services.OrderService;
 import by.fpmibsu.Services.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +22,11 @@ import java.util.List;
 
 @WebServlet("/order")
 public class OrderServlet extends HttpServlet {
-
+    static final Logger orderServletLogger = LogManager.getLogger(OrderServlet.class);
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService = new UserService();
+        orderServletLogger.debug("Enter the order page");
         Long id = (Long) req.getSession().getAttribute("userId");
         User user = userService.findEntityById(id);
         req.setAttribute("user", user);
@@ -35,6 +38,7 @@ public class OrderServlet extends HttpServlet {
         UserService userService = new UserService();
         OrderService orderService = new OrderService();
         req.setCharacterEncoding("UTF-8");
+        orderServletLogger.debug("Button action of creating order");
         String pizza = req.getParameter("pizza");
         String drink = req.getParameter("drinks");
         String paymentMethod = req.getParameter("select");

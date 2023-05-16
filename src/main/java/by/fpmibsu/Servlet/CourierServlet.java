@@ -3,6 +3,8 @@ package by.fpmibsu.Servlet;
 import by.fpmibsu.Entity.User;
 import by.fpmibsu.Services.OrderService;
 import by.fpmibsu.Services.UserService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,11 +18,12 @@ import java.util.List;
 
 @WebServlet("/courier")
 public class CourierServlet extends HttpServlet {
+    static final Logger courierServletLogger = LogManager.getLogger(CourierServlet.class);
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService = new UserService();
         List<User> users = (ArrayList<User>) userService.getUndeliveredOrdersForUsers();
-
+        courierServletLogger.debug("Enter the courier page");
         req.setAttribute("users", users);
         req.getRequestDispatcher("/jsp/courier.jsp").forward(req, resp);
     }
@@ -28,6 +31,7 @@ public class CourierServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+        courierServletLogger.debug("Button action");
         String email = req.getParameter("email");
         UserService userService = new UserService();
         OrderService orderService = new OrderService();

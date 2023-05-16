@@ -4,6 +4,8 @@ import by.fpmibsu.Dao.DaoImpl.AddressDaoImpl;
 import by.fpmibsu.Dao.DaoImpl.UserDaoImpl;
 import by.fpmibsu.Dao.UserDao;
 import by.fpmibsu.Entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.SQLException;
@@ -13,6 +15,7 @@ import java.util.List;
 public class UserService {
     private UserDao userDao;
 
+    static final Logger rootLogger = LogManager.getRootLogger();
     public UserService() {
         this.userDao = new UserDaoImpl();
     }
@@ -83,6 +86,7 @@ public class UserService {
     }
 
     public Boolean checkEmail (String email) {
+        rootLogger.info("efewf");
         return userDao.checkUserByEmail(email);
     }
 

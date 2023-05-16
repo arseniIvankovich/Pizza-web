@@ -3,12 +3,15 @@ package by.fpmibsu.Services;
 import by.fpmibsu.Dao.AddressDao;
 import by.fpmibsu.Dao.DaoImpl.AddressDaoImpl;
 import by.fpmibsu.Entity.Address;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class AddressService {
     private AddressDao addressDao;
+
 
     public AddressService() {
         this.addressDao = new AddressDaoImpl();
