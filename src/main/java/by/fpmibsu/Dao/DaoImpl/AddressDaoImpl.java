@@ -3,14 +3,14 @@ package by.fpmibsu.Dao.DaoImpl;
 import by.fpmibsu.Dao.AddressDao;
 import by.fpmibsu.Dao.HikariCPDataSource;
 import by.fpmibsu.Entity.Address;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddressDaoImpl implements AddressDao {
     private DataSource dataSource;
@@ -18,37 +18,14 @@ public class AddressDaoImpl implements AddressDao {
     public AddressDaoImpl() {
         this.dataSource = HikariCPDataSource.getDataSource();
     }
-
-    public List<Address> findAllByStreet(String pattern) {
-        final String SQL_SELECT_BY_STREET = "SELECT \"AddressID\", \"StreetName\", \"Entrance\", \"HouseNumber\", \"FlatNumber\" FROM public.\"Address\"\n" + "                WHERE \"StreetName\" = ?;";
-        List<Address> addressList = new ArrayList<>();
-
-        try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_STREET)) {
-            preparedStatement.setString(1, pattern);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                Address address = new Address();
-                address.setAddressID(resultSet.getLong("AddressID"));
-                address.setStreet(resultSet.getString("StreetName"));
-                address.setEntrance(resultSet.getInt("Entrance"));
-                address.setHouseNumber(resultSet.getInt("HouseNumber"));
-                address.setFlatNumber(resultSet.getInt("FlatNumber"));
-
-                addressList.add(address);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return addressList;
-    }
-
+    static final Logger addressDaoLogger = LogManager.getLogger(AddressDaoImpl.class);
+    static final Logger rootLogger = LogManager.getRootLogger();
     @Override
     public Address findByStreetHouseEntranceFlat(String street, Integer house, Integer entrance, Integer flat) {
         Address address = new Address();
         final String SQL_SELECT_BY_STREET_HOUSE_ENTRANCE_FLAT = "SELECT \"AddressID\", \"StreetName\", \"HouseNumber\", \"Entrance\", \"FlatNumber\"\n" + "\tFROM public.\"Address\" WHERE \"StreetName\" = ? AND \"HouseNumber\" = ? \n" + "\tAND \"Entrance\" = ? AND \"FlatNumber\" = ? LIMIT 1;";
         try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_STREET_HOUSE_ENTRANCE_FLAT)) {
+            addressDaoLogger.info("Got connection to the db");
             preparedStatement.setString(1, street);
             preparedStatement.setInt(2, house);
             preparedStatement.setInt(3, entrance);
@@ -63,7 +40,7 @@ public class AddressDaoImpl implements AddressDao {
                 address.setFlatNumber(resultSet.getInt("FlatNumber"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
 
         return address;
@@ -75,6 +52,7 @@ public class AddressDaoImpl implements AddressDao {
         Address address = new Address();
         final String SQL_SELECT_BY_STREET_HOUSE_ENTRANCE_FLAT = "SELECT \"AddressID\", \"StreetName\", \"HouseNumber\", \"Entrance\", \"FlatNumber\"\n" + "\tFROM public.\"Address\" WHERE \"StreetName\" = ? AND \"HouseNumber\" = ? \n" + "\tAND \"Entrance\" = ? AND \"FlatNumber\" = ?;";
         try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_STREET_HOUSE_ENTRANCE_FLAT)) {
+            addressDaoLogger.info("Got connection to the db");
             preparedStatement.setString(1, street);
             preparedStatement.setInt(2, house);
             preparedStatement.setInt(3, entrance);
@@ -83,7 +61,7 @@ public class AddressDaoImpl implements AddressDao {
 
             return resultSet.next();
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
         return false;
     }
@@ -95,6 +73,7 @@ public class AddressDaoImpl implements AddressDao {
 
         Address address = new Address();
         try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)) {
+            addressDaoLogger.info("Got connection to the db");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -106,8 +85,7 @@ public class AddressDaoImpl implements AddressDao {
                 address.setFlatNumber(resultSet.getInt("FlatNumber"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            rootLogger.error("Error: ", e);        }
 
         return address;
     }
@@ -116,12 +94,12 @@ public class AddressDaoImpl implements AddressDao {
     public boolean delete(Address address) {
         final String SQL_DELETE_BY_STREET = "DELETE FROM public.\"Address\"\n" + "\tWHERE \"StreetName\" = ?;";
         try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_STREET)) {
-
+            addressDaoLogger.info("Got connection to the db");
             preparedStatement.setString(1, address.getStreet());
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
         return false;
     }
@@ -132,13 +110,13 @@ public class AddressDaoImpl implements AddressDao {
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Address\"\n" + "\tWHERE \"AddressID\" = ?;";
 
         try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)) {
-
+            addressDaoLogger.info("Got connection to the db");
             preparedStatement.setLong(1, id);
 
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
         return false;
     }
@@ -148,13 +126,14 @@ public class AddressDaoImpl implements AddressDao {
         final String SQL_CREATE_ADDRESS = "INSERT INTO public.\"Address\"(\n" + "\t\"StreetName\", \"HouseNumber\", \"Entrance\", \"FlatNumber\")\n" + "\tVALUES (?, ?, ?, ?);";
 
         try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS)) {
+            addressDaoLogger.info("Got connection to the db");
             preparedStatement.setString(1, address.getStreet());
             preparedStatement.setInt(2, address.getHouseNumber());
             preparedStatement.setInt(3, address.getEntrance());
             preparedStatement.setInt(4, address.getFlatNumber());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
         return address;
     }
@@ -165,8 +144,7 @@ public class AddressDaoImpl implements AddressDao {
 
 
         try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)) {
-
-
+            addressDaoLogger.info("Got connection to the db");
             preparedStatement.setString(1, address.getStreet());
             preparedStatement.setInt(2, address.getEntrance());
             preparedStatement.setInt(3, address.getFlatNumber());
@@ -175,7 +153,7 @@ public class AddressDaoImpl implements AddressDao {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
 
     }

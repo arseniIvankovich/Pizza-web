@@ -3,6 +3,8 @@ package by.fpmibsu.Services;
 import by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl;
 import by.fpmibsu.Dao.DrinkDao;
 import by.fpmibsu.Entity.Drink;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 
@@ -13,11 +15,4 @@ public class DrinkService {
         this.drinkDao = new DrinkDaoImpl();
     }
 
-    public Drink findEntityById(Long id)  {
-        return new DrinkDaoImpl().findEntityById(id);
-    }
-
-    public Drink findByNameCapacity(String name, Double capacity)  {
-        return new DrinkDaoImpl().findByNameCapacity(name,capacity);
-    }
 }

@@ -5,6 +5,8 @@ import by.fpmibsu.Dao.OrderDao;
 import by.fpmibsu.Entity.Drink;
 import by.fpmibsu.Entity.Order;
 import by.fpmibsu.Entity.Pizza;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -18,6 +20,9 @@ public class OrderDaoImpl implements OrderDao {
     public OrderDaoImpl() {
         this.dataSource = HikariCPDataSource.getDataSource();
     }
+
+    static final Logger orderDaoLogger = LogManager.getLogger(OrderDaoImpl.class);
+    static final Logger rootLogger = LogManager.getRootLogger();
 
     @Override
     public Order findEntityById(Long id)  {
@@ -34,6 +39,7 @@ public class OrderDaoImpl implements OrderDao {
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID);
              PreparedStatement preparedStatement1 = connection.prepareStatement(SQL_INNER_1);
              PreparedStatement preparedStatement2 = connection.prepareStatement(SQL_INNER_2)) {
+            orderDaoLogger.info("Got connection to the db");
             preparedStatement.setLong(1, id);
             preparedStatement1.setLong(1, id);
             preparedStatement2.setLong(1, id);
@@ -67,7 +73,8 @@ public class OrderDaoImpl implements OrderDao {
                 order.setPizzas(pizzas);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ",e);
+
         }
         return order;
     }
@@ -84,7 +91,7 @@ public class OrderDaoImpl implements OrderDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)) {
-
+            orderDaoLogger.info("Got connection to the db");
             preparedStatement.setLong(1, id);
 
             preparedStatement.executeUpdate();
@@ -104,8 +111,7 @@ public class OrderDaoImpl implements OrderDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS)) {
-
-
+            orderDaoLogger.info("Got connection to the db");
             preparedStatement.setBoolean(1, order.getStatus());
             preparedStatement.setTimestamp(2, order.getDeliveryDate());
             preparedStatement.setString(3, order.getPaymentMethod());
@@ -122,7 +128,7 @@ public class OrderDaoImpl implements OrderDao {
             order.setId(index);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ",e);
         }
         return order;
     }
@@ -155,6 +161,7 @@ public class OrderDaoImpl implements OrderDao {
         Long index = 0L;
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_LAST_ID)) {
+            orderDaoLogger.info("Got connection to the db");
             preparedStatement.setBoolean(1,status);
             preparedStatement.setTimestamp(2,deliveryDate);
             preparedStatement.setString(3,paymentMethod);
@@ -162,7 +169,7 @@ public class OrderDaoImpl implements OrderDao {
             while (resultSet.next())
                 index = resultSet.getLong("OrderID");
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ",e);
         }
         return index;
     }
@@ -176,14 +183,14 @@ public class OrderDaoImpl implements OrderDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_INNER_DRINK)) {
-
+            orderDaoLogger.info("Got connection to the db");
             preparedStatement.setLong(1, orderId);
             preparedStatement.setLong(2, drinkId);
             preparedStatement.setInt(3, numberOfDrinks);
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ",e);
         }
     }
 
@@ -196,12 +203,13 @@ public class OrderDaoImpl implements OrderDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_INNER_PIZZA)) {
+            orderDaoLogger.info("Got connection to the db");
             preparedStatement.setLong(1, pizzaId);
             preparedStatement.setLong(2, orderId);
             preparedStatement.setInt(3, numberOfPizzas);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ",e);
         }
     }
 

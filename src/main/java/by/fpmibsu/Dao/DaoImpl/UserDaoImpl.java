@@ -3,6 +3,8 @@ package by.fpmibsu.Dao.DaoImpl;
 import by.fpmibsu.Dao.HikariCPDataSource;
 import by.fpmibsu.Dao.UserDao;
 import by.fpmibsu.Entity.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
@@ -15,6 +17,8 @@ public class UserDaoImpl  implements UserDao {
     public UserDaoImpl () {
         this.dataSource = HikariCPDataSource.getDataSource();
     }
+    static final Logger userDaoLogger = LogManager.getLogger(UserDaoImpl.class);
+    static final Logger rootLogger = LogManager.getRootLogger();
 
     @Override
     public User findEntityById(Long id) {
@@ -23,7 +27,7 @@ public class UserDaoImpl  implements UserDao {
                 "\tFROM public.\"User\" WHERE \"UserID\" = ?;";
         try (Connection connection = dataSource.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)){
-
+            userDaoLogger.info("Got connection to the db");
             preparedStatement.setLong(1,id);
             ResultSet resultSet= preparedStatement.executeQuery();
 
@@ -37,7 +41,7 @@ public class UserDaoImpl  implements UserDao {
                 user.setAddresses(new AddressDaoImpl().findEntityById(resultSet.getLong("Address_id")));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
 
         return user;
@@ -49,13 +53,13 @@ public class UserDaoImpl  implements UserDao {
                 "\tWHERE \"Email\" = ?;";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)){
-
+            userDaoLogger.info("Got connection to the db");
             preparedStatement.setString(1,user.getEmail());
 
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
     return false;
     }
@@ -67,12 +71,13 @@ public class UserDaoImpl  implements UserDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)){
+            userDaoLogger.info("Got connection to the db");
             preparedStatement.setLong(1,id);
 
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
     return false;
     }
@@ -86,6 +91,7 @@ public class UserDaoImpl  implements UserDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_USER)){
+            userDaoLogger.info("Got connection to the db");
             preparedStatement.setLong(1,user.getRole().getId());
             preparedStatement.setString(2,user.getFirstName_lastName());
             preparedStatement.setString(3,user.getPassword());
@@ -95,7 +101,7 @@ public class UserDaoImpl  implements UserDao {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
         return user;
 
@@ -110,7 +116,7 @@ public class UserDaoImpl  implements UserDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)){
-
+            userDaoLogger.info("Got connection to the db");
             preparedStatement.setString(1,user.getFirstName_lastName());
             preparedStatement.setString(2,user.getEmail());
             preparedStatement.setString(3,user.getTelephone());
@@ -118,7 +124,7 @@ public class UserDaoImpl  implements UserDao {
             preparedStatement.setLong(5,user.getUserId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
 
     }
@@ -131,11 +137,12 @@ public class UserDaoImpl  implements UserDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)){
+            userDaoLogger.info("Got connection to the db");
             preparedStatement.setLong(1,user.getOrder().getId());
             preparedStatement.setLong(2,user.getUserId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
 
     }
@@ -150,7 +157,7 @@ public class UserDaoImpl  implements UserDao {
 
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()){
-
+            userDaoLogger.info("Got connection to the db");
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
 
             while (resultSet.next()) {
@@ -165,7 +172,7 @@ public class UserDaoImpl  implements UserDao {
                 users.add(user);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
 
         return users;
@@ -181,7 +188,7 @@ public class UserDaoImpl  implements UserDao {
 
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()) {
-
+            userDaoLogger.info("Got connection to the db");
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
 
             while (resultSet.next()) {
@@ -196,7 +203,7 @@ public class UserDaoImpl  implements UserDao {
                 users.add(user);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
 
         return users;
@@ -211,6 +218,7 @@ public class UserDaoImpl  implements UserDao {
                 "\tFROM public.\"User\" WHERE \"Email\" = ?;";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)){
+            userDaoLogger.info("Got connection to the db");
             preparedStatement.setString(1,email);
             ResultSet resultSet= preparedStatement.executeQuery();
 
@@ -225,7 +233,7 @@ public class UserDaoImpl  implements UserDao {
                 user.setOrder(new OrderDaoImpl().findEntityById(resultSet.getLong("Order_id")));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
 
 
@@ -240,11 +248,12 @@ public class UserDaoImpl  implements UserDao {
                 "\tFROM public.\"User\" WHERE \"Email\" = ?;";
         try (Connection connection = dataSource.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)){
+            userDaoLogger.info("Got connection to the db");
             preparedStatement.setString(1,email);
             ResultSet resultSet = preparedStatement.executeQuery();
             return resultSet.next();
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
     return false;
     }

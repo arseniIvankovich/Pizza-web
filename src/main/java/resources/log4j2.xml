@@ -5,7 +5,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <File name="file" fileName="/home/arseni/IdeaProjects/Pizza-web/src/main/java/by/fpmibsu/test.log" append="false">
+        <File name="file" fileName="/home/arseni/IdeaProjects/Pizza-web/src/main/java/resources/test.log" append="false">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
         </File>
     </Appenders>
@@ -14,9 +14,15 @@
         <Logger name= "by.fpmibsu.Servlet" level="debug" additivity="false">
             <AppenderRef ref="file"/>
         </Logger>
+        <Logger name= "by.fpmibsu.Services" level="debug" additivity="false">
+            <AppenderRef ref="file"/>
+        </Logger>
+        <Logger name= "by.fpmibsu.Dao" level="info" additivity="false">
+            <AppenderRef ref="file"/>
+        </Logger>
 
         <!-- Root Logger -->
-        <Root level="all" additivity="false">
+        <Root level="error" additivity="false">
             <AppenderRef ref="file"/>
         </Root>
     </Loggers>

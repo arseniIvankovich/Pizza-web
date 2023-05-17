@@ -3,6 +3,8 @@ package by.fpmibsu.Dao.DaoImpl;
 import by.fpmibsu.Dao.HikariCPDataSource;
 import by.fpmibsu.Dao.VacancyDao;
 import by.fpmibsu.Entity.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -13,7 +15,8 @@ public class VacancyDaoImpl  implements VacancyDao {
     public VacancyDaoImpl () {
         this.dataSource = HikariCPDataSource.getDataSource();
     }
-
+    static final Logger vacancyDaoLogger = LogManager.getLogger(VacancyDaoImpl.class);
+    static final Logger rootLogger = LogManager.getRootLogger();
     @Override
     public Vacancy findEntityById(Long id) {
         Vacancy vacancy = new Vacancy();
@@ -25,6 +28,7 @@ public class VacancyDaoImpl  implements VacancyDao {
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID);
              PreparedStatement preparedStatement1 = connection.prepareStatement(SQL_INNER)){
+            vacancyDaoLogger.info("Got Connection to the db");
             preparedStatement.setLong(1, id);
             preparedStatement1.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -44,7 +48,7 @@ public class VacancyDaoImpl  implements VacancyDao {
                 vacancy.setUser(users);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
 
         return vacancy;
@@ -57,12 +61,13 @@ public class VacancyDaoImpl  implements VacancyDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_NAME)) {
+            vacancyDaoLogger.info("Got Connection to the db");
             preparedStatement.setString(1,vacancy.getName());
 
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
         return false;
     }
@@ -74,12 +79,13 @@ public class VacancyDaoImpl  implements VacancyDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)) {
+            vacancyDaoLogger.info("Got Connection to the db");
             preparedStatement.setLong(1, id);
 
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
     return false;
     }
@@ -98,13 +104,14 @@ public class VacancyDaoImpl  implements VacancyDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS)) {
+            vacancyDaoLogger.info("Got Connection to the db");
             preparedStatement.setDouble(1,vacancy.getSalary());
             preparedStatement.setInt(2,vacancy.getTrial());
             preparedStatement.setString(3,vacancy.getName());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
 
         return vacancy;
@@ -120,6 +127,7 @@ public class VacancyDaoImpl  implements VacancyDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)){
+            vacancyDaoLogger.info("Got Connection to the db");
             preparedStatement.setDouble(1,vacancy.getSalary());
             preparedStatement.setInt(2,vacancy.getTrial());
             preparedStatement.setString(3,vacancy.getName());
@@ -127,7 +135,7 @@ public class VacancyDaoImpl  implements VacancyDao {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
 
 
@@ -142,6 +150,7 @@ public class VacancyDaoImpl  implements VacancyDao {
 
         try  (Connection connection = dataSource.getConnection();
               PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_NAME_TYPE_SIZE)){
+            vacancyDaoLogger.info("Got Connection to the db");
             preparedStatement.setString(1,pattern);
             ResultSet resultSet= preparedStatement.executeQuery();
 
@@ -152,7 +161,7 @@ public class VacancyDaoImpl  implements VacancyDao {
                 vacancy.setName(resultSet.getString("Name"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
 
 
@@ -167,13 +176,14 @@ public class VacancyDaoImpl  implements VacancyDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_LAST_ID)) {
+            vacancyDaoLogger.info("Got Connection to the db");
             preparedStatement.setLong(1,vacancyId);
             preparedStatement.setLong(2,userId);
 
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ", e);
         }
 
 

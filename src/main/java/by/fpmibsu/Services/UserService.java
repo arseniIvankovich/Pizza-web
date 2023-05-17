@@ -8,44 +8,46 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
-    private UserDao userDao;
+    private final UserDao userDao;
 
-    static final Logger rootLogger = LogManager.getRootLogger();
+    static final Logger userServiceLogger = LogManager.getLogger(UserService.class);
     public UserService() {
         this.userDao = new UserDaoImpl();
     }
 
     public User findEntityById(Long id)  {
+        userServiceLogger.debug("find user object by id");
         return userDao.findEntityById(id);
     }
 
     public User findByEmail(String email)  {
+        userServiceLogger.debug("find user object by id");
         return userDao.findByEmail(email);
     }
 
 
     public Boolean checkLoginPassword(String email, String password)  {
+        userServiceLogger.debug("Check valid email is");
         User user = userDao.findByEmail(email);
-       if (BCrypt.checkpw(password,user.getPassword()))
-           return true;
-       else
-           return false;
+        return BCrypt.checkpw(password, user.getPassword());
     }
 
     public void delete(Long id) {
+        userServiceLogger.debug("Delete information about user by id in DB");
         userDao.delete(id);
     }
 
     public void delete(String email)  {
+        userServiceLogger.debug("Delete information about user by email in DB");
         userDao.delete(userDao.findByEmail(email));
     }
 
     public void edit(Long id, User newUser)  {
+        userServiceLogger.debug("Edit information about user");
         User oldUser = new UserDaoImpl().findEntityById(id);
 
         if (new AddressDaoImpl().checkByStreetHouseEntranceFlat(newUser.getAddresses().getStreet(), newUser.getAddresses().getHouseNumber(),
@@ -62,31 +64,35 @@ public class UserService {
     }
 
 
-    public User createUser(User user)  {
+    public void createUser(User user) {
+        userServiceLogger.debug("Create new user");
         user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
-        return userDao.create(user);
+        userDao.create(user);
     }
 
     public void editOrder(User user) {
+        userServiceLogger.debug("Edit user's information about order");
         userDao.updateOrder(user);
     }
 
     public List<User> getUndeliveredOrdersForUsers()  {
+        userServiceLogger.debug("Get list of user's undelivered orders");
         List<User> users = (ArrayList<User>) userDao.getOrderedUsers();
         List<User> orderedUsers = new ArrayList<>();
         for (User user : users)
-            if (user.getOrder().getStatus() == false)
+            if (!user.getOrder().getStatus())
                 orderedUsers.add(user);
 
         return orderedUsers;
     }
 
     public List<User> getAllNotdAmin()  {
+        userServiceLogger.debug("Get list of user's who are not admins");
         return userDao.getAllNotAdmin();
     }
 
     public Boolean checkEmail (String email) {
-        rootLogger.info("efewf");
+        userServiceLogger.debug("Check valid email is");
         return userDao.checkUserByEmail(email);
     }
 

@@ -3,6 +3,8 @@ package by.fpmibsu.Dao.DaoImpl;
 import by.fpmibsu.Dao.HikariCPDataSource;
 import by.fpmibsu.Dao.PizzaDao;
 import by.fpmibsu.Entity.Pizza;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -12,7 +14,8 @@ public class PizzaDaoImpl  implements PizzaDao {
     public PizzaDaoImpl () {
         this.dataSource = HikariCPDataSource.getDataSource();
     }
-
+    static final Logger pizzaDaoLogger = LogManager.getLogger(PizzaDaoImpl.class);
+    static final Logger rootLogger = LogManager.getRootLogger();
     @Override
     public Pizza findEntityById(Long id)  {
         Pizza pizza = new Pizza();
@@ -20,6 +23,7 @@ public class PizzaDaoImpl  implements PizzaDao {
                 "\tFROM public.\"Pizza\" WHERE \"PizzaID\" = ?;";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)) {
+            pizzaDaoLogger.info("Got connection to the db");
             preparedStatement.setLong(1,id);
             ResultSet resultSet= preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -32,7 +36,7 @@ public class PizzaDaoImpl  implements PizzaDao {
                 pizza.setSize(resultSet.getBoolean("Size"));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ",e);
         }
 
 
@@ -46,12 +50,13 @@ public class PizzaDaoImpl  implements PizzaDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)){
+            pizzaDaoLogger.info("Got connection to the db");
             preparedStatement.setString(1,pizza.getName());
 
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ",e);
         }
     return false;
     }
@@ -64,12 +69,13 @@ public class PizzaDaoImpl  implements PizzaDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)){
+            pizzaDaoLogger.info("Got connection to the db");
             preparedStatement.setLong(1,id);
 
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ",e);
         }
 
     return false;
@@ -84,6 +90,7 @@ public class PizzaDaoImpl  implements PizzaDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS)){
+            pizzaDaoLogger.info("Got connection to the db");
             preparedStatement.setString(1,pizza.getName());
             preparedStatement.setString(2,pizza.getIngredients());
             preparedStatement.setBoolean(3,pizza.getDoughType());
@@ -94,7 +101,7 @@ public class PizzaDaoImpl  implements PizzaDao {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ",e);
         }
 
         return pizza;
@@ -108,6 +115,7 @@ public class PizzaDaoImpl  implements PizzaDao {
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)){
+            pizzaDaoLogger.info("Got connection to the db");
             preparedStatement.setString(1,pizza.getName());
             preparedStatement.setString(2,pizza.getIngredients());
             preparedStatement.setBoolean(3,pizza.getDoughType());
@@ -118,7 +126,7 @@ public class PizzaDaoImpl  implements PizzaDao {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            rootLogger.error("Error: ",e);
         }
 
 
