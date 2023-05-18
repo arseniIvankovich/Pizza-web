@@ -20,8 +20,12 @@ public class MainServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         mainServletLogger.debug("Enter the main page");
-       // req.getRequestDispatcher("/jsp/indexjsp.jsp").forward(req, resp);
 
+        resp.addHeader("Access-Control-Allow-Origin", "http://localhost:63342");
+
+        //req.getRequestDispatcher("/html/profile.html").forward(req, resp);
+
+        resp.getWriter().print("Hello Arsenii))))))))))))))))))))))))))))))");
     }
 
     @Override

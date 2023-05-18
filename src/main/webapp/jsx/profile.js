@@ -63,12 +63,30 @@ var ProfileForm = function (_React$Component2) {
         return _this3;
     }
 
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         posts: [],
+    //     };
+    // }
+
     _createClass(ProfileForm, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
             console.log("Mounted");
             console.log("Props name " + this.props.name);
         }
+
+        // componentDidMount() {
+        //     fetch('http://localhost:8083')
+        //         .then((response) => {
+        //             response;
+        //             console.log(response);
+        //         })
+        //         .then((data) => this.setState({ posts: data }))
+        //         .catch((error) => console.log(error));
+        // }
+
     }, {
         key: 'sendHttpPostRequest',
         value: function sendHttpPostRequest() {
@@ -89,7 +107,7 @@ var ProfileForm = function (_React$Component2) {
         key: 'sendHttpGetRequest',
         value: function sendHttpGetRequest() {
             var self = this;
-            var urlEndPoint = '';
+            var urlEndPoint = 'http://localhost:8083';
             $.ajax({
                 url: urlEndPoint,
                 type: "GET",
@@ -111,6 +129,10 @@ var ProfileForm = function (_React$Component2) {
         key: 'render',
         value: function render() {
             var _this4 = this;
+
+            var posts = this.state.posts;
+
+            console.log(this.state.servletGetResponse);
 
             return React.createElement(
                 'form',

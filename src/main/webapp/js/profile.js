@@ -37,10 +37,27 @@ class ProfileForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         posts: [],
+    //     };
+    // }
+
     componentDidMount() {
         console.log("Mounted");
         console.log("Props name " + this.props.name);
     }
+
+    // componentDidMount() {
+    //     fetch('http://localhost:8083')
+    //         .then((response) => {
+    //             response;
+    //             console.log(response);
+    //         })
+    //         .then((data) => this.setState({ posts: data }))
+    //         .catch((error) => console.log(error));
+    // }
 
     sendHttpPostRequest() {
         var self = this;
@@ -59,7 +76,7 @@ class ProfileForm extends React.Component {
 
     sendHttpGetRequest() {
         var self = this;
-        var urlEndPoint = '';
+        var urlEndPoint = 'http://localhost:8083';
         $.ajax({
             url: urlEndPoint,
             type: "GET",
@@ -78,6 +95,9 @@ class ProfileForm extends React.Component {
     }
 
     render() {
+        const { posts } = this.state;
+        console.log(this.state.servletGetResponse);
+
         return (
             <form onSubmit={this.handleSubmit} className="left-form">
 
@@ -116,7 +136,7 @@ class ProfileForm extends React.Component {
                     <input type="text" className="login-form-input" id="login-form-phone" name="telephone" />
                 </div>
 
-                <input type="submit" name="logout" className="save-changes-button" value="Get Request" onClick={() => {this.sendHttpGetRequest()}} />
+                <input type="submit" name="logout" className="save-changes-button" value="Get Request" onClick={() => {this.sendHttpGetRequest();}} />
             </form>
         );
     }
