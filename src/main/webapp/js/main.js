@@ -1,4 +1,6 @@
 
+'use strict';
+
 let ids = [
     1, 5, 9, 13, 17, 21
 ]
@@ -29,24 +31,24 @@ let drink_images = [
     "../img/drinks/water.png"
 ]
 
-function alert_vacancy() {
-    if (document.querySelector(".session").value === '') {
-        event.preventDefault();
-        alert("Для доступа к разделу \"Вакансии\" необходимо войти в аккаунт");
-    }
-}
-
-function alert_busket(e) {
-    if (document.querySelector(".session").value === '') {
-        event.preventDefault();
-        alert("Для доступа к корзине необходимо войти в аккаунт");
-    }
-}
+// function alert_vacancy() {
+//     if (document.querySelector(".session").value === '') {
+//         event.preventDefault();
+//         alert("Для доступа к разделу \"Вакансии\" необходимо войти в аккаунт");
+//     }
+// }
+//
+// function alert_busket(e) {
+//     if (document.querySelector(".session").value === '') {
+//         event.preventDefault();
+//         alert("Для доступа к корзине необходимо войти в аккаунт");
+//     }
+// }
 
 function loadData() {
-    if (document.querySelector(".session").value !== '') {
-        document.querySelector(".profile-button-orig").value = "Личный кабинет";
-    }
+    // if (document.querySelector(".session").value === '') {
+    //     document.querySelector(".profile-button-orig").value = "Личный кабинет";
+    // }
 
     var busket = document.querySelector(".busket-button-text-orig");
     var busket_quantity = document.querySelector(".busket-button-quantity-text");

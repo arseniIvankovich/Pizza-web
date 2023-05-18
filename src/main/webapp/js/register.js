@@ -3,5 +3,5 @@
 //
 // button.addEventListener("click", function () {
 //     localStorage["is-logged-in"] = 'true';
-//     window.open("../jsp/index.jsp", "_self");
+//     window.open("../jsp/indexjsp.jsp", "_self");
 // });
