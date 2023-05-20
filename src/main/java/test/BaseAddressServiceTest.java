@@ -1,4 +1,4 @@
-package tets;
+package test;
 
 import by.fpmibsu.Dao.HikariCPDataSource;
 import by.fpmibsu.Services.BaseAddressService;

@@ -1,9 +1,8 @@
-package tets;
+package test;
 
 import by.fpmibsu.Dao.HikariCPDataSource;
 import by.fpmibsu.Entity.Address;
 import by.fpmibsu.Services.AddressService;
-import com.beust.ah.A;
 import org.postgresql.util.PSQLException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
