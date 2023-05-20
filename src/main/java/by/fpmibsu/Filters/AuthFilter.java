@@ -18,8 +18,10 @@ public class AuthFilter implements Filter {
 
         HttpSession session = req.getSession(false);
 
-        if (session == null || session.getAttribute("userId") == null)
-           servletRequest.getServletContext().getRequestDispatcher("/").forward(req,resp);
+        if (session == null || session.getAttribute("userId") == null) {
+           // resp.sendRedirect(req.getContextPath()  + "/");
+            resp.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        }
 
 
         filterChain.doFilter(req,resp);

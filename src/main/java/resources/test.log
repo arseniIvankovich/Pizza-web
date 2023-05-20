@@ -1,10 +1,4 @@
-13:29:44.135 DEBUG by.fpmibsu.Services.BaseAddressService 16 checkValidStreet - Check valid street is
-13:29:44.143 INFO  by.fpmibsu.Dao.DaoImpl.BaseAddressDaoImpl 29 checkStreet - Got connection to the db
-13:29:44.177 DEBUG by.fpmibsu.Services.BaseAddressService 16 checkValidStreet - Check valid street is
-13:29:44.178 INFO  by.fpmibsu.Dao.DaoImpl.BaseAddressDaoImpl 29 checkStreet - Got connection to the db
-13:29:44.197 DEBUG by.fpmibsu.Services.BaseAddressService 16 checkValidStreet - Check valid street is
-13:29:44.198 INFO  by.fpmibsu.Dao.DaoImpl.BaseAddressDaoImpl 29 checkStreet - Got connection to the db
-13:29:44.216 DEBUG by.fpmibsu.Services.BaseAddressService 16 checkValidStreet - Check valid street is
-13:29:44.216 INFO  by.fpmibsu.Dao.DaoImpl.BaseAddressDaoImpl 29 checkStreet - Got connection to the db
-13:29:44.231 DEBUG by.fpmibsu.Services.BaseAddressService 16 checkValidStreet - Check valid street is
-13:29:44.231 INFO  by.fpmibsu.Dao.DaoImpl.BaseAddressDaoImpl 29 checkStreet - Got connection to the db
+18:52:47.966 DEBUG by.fpmibsu.Services.AddressService 23 findByStreetHouseEntranceFlat - Get Address by street, house, entrance, flat
+18:52:47.974 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 29 findByStreetHouseEntranceFlat - Got connection to the db
+18:52:48.004 DEBUG by.fpmibsu.Services.AddressService 23 findByStreetHouseEntranceFlat - Get Address by street, house, entrance, flat
+18:52:48.004 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 29 findByStreetHouseEntranceFlat - Got connection to the db

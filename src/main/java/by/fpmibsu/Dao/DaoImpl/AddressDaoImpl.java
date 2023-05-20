@@ -5,6 +5,7 @@ import by.fpmibsu.Dao.HikariCPDataSource;
 import by.fpmibsu.Entity.Address;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.postgresql.util.PSQLException;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
