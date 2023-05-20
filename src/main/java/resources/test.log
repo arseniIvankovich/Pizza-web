@@ -1,6 +1,12 @@
-20:52:12.816 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
-20:52:12.834 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-20:52:12.862 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
-20:52:12.862 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-20:52:12.908 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
-20:52:12.908 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
+20:59:10.507 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
+20:59:10.513 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
+20:59:10.540 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
+20:59:10.540 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
+20:59:10.560 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
+20:59:10.561 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
+20:59:10.579 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
+20:59:10.579 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
+20:59:10.597 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
+20:59:10.597 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
+20:59:10.615 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
+20:59:10.615 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
