@@ -33,11 +33,6 @@ public class AddressServiceTest {
         };
     }
 
-    @DataProvider(name = "FindValidAddresses")
-    public Object[][] provideValidAddresses() {
-        return new Object[][] {{"Ленина",1,1,1,1L},
-                {"Семашко",1,1,1,2L}};
-    }
 
     @DataProvider(name = "NullAddresses")
     public Object[] insertNullAddresses() {
@@ -46,6 +41,13 @@ public class AddressServiceTest {
         new Address("Ленина",1,null,1),
         new Address("Ленина",1,1,null),
         new Address(null,null,null,null)};
+    }
+
+    @DataProvider(name = "InvalidData")
+    public Object[][] invalidProvider() {
+        return new Object[][] {{"",1,1,1},
+                {null,1,1,1},{"Семашко",2,1,1},{"Семашко",1,3,1},{"Семашко",1,1,4}
+        };
     }
 
 
@@ -66,5 +68,11 @@ public class AddressServiceTest {
         Assert.assertEquals(address,new Address(street,house,entrance,flat));
         Assert.assertEquals(address.getAddressID(),id);
 
+    }
+
+    @Test(dataProvider = "InvalidData")
+    public void findWithInvalidData(String street,Integer house,Integer entrance,Integer flat) {
+        Assert.assertEquals(addressService.findByStreetHouseEntranceFlat(street,house,entrance,flat),
+                new Address(null,null,null,null));
     }
 }

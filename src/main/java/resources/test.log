@@ -1,12 +1,10 @@
-20:59:10.507 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
-20:59:10.513 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-20:59:10.540 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
-20:59:10.540 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-20:59:10.560 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
-20:59:10.561 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-20:59:10.579 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
-20:59:10.579 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-20:59:10.597 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
-20:59:10.597 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-20:59:10.615 DEBUG by.fpmibsu.Services.RoleService 19 findEntityById - Find role by id
-20:59:10.615 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
+21:05:55.593 DEBUG by.fpmibsu.Services.AddressService 23 findByStreetHouseEntranceFlat - Get Address by street, house, entrance, flat
+21:05:55.614 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 29 findByStreetHouseEntranceFlat - Got connection to the db
+21:05:55.640 DEBUG by.fpmibsu.Services.AddressService 23 findByStreetHouseEntranceFlat - Get Address by street, house, entrance, flat
+21:05:55.640 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 29 findByStreetHouseEntranceFlat - Got connection to the db
+21:05:55.657 DEBUG by.fpmibsu.Services.AddressService 23 findByStreetHouseEntranceFlat - Get Address by street, house, entrance, flat
+21:05:55.657 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 29 findByStreetHouseEntranceFlat - Got connection to the db
+21:05:55.671 DEBUG by.fpmibsu.Services.AddressService 23 findByStreetHouseEntranceFlat - Get Address by street, house, entrance, flat
+21:05:55.672 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 29 findByStreetHouseEntranceFlat - Got connection to the db
+21:05:55.686 DEBUG by.fpmibsu.Services.AddressService 23 findByStreetHouseEntranceFlat - Get Address by street, house, entrance, flat
+21:05:55.686 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 29 findByStreetHouseEntranceFlat - Got connection to the db
