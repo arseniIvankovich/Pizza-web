@@ -5,6 +5,7 @@ import by.fpmibsu.Entity.Address;
 import by.fpmibsu.Services.AddressService;
 import org.postgresql.util.PSQLException;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -13,7 +14,7 @@ import java.sql.SQLException;
 
 public class AddressServiceTest {
     public AddressService addressService;
-    @BeforeMethod
+    @BeforeClass
     public void init() {
         HikariCPDataSource.rebase();
         addressService = new AddressService();
