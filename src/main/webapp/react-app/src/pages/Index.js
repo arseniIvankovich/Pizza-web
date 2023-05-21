@@ -147,6 +147,8 @@ function drinkToBusket(element_id) {
     localStorage['busket-quantity'] = new_quantity;
 }
 
+
+
 function Index() {
     useEffect(() => {
         document.querySelectorAll(".menu-choices").forEach(element => {
