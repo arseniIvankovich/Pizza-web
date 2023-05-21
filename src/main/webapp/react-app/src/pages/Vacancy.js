@@ -22,6 +22,7 @@ function sendHttpGetRequest() {
 }
 
 
+
 function sendHttpPostRequest() {
     //var self = this;
     var urlEndPoint = 'http://localhost:8083/vacancy';
