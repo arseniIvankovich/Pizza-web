@@ -46,7 +46,6 @@ function sendHttpPostRequest() {
         },
         error: (error) => {
             console.log(JSON.stringify(error));
-            console.log(this.state.servletPostResponse);
         }
     });
 }
