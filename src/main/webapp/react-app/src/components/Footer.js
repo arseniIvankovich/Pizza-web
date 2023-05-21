@@ -51,7 +51,7 @@ class Footer extends React.Component {
                         <div className="footer-icons">
                             <div className="social-networks">
                                 <img src="../img/instagram-svgrepo-com.svg" alt="Instagram" className="network-pic" />
-                                    <img src="../img/facebook-svgrepo-com%20(1).svg" alt="Facebook"
+                                    <img src="../img/facebook-svgrepo-com.svg" alt="Facebook"
                                          className="network-pic" />
                                         <img src="../img/twitter-svgrepo-com.svg" alt="Twitter" className="network-pic" />
                             </div>

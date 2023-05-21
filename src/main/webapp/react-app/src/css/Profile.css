@@ -657,15 +657,15 @@ body {
 
 
 
-.main {
-    margin-top: 120px;
+.main-profile {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
 }
 
-.form-section {
+.form-section-profile {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -673,22 +673,23 @@ body {
     padding: 10px;
     gap: 10px;
     width: 100%;
+    margin-top: 100px;
 }
 
-.left-form {
+.left-form-profile {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
     gap: 10px;
-    width: 1000px;
+    width: 750px;
 
     background: rgba(255, 255, 255, 0.5);
     border-radius: 50px;
 }
 
-.personal-header {
+.personal-header-profile {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
@@ -699,13 +700,12 @@ body {
     margin-left: 20px;
 }
 
-.input-box {
+.input-box-profile {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    gap: 100px;
     width: 100%;
 }
 
@@ -721,13 +721,13 @@ label {
     color: #000000;
 }
 
-.login-form-input {
+.login-form-input-profile {
     height: 46px;
     background: #FFFFFF;
     border-radius: 30px;
     border: none;
     padding-left: 15px;
-    width: 600px;
+    width: 450px;
 
     font-family: 'Montserrat';
     font-style: normal;

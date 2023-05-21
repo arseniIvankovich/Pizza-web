@@ -1,6 +1,6 @@
 
 
-var pizza_images = new Map([['Пепперони', "../img/pizzas/peperoni.jpg"], ['4 сыра', "../img/pizzas/4_сыра.jpg"], ['Гавайская', "../img/pizzas/гавайская.jpg"], ['Барбекю', "../img/pizzas/барбекю.jpg"], ['Сальмоне', "../img/pizzas/с креветкамиjpg.jpg"], ['Деревенская', "../img/pizzas/деревенская.jpg"]]);
+var pizza_images = new Map([['Пепперони', "../img/pizzas/peperoni.jpg"], ['4 сыра', "../img/pizzas/4_sira.jpg"], ['Гавайская', "../img/pizzas/hawaii.jpg"], ['Барбекю', "../img/pizzas/barbecu.jpg"], ['Сальмоне', "../img/pizzas/krevetki.jpg"], ['Деревенская', "../img/pizzas/derev.jpg"]]);
 
 var drink_images = new Map([['Coca-Cola, 0.5', "../img/drinks/cola.png"], ['Coca-Cola, 1', "../img/drinks/cola_big.png"], ['Coca-Cola Zero, 0.5', "../img/drinks/cola_zero_.png"], ['Coca-Cola Zero, 1', "../img/drinks/cola_zero_big.png"], ['Fanta, 0.5', "../img/drinks/fanta.png"], ['Fanta, 1', "../img/drinks/fanta_big.png"], ['Sprite, 0.5', "../img/drinks/sprite.png"], ['Sprite, 1', "../img/drinks/sprite_big.png"], ['Ballentine\'s, 0.5', "../img/drinks/whiskey.png"], ['Bonaqua, 0.5', "../img/drinks/water.png"]]);
 

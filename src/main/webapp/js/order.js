@@ -3,11 +3,11 @@
 
 let pizza_images = new Map([
     ['Пепперони', "../img/pizzas/peperoni.jpg"],
-    ['4 сыра', "../img/pizzas/4_сыра.jpg"],
-    ['Гавайская', "../img/pizzas/гавайская.jpg"],
-    ['Барбекю', "../img/pizzas/барбекю.jpg"],
-    ['Сальмоне', "../img/pizzas/с креветкамиjpg.jpg"],
-    ['Деревенская', "../img/pizzas/деревенская.jpg"]
+    ['4 сыра', "../img/pizzas/4_sira.jpg"],
+    ['Гавайская', "../img/pizzas/hawaii.jpg"],
+    ['Барбекю', "../img/pizzas/barbecu.jpg"],
+    ['Сальмоне', "../img/pizzas/krevetki.jpg"],
+    ['Деревенская', "../img/pizzas/derev.jpg"]
 ]);
 
 let drink_images = new Map([

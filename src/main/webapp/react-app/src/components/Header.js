@@ -1,78 +1,101 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {NavLink, Link} from "react-router-dom";
+
 import "../css/Index.css";
-//import logo from './img/pizza-5-svgrepo-com.svg';
+import {useNavigate} from "react-router";
 
-class Header extends React.Component {
-    render() {
-        return (
-            <header className="header">
+function Header() {
+    useEffect(() => {
+        if (typeof localStorage["pizza"] === 'undefined') {
+            localStorage["pizza"] = JSON.stringify([]);
+        }
+        if (typeof localStorage["drinks"] === 'undefined') {
+            localStorage["drinks"] = JSON.stringify([]);
+        }
 
-                <div className="wrapper">
-                    <div className="header-wrapper">
-                        <a href="/" className="header-logo-link">
-                            <div className="header-logo-box">
-                                <img src="./img/pizza-5-svgrepo-com.svg" alt="Pizzeria Logo"
-                                     className="header-logo-pic" />
-                                    <p className="header-logo-text">
-                                        Pizzeria
-                                    </p>
-                            </div>
-                        </a>
+        if (typeof localStorage["busket-price"] === 'undefined') {
+            localStorage["busket-price"] = '0.00';
+        }
+        if (typeof localStorage["busket-quantity"] === 'undefined') {
+            localStorage["busket-quantity"] = '0';
+        }
 
-                        <nav className="header-nav">
-                            <ul className="header-list">
-                                <li className="header-item">
-                                    <a href="#drinks" className="header-link js-scroll">Напитки</a>
-                                </li>
-                                <li className="header-item">
-                                    <a href="/vacancy" id="vacancy-link" className="header-link"
-                                       onClick="alert_vacancy()">Вакансии</a>
-                                </li>
-                            </ul>
-                        </nav>
+        var busket = document.querySelector(".busket-button-text-orig");
+        var busket_quantity = document.querySelector(".busket-button-quantity-text");
 
-                        <div className="header-telephone-basket">
-                            <div className="header-telephone-box">
-                                <div className="call">
-                                    <img src="../img/phone-svgrepo-com.svg" alt="Phone Logo"
-                                         className="header-phone-pic" />
-                                        <p className="call-number">
-                                            1442
-                                        </p>
-                                </div>
-                                <p className="work-time">
-                                    8:00-23:00
+        busket.textContent = localStorage["busket-price"] + " BYN";
+        busket_quantity.textContent = localStorage["busket-quantity"];
+    });
+
+    const navigate = useNavigate();
+
+    return (
+        <header className="header">
+
+            <div className="wrapper">
+                <div className="header-wrapper">
+                    <NavLink to="/" className="header-logo-link">
+                        <div className="header-logo-box">
+                            <img src="./img/pizza-5-svgrepo-com.svg" alt="Pizzeria Logo"
+                                 className="header-logo-pic" />
+                            <p className="header-logo-text-header">
+                                Pizzeria
+                            </p>
+                        </div>
+                    </NavLink>
+
+                    <nav className="header-nav">
+                        <ul className="header-list">
+                            <li className="header-item">
+                                <a href="#drinks" className="header-link js-scroll">Напитки</a>
+                            </li>
+                            <li className="header-item">
+                                <NavLink to="/vacancy" id="vacancy-link" className="header-link">Вакансии</NavLink>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <div className="header-telephone-basket">
+                        <div className="header-telephone-box">
+                            <div className="call">
+                                <img src="./img/phone-svgrepo-com.svg" alt="Phone Logo"
+                                     className="header-phone-pic" />
+                                <p className="call-number">
+                                    1442
                                 </p>
                             </div>
+                            <p className="work-time">
+                                8:00-23:00
+                            </p>
+                        </div>
 
-                            <div className="header-busket-box">
-                                <a href="/order" className="busket-link" onClick="alert_busket()">
-                                    <div className="busket">
-                                        <div className="busket-quantity">
-                                            <div className="busket-button-quantity">
-                                                <p className="busket-button-quantity-text">0</p>
-                                            </div>
-                                            <img src="../img/trolley-svgrepo-com%20(1).svg" alt="Busket Logo"
-                                                 className="header-busket-pic" />
+                        <div className="header-busket-box">
+                            <NavLink to={"/order"} className="busket-link" >
+                                <div className="busket">
+                                    <div className="busket-quantity">
+                                        <div className="busket-button-quantity">
+                                            <p className="busket-button-quantity-text">${localStorage["busket-quantity"]}</p>
                                         </div>
-                                        <p className="busket-text">
-                                            Корзина
-                                        </p>
+                                        <img src="./img/trolley-svgrepo-com.svg" alt="Busket Logo"
+                                             className="header-busket-pic" />
                                     </div>
-                                </a>
-                                <div className="busket-button-orig">
-                                    <p className="busket-button-text-orig">0.00 BYN</p>
+                                    <p className="busket-text">
+                                        Корзина
+                                    </p>
                                 </div>
+                            </NavLink>
+                            <div className="busket-button-orig">
+                                <p className="busket-button-text-orig">${localStorage["busket-price"] + " BYN"}</p>
                             </div>
                         </div>
-                        <form method="post" action="/" className="login-form">
-                            <input type="submit" className="profile-button-orig" name="profileButton" value="Войти" />
-                        </form>
                     </div>
+                    <form method="post" action="/" className="login-form">
+                        <input type="submit" className="profile-button-orig" name="profileButton" value="Войти" onClick={() => navigate('/login')} />
+                    </form>
                 </div>
-            </header>
-        );
-    }
+            </div>
+        </header>
+    );
 }
 
 export default Header;

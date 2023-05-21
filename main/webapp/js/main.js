@@ -3,7 +3,7 @@ var ids = [1, 5, 9, 13, 17, 21];
 
 var capacities = [0.5, 1, 0.5, 1, 0.5, 1, 0.5, 1, 0.5, 0.5];
 
-var pizza_images = ["../img/pizzas/peperoni.jpg", "../img/pizzas/4_сыра.jpg", "../img/pizzas/гавайская.jpg", "../img/pizzas/барбекю.jpg", "../img/pizzas/с креветкамиjpg.jpg", "../img/pizzas/деревенская.jpg"];
+var pizza_images = ["../img/pizzas/peperoni.jpg", "../img/pizzas/4_sira.jpg", "../img/pizzas/hawaii.jpg", "../img/pizzas/barbecu.jpg", "../img/pizzas/krevetki.jpg", "../img/pizzas/derev.jpg"];
 
 var drink_images = ["../img/drinks/cola.png", "../img/drinks/cola_big.png", "../img/drinks/cola_zero_.png", "../img/drinks/cola_zero_big.png", "../img/drinks/fanta.png", "../img/drinks/fanta_big.png", "../img/drinks/sprite.png", "../img/drinks/sprite_big.png", "../img/drinks/whiskey.png", "../img/drinks/water.png"];
 

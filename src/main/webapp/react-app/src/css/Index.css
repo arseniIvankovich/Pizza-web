@@ -449,7 +449,7 @@ body {
     gap: 20px;
 }
 
-.header-logo-text {
+.header-logo-text-header {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
@@ -692,7 +692,7 @@ body {
     color: #FFFFFF;
 }
 
-.profile-button {
+.pizza-button {
     height: fit-content;
     max-width: 140px;
     /* width: fit-content; */
@@ -701,7 +701,13 @@ body {
     background: #E13333;
     border-radius: 50px;
     border: none;
-    transition: .2s;
+    transition:  .2s;
+
+    cursor: pointer;
+}
+
+.pizza-button:active {
+    transform: scale(0.95);
 }
 
 .profile-button:hover {
@@ -979,12 +985,18 @@ body {
     background: #E13333;
     border-radius: 50px;
     border: none;
-    transition: .3s;
+    transition: .2s;
+
+    cursor: pointer;
 }
 
-.drink-button:hover {
-    transform: scale(1.05);
+.drink-button:active {
+    transform: scale(0.95);
 }
+
+/*.drink-button:hover {*/
+/*    transform: scale(1.05);*/
+/*}*/
 
 .drink-button-text {
     padding: 4px;
@@ -1254,4 +1266,7 @@ label {
     color: #000000;
 }
 
+#root {
+    height: 100%;
+}
 

@@ -11,11 +11,11 @@ let capacities = [
 
 let pizza_images = [
     "../img/pizzas/peperoni.jpg",
-    "../img/pizzas/4_сыра.jpg",
-    "../img/pizzas/гавайская.jpg",
-    "../img/pizzas/барбекю.jpg",
-    "../img/pizzas/с креветкамиjpg.jpg",
-    "../img/pizzas/деревенская.jpg"
+    "../img/pizzas/4_sira.jpg",
+    "../img/pizzas/hawaii.jpg",
+    "../img/pizzas/barbecu.jpg",
+    "../img/pizzas/krevetki.jpg",
+    "../img/pizzas/derev.jpg"
 ]
 
 let drink_images = [
@@ -169,7 +169,7 @@ element1.forEach(element => {
 var busket = document.querySelector(".busket-button-text-orig");
 var busket_quantity = document.querySelector(".busket-button-quantity-text");
 
-var pizza_buskets = document.querySelectorAll(".profile-button");
+var pizza_buskets = document.querySelectorAll(".pizza-button");
 
 var drink_buskets = document.querySelectorAll(".drink-button");
 
