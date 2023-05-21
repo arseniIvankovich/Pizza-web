@@ -157,6 +157,8 @@ function Index() {
             })
         });
 
+
+
         if (typeof localStorage["pizza"] === 'undefined') {
             localStorage["pizza"] = JSON.stringify([]);
         }
