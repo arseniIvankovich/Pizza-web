@@ -36,17 +36,13 @@ public class UserService {
         return BCrypt.checkpw(password, user.getPassword());
     }
 
-    public void delete(Long id) {
-        userServiceLogger.debug("Delete information about user by id in DB");
-        userDao.delete(id);
-    }
-
-    public void delete(String email)  {
+    public Boolean delete(String email)  {
         userServiceLogger.debug("Delete information about user by email in DB");
         userDao.delete(userDao.findByEmail(email));
+        return true;
     }
 
-    public void edit(Long id, User newUser)  {
+    public boolean edit(Long id, User newUser)  {
         userServiceLogger.debug("Edit information about user");
         User oldUser = new UserDaoImpl().findEntityById(id);
 
@@ -61,13 +57,14 @@ public class UserService {
             oldUser.setFirstName_lastName(newUser.getFirstName_lastName());
 
         userDao.update(oldUser);
+        return true;
     }
 
 
-    public void createUser(User user) {
+    public User createUser(User user) {
         userServiceLogger.debug("Create new user");
         user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
-        userDao.create(user);
+       return userDao.create(user);
     }
 
     public void editOrder(User user) {

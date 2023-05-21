@@ -6,6 +6,7 @@ import by.fpmibsu.Services.AddressService;
 import by.fpmibsu.Services.RoleService;
 import jdk.jfr.Description;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -13,7 +14,7 @@ import org.testng.annotations.Test;
 public class RoleServiceTest {
     RoleService roleService;
 
-    @BeforeMethod
+    @BeforeClass
     public void init() {
         HikariCPDataSource.rebase();
         roleService = new RoleService();

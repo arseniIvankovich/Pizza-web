@@ -24,6 +24,6 @@ public class VacancyService {
     }
 
     public void addApplication(Long userId, Long vacancyId)  {
-        new VacancyDaoImpl().addToMMUserVacancy(userId,vacancyId);
+        new VacancyDaoImpl().addToUserVacancy(userId,vacancyId);
     }
 }

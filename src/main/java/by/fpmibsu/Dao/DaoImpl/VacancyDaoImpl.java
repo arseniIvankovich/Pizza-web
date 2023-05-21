@@ -169,7 +169,7 @@ public class VacancyDaoImpl  implements VacancyDao {
     }
 
     @Override
-    public void addToMMUserVacancy(Long userId, Long vacancyId) {
+    public boolean addToUserVacancy(Long userId, Long vacancyId) {
         final String SQL_LAST_ID = "INSERT INTO public.\"User_Vacancy\"(\n" +
                 "\t\"VacancyID\", \"UserID\")\n" +
                 "\tVALUES (?, ?);";
@@ -181,11 +181,11 @@ public class VacancyDaoImpl  implements VacancyDao {
             preparedStatement.setLong(2,userId);
 
             preparedStatement.executeUpdate();
-
+        return true;
         } catch (SQLException e) {
             rootLogger.error("Error: ", e);
         }
 
-
+    return false;
     }
 }

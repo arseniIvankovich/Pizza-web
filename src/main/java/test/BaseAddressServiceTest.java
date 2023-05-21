@@ -7,7 +7,7 @@ import org.testng.annotations.*;
 
 public class BaseAddressServiceTest {
     public BaseAddressService baseAddressService;
-@BeforeMethod
+    @BeforeClass
     public void init() {
     HikariCPDataSource.rebase();
     baseAddressService = new BaseAddressService();
