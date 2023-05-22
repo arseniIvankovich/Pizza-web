@@ -30,20 +30,42 @@ function Login() {
                 //console.log(JSON.stringify(error));
             }
         }).then((respons) => {
-            respons = axios.get('http://localhost:8083/login');
-            respons.then((res) => {
-                if (res.status === 200) {
-                    console.log(res.status);
-                    localStorage["user"] = res.data;
-                    navigate('/profile');
+            respons = $.ajax({
+                url: 'http://localhost:8083/login',
+                type: "GET",
+                success: function(response, textStatus) {
+                    console.log(textStatus);
+                        if (textStatus === 'success') {
+                            console.log(response);
+                            localStorage["user"] = response;
+                            navigate('/profile');
+                        }
+                        else {
+                            alert("Такого аккаунта не существует");
+                        }
+                },
+                error: function(response) {
+
                 }
-                else {
-                    alert("Такого аккаунта не существует");
-                }
-            })
+            });
+
+
         })
     }
-
+    // sendHttpGetRequest() {
+    //     var self = this;
+    //     var urlEndPoint = 'http://localhost:8083';
+    //     $.ajax({
+    //         url: urlEndPoint,
+    //         type: "GET",
+    //         success: function(response) {
+    //             self.setState({servletGetResponse: response});
+    //         },
+    //         error: function(response) {
+    //             self.setState({servletGetResponse: response});
+    //         }
+    //     });
+    // }
     return (
         <div className="wrapper">
             <div className="main">
