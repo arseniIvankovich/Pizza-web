@@ -19,7 +19,7 @@ function Login() {
             type: "POST",
             url: 'http://localhost:8083/login',
             data: {
-                object: email_,
+                email: email_,
                 password: password_
             },
             success: function (response) {
