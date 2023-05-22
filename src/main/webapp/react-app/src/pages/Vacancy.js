@@ -42,7 +42,6 @@ function sendHttpPostRequest() {
         },
         error: (error) => {
             console.log(JSON.stringify(error));
-            console.log(this.state.servletPostResponse);
         }
     });
 }
@@ -147,7 +146,7 @@ function Vacancy() {
                 </div>
 
                 <div className="form-section">
-                    <form className="left-form">
+                    <div className="left-form">
                         <input type="text" className="vacancy-json" />
                             <div className="input-box">
                                 <label>Адрес:</label>
@@ -175,10 +174,10 @@ function Vacancy() {
                                 </select>
                             </div>
                             <div className="send-buttons">
-                                <input type="submit" value="Отправить заявку" className="order-button" onClick={() => sendHttpPostRequest()} />
+                                <input type="submit" value="Отправить заявку" className="order-button" onClick={() => sendHttpGetRequest()} />
                                 <NavLink to="/profile" className="change-profile">Изменить данные</NavLink>
                             </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

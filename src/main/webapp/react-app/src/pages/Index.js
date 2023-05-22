@@ -3,6 +3,7 @@ import "../choices/Choices-master/public/assets/scripts/choices.min.js";
 
 import "../css/Index.css";
 import "../choices/Choices-master/public/assets/styles/choices.min.css";
+import $ from "jquery";
 
 
 let ids = [
@@ -12,6 +13,23 @@ let ids = [
 let capacities = [
     0.5, 1, 0.5, 1, 0.5, 1, 0.5, 1, 0.5, 0.5
 ]
+
+function sendHttpGetRequest() {
+    var self = this;
+    var urlEndPoint = 'http://localhost:8083/vacancy';
+    $.ajax({
+        url: urlEndPoint,
+        type: "GET",
+        success: function(response) {
+            console.log(response.status);
+            //self.setState({servletGetResponse: response});
+        },
+        error: function(response) {
+            console.log('error');
+            //self.setState({servletGetResponse: response});
+        }
+    });
+}
 
 function sizeSelect(price_name, size_name) {
     var text = document.getElementById(price_name).textContent;
@@ -151,6 +169,8 @@ function drinkToBusket(element_id) {
 
 function Index() {
     useEffect(() => {
+        sendHttpGetRequest();
+
         document.querySelectorAll(".menu-choices").forEach(element => {
             // eslint-disable-next-line no-undef
             new Choices(element, {
