@@ -1,4 +1,5 @@
 import React, {useEffect} from "react";
+import axios from "axios";
 import "../choices/Choices-master/public/assets/scripts/choices.min.js";
 
 import "../css/Index.css";
@@ -14,21 +15,52 @@ let capacities = [
     0.5, 1, 0.5, 1, 0.5, 1, 0.5, 1, 0.5, 0.5
 ]
 
-function sendHttpGetRequest() {
-    var self = this;
-    var urlEndPoint = 'http://localhost:8083/vacancy';
-    $.ajax({
-        url: urlEndPoint,
-        type: "GET",
-        success: function(response) {
-            console.log(response.status);
-            //self.setState({servletGetResponse: response});
-        },
-        error: function(response) {
-            console.log('error');
-            //self.setState({servletGetResponse: response});
-        }
-    });
+ function sendHttpGetRequest() {
+    const urlEndPoint = 'http://localhost:8083/';
+    const object = {
+        username: "abcdefgh",
+        password: "12345678"
+    };
+    var objectJSON = JSON.stringify(object);
+    let response;
+    // response.then((res) => {
+    //     console.log(res.status);
+    // }).catch((e) => {
+    //     console.log(e.response.status);
+    // }).then((res) => {
+    //         $.ajax({
+    //             type: "POST",
+    //             url: urlEndPoint,
+    //             dataType: 'json',
+    //             data: {object: objectJSON},
+    //             success: function (response) {
+    //                 console.log("ura")
+    //                 //self.setState({servletPostResponse: response});
+    //             },
+    //             error: (error) => {
+    //                 console.log(JSON.stringify(error));
+    //             }
+    //         });
+    //     }
+    // )
+
+     const r = $.ajax({
+         type: "POST",
+         url: urlEndPoint,
+         dataType: 'json',
+         data: {object: objectJSON},
+         success: function (response) {
+             console.log("ura")
+         },
+         error: (error) => {
+             console.log(JSON.stringify(error));
+         }
+     }).then((response) => {
+         response = axios.get('http://localhost:8083/');
+         response.then((res) => {
+             console.log(res);
+         })
+     });
 }
 
 function sizeSelect(price_name, size_name) {
@@ -169,7 +201,7 @@ function drinkToBusket(element_id) {
 
 function Index() {
     useEffect(() => {
-        sendHttpGetRequest();
+        //sendHttpGetRequest();
 
         document.querySelectorAll(".menu-choices").forEach(element => {
             // eslint-disable-next-line no-undef
