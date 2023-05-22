@@ -33,9 +33,9 @@ function Login() {
             respons = $.ajax({
                 url: 'http://localhost:8083/login',
                 type: "GET",
-                success: function(response, textStatus) {
-                    console.log(textStatus);
-                        if (textStatus === 'success') {
+                success: function(response, textStatus, jqXHR) {
+                    console.log(jqXHR.status);
+                        if (jqXHR.status === 200) {
                             console.log(response);
                             localStorage["user"] = response;
                             navigate('/profile');
@@ -45,7 +45,6 @@ function Login() {
                         }
                 },
                 error: function(response) {
-
                 }
             });
 
