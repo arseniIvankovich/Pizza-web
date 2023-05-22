@@ -32,7 +32,7 @@ function Login() {
         }).then((respons) => {
             respons = axios.get('http://localhost:8083/login');
             respons.then((res) => {
-                if (res.status !== 200) {
+                if (res.status === 200) {
                     console.log(res.status);
                     localStorage["user"] = res.data;
                     navigate('/profile');
