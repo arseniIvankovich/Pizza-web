@@ -3,6 +3,7 @@ package by.fpmibsu.Servlet;
 
 import by.fpmibsu.Entity.User;
 import by.fpmibsu.Services.UserService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,37 +27,19 @@ public class MainServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         mainServletLogger.debug("Enter the main page");
         setCorsHeaders(resp);
-        //resp.addHeader("Access-Control-Allow-Origin", "*");
 
-        //req.getRequestDispatcher("/html/profile.html").forward(req, resp);
-
-        resp.getWriter().print("Hello Arsenii))))))))))))))))))))))))))))))");
+        //resp.sendRedirect(req.getContextPath() + "/vacancy");
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setCorsHeaders(resp);
-        System.out.println(req.getParameter("id"));
-        System.out.println(req.getParameter("object"));
-
-
-//        UserService userService = new UserService();
-//        req.setCharacterEncoding("UTF-8");
-//        String value = req.getParameter("profileButton");
-//        if (value.equals("Войти")){
-//            mainServletLogger.debug("Redirect to login form");
-//            resp.sendRedirect(req.getContextPath() + "/login");
-//        }
-//        else {
-//            User user = userService.findEntityById((Long) req.getSession().getAttribute("userId"));
-//            mainServletLogger.debug("Enter to the personal account");
-//            if (user.getRole().getRole().equals("Администратор"))
-//                resp.sendRedirect(req.getContextPath() + "/admin");
-//            else if (user.getRole().getRole().equals("Курьер"))
-//                resp.sendRedirect(req.getContextPath() + "/courier");
-//            else
-//                resp.sendRedirect(req.getContextPath() + "/profile");
-//        }
+        UserService userService = new UserService();
+        req.setCharacterEncoding("UTF-8");
+        String value = req.getParameter("profileButton");
+        mainServletLogger.debug("Enter to the personal account");
+        User user = userService.findEntityById((Long) req.getSession().getAttribute("userId"));
+        resp.getWriter().write(new ObjectMapper().writeValueAsString(user));
     }
     @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

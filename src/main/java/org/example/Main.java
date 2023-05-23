@@ -10,18 +10,28 @@ import by.fpmibsu.Services.RoleService;
 import by.fpmibsu.Services.UserService;
 import com.beust.ah.A;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
 import org.testng.Assert;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
     private static final Logger logger = LogManager.getRootLogger();
-    public static void main(String[] args) throws SQLException {
-        String s = BCrypt.hashpw("qwerty",BCrypt.gensalt());
-        System.out.println(s);
+    public static void main(String[] args) throws SQLException, IOException {
+        UserService userService = new UserService();
+        List<User> users = (ArrayList<User>) userService.getUndeliveredOrdersForUsers();
+        StringWriter sw =new StringWriter();
+        final ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(sw, users);
+        System.out.println(sw.toString());
     }
 }

@@ -31,7 +31,7 @@ public class OrderService {
 
 
     public void update(Order order)  {
-        orderServiceLogger.debug("Update order id");
+        orderServiceLogger.debug("Update order");
         new OrderDaoImpl().update(order);
     }
 

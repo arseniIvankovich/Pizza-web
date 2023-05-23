@@ -67,9 +67,10 @@ public class UserService {
        return userDao.create(user);
     }
 
-    public void editOrder(User user) {
+    public Boolean editOrder(User user) {
         userServiceLogger.debug("Edit user's information about order");
         userDao.updateOrder(user);
+        return true;
     }
 
     public List<User> getUndeliveredOrdersForUsers()  {
@@ -83,7 +84,7 @@ public class UserService {
         return orderedUsers;
     }
 
-    public List<User> getAllNotdAmin()  {
+    public List<User> getAllNotAdmin()  {
         userServiceLogger.debug("Get list of user's who are not admins");
         return userDao.getAllNotAdmin();
     }
