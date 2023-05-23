@@ -35,6 +35,7 @@ function Login() {
                 type: "GET",
                 success: function(response, textStatus, jqXHR) {
                     console.log(jqXHR.status);
+                    console.log(response);
                         if (jqXHR.status === 200) {
                             console.log(response);
                             localStorage["user"] = response;

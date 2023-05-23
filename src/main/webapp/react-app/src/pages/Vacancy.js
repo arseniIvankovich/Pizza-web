@@ -49,7 +49,6 @@ function sendHttpPostRequest() {
 
 function Vacancy() {
 
-
     return (
         <div className="wrapper">
             <div className="main">
@@ -150,23 +149,26 @@ function Vacancy() {
                         <input type="text" className="vacancy-json" />
                             <div className="input-box">
                                 <label>Адрес:</label>
-                                <p className="request-text" id="address"></p>
+                                <p className="request-text" id="address">Ул. {JSON.parse(localStorage['user']).addresses.street + "   "}
+                                    Д. {JSON.parse(localStorage['user']).addresses.houseNumber + "   "}
+                                    П. {JSON.parse(localStorage['user']).addresses.entrance + "   "}
+                                    Кв. {JSON.parse(localStorage['user']).addresses.flatNumber}</p>
                             </div>
 
                             <div className="input-box">
                                 <label>Имя и Фамилия:</label>
-                                <p className="request-text" id="name"></p>
+                                <p className="request-text" id="name">{JSON.parse(localStorage['user']).firstName_lastName}</p>
                             </div>
                             <div className="input-box">
                                 <label>Email:</label>
-                                <p className="request-text" id="email"></p>
+                                <p className="request-text" id="email">{JSON.parse(localStorage['user']).email}</p>
                             </div>
                             <div className="input-box">
                                 <label>Телефон:</label>
-                                <p className="request-text" id="phone"></p>
+                                <p className="request-text" id="phone">{JSON.parse(localStorage['user']).telephone}</p>
                             </div>
                             <div className="input-box">
-                                <label htmlFor="login-form-position">Должность:</label>
+                                <label htmlFor="login-form-position">Должность: </label>
                                 <select className="login-form-select" id="login-form-position" name="choicer">
                                     <option value="Пиццер">Пиццер</option>
                                     <option value="Водитель-курьер">Водитель-курьер</option>
