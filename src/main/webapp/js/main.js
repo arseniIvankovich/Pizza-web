@@ -1,6 +1,3 @@
-
-'use strict';
-
 let ids = [
     1, 5, 9, 13, 17, 21
 ]
@@ -11,11 +8,11 @@ let capacities = [
 
 let pizza_images = [
     "../img/pizzas/peperoni.jpg",
-    "../img/pizzas/4_sira.jpg",
-    "../img/pizzas/hawaii.jpg",
-    "../img/pizzas/barbecu.jpg",
-    "../img/pizzas/krevetki.jpg",
-    "../img/pizzas/derev.jpg"
+    "../img/pizzas/4_сыра.jpg",
+    "../img/pizzas/гавайская.jpg",
+    "../img/pizzas/барбекю.jpg",
+    "../img/pizzas/с креветкамиjpg.jpg",
+    "../img/pizzas/деревенская.jpg"
 ]
 
 let drink_images = [
@@ -31,24 +28,24 @@ let drink_images = [
     "../img/drinks/water.png"
 ]
 
-// function alert_vacancy() {
-//     if (document.querySelector(".session").value === '') {
-//         event.preventDefault();
-//         alert("Для доступа к разделу \"Вакансии\" необходимо войти в аккаунт");
-//     }
-// }
-//
-// function alert_busket(e) {
-//     if (document.querySelector(".session").value === '') {
-//         event.preventDefault();
-//         alert("Для доступа к корзине необходимо войти в аккаунт");
-//     }
-// }
+function alert_vacancy() {
+    if (document.querySelector(".session").value === '') {
+        event.preventDefault();
+        alert("Для доступа к разделу \"Вакансии\" необходимо войти в аккаунт");
+    }
+}
+
+function alert_busket(e) {
+    if (document.querySelector(".session").value === '') {
+        event.preventDefault();
+        alert("Для доступа к корзине необходимо войти в аккаунт");
+    }
+}
 
 function loadData() {
-    // if (document.querySelector(".session").value === '') {
-    //     document.querySelector(".profile-button-orig").value = "Личный кабинет";
-    // }
+    if (document.querySelector(".session").value !== '') {
+        document.querySelector(".profile-button-orig").value = "Личный кабинет";
+    }
 
     var busket = document.querySelector(".busket-button-text-orig");
     var busket_quantity = document.querySelector(".busket-button-quantity-text");
@@ -169,7 +166,7 @@ element1.forEach(element => {
 var busket = document.querySelector(".busket-button-text-orig");
 var busket_quantity = document.querySelector(".busket-button-quantity-text");
 
-var pizza_buskets = document.querySelectorAll(".pizza-button");
+var pizza_buskets = document.querySelectorAll(".profile-button");
 
 var drink_buskets = document.querySelectorAll(".drink-button");
 

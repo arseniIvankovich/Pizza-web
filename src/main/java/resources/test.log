@@ -1,45 +1,25 @@
-08:55:51.234 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
-08:55:51.974 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
-08:55:52.177 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
-08:57:18.218 DEBUG by.fpmibsu.Servlet.MainServlet 34 doPost - Redirect to login form
-08:57:18.228 INFO  by.fpmibsu.Servlet.LoginServlet 23 doGet - Enter login form
-08:57:24.148 DEBUG by.fpmibsu.Services.UserService 93 checkEmail - Check valid email is
-08:57:24.178 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 251 checkUserByEmail - Got connection to the db
-08:57:24.195 DEBUG by.fpmibsu.Services.UserService 28 findByEmail - find user object by id
-08:57:24.195 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 221 findByEmail - Got connection to the db
-08:57:24.199 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-08:57:24.204 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
-08:57:24.207 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 42 findEntityById - Got connection to the db
-08:57:24.212 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 30 findEntityById - Got connection to the db
-08:57:24.213 DEBUG by.fpmibsu.Services.UserService 34 checkLoginPassword - Check valid email is
-08:57:24.213 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 221 findByEmail - Got connection to the db
-08:57:24.214 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-08:57:24.214 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
-08:57:24.215 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 42 findEntityById - Got connection to the db
-08:57:24.217 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 30 findEntityById - Got connection to the db
-08:57:24.301 DEBUG by.fpmibsu.Servlet.LoginServlet 48 doPost - Invalid login or password
-08:57:26.658 WARN  by.fpmibsu.Servlet.LoginServlet 34 doPost - Invalid email
-08:57:33.121 DEBUG by.fpmibsu.Services.UserService 93 checkEmail - Check valid email is
-08:57:33.122 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 251 checkUserByEmail - Got connection to the db
-08:57:33.123 DEBUG by.fpmibsu.Services.UserService 28 findByEmail - find user object by id
-08:57:33.123 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 221 findByEmail - Got connection to the db
-08:57:33.125 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-08:57:33.126 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
-08:57:33.128 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 42 findEntityById - Got connection to the db
-08:57:33.131 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 30 findEntityById - Got connection to the db
-08:57:33.132 DEBUG by.fpmibsu.Services.UserService 34 checkLoginPassword - Check valid email is
-08:57:33.132 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 221 findByEmail - Got connection to the db
-08:57:33.133 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-08:57:33.134 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
-08:57:33.135 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 42 findEntityById - Got connection to the db
-08:57:33.137 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 30 findEntityById - Got connection to the db
-08:57:33.249 DEBUG by.fpmibsu.Services.UserService 23 findEntityById - find user object by id
-08:57:33.249 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 30 findEntityById - Got connection to the db
-08:57:33.250 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-08:57:33.251 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
-08:57:33.252 DEBUG by.fpmibsu.Servlet.ProfileServlet 29 doGet - Enter the profile page
-08:57:47.542 INFO  by.fpmibsu.Servlet.VacancyServlet 25 doGet - Enter the vacancy page
-08:57:47.542 DEBUG by.fpmibsu.Services.UserService 23 findEntityById - find user object by id
-08:57:47.543 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 30 findEntityById - Got connection to the db
-08:57:47.545 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-08:57:47.546 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
+12:20:30.511 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
+12:20:31.192 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
+12:20:31.308 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
+12:20:32.696 INFO  by.fpmibsu.Servlet.MainServlet 34 doPost - Redirect to login form
+12:20:32.699 INFO  by.fpmibsu.Servlet.LoginServlet 23 doGet - Enter login form
+12:20:36.933 DEBUG by.fpmibsu.Servlet.LoginServlet 31 doPost - Login to the system
+12:20:36.934 DEBUG by.fpmibsu.Services.UserService 93 checkEmail - Check valid email is
+12:20:36.941 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 251 checkUserByEmail - Got connection to the db
+12:20:36.952 DEBUG by.fpmibsu.Services.UserService 28 findByEmail - find user object by id
+12:20:36.952 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 221 findByEmail - Got connection to the db
+12:20:36.956 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
+12:20:36.959 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
+12:20:36.961 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 42 findEntityById - Got connection to the db
+12:20:36.965 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 30 findEntityById - Got connection to the db
+12:20:36.966 DEBUG by.fpmibsu.Services.UserService 34 checkLoginPassword - Check valid email is
+12:20:36.967 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 221 findByEmail - Got connection to the db
+12:20:36.967 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
+12:20:36.968 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
+12:20:36.968 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 42 findEntityById - Got connection to the db
+12:20:36.969 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 30 findEntityById - Got connection to the db
+12:20:37.052 INFO  by.fpmibsu.Servlet.ProfileServlet 26 doGet - Enter the profile page
+12:20:37.052 DEBUG by.fpmibsu.Services.UserService 23 findEntityById - find user object by id
+12:20:37.053 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 30 findEntityById - Got connection to the db
+12:20:37.053 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
+12:20:37.054 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db

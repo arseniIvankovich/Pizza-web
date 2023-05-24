@@ -12,7 +12,13 @@
 
     <Loggers>
 
-        <Logger name= "by.fpmibsu.Servlet" level="trace" additivity="false">
+        <Logger name= "by.fpmibsu.Servlet" level="warn" additivity="false">
+            <AppenderRef ref="file"/>
+        </Logger>
+        <Logger name= "by.fpmibsu.Servlet" level="debug" additivity="false">
+            <AppenderRef ref="file"/>
+        </Logger>
+        <Logger name= "by.fpmibsu.Filters" level="debug" additivity="false">
             <AppenderRef ref="file"/>
         </Logger>
         <Logger name= "by.fpmibsu.Services" level="debug" additivity="false">
