@@ -5,6 +5,7 @@ import "../css/Order.css";
 import "../choices/Choices-master/public/assets/styles/choices.min.css";
 import {NavLink} from "react-router-dom";
 import $ from "jquery";
+import axios from "axios";
 
 
 let pizza_images = new Map([
@@ -83,6 +84,15 @@ function loadPizza() {
     }
 }
 
+function sendHttpGetRequest() {
+    var self = this;
+    var urlEndPoint = 'http://localhost:8083/';
+    const response = axios.get('http://localhost:8083/order');
+    response.then((res) => {
+        console.log(res);
+    })
+}
+
 function loadDrinks() {
     let next_elem = document.querySelector(".order-refs");
 
@@ -108,6 +118,9 @@ function loadDrinks() {
 function Order() {
 
     useEffect(() => {
+        sendHttpGetRequest();
+
+
         document.querySelectorAll(".payment-form-select").forEach(element => {
             // eslint-disable-next-line no-undef
             new Choices(element, {

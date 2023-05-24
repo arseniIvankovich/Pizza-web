@@ -28,10 +28,9 @@ public class Main {
     private static final Logger logger = LogManager.getRootLogger();
     public static void main(String[] args) throws SQLException, IOException {
         UserService userService = new UserService();
-        List<User> users = (ArrayList<User>) userService.getUndeliveredOrdersForUsers();
-        StringWriter sw =new StringWriter();
-        final ObjectMapper mapper = new ObjectMapper();
-        mapper.writeValue(sw, users);
-        System.out.println(sw.toString());
+
+        User user = userService.findEntityById(24L);
+        System.out.println(user);
+
     }
 }

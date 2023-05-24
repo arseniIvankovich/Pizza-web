@@ -27,12 +27,13 @@ function Login() {
             },
             error: (error) => {
                 console.log("error");
+                alert("Такого аккаунта не существует");
                 //console.log(JSON.stringify(error));
             }
         }).then((respons) => {
             respons = $.ajax({
                 url: 'http://localhost:8083/login',
-                type: "GET",
+                type: "POST",
                 success: function(response, textStatus, jqXHR) {
                     console.log(jqXHR.status);
                     console.log(response);

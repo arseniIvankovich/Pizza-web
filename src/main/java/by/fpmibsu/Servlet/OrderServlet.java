@@ -25,28 +25,24 @@ public class OrderServlet extends HttpServlet {
     static final Logger orderServletLogger = LogManager.getLogger(OrderServlet.class);
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        setCorsHeaders(resp);
-
-       UserService userService = new UserService();
-        orderServletLogger.debug("Enter the order page");
+        UserService userService = new UserService();
+        orderServletLogger.info("Enter the order page");
         Long id = (Long) req.getSession().getAttribute("userId");
         User user = userService.findEntityById(id);
-        resp.getWriter().write(new ObjectMapper().writeValueAsString(user));
         req.setAttribute("user", user);
-       // req.getRequestDispatcher("/jsp/order.jsp").forward(req, resp);*/
+        req.getRequestDispatcher("/jsp/order.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        setCorsHeaders(resp);
-
         UserService userService = new UserService();
         OrderService orderService = new OrderService();
+        orderServletLogger.debug("Make order in this account");
         req.setCharacterEncoding("UTF-8");
         orderServletLogger.debug("Button action of creating order");
         String pizza = req.getParameter("pizza");
         String drink = req.getParameter("drinks");
-        String paymentMethod = req.getParameter(" ");
+        String paymentMethod = req.getParameter("select");
         ObjectMapper objectMapper = new ObjectMapper();
         TypeFactory typeFactory = objectMapper.getTypeFactory();
         List<Pizza> pizzas = objectMapper.readValue(pizza, typeFactory.constructCollectionType(List.class, Pizza.class));
@@ -58,18 +54,6 @@ public class OrderServlet extends HttpServlet {
         user.setOrder(order);
         userService.editOrder(user);
 
-      //  resp.sendRedirect(req.getContextPath() + "/");
-    }
-
-    @Override
-    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        setCorsHeaders(resp);
-    }
-
-    private void setCorsHeaders(HttpServletResponse response) {
-        response.setHeader("Access-Control-Allow-Origin", "*"); // Replace "*" with the specific allowed origin if needed
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
-        response.setHeader("Access-Control-Max-Age", "3600");
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }

@@ -19,79 +19,100 @@ import java.sql.SQLException;
 
 @WebServlet("/profile")
 public class ProfileServlet extends HttpServlet {
-
     static final Logger profileServletLogger = LogManager.getLogger(ProfileServlet.class);
-
+    String path = "/jsp/profile.jsp";
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        profileServletLogger.debug("Enter the profile page");
-        setCorsHeaders(resp);
+        profileServletLogger.info("Enter the profile page");
         UserService userService = new UserService();
         Long id = (Long) req.getSession().getAttribute("userId");
         User user = userService.findEntityById(id);
-        resp.getWriter().write(new ObjectMapper().writeValueAsString(user));
-
-        //resp.getWriter().write(new ObjectMapper().writeValueAsString(user));
+        String jsonString = new ObjectMapper().writeValueAsString(user);
+        req.setAttribute("user", jsonString);
+        req.getRequestDispatcher(path).forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        setCorsHeaders(resp);
         req.setCharacterEncoding("UTF-8");
+        profileServletLogger.debug("Change information in this account");
         UserService userService = new UserService();
         AddressService addressService = new AddressService();
         BaseAddressService baseAddressService = new BaseAddressService();
         String street = req.getParameter("street");
-        if (!baseAddressService.checkValidStreet(street)) {
+        if (street == null || !baseAddressService.checkValidStreet(street)) {
             profileServletLogger.debug("Invalid string");
-            resp.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
-
+            req.setAttribute("streetError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
             return;
         }
         String stringHouseNumber = req.getParameter("house");
+        if (stringHouseNumber.equals("")) {
+            profileServletLogger.warn("Empty string");
+            req.setAttribute("houseNumberError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
         Integer houseNumber = Integer.parseInt(stringHouseNumber);
         if (houseNumber <= 0 || houseNumber > 300) {
-            profileServletLogger.debug("Invalid house number");
-            resp.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
-
+            profileServletLogger.warn("Invalid house number");
+            req.setAttribute("houseNumberError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
             return;
         }
         String stringEntrance = req.getParameter("entrance");
-
+        if (stringEntrance.equals("")) {
+            profileServletLogger.warn("Empty string");
+            req.setAttribute("entranceError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+        }
         Integer entrance = Integer.parseInt(stringEntrance);
         if (entrance > 20 || entrance < 0) {
-            profileServletLogger.debug("Invalid entrance");
-            resp.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
+            profileServletLogger.warn("Invalid entrance");
+            req.setAttribute("entranceError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
             return;
         }
         String stringFlatNumber = req.getParameter("flat");
-        Integer flatNumber = Integer.parseInt(stringFlatNumber);
-        if (flatNumber <= 0 || flatNumber > 400) {
-            profileServletLogger.debug("Invalid flat number");
-            resp.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
-
+        if (stringFlatNumber.equals("")) {
+            profileServletLogger.warn("Empty string");
+            req.setAttribute("flatNumberError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
             return;
         }
-        String firstSecondName = req.getParameter("firstSecondName");
+        Integer flatNumber = Integer.parseInt(stringFlatNumber);
+        if (flatNumber <= 0 || flatNumber > 400) {
+            profileServletLogger.warn("Invalid flat number");
+            req.setAttribute("flatNumberError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
+        String firstSecondName = req.getParameter("firstSecond");
+        if (firstSecondName.equals("")) {
+            profileServletLogger.warn("Empty string");
+            req.setAttribute("nameError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
         String email = req.getParameter("email");
+        if (email.equals("")) {
+            profileServletLogger.warn("Empty string");
+            req.setAttribute("emailError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
         String telephone = req.getParameter("telephone");
+        if (telephone.equals("")) {
+            profileServletLogger.warn("Empty string");
+            req.setAttribute("telephoneError",true);
+            req.getRequestDispatcher(path).forward(req,resp);
+            return;
+        }
         addressService.create(new Address(street, houseNumber, entrance, flatNumber));
         Address address = addressService.findByStreetHouseEntranceFlat(street,houseNumber,entrance,flatNumber);
         User newUser = new User(address, firstSecondName, email, telephone);
         userService.edit(userService.findEntityById((Long) req.getSession().getAttribute("userId")).getUserId(), newUser);
 
-        //resp.sendRedirect(req.getContextPath() + "/profile");
+        resp.sendRedirect(req.getContextPath() + "/profile");
     }
-    @Override
-    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        setCorsHeaders(resp);
-    }
-
-    private void setCorsHeaders(HttpServletResponse response) {
-        response.setHeader("Access-Control-Allow-Origin", "*"); // Replace "*" with the specific allowed origin if needed
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
-        response.setHeader("Access-Control-Max-Age", "3600");
-    }
-
 }
