@@ -63,6 +63,7 @@ function sort($p) {
 }
 
 
+
 // ($pCount) : number of pages,($cur) : current page, the selected one ..
 function pageButtons($pCount,$cur) {
     /* this variables will disable the "Prev" button on 1st page
