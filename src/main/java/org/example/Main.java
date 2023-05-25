@@ -20,6 +20,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,9 +29,6 @@ public class Main {
     private static final Logger logger = LogManager.getRootLogger();
     public static void main(String[] args) throws SQLException, IOException {
         UserService userService = new UserService();
-
-        User user = userService.findEntityById(24L);
-        System.out.println(user);
-
+       System.out.println(userService.findByEmail("ivars7613@gmail.com").getUserId());
     }
 }
