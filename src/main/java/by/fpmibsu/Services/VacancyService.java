@@ -23,7 +23,8 @@ public class VacancyService {
         return new VacancyDaoImpl().findByName(pattern);
     }
 
-    public void addApplication(Long userId, Long vacancyId)  {
+    public Boolean addApplication(Long userId, Long vacancyId)  {
         new VacancyDaoImpl().addToUserVacancy(userId,vacancyId);
+        return true;
     }
 }
