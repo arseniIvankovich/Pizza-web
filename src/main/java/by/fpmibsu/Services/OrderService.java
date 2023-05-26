@@ -30,9 +30,10 @@ public class OrderService {
     }
 
 
-    public void update(Order order)  {
+    public Boolean update(Order order)  {
         orderServiceLogger.debug("Update order");
         new OrderDaoImpl().update(order);
+        return true;
     }
 
 

@@ -23,18 +23,18 @@ public class Order extends Entity {
         this.paymentMethod = paymentMethod;
     }
 
+    public Order(List<Drink> drinks, List<Pizza> pizzas, String paymentMethod) {
+        this.drinks = drinks;
+        this.pizzas = pizzas;
+        this.paymentMethod = paymentMethod;
+    }
+
     public Order(Long id, List<Drink> drinks, List<Pizza> pizzas, Boolean status, Timestamp deliveryDate, String paymentMethod) {
         super(id);
         this.drinks = drinks;
         this.pizzas = pizzas;
         this.status = status;
         this.deliveryDate = deliveryDate;
-        this.paymentMethod = paymentMethod;
-    }
-
-    public Order(List<Drink> drinks, List<Pizza> pizzas, String paymentMethod) {
-        this.drinks = drinks;
-        this.pizzas = pizzas;
         this.paymentMethod = paymentMethod;
     }
 

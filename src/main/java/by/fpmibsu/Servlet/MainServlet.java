@@ -21,7 +21,6 @@ public class MainServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         mainServletLogger.info("Enter the main page");
         req.getRequestDispatcher("/jsp/index.jsp").forward(req, resp);
-
     }
 
     @Override
