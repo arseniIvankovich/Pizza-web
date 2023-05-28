@@ -94,5 +94,8 @@ public class UserService {
         return userDao.checkUserByEmail(email);
     }
 
+    public List<User> findAll() {
+      return  userDao.findAll();
+    }
 
 }

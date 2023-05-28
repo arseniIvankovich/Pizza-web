@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public interface BaseDao <K, T extends Entity>{
+
     T findEntityById(K id);
     boolean delete(T t);
     boolean delete(K id);

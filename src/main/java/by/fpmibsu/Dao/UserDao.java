@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface UserDao extends BaseDao<Long, User>{
-
+    List<User> findAll();
     User findByEmail (String email);
 
     Boolean checkUserByEmail (String email);

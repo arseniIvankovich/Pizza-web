@@ -1,10 +1,7 @@
 package test;
 
 import by.fpmibsu.Dao.HikariCPDataSource;
-import by.fpmibsu.Entity.Address;
-import by.fpmibsu.Entity.Order;
-import by.fpmibsu.Entity.Role;
-import by.fpmibsu.Entity.User;
+import by.fpmibsu.Entity.*;
 import by.fpmibsu.Services.UserService;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -125,9 +122,9 @@ public class UserServiceTest {
     @Test(priority = 3)
     public void checkListOfNotAdmin()  {
         List<User> usersList = new ArrayList<>();
-        usersList.add(new User(3L,new Address("Ленина",1,1,1),new Order(new ArrayList<>(),new ArrayList<>(),false,new Timestamp(123,4,21,16,14,32,0),"наличные"),"пользователь","$2a$10$e7dQaxR.UBqcFUl0JW.1jOHmlxe3SYQ11byWVzHRe0y5T/9A2vvXa","mail@l","123",new Role(3L,"Пользователь")));
-        usersList.add(new User(2L,new Address("Ленина",1,1,1),new Order(new ArrayList<>(),new ArrayList<>(),true,new Timestamp(123,4,21,16,14,48,0),"картой"),"курьер","$2a$10$e7dQaxR.UBqcFUl0JW.1jOHmlxe3SYQ11byWVzHRe0y5T/9A2vvXa","e@e","37589",new Role(2L,"Курьер")));
-        usersList.add(new User(4L,new Address("Ленина",1,1,1),new Order(new ArrayList<>(),new ArrayList<>(),false,new Timestamp(123,4,21,16,14,32,0),"наличные"),"пользователь1","$2a$10$e7dQaxR.UBqcFUl0JW.1jOHmlxe3SYQ11byWVzHRe0y5T/9A2vvXa","m@m","1234",new Role(3L,"Пользователь")));
+        usersList.add(new User(3L,new Address("Ленина",1,1,1),new Order(new ArrayList<by.fpmibsu.Entity.Drink>(),new ArrayList<Pizza>(),false,new Timestamp(123,4,21,16,14,32,0),"наличные"),"пользователь","$2a$10$e7dQaxR.UBqcFUl0JW.1jOHmlxe3SYQ11byWVzHRe0y5T/9A2vvXa","mail@l","123",new Role(3L,"Пользователь")));
+        usersList.add(new User(2L,new Address("Ленина",1,1,1),new Order(new ArrayList<by.fpmibsu.Entity.Drink>(),new ArrayList<Pizza>(),true,new Timestamp(123,4,21,16,14,48,0),"картой"),"курьер","$2a$10$e7dQaxR.UBqcFUl0JW.1jOHmlxe3SYQ11byWVzHRe0y5T/9A2vvXa","e@e","37589",new Role(2L,"Курьер")));
+        usersList.add(new User(4L,new Address("Ленина",1,1,1),new Order(new ArrayList<by.fpmibsu.Entity.Drink>(),new ArrayList<Pizza>(),false,new Timestamp(123,4,21,16,14,32,0),"наличные"),"пользователь1","$2a$10$e7dQaxR.UBqcFUl0JW.1jOHmlxe3SYQ11byWVzHRe0y5T/9A2vvXa","m@m","1234",new Role(3L,"Пользователь")));
         Assert.assertEquals(userService.getAllNotAdmin().size(),3);
         for (int i = 0; i < userService.getAllNotAdmin().size(); i++) {
             Assert.assertEquals(userService.getAllNotAdmin().get(i).getEmail(), usersList.get(i).getEmail());
@@ -138,7 +135,7 @@ public class UserServiceTest {
     @Test(priority = 3)
     public void checkListOfUndelivered () {
         Assert.assertEquals(userService.getUndeliveredOrdersForUsers().size(),2);
-        User user = new User(2L,new Address("Ленина",1,1,1),new Order(new ArrayList<>(),new ArrayList<>(),true,new Timestamp(123,4,21,16,14,48,0),"картой"),"курьер","$2a$10$e7dQaxR.UBqcFUl0JW.1jOHmlxe3SYQ11byWVzHRe0y5T/9A2vvXa","e@e","37589",new Role(2L,"Курьер"));
+        User user = new User(2L,new Address("Ленина",1,1,1),new Order(new ArrayList<Drink>(),new ArrayList<Pizza>(),true,new Timestamp(123,4,21,16,14,48,0),"картой"),"курьер","$2a$10$e7dQaxR.UBqcFUl0JW.1jOHmlxe3SYQ11byWVzHRe0y5T/9A2vvXa","e@e","37589",new Role(2L,"Курьер"));
 
         for (int i = 0; i < userService.getUndeliveredOrdersForUsers().size(); i++) {
             Assert.assertEquals(userService.getUndeliveredOrdersForUsers().get(i).getOrder().getStatus(), false);

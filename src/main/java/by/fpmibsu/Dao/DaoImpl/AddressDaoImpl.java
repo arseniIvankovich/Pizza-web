@@ -8,10 +8,9 @@ import org.apache.logging.log4j.Logger;
 import org.postgresql.util.PSQLException;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddressDaoImpl implements AddressDao {
     private DataSource dataSource;
@@ -21,6 +20,7 @@ public class AddressDaoImpl implements AddressDao {
     }
     static final Logger addressDaoLogger = LogManager.getLogger(AddressDaoImpl.class);
     static final Logger rootLogger = LogManager.getRootLogger();
+
     @Override
     public Address findByStreetHouseEntranceFlat(String street, Integer house, Integer entrance, Integer flat) {
         Address address = new Address();

@@ -21,6 +21,33 @@ public class UserDaoImpl  implements UserDao {
     static final Logger rootLogger = LogManager.getRootLogger();
 
     @Override
+    public List<User> findAll() {
+        final String SQL_SELECT_ALL = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
+                "\tFROM public.\"User\";";
+
+        List<User> users = new ArrayList<>();
+
+        try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement()){
+            ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
+
+            while (resultSet.next()) {
+                User user = new User();
+                user.setUserId(resultSet.getLong("UserID"));
+                user.setRole(new RoleDaoImpl().findEntityById(resultSet.getLong("Role_id")));
+                user.setFirstName_lastName(resultSet.getString("First_SecondName"));
+                user.setPassword(resultSet.getString("Password"));
+                user.setEmail(resultSet.getString("Email"));
+                user.setTelephone(resultSet.getString("Phone_number"));
+                user.setAddresses(new AddressDaoImpl().findEntityById(resultSet.getLong("Address_id")));
+                user.setOrder(new OrderDaoImpl().findEntityById(resultSet.getLong("Order_id")));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            rootLogger.error("Error: ", e);
+        }
+        return users;
+    }
+    @Override
     public User findEntityById(Long id) {
         User user = new User();
         final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\"\n" +
