@@ -449,12 +449,6 @@ body {
     text-align: center;
 }
 
-/*.styled-table thead tr {*/
-/*    background-color: #FF981E;*/
-/*    color: black;*/
-/*    font-weight: bold;*/
-/*}*/
-
 .styled-table th,
 .styled-table td {
     padding-top: 15px;
@@ -510,8 +504,6 @@ body {
     position: relative;
 }
 
-
-
 .user-form {
     display: flex;
     flex-direction: column;
@@ -559,8 +551,6 @@ label {
 
     color: #000000;
 }
-
-
 
 input[type="button"] {
     transition: all .3s;

@@ -560,7 +560,6 @@ body {
     font-weight: 700;
     font-size: 24px;
     line-height: 36px;
-    /* identical to box height */
 
     color: #000000;
 }
@@ -571,7 +570,6 @@ body {
     font-weight: 500;
     font-size: 22px;
     line-height: 32px;
-    /* identical to box height */
 
     text-decoration-line: underline;
 
@@ -634,7 +632,6 @@ body {
 .busket-button-orig {
     height: fit-content;
     max-width: 160px;
-    padding: auto 0;
 
     background: #E13333;
     border-radius: 50px;
@@ -644,7 +641,6 @@ body {
 .busket-button {
     height:fit-content;
     max-width: 160px;
-    padding: auto 0;
 
     background: #E13333;
     border-radius: 50px;
@@ -654,7 +650,6 @@ body {
 .busket-button-quantity {
     height:fit-content;
     max-width: 160px;
-    padding: auto 0;
 
     background: #E13333;
     border-radius: 50px;
@@ -693,10 +688,6 @@ body {
     text-align: center;
     color: #FFFFFF;
 }
-
-
-
-
 
 .main {
     margin-top: 120px;
@@ -898,7 +889,6 @@ label {
     font-size: 20px;
     line-height: 28px;
     width: fit-content;
-    /* identical to box height */
     margin-right: 40px;
     color: #000000;
 }
@@ -916,7 +906,6 @@ label {
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    /* identical to box height */
 
     color: #000000;
 }
@@ -997,7 +986,6 @@ label {
 .order-button {
     height:fit-content;
     width: 280px;
-    /*padding: auto 0;*/
 
     background: #E13333;
     border-radius: 50px;
@@ -1028,8 +1016,6 @@ label {
     text-align: center;
     color: #FFFFFF;
 }
-
-
 
 .footer {
     width: 100%;
@@ -1071,7 +1057,6 @@ label {
     font-weight: 500;
     font-size: 24px;
     line-height: 32px;
-    /* identical to box height */
 
     text-decoration-line: underline;
 
@@ -1124,8 +1109,6 @@ label {
     width: 64px;
 }
 
-
-
 .send-buttons {
     display: flex;
     flex-direction: row;
@@ -1141,7 +1124,6 @@ label {
     font-weight: 600;
     font-size: 24px;
     line-height: 28px;
-    /* identical to box height */
 
     text-decoration-line: underline;
 

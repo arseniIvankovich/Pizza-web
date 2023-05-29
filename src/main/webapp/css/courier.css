@@ -449,12 +449,6 @@ body {
     text-align: center;
 }
 
-/*.styled-table thead tr {*/
-/*    background-color: #FF981E;*/
-/*    color: black;*/
-/*    font-weight: bold;*/
-/*}*/
-
 .styled-table th,
 .styled-table td {
     padding-top: 15px;
@@ -509,8 +503,6 @@ body {
 .added-row {
     position: relative;
 }
-
-
 
 .status-form {
     display: flex;

@@ -425,9 +425,6 @@ body {
     margin: 0 auto;
 }
 
-
-
-
 .main {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -473,7 +470,6 @@ body {
 .personal-header-text {
     text-align: center;
 }
-
 
 .input-box {
     display: flex;
@@ -537,10 +533,6 @@ label {
     line-height: 24px;
     text-align: center;
     color: #FFFFFF;
-}
-
-.save-button-text {
-
 }
 
 .login-form-register-ref {
@@ -618,10 +610,6 @@ label {
     display: none;
 }
 
-
-
-
-
 .footer {
     width: 100%;
     height: fit-content;
@@ -662,7 +650,6 @@ label {
     font-weight: 500;
     font-size: 24px;
     line-height: 32px;
-    /* identical to box height */
 
     text-decoration-line: underline;
 

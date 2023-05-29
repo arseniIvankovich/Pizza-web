@@ -1,4 +1,3 @@
-
 function loadData() {
     var busket = document.querySelector(".busket-button-text-orig");
     var busket_quantity = document.querySelector(".busket-button-quantity-text");
@@ -11,8 +10,6 @@ function loadData() {
     }
     busket.textContent = localStorage["busket-price"] + " BYN";
     busket_quantity.textContent = localStorage["busket-quantity"];
-
-    //////////////////////////////////////////////////////////
 
     let profileText = document.querySelector(".profile-json");
     profileText = JSON.parse(profileText.value);

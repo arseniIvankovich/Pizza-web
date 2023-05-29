@@ -35,11 +35,11 @@
                 <div class="personal-header"><p class="personal-header-text">Вход в аккаунт</p></div>
                 <div class="input-box">
                     <label for="login-form-email">Email</label>
-                    <input type="email" class="login-form-input" id="login-form-email" name="email">
+                    <input type="email" placeholder="email" class="login-form-input" id="login-form-email" name="email">
                 </div>
                 <div class="input-box">
                     <label for="login-form-date">Пароль</label>
-                    <input type="password" class="login-form-input" id="login-form-date" name="password">
+                    <input type="password" placeholder="password" class="login-form-input" id="login-form-date" name="password">
                 </div>
                 <div class="button-box">
                     <input type="submit" value="Войти" class="save-button">

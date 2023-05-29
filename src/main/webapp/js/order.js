@@ -1,6 +1,3 @@
-
-
-
 let pizza_images = new Map([
     ['Пепперони', "../img/pizzas/peperoni.jpg"],
     ['4 сыра', "../img/pizzas/4_сыра.jpg"],
@@ -22,10 +19,6 @@ let drink_images = new Map([
     ['Ballentine\'s, 0.5', "../img/drinks/whiskey.png"],
     ['Bonaqua, 0.5', "../img/drinks/water.png"]
 ]);
-
-
-
-let profileButton = document.querySelector('.profile-button-text-orig');
 
 function loadPizza() {
     if (document.querySelector(".session").value !== '') {
@@ -100,8 +93,6 @@ function loadData() {
 
 loadData();
 
-//localStorage.clear();
-
 const element1 = document.querySelectorAll(".payment-form-select");
 
 element1.forEach(element => {
@@ -111,15 +102,7 @@ element1.forEach(element => {
     })
 });
 
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 //order items listeners
-
 
 let total_price = 0;
 let total_button = document.querySelector(".busket-button-text");
@@ -253,7 +236,6 @@ order_item.forEach(element => {
 });
 
 
-////////////////////////////////////////////////////////////////////////
 
 let orderButton = document.querySelector(".order-button");
 orderButton.addEventListener("click", function (e) {

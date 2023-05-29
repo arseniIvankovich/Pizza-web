@@ -1,4 +1,3 @@
-
 function loadData() {
     var busket = document.querySelector(".busket-button-text-orig");
     var busket_quantity = document.querySelector(".busket-button-quantity-text");
@@ -22,8 +21,6 @@ function loadData() {
 }
 
 loadData();
-
-
 
 const element1 = document.querySelectorAll(".login-form-select");
 
@@ -72,4 +69,3 @@ element1.forEach(element => {
     };
     scrollTo();
 }());
-

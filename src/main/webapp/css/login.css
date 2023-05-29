@@ -425,9 +425,6 @@ body {
     margin: 0 auto;
 }
 
-
-
-
 .main {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -445,7 +442,6 @@ body {
     padding: 10px;
     gap: 10px;
     width: 100%;
-
 
     margin-top: 200px;
 }
@@ -494,7 +490,6 @@ label {
     font-size: 18px;
     line-height: 24px;
     width: fit-content;
-    /* identical to box height */
 
     color: #000000;
 }
@@ -512,7 +507,6 @@ label {
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    /* identical to box height */
 
     color: #000000;
 }
@@ -542,10 +536,6 @@ label {
     color: #FFFFFF;
 }
 
-.save-button-text {
-
-}
-
 .login-form-register-ref {
     text-align: center;
 
@@ -554,7 +544,6 @@ label {
     font-weight: 500;
     font-size: 18px;
     line-height: 18px;
-    /* identical to box height */
 
     text-decoration-line: underline;
 
@@ -621,10 +610,6 @@ label {
     display: none;
 }
 
-
-
-
-
 .footer {
     width: 100%;
     height: fit-content;
@@ -665,7 +650,6 @@ label {
     font-weight: 500;
     font-size: 24px;
     line-height: 32px;
-    /* identical to box height */
 
     text-decoration-line: underline;
 

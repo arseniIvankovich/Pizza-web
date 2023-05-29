@@ -1,21 +1,3 @@
-//
-// document.querySelector(".status-button").addEventListener("click", function() {
-//     let email = document.getElementById("status-form-input").value;
-//     let count = 0;
-//     document.querySelectorAll(".added-row").forEach(function(elem) {
-//         if (elem.querySelector(".email-field").textContent === email) {
-//             if (elem.querySelector(".status").textContent === "оформлен") {
-//                 elem.querySelector(".status").textContent = "принят";
-//             }
-//             else {
-//                 elem.querySelector(".status").textContent = "оформлен";
-//             }
-//             count += 1;
-//         }
-//     });
-//     if (count === 0) alert("Пользователя с таким e-mail не существует");
-// });
-
 var $table = document.getElementById("styled-table"),
 // number of rows per page
     $n = 8,
@@ -61,8 +43,6 @@ function sort($p) {
     // CSS Stuff
     document.getElementById("id"+$p).setAttribute("class","active");
 }
-
-
 
 // ($pCount) : number of pages,($cur) : current page, the selected one ..
 function pageButtons($pCount,$cur) {

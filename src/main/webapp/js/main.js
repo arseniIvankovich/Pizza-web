@@ -66,8 +66,6 @@ function loadData() {
     busket_quantity.textContent = localStorage["busket-quantity"];
 }
 
-//localStorage.clear();
-
 loadData();
 
 //pizza price according to size

@@ -570,7 +570,6 @@ body {
 .busket-button-orig {
     height: fit-content;
     max-width: 160px;
-    padding: auto 0;
 
     background: #E13333;
     border-radius: 50px;
@@ -592,7 +591,6 @@ body {
 .busket-button-quantity {
     height:fit-content;
     max-width: 160px;
-    padding: auto 0;
 
     background: #E13333;
     border-radius: 50px;
@@ -613,7 +611,6 @@ body {
 .logout-button {
     height: fit-content;
     max-width: 140px;
-    /* width: fit-content; */
 
     background: #E13333;
     border-radius: 50px;
@@ -633,8 +630,6 @@ body {
 .profile-button-orig {
     height: fit-content;
     max-width: 140px;
-    /* width: fit-content; */
-    padding: auto 0;
 
     background: #E13333;
     border-radius: 50px;
@@ -652,10 +647,6 @@ body {
     text-align: center;
     color: #FFFFFF;
 }
-
-
-
-
 
 .main {
     margin-top: 120px;
@@ -716,7 +707,6 @@ label {
     font-size: 18px;
     line-height: 24px;
     width: fit-content;
-    /* identical to box height */
 
     color: #000000;
 }
@@ -734,7 +724,6 @@ label {
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    /* identical to box height */
 
     color: #000000;
 }
@@ -766,7 +755,6 @@ label {
 .save-button {
     height:fit-content;
     max-width: 200px;
-    padding: auto 0;
 
     background: #E13333;
     border-radius: 50px;
@@ -843,10 +831,6 @@ label {
     display: none;
 }
 
-
-
-
-
 .footer {
     width: 100%;
     height: fit-content;
@@ -887,7 +871,6 @@ label {
     font-weight: 500;
     font-size: 24px;
     line-height: 32px;
-    /* identical to box height */
 
     text-decoration-line: underline;
 

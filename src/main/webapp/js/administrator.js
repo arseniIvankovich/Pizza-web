@@ -1,21 +1,3 @@
-//
-// document.querySelector(".user-button").addEventListener("click", function() {
-//     let email = document.getElementById("user-form-input").value;
-//     let count = 0;
-//     document.querySelectorAll(".added-row").forEach(function(elem) {
-//         if (elem.querySelector(".email-field").textContent === email) {
-//             let isSure = confirm("Вы уверены, что хотите удалить пользователя?");
-//             if (isSure) {
-//                 elem.remove();
-//             }
-//             count += 1;
-//         }
-//     });
-//     if (count === 0) alert("Пользователя с таким e-mail не существует");
-// });
-
-
-// get the table element
 var $table = document.getElementById("styled-table"),
 // number of rows per page
     $n = 8,
@@ -61,7 +43,6 @@ function sort($p) {
     // CSS Stuff
     document.getElementById("id"+$p).setAttribute("class","active");
 }
-
 
 
 // ($pCount) : number of pages,($cur) : current page, the selected one ..

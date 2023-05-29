@@ -415,8 +415,6 @@ html {
     box-sizing: inherit;
 }
 
-
-
 body {
     height: 100%;
     background: linear-gradient(90deg, #FFF1C9 0%, #FFE557 50%, #FFF1C7 100%);
@@ -556,7 +554,6 @@ body {
     font-weight: 500;
     font-size: 22px;
     line-height: 32px;
-    /* identical to box height */
 
     text-decoration-line: underline;
 
@@ -587,7 +584,6 @@ body {
 .profile-button-orig {
     height: fit-content;
     max-width: 240px;
-    /* width: fit-content; */
 
     background: #E13333;
     border-radius: 50px;
@@ -607,8 +603,6 @@ body {
 .profile-button {
     height: fit-content;
     max-width: 140px;
-    /* width: fit-content; */
-    padding: auto 0;
 
     background: #E13333;
     border-radius: 50px;
@@ -646,10 +640,6 @@ body {
     color: #FFFFFF;
 }
 
-
-
-
-
 .menu {
     width: 100%;
     margin-top: 120px;
@@ -678,7 +668,6 @@ body {
     font-weight: 700;
     font-size: 34px;
     line-height: 38px;
-    /* identical to box height */
     text-align: center;
 
     color: #000000;
@@ -721,7 +710,6 @@ body {
     font-weight: 600;
     font-size: 24px;
     line-height: 24px;
-    /* identical to box height */
 
     color: #000000;
 }
@@ -732,7 +720,6 @@ body {
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
-    /* identical to box height */
 
     color: #000000;
 }
@@ -743,7 +730,6 @@ body {
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
-    /* identical to box height */
 
     color: #000000;
 }
@@ -770,7 +756,6 @@ body {
 .busket-button-quantity {
     height:fit-content;
     max-width: 60px;
-    padding: auto 0;
 
     background: #E13333;
     border-radius: 50px;
@@ -791,7 +776,6 @@ body {
 .busket-button-orig {
     height: fit-content;
     max-width: 200px;
-    padding: auto 0;
 
     background: #E13333;
     border-radius: 50px;
@@ -822,7 +806,6 @@ body {
 .busket-button {
     height: fit-content;
     max-width: 300px;
-    padding: auto 0;
 
     background: #E13333;
     border-radius: 50px;
@@ -881,7 +864,6 @@ body {
     font-weight: 600;
     font-size: 24px;
     line-height: 28px;
-    /* identical to box height */
 
     text-decoration-line: underline;
 
@@ -891,9 +873,6 @@ body {
 .change-order:hover {
     opacity: 0.8;
 }
-
-
-
 
 .right-box {
     display: flex;
@@ -925,7 +904,6 @@ body {
     font-weight: 500;
     font-size: 18px;
     line-height: 36px;
-    /* identical to box height */
 
     text-decoration-line: underline;
 
@@ -1019,13 +997,6 @@ body {
     background: rgba(255, 255, 255);
     border-radius: 10px;
 }
-
-
-
-
-
-
-
 
 .footer {
     flex: 0 0 auto;
@@ -1121,22 +1092,6 @@ body {
     width: 64px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .login-box {
     visibility: hidden;
     opacity: 0;
@@ -1169,8 +1124,6 @@ body {
     font-weight: 600;
     font-size: 32px;
     line-height: 42px;
-    /* identical to box height */
-
 
     color: #000000;
 }
@@ -1193,8 +1146,6 @@ label {
     line-height: 34px;
     text-align: left;
     width: 100%;
-    /* identical to box height */
-
 
     color: #000000;
 }
@@ -1213,7 +1164,6 @@ label {
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    /* identical to box height */
 
     color: #000000;
 }
@@ -1227,13 +1177,11 @@ label {
     width: fit-content;
     padding: 5px 20px;
 
-
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
-    /* identical to box height */
 
     text-align: center;
 
@@ -1249,7 +1197,6 @@ label {
     font-weight: 500;
     font-size: 16px;
     line-height: 16px;
-    /* identical to box height */
 
     text-decoration-line: underline;
 
