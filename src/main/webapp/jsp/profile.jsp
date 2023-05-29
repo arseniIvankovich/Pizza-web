@@ -170,8 +170,7 @@
                         Доставка
                     </p>
                     <ul type="disc" class="info-text">
-                        <li>что-то</li>
-                        <li>что-то</li>
+                        <li>доставка 30 минут</li>
                     </ul>
                 </div>
 
@@ -180,8 +179,8 @@
                         Спонсоры
                     </p>
                     <ul type="disc" class="info-text">
-                        <li>что-то</li>
-                        <li>что-то</li>
+                        <li>Казанцева Ольга Геннадьевна</li>
+                        <li>Сакович Вадим Юрьевич</li>
                     </ul>
                 </div>
 
@@ -190,8 +189,7 @@
                         Соотрудничающие компании
                     </p>
                     <ul type="disc" class="info-text">
-                        <li>что-то</li>
-                        <li>что-то</li>
+                        <li>BeHealthy</li>
                     </ul>
                 </div>
             </div>
