@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.Objects;
 
-@JsonPropertyOrder({"id","name","counter","capacity","price"})
 public class Drink extends Entity{
     private String name;
     private Double capacity;
@@ -21,8 +20,8 @@ public class Drink extends Entity{
         this.price = price;
     }
 
-    public Drink(Long drinkID, String name, Double capacity, Double price) {
-        super(drinkID);
+    public Drink(Long id, String name, Double capacity, Double price) {
+        super(id);
         this.name = name;
         this.capacity = capacity;
         this.price = price;
@@ -34,10 +33,6 @@ public class Drink extends Entity{
         if (o == null || getClass() != o.getClass()) return false;
         Drink drink = (Drink) o;
         return Objects.equals(name, drink.name) && Objects.equals(capacity, drink.capacity) && Objects.equals(price, drink.price);
-    }
-
-    public Long getDrinkID() {
-        return getId();
     }
 
     public Integer getCounter() {

@@ -29,7 +29,6 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
         registerServletLogger.info("User register into the system");
         AddressService addressService = new AddressService();
         BaseAddressService baseAddressService = new BaseAddressService();

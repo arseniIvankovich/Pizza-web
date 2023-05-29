@@ -50,7 +50,7 @@ public class UserDaoImpl  implements UserDao {
     @Override
     public User findEntityById(Long id) {
         User user = new User();
-        final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\"\n" +
+        final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
                 "\tFROM public.\"User\" WHERE \"UserID\" = ?;";
         try (Connection connection = dataSource.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)){
@@ -66,6 +66,7 @@ public class UserDaoImpl  implements UserDao {
                 user.setEmail(resultSet.getString("Email"));
                 user.setTelephone(resultSet.getString("Phone_number"));
                 user.setAddresses(new AddressDaoImpl().findEntityById(resultSet.getLong("Address_id")));
+                user.setOrder(new OrderDaoImpl().findEntityById(resultSet.getLong("Order_id")));
             }
         } catch (SQLException e) {
             rootLogger.error("Error: ", e);

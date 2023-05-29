@@ -120,10 +120,10 @@ public class OrderDaoImpl implements OrderDao {
             Long index = this.getLastID(order.getStatus(),order.getDeliveryDate(),order.getPaymentMethod());
 
             for (Pizza pizza : order.getPizzas())
-                addToMMPizza(index, pizza.getPizzaId(), pizza.getCounter());
+                addToMMPizza(index, pizza.getId(), pizza.getCounter());
 
             for (Drink drink : order.getDrinks())
-                addToMMDrink(index, drink.getDrinkID(), drink.getCounter());
+                addToMMDrink(index, drink.getId(), drink.getCounter());
 
             order.setId(index);
 

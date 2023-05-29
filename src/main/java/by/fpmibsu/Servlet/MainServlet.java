@@ -25,9 +25,8 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         UserService userService = new UserService();
-        req.setCharacterEncoding("UTF-8");
+
         String value = req.getParameter("profileButton");
         if (value.equals("Войти")){
             mainServletLogger.info("Redirect to login form");

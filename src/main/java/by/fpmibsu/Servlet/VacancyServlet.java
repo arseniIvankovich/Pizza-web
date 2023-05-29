@@ -33,7 +33,6 @@ public class VacancyServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
         vacancyServletLogger.debug("Add new vacancy to the user");
         Long id = (Long) req.getSession().getAttribute("userId");
         String choicer = req.getParameter("choicer");
