@@ -67,7 +67,7 @@ public class AddressServiceTest {
     public void findAddresses (Long id,String street,Integer house,Integer entrance,Integer flat) {
         Address address = addressService.findByStreetHouseEntranceFlat(street,house,entrance,flat);
         Assert.assertEquals(address,new Address(street,house,entrance,flat));
-        Assert.assertEquals(address.getAddressID(),id);
+        Assert.assertEquals(address.getId(),id);
 
     }
 

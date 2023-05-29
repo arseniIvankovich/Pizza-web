@@ -25,13 +25,6 @@ public class Address extends Entity{
         this.flatNumber = flatNumber;
     }
 
-    public Long getAddressID() {
-        return this.getId();
-    }
-
-    public void setAddressID(Long addressID) {
-        this.setId(addressID);
-    }
 
     public String getStreet() {
         return this.street;

@@ -34,7 +34,7 @@ public class AddressDaoImpl implements AddressDao {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                address.setAddressID(resultSet.getLong("AddressID"));
+                address.setId(resultSet.getLong("AddressID"));
                 address.setStreet(resultSet.getString("StreetName"));
                 address.setEntrance(resultSet.getInt("Entrance"));
                 address.setHouseNumber(resultSet.getInt("HouseNumber"));
@@ -150,7 +150,7 @@ public class AddressDaoImpl implements AddressDao {
             preparedStatement.setInt(2, address.getEntrance());
             preparedStatement.setInt(3, address.getFlatNumber());
             preparedStatement.setInt(4, address.getHouseNumber());
-            preparedStatement.setLong(5, address.getAddressID());
+            preparedStatement.setLong(5, address.getId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

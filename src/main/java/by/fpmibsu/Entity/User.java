@@ -50,8 +50,8 @@ public class User extends Entity{
         this.role = role;
     }
 
-    public User(Long userId, Address addresses, Order order, String firstName_lastName, String password, String email, String telephone, Role role) {
-        super(userId);
+    public User(Long id, Address addresses, Order order, String firstName_lastName, String password, String email, String telephone, Role role) {
+        super(id);
         this.addresses = addresses;
         this.order = order;
         this.firstName_lastName = firstName_lastName;
@@ -59,14 +59,6 @@ public class User extends Entity{
         this.Email = email;
         this.Telephone = telephone;
         this.role = role;
-    }
-
-    public Long getUserId() {
-        return this.getId();
-    }
-
-    public void setUserId(Long userId) {
-        this.setId(userId);
     }
 
     public Address getAddresses() {

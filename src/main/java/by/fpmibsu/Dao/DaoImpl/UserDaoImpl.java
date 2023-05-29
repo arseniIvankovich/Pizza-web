@@ -32,7 +32,7 @@ public class UserDaoImpl  implements UserDao {
 
             while (resultSet.next()) {
                 User user = new User();
-                user.setUserId(resultSet.getLong("UserID"));
+                user.setId(resultSet.getLong("UserID"));
                 user.setRole(new RoleDaoImpl().findEntityById(resultSet.getLong("Role_id")));
                 user.setFirstName_lastName(resultSet.getString("First_SecondName"));
                 user.setPassword(resultSet.getString("Password"));
@@ -59,7 +59,7 @@ public class UserDaoImpl  implements UserDao {
             ResultSet resultSet= preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                user.setUserId(resultSet.getLong("UserID"));
+                user.setId(resultSet.getLong("UserID"));
                 user.setRole(new RoleDaoImpl().findEntityById(resultSet.getLong("Role_id")));
                 user.setFirstName_lastName(resultSet.getString("First_SecondName"));
                 user.setPassword(resultSet.getString("Password"));
@@ -149,7 +149,7 @@ public class UserDaoImpl  implements UserDao {
             preparedStatement.setString(2,user.getEmail());
             preparedStatement.setString(3,user.getTelephone());
             preparedStatement.setLong(4,user.getAddresses().getId());
-            preparedStatement.setLong(5,user.getUserId());
+            preparedStatement.setLong(5,user.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             rootLogger.error("Error: ", e);
@@ -167,7 +167,7 @@ public class UserDaoImpl  implements UserDao {
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)){
             userDaoLogger.info("Got connection to the db");
             preparedStatement.setLong(1,user.getOrder().getId());
-            preparedStatement.setLong(2,user.getUserId());
+            preparedStatement.setLong(2,user.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             rootLogger.error("Error: ", e);
@@ -190,7 +190,7 @@ public class UserDaoImpl  implements UserDao {
 
             while (resultSet.next()) {
                 User user = new User();
-                user.setUserId(resultSet.getLong("UserID"));
+                user.setId(resultSet.getLong("UserID"));
                 user.setRole(new RoleDaoImpl().findEntityById(resultSet.getLong("Role_id")));
                 user.setFirstName_lastName(resultSet.getString("First_SecondName"));
                 user.setEmail(resultSet.getString("Email"));
@@ -221,7 +221,7 @@ public class UserDaoImpl  implements UserDao {
 
             while (resultSet.next()) {
                 User user = new User();
-                user.setUserId(resultSet.getLong("UserID"));
+                user.setId(resultSet.getLong("UserID"));
                 user.setRole(new RoleDaoImpl().findEntityById(resultSet.getLong("Role_id")));
                 user.setFirstName_lastName(resultSet.getString("First_SecondName"));
                 user.setEmail(resultSet.getString("Email"));
@@ -251,7 +251,7 @@ public class UserDaoImpl  implements UserDao {
             ResultSet resultSet= preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                user.setUserId(resultSet.getLong("UserID"));
+                user.setId(resultSet.getLong("UserID"));
                 user.setRole(new RoleDaoImpl().findEntityById(resultSet.getLong("Role_id")));
                 user.setFirstName_lastName(resultSet.getString("First_SecondName"));
                 user.setPassword(resultSet.getString("Password"));

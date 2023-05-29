@@ -111,7 +111,7 @@ public class ProfileServlet extends HttpServlet {
         addressService.create(new Address(street, houseNumber, entrance, flatNumber));
         Address address = addressService.findByStreetHouseEntranceFlat(street,houseNumber,entrance,flatNumber);
         User newUser = new User(address, firstSecondName, email, telephone);
-        userService.edit(userService.findEntityById((Long) req.getSession().getAttribute("userId")).getUserId(), newUser);
+        userService.edit(userService.findEntityById((Long) req.getSession().getAttribute("userId")).getId(), newUser);
 
         resp.sendRedirect(req.getContextPath() + "/profile");
     }
