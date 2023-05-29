@@ -95,7 +95,12 @@ public class UserService {
     }
 
     public List<User> findAll() {
+        userServiceLogger.debug("Find all users");
       return  userDao.findAll();
     }
 
+    public void deleteById (Long id) {
+        userServiceLogger.debug("Delete user by id");
+        userDao.delete(id);
+    }
 }
