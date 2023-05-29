@@ -32,7 +32,7 @@ public class PizzaDaoImpl  implements PizzaDao {
                 pizza.setIngredients(resultSet.getString("Ingredients"));
                 pizza.setDoughType(resultSet.getBoolean("TypeDrough"));
                 pizza.setWeight(resultSet.getDouble("BasicWeight"));
-                pizza.setWeight(resultSet.getDouble("Price"));
+                pizza.setPrice(resultSet.getDouble("Price"));
                 pizza.setSize(resultSet.getBoolean("Size"));
             }
         } catch (SQLException e) {
@@ -122,7 +122,7 @@ public class PizzaDaoImpl  implements PizzaDao {
             preparedStatement.setDouble(4,pizza.getWeight());
             preparedStatement.setDouble(5,pizza.getPrice());
             preparedStatement.setBoolean(6,pizza.getSize());
-            preparedStatement.setLong(7,pizza.getPizzaId());
+            preparedStatement.setLong(7,pizza.getId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

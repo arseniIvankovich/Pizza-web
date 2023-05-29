@@ -31,7 +31,6 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
         adminServletLogger.debug("Delete users with email");
         String email = req.getParameter("email");
         UserService userService = new UserService();

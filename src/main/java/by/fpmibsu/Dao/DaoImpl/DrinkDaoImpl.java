@@ -113,7 +113,7 @@ public class DrinkDaoImpl implements DrinkDao {
             preparedStatement.setString(1, drink.getName());
             preparedStatement.setDouble(2, drink.getCapacity());
             preparedStatement.setDouble(3, drink.getPrice());
-            preparedStatement.setLong(4, drink.getDrinkID());
+            preparedStatement.setLong(4, drink.getId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

@@ -30,7 +30,6 @@ public class CourierServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
         courierServletLogger.debug("Change status on order");
         String email = req.getParameter("email");
         UserService userService = new UserService();

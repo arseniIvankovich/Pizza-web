@@ -27,7 +27,6 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService = new UserService();
-        req.setCharacterEncoding("UTF-8");
         loginServletLogger.debug("Login to the system");
         String email = req.getParameter("email").trim();
         if (email.equals("") || !userService.checkEmail(email)) {

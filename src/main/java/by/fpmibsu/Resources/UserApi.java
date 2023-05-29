@@ -21,7 +21,7 @@ public class UserApi {
         User user = userService.findEntityById(id);
 
         if (user.getEmail() == null)
-            return Response.status(404).build();
+            return Response.status(400).build();
 
         String json = new ObjectMapper().writeValueAsString(user);
         return Response.status(200).entity(json).build();
@@ -52,7 +52,7 @@ public class UserApi {
     }
 
     @DELETE
-    @Path("delete/{id}")
+    @Path("/{id}")
     @Produces("application/json")
     @Consumes("application/json")
     public Response deleteUser (@PathParam("id") Long id) {
@@ -60,14 +60,14 @@ public class UserApi {
         String result = "User deleted " + user;
 
         if (user.getEmail() == null)
-            return Response.status(404).build();
+            return Response.status(400).build();
 
         userService.deleteById(id);
         return Response.status(202).entity(result).build();
     }
 
     @PUT
-    @Path("update/{id}")
+    @Path("/{id}")
     @Produces("application/json")
     @Consumes("application/json")
     public Response updateUser (@PathParam("id") Long id,User user) throws JsonProcessingException {
@@ -75,7 +75,7 @@ public class UserApi {
         User user1 = userService.findEntityById(id);
 
         if (user1.getEmail() == null)
-            return Response.status(404).build();
+            return Response.status(400).build();
 
         String result = "User updated " + user1;
         return Response.status(201).entity(result).build();

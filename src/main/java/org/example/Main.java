@@ -4,10 +4,7 @@ import by.fpmibsu.Entity.Address;
 import by.fpmibsu.Entity.Order;
 import by.fpmibsu.Entity.Role;
 import by.fpmibsu.Entity.User;
-import by.fpmibsu.Services.AddressService;
-import by.fpmibsu.Services.BaseAddressService;
-import by.fpmibsu.Services.RoleService;
-import by.fpmibsu.Services.UserService;
+import by.fpmibsu.Services.*;
 import com.beust.ah.A;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -29,6 +26,8 @@ public class Main {
     private static final Logger logger = LogManager.getRootLogger();
     public static void main(String[] args) throws SQLException, IOException {
         UserService userService = new UserService();
-       System.out.println(userService.findEntityById(-1L).getEmail() == null);
+        User user = userService.findEntityById(10L);
+        String json = new ObjectMapper().writeValueAsString(user);
+        System.out.println(json);
     }
 }
