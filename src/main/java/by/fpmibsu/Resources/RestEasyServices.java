@@ -1,4 +1,4 @@
-package org.resources;
+package by.fpmibsu.Resources;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -10,7 +10,7 @@ public class RestEasyServices extends Application {
     private Set<Object> singletons = new HashSet<>();
 
     public RestEasyServices() {
-        singletons.add(new HelloWorld());
+        singletons.add(new UserApi());
     }
 
     @Override

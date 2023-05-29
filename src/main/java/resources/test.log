@@ -1,13 +1,13 @@
-10:20:50.936 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
-10:20:51.737 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
-10:20:51.865 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
-10:22:45.373 DEBUG by.fpmibsu.Services.UserService 46 edit - Edit information about user
-10:22:45.378 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 57 findEntityById - Got connection to the db
-10:22:45.384 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-10:22:45.390 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
-10:22:45.391 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 56 checkByStreetHouseEntranceFlat - Got connection to the db
-10:22:45.392 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 146 update - Got connection to the db
-10:22:45.515 DEBUG by.fpmibsu.Services.UserService 23 findEntityById - find user object by id
-10:22:45.515 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 57 findEntityById - Got connection to the db
-10:22:45.516 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-10:22:45.516 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
+16:59:08.093 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
+16:59:08.794 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
+16:59:08.933 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
+16:59:43.956 DEBUG by.fpmibsu.Services.UserService 46 edit - Edit information about user
+16:59:43.961 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 57 findEntityById - Got connection to the db
+16:59:43.968 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
+16:59:43.977 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
+16:59:43.978 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 56 checkByStreetHouseEntranceFlat - Got connection to the db
+16:59:43.981 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 146 update - Got connection to the db
+16:59:43.986 DEBUG by.fpmibsu.Services.UserService 23 findEntityById - find user object by id
+16:59:43.986 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 57 findEntityById - Got connection to the db
+16:59:43.987 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
+16:59:43.988 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db

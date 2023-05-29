@@ -1,4 +1,4 @@
-package org.resources;
+package by.fpmibsu.Resources;
 
 import by.fpmibsu.Entity.User;
 import by.fpmibsu.Services.UserService;
@@ -6,23 +6,25 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Path("/users")
-public class HelloWorld {
+public class UserApi {
     private UserService userService = new UserService();
     @GET
     @Path("/{id}")
     @Produces("application/json")
-    public String getUser(@PathParam("id") Long id) throws JsonProcessingException {
-        String json = new ObjectMapper().writeValueAsString(userService.findEntityById(id));
-        return json;
+    public Response getUser(@PathParam("id") Long id) throws JsonProcessingException {
+        User user = userService.findEntityById(id);
+
+        if (user.getEmail() == null)
+            return Response.status(404).build();
+
+        String json = new ObjectMapper().writeValueAsString(user);
+        return Response.status(200).entity(json).build();
     }
 
     @GET
@@ -43,10 +45,9 @@ public class HelloWorld {
     @Path("")
     @Produces("application/json")
     @Consumes("application/json")
-    public Response getUser (String user) throws JsonProcessingException {
+    public Response getUser (User user) throws JsonProcessingException {
         String result = "User created " + user;
-        User user1 = new ObjectMapper().readValue(user,User.class);
-        userService.createUser(user1);
+        userService.createUser(user);
         return Response.status(201).entity(result).build();
     }
 
@@ -57,6 +58,10 @@ public class HelloWorld {
     public Response deleteUser (@PathParam("id") Long id) {
         User user = userService.findEntityById(id);
         String result = "User deleted " + user;
+
+        if (user.getEmail() == null)
+            return Response.status(404).build();
+
         userService.deleteById(id);
         return Response.status(202).entity(result).build();
     }
@@ -65,10 +70,13 @@ public class HelloWorld {
     @Path("update/{id}")
     @Produces("application/json")
     @Consumes("application/json")
-    public Response updateUser (@PathParam("id") Long id,String jsonUser) throws JsonProcessingException {
-        User user = new ObjectMapper().readValue(jsonUser,User.class);
+    public Response updateUser (@PathParam("id") Long id,User user) throws JsonProcessingException {
         userService.edit(id,user);
         User user1 = userService.findEntityById(id);
+
+        if (user1.getEmail() == null)
+            return Response.status(404).build();
+
         String result = "User updated " + user1;
         return Response.status(201).entity(result).build();
     }

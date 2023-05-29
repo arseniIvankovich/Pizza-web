@@ -29,6 +29,6 @@ public class Main {
     private static final Logger logger = LogManager.getRootLogger();
     public static void main(String[] args) throws SQLException, IOException {
         UserService userService = new UserService();
-       System.out.println(userService.findByEmail("ivars7613@gmail.com").getUserId());
+       System.out.println(userService.findEntityById(-1L).getEmail() == null);
     }
 }
