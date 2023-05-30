@@ -85,9 +85,7 @@ public class UserDaoImpl implements UserDao {
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)) {
             userDaoLogger.info("Got connection to the db");
             preparedStatement.setString(1, user.getEmail());
-
-            preparedStatement.executeUpdate();
-            return true;
+            return preparedStatement.executeUpdate() != 0;
         } catch (SQLException e) {
             rootLogger.error("Error: ", e);
         }

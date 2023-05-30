@@ -18,14 +18,18 @@
 </head>
 
 <body>
-
+<c:if test="${emailError == true}">
+    <script>
+        alert("Неверный email");
+    </script>
+</c:if>
 <div class="wrapper">
     <p class="administrator-text">Список пользователей</p>
 
     <table class="styled-table" id="styled-table">
             <tr class="header">
-                <th>E-mail</th>
                 <th>Имя и фамилия</th>
+                <th>E-mail</th>
                 <th>Телефон</th>
                 <th>Роль</th>
             </tr>

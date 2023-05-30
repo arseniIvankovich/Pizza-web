@@ -39,8 +39,7 @@ public class UserService {
 
     public Boolean delete(String email) {
         userServiceLogger.debug("Delete information about user by email in DB");
-        userDao.delete(userDao.findByEmail(email));
-        return true;
+        return userDao.delete(userDao.findByEmail(email));
     }
 
     public boolean edit(Long id, User newUser) {

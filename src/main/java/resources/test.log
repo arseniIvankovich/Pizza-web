@@ -1,68 +1,165 @@
-19:17:14.809 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
-19:17:15.500 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
-19:17:15.650 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
-19:17:19.696 INFO  by.fpmibsu.Servlet.MainServlet 32 doPost - Redirect to login form
-19:17:19.702 INFO  by.fpmibsu.Servlet.LoginServlet 23 doGet - Enter login form
-19:17:26.539 DEBUG by.fpmibsu.Servlet.LoginServlet 30 doPost - Login to the system
-19:17:26.540 DEBUG by.fpmibsu.Services.UserService 94 checkEmail - Check valid email is
-19:17:26.557 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 279 checkUserByEmail - Got connection to the db
-19:17:26.571 DEBUG by.fpmibsu.Services.UserService 28 findByEmail - find user object by id
-19:17:26.571 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 249 findByEmail - Got connection to the db
-19:17:26.576 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-19:17:26.579 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
-19:17:26.582 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 42 findEntityById - Got connection to the db
-19:17:26.588 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 30 findEntityById - Got connection to the db
-19:17:26.591 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 26 findEntityById - Got connection to the db
-19:17:26.592 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 26 findEntityById - Got connection to the db
-19:17:26.593 DEBUG by.fpmibsu.Services.UserService 34 checkLoginPassword - Check valid email is
-19:17:26.593 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 249 findByEmail - Got connection to the db
-19:17:26.594 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-19:17:26.595 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
-19:17:26.595 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 42 findEntityById - Got connection to the db
-19:17:26.597 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 30 findEntityById - Got connection to the db
-19:17:26.598 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 26 findEntityById - Got connection to the db
-19:17:26.599 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 26 findEntityById - Got connection to the db
-19:17:26.674 INFO  by.fpmibsu.Servlet.ProfileServlet 26 doGet - Enter the profile page
-19:17:26.675 DEBUG by.fpmibsu.Services.UserService 23 findEntityById - find user object by id
-19:17:26.675 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 57 findEntityById - Got connection to the db
-19:17:26.676 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-19:17:26.676 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
-19:17:26.677 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 42 findEntityById - Got connection to the db
-19:17:26.678 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 30 findEntityById - Got connection to the db
-19:17:26.678 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 26 findEntityById - Got connection to the db
-19:17:26.679 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 26 findEntityById - Got connection to the db
-19:17:28.941 INFO  by.fpmibsu.Servlet.OrderServlet 29 doGet - Enter the order page
-19:17:28.941 DEBUG by.fpmibsu.Services.UserService 23 findEntityById - find user object by id
-19:17:28.942 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 57 findEntityById - Got connection to the db
-19:17:28.943 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-19:17:28.944 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
-19:17:28.945 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 42 findEntityById - Got connection to the db
-19:17:28.947 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 30 findEntityById - Got connection to the db
-19:17:28.948 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 26 findEntityById - Got connection to the db
-19:17:28.949 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 26 findEntityById - Got connection to the db
-19:17:29.908 DEBUG by.fpmibsu.Servlet.OrderServlet 40 doPost - Make order in this account
-19:17:29.908 WARN  by.fpmibsu.Servlet.OrderServlet 44 doPost - Empty order
-19:17:31.671 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
-19:17:34.612 INFO  by.fpmibsu.Servlet.OrderServlet 29 doGet - Enter the order page
-19:17:34.612 DEBUG by.fpmibsu.Services.UserService 23 findEntityById - find user object by id
-19:17:34.613 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 57 findEntityById - Got connection to the db
-19:17:34.615 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-19:17:34.617 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
-19:17:34.619 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 42 findEntityById - Got connection to the db
-19:17:34.621 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 30 findEntityById - Got connection to the db
-19:17:34.623 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 26 findEntityById - Got connection to the db
-19:17:34.624 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 26 findEntityById - Got connection to the db
-19:17:36.317 DEBUG by.fpmibsu.Servlet.OrderServlet 40 doPost - Make order in this account
-19:17:36.317 WARN  by.fpmibsu.Servlet.OrderServlet 44 doPost - Empty order
-19:17:38.599 INFO  by.fpmibsu.Servlet.MainServlet 22 doGet - Enter the main page
-19:17:41.861 INFO  by.fpmibsu.Servlet.OrderServlet 29 doGet - Enter the order page
-19:17:41.861 DEBUG by.fpmibsu.Services.UserService 23 findEntityById - find user object by id
-19:17:41.862 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 57 findEntityById - Got connection to the db
-19:17:41.862 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 26 findEntityById - Got connection to the db
-19:17:41.863 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 77 findEntityById - Got connection to the db
-19:17:41.863 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 42 findEntityById - Got connection to the db
-19:17:41.871 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 30 findEntityById - Got connection to the db
-19:17:41.872 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 26 findEntityById - Got connection to the db
-19:17:41.873 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 26 findEntityById - Got connection to the db
-19:17:43.596 DEBUG by.fpmibsu.Servlet.OrderServlet 40 doPost - Make order in this account
-19:17:43.596 WARN  by.fpmibsu.Servlet.OrderServlet 44 doPost - Empty order
+21:41:02.322 INFO  by.fpmibsu.Servlet.MainServlet 21 doGet - Enter the main page
+21:41:03.110 INFO  by.fpmibsu.Servlet.MainServlet 21 doGet - Enter the main page
+21:41:03.222 INFO  by.fpmibsu.Servlet.MainServlet 21 doGet - Enter the main page
+21:41:05.539 INFO  by.fpmibsu.Servlet.MainServlet 31 doPost - Redirect to login form
+21:41:05.544 INFO  by.fpmibsu.Servlet.LoginServlet 23 doGet - Enter login form
+21:41:18.925 DEBUG by.fpmibsu.Servlet.LoginServlet 30 doPost - Login to the system
+21:41:18.926 DEBUG by.fpmibsu.Services.UserService 94 checkEmail - Check valid email is
+21:41:18.943 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 279 checkUserByEmail - Got connection to the db
+21:41:18.959 DEBUG by.fpmibsu.Services.UserService 29 findByEmail - find user object by id
+21:41:18.960 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 249 findByEmail - Got connection to the db
+21:41:18.963 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:18.966 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:18.970 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:18.972 DEBUG by.fpmibsu.Services.UserService 35 checkLoginPassword - Check valid email is
+21:41:18.972 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 249 findByEmail - Got connection to the db
+21:41:18.973 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:18.973 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:18.974 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:19.062 INFO  by.fpmibsu.Servlet.CourierServlet 23 doGet - Enter the courier page
+21:41:19.062 DEBUG by.fpmibsu.Services.UserService 78 getUndeliveredOrdersForUsers - Get list of user's undelivered orders
+21:41:19.063 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 189 getOrderedUsers - Got connection to the db
+21:41:19.064 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.064 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:19.065 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:19.069 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.070 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.071 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.072 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.073 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.073 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:19.074 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:19.075 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.076 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.077 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.077 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.078 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.079 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:19.079 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:19.080 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.081 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.081 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.082 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.082 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.082 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:19.083 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:19.084 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.085 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.085 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:19.086 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:19.086 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.087 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.087 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.088 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.088 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:19.088 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:19.089 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.089 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.090 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:19.090 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:19.091 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.092 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:19.092 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.646 DEBUG by.fpmibsu.Servlet.CourierServlet 32 doPost - Change status on order
+21:41:22.648 DEBUG by.fpmibsu.Services.UserService 29 findByEmail - find user object by id
+21:41:22.649 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 249 findByEmail - Got connection to the db
+21:41:22.651 DEBUG by.fpmibsu.Servlet.CourierServlet 38 doPost - Invalid email
+21:41:22.651 INFO  by.fpmibsu.Servlet.CourierServlet 23 doGet - Enter the courier page
+21:41:22.652 DEBUG by.fpmibsu.Services.UserService 78 getUndeliveredOrdersForUsers - Get list of user's undelivered orders
+21:41:22.652 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 189 getOrderedUsers - Got connection to the db
+21:41:22.655 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.656 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:22.657 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:22.660 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.661 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.661 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.662 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.663 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.663 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:22.664 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:22.665 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.666 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.666 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.667 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.668 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.668 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:22.669 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:22.670 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.670 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.671 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.672 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.673 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.673 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:22.674 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:22.675 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.676 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.676 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:22.676 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:22.677 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.678 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.678 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.679 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.679 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:22.680 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:22.681 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.681 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.682 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:22.682 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:22.683 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.684 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:22.684 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.459 DEBUG by.fpmibsu.Servlet.CourierServlet 32 doPost - Change status on order
+21:41:32.460 DEBUG by.fpmibsu.Services.UserService 29 findByEmail - find user object by id
+21:41:32.460 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 249 findByEmail - Got connection to the db
+21:41:32.462 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.462 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:32.463 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:32.464 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.465 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.465 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.466 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.466 DEBUG by.fpmibsu.Services.OrderService 34 update - Update order
+21:41:32.768 INFO  by.fpmibsu.Servlet.CourierServlet 23 doGet - Enter the courier page
+21:41:32.769 DEBUG by.fpmibsu.Services.UserService 78 getUndeliveredOrdersForUsers - Get list of user's undelivered orders
+21:41:32.769 INFO  by.fpmibsu.Dao.DaoImpl.UserDaoImpl 189 getOrderedUsers - Got connection to the db
+21:41:32.770 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.771 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:32.772 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:32.773 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.774 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.775 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.775 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.776 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.776 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:32.777 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:32.779 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.779 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.780 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.781 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.781 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.782 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:32.783 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:32.784 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.784 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.785 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.786 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.787 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.787 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:32.788 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:32.790 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.790 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.791 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:32.792 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:32.793 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.794 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.795 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.796 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.797 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:32.797 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:32.799 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.800 INFO  by.fpmibsu.Dao.DaoImpl.RoleDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.800 INFO  by.fpmibsu.Dao.DaoImpl.AddressDaoImpl 78 findEntityById - Got connection to the db
+21:41:32.801 INFO  by.fpmibsu.Dao.DaoImpl.OrderDaoImpl 41 findEntityById - Got connection to the db
+21:41:32.802 INFO  by.fpmibsu.Dao.DaoImpl.DrinkDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.802 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db
+21:41:32.803 INFO  by.fpmibsu.Dao.DaoImpl.PizzaDaoImpl 32 findEntityById - Got connection to the db

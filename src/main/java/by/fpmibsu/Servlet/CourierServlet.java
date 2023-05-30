@@ -34,6 +34,12 @@ public class CourierServlet extends HttpServlet {
         UserService userService = new UserService();
         OrderService orderService = new OrderService();
         User user = userService.findByEmail(email);
+        if (user.getEmail() == null) {
+            courierServletLogger.debug("Invalid email");
+            req.setAttribute("emailError", true);
+            doGet(req, resp);
+            return;
+        }
         user.getOrder().setStatus(true);
         orderService.update(user.getOrder());
 

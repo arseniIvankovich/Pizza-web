@@ -17,15 +17,19 @@
 </head>
 
 <body>
-
+<c:if test="${emailError == true}">
+    <script>
+        alert("Неверный email");
+    </script>
+</c:if>
 <div class="wrapper">
     <p class="courier-text">Список заказов</p>
 
     <table class="styled-table" id="styled-table">
         <tr class="header">
             <th>E-mail</th>
-            <th>Время доставки</th>
-            <th>Способ оплаты</th>
+            <th>Имя и Фамилия</th>
+            <th>Телефон</th>
             <th>Статус заказа</th>
         </tr>
 

@@ -32,8 +32,14 @@ public class AdminServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         adminServletLogger.debug("Delete users with email");
         String email = req.getParameter("email");
+
         UserService userService = new UserService();
-        userService.delete(email);
+        if (!userService.delete(email)) {
+            adminServletLogger.debug("Invalid email");
+            req.setAttribute("emailError", true);
+            doGet(req, resp);
+            return;
+        }
         doGet(req, resp);
     }
 }
