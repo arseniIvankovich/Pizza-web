@@ -2,21 +2,22 @@ package by.fpmibsu.Dao.DaoImpl;
 
 import by.fpmibsu.Dao.HikariCPDataSource;
 import by.fpmibsu.Dao.UserDao;
-import by.fpmibsu.Entity.*;
+import by.fpmibsu.Entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.mindrot.jbcrypt.BCrypt;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
-import javax.sql.DataSource;
 import java.util.List;
 
-public class UserDaoImpl  implements UserDao {
+public class UserDaoImpl implements UserDao {
     private DataSource dataSource;
-    public UserDaoImpl () {
+
+    public UserDaoImpl() {
         this.dataSource = HikariCPDataSource.getDataSource();
     }
+
     static final Logger userDaoLogger = LogManager.getLogger(UserDaoImpl.class);
     static final Logger rootLogger = LogManager.getRootLogger();
 
@@ -27,7 +28,7 @@ public class UserDaoImpl  implements UserDao {
 
         List<User> users = new ArrayList<>();
 
-        try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement()){
+        try (Connection connection = dataSource.getConnection(); Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
 
             while (resultSet.next()) {
@@ -47,16 +48,17 @@ public class UserDaoImpl  implements UserDao {
         }
         return users;
     }
+
     @Override
     public User findEntityById(Long id) {
         User user = new User();
         final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
                 "\tFROM public.\"User\" WHERE \"UserID\" = ?;";
         try (Connection connection = dataSource.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)){
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)) {
             userDaoLogger.info("Got connection to the db");
-            preparedStatement.setLong(1,id);
-            ResultSet resultSet= preparedStatement.executeQuery();
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 user.setId(resultSet.getLong("UserID"));
@@ -80,16 +82,16 @@ public class UserDaoImpl  implements UserDao {
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"User\"\n" +
                 "\tWHERE \"Email\" = ?;";
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)){
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)) {
             userDaoLogger.info("Got connection to the db");
-            preparedStatement.setString(1,user.getEmail());
+            preparedStatement.setString(1, user.getEmail());
 
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
             rootLogger.error("Error: ", e);
         }
-    return false;
+        return false;
     }
 
     @Override
@@ -98,16 +100,16 @@ public class UserDaoImpl  implements UserDao {
                 "\tWHERE \"UserID\" = ?;";
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)){
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)) {
             userDaoLogger.info("Got connection to the db");
-            preparedStatement.setLong(1,id);
+            preparedStatement.setLong(1, id);
 
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
             rootLogger.error("Error: ", e);
         }
-    return false;
+        return false;
     }
 
     @Override
@@ -118,14 +120,14 @@ public class UserDaoImpl  implements UserDao {
 
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_USER)){
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_USER)) {
             userDaoLogger.info("Got connection to the db");
-            preparedStatement.setLong(1,user.getRole().getId());
-            preparedStatement.setString(2,user.getFirstName_lastName());
-            preparedStatement.setString(3,user.getPassword());
-            preparedStatement.setString(4,user.getEmail());
-            preparedStatement.setString(5,user.getTelephone());
-            preparedStatement.setLong(6,user.getAddresses().getId());
+            preparedStatement.setLong(1, user.getRole().getId());
+            preparedStatement.setString(2, user.getFirstName_lastName());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.setString(5, user.getTelephone());
+            preparedStatement.setLong(6, user.getAddresses().getId());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -143,19 +145,20 @@ public class UserDaoImpl  implements UserDao {
 
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)){
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)) {
             userDaoLogger.info("Got connection to the db");
-            preparedStatement.setString(1,user.getFirstName_lastName());
-            preparedStatement.setString(2,user.getEmail());
-            preparedStatement.setString(3,user.getTelephone());
-            preparedStatement.setLong(4,user.getAddresses().getId());
-            preparedStatement.setLong(5,user.getId());
+            preparedStatement.setString(1, user.getFirstName_lastName());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getTelephone());
+            preparedStatement.setLong(4, user.getAddresses().getId());
+            preparedStatement.setLong(5, user.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             rootLogger.error("Error: ", e);
         }
 
     }
+
     @Override
     public void updateOrder(User user) {
         final String SQL_UPDATE = "UPDATE public.\"User\"\n" +
@@ -164,10 +167,10 @@ public class UserDaoImpl  implements UserDao {
 
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)){
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)) {
             userDaoLogger.info("Got connection to the db");
-            preparedStatement.setLong(1,user.getOrder().getId());
-            preparedStatement.setLong(2,user.getId());
+            preparedStatement.setLong(1, user.getOrder().getId());
+            preparedStatement.setLong(2, user.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             rootLogger.error("Error: ", e);
@@ -176,7 +179,7 @@ public class UserDaoImpl  implements UserDao {
     }
 
     @Override
-    public List<User> getOrderedUsers()  {
+    public List<User> getOrderedUsers() {
         final String SQL_SELECT_ALL = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Phone_number\", \"Address_id\", \"Order_id\", \"Email\"\n" +
                 "\tFROM public.\"User\" WHERE \"Order_id\" IS NOT NULL;";
 
@@ -184,7 +187,7 @@ public class UserDaoImpl  implements UserDao {
 
 
         try (Connection connection = dataSource.getConnection();
-             Statement statement = connection.createStatement()){
+             Statement statement = connection.createStatement()) {
             userDaoLogger.info("Got connection to the db");
             ResultSet resultSet = statement.executeQuery(SQL_SELECT_ALL);
 
@@ -238,17 +241,16 @@ public class UserDaoImpl  implements UserDao {
     }
 
 
-
     @Override
-    public User findByEmail(String email)  {
+    public User findByEmail(String email) {
         User user = new User();
         final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
                 "\tFROM public.\"User\" WHERE \"Email\" = ?;";
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)){
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)) {
             userDaoLogger.info("Got connection to the db");
-            preparedStatement.setString(1,email);
-            ResultSet resultSet= preparedStatement.executeQuery();
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 user.setId(resultSet.getLong("UserID"));
@@ -269,21 +271,21 @@ public class UserDaoImpl  implements UserDao {
     }
 
     @Override
-    public Boolean checkUserByEmail(String email)  {
+    public Boolean checkUserByEmail(String email) {
 
         User user = new User();
         final String SQL_SELECT_BY_ID = "SELECT \"UserID\", \"Role_id\", \"First_SecondName\", \"Password\", \"Email\", \"Phone_number\", \"Address_id\", \"Order_id\"\n" +
                 "\tFROM public.\"User\" WHERE \"Email\" = ?;";
         try (Connection connection = dataSource.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)){
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)) {
             userDaoLogger.info("Got connection to the db");
-            preparedStatement.setString(1,email);
+            preparedStatement.setString(1, email);
             ResultSet resultSet = preparedStatement.executeQuery();
             return resultSet.next();
         } catch (SQLException e) {
             rootLogger.error("Error: ", e);
         }
-    return false;
+        return false;
     }
 
 }

@@ -11,7 +11,9 @@ public class BaseAddressService {
     public BaseAddressService() {
         this.baseAddressDao = new BaseAddressDaoImpl();
     }
+
     static final Logger baseAddressServiceLogger = LogManager.getLogger(BaseAddressService.class);
+
     public Boolean checkValidStreet(String pattern) {
         baseAddressServiceLogger.debug("Check valid street is");
         return baseAddressDao.checkStreet(pattern);

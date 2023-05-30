@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet("/profile")
 public class ProfileServlet extends HttpServlet {
@@ -83,8 +82,8 @@ public class ProfileServlet extends HttpServlet {
         Integer flatNumber = Integer.parseInt(stringFlatNumber);
         if (flatNumber <= 0 || flatNumber > 400) {
             profileServletLogger.warn("Invalid flat number");
-            req.setAttribute("flatNumberError",true);
-            req.getRequestDispatcher(path).forward(req,resp);
+            req.setAttribute("flatNumberError", true);
+            req.getRequestDispatcher(path).forward(req, resp);
             return;
         }
         String firstSecondName = req.getParameter("firstSecond");

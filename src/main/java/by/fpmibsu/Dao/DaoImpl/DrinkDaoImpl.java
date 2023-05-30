@@ -18,10 +18,12 @@ public class DrinkDaoImpl implements DrinkDao {
     public DrinkDaoImpl() {
         this.dataSource = HikariCPDataSource.getDataSource();
     }
+
     static final Logger drinkDaoLogger = LogManager.getLogger(DrinkDaoImpl.class);
     static final Logger rootLogger = LogManager.getRootLogger();
+
     @Override
-    public Drink findEntityById(Long id)  {
+    public Drink findEntityById(Long id) {
         Drink drink = new Drink();
         final String SQL_SELECT_BY_ID = "SELECT \"DrinkID\", \"Name\", \"Capacity\", \"Price\"\n" +
                 "\tFROM public.\"Drink\" WHERE \"DrinkID\" = ?;";
@@ -44,7 +46,7 @@ public class DrinkDaoImpl implements DrinkDao {
     }
 
     @Override
-    public boolean delete(Drink drink)  {
+    public boolean delete(Drink drink) {
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Drink\"\n" +
                 "\tWHERE \"Name\" = ?;";
 
@@ -63,7 +65,7 @@ public class DrinkDaoImpl implements DrinkDao {
     }
 
     @Override
-    public boolean delete(Long id)  {
+    public boolean delete(Long id) {
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Drink\"\n" +
                 "\tWHERE \"DrinkID\" = ?;";
 
@@ -82,7 +84,7 @@ public class DrinkDaoImpl implements DrinkDao {
     }
 
     @Override
-    public Drink create(Drink drink)  {
+    public Drink create(Drink drink) {
         final String SQL_CREATE_ADDRESS = "INSERT INTO public.\"Drink\"(\n" +
                 "\t\"Name\", \"Capacity\", \"Price\")\n" +
                 "\tVALUES (?, ?, ?);";
@@ -102,7 +104,7 @@ public class DrinkDaoImpl implements DrinkDao {
     }
 
     @Override
-    public void update(Drink drink)  {
+    public void update(Drink drink) {
         final String SQL_UPDATE = "UPDATE public.\"Drink\"\n" +
                 "\tSET  \"Name\"=?, \"Capacity\"=?, \"Price\"=?\n" +
                 "\tWHERE \"DrinkID\" = ?;";

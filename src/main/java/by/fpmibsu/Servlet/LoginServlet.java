@@ -12,12 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     static final Logger loginServletLogger = LogManager.getLogger(LoginServlet.class);
     final String path = "/jsp/login.jsp";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         loginServletLogger.info("Enter login form");
@@ -31,22 +31,22 @@ public class LoginServlet extends HttpServlet {
         String email = req.getParameter("email").trim();
         if (email.equals("") || !userService.checkEmail(email)) {
             loginServletLogger.warn("Invalid email");
-            req.setAttribute("emailError",true);
-            req.getRequestDispatcher(path).forward(req,resp);
+            req.setAttribute("emailError", true);
+            req.getRequestDispatcher(path).forward(req, resp);
             return;
         }
         String password = req.getParameter("password");
         User user = userService.findByEmail(email);
         if (password.equals("")) {
             loginServletLogger.warn("Empty string");
-            req.setAttribute("passwordError",true);
-            req.getRequestDispatcher(path).forward(req,resp);
+            req.setAttribute("passwordError", true);
+            req.getRequestDispatcher(path).forward(req, resp);
             return;
         }
-        if (!userService.checkLoginPassword(user.getEmail(),password)) {
+        if (!userService.checkLoginPassword(user.getEmail(), password)) {
             loginServletLogger.debug("Invalid login or password");
-            req.setAttribute("passwordError",true);
-            req.getRequestDispatcher(path).forward(req,resp);
+            req.setAttribute("passwordError", true);
+            req.getRequestDispatcher(path).forward(req, resp);
             return;
         }
 

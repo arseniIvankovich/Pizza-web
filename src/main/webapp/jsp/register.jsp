@@ -69,7 +69,7 @@
                 </div>
                 <div class="input-box">
                     <label for="login-form-house">Дом</label>
-                    <input type="text" class="login-form-input" id="login-form-house" name="house">
+                    <input type="number" class="login-form-input" id="login-form-house" name="house">
                 </div>
                 <div class="input-box">
                     <label for="login-form-entrance">Подъезд</label>

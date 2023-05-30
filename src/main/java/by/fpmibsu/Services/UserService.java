@@ -15,34 +15,35 @@ public class UserService {
     private final UserDao userDao;
 
     static final Logger userServiceLogger = LogManager.getLogger(UserService.class);
+
     public UserService() {
         this.userDao = new UserDaoImpl();
     }
 
-    public User findEntityById(Long id)  {
+    public User findEntityById(Long id) {
         userServiceLogger.debug("find user object by id");
         return userDao.findEntityById(id);
     }
 
-    public User findByEmail(String email)  {
+    public User findByEmail(String email) {
         userServiceLogger.debug("find user object by id");
         return userDao.findByEmail(email);
     }
 
 
-    public Boolean checkLoginPassword(String email, String password)  {
+    public Boolean checkLoginPassword(String email, String password) {
         userServiceLogger.debug("Check valid email is");
         User user = userDao.findByEmail(email);
         return BCrypt.checkpw(password, user.getPassword());
     }
 
-    public Boolean delete(String email)  {
+    public Boolean delete(String email) {
         userServiceLogger.debug("Delete information about user by email in DB");
         userDao.delete(userDao.findByEmail(email));
         return true;
     }
 
-    public boolean edit(Long id, User newUser)  {
+    public boolean edit(Long id, User newUser) {
         userServiceLogger.debug("Edit information about user");
         User oldUser = new UserDaoImpl().findEntityById(id);
 
@@ -74,7 +75,7 @@ public class UserService {
         return true;
     }
 
-    public List<User> getUndeliveredOrdersForUsers()  {
+    public List<User> getUndeliveredOrdersForUsers() {
         userServiceLogger.debug("Get list of user's undelivered orders");
         List<User> users = (ArrayList<User>) userDao.getOrderedUsers();
         List<User> orderedUsers = new ArrayList<>();
@@ -85,22 +86,22 @@ public class UserService {
         return orderedUsers;
     }
 
-    public List<User> getAllNotAdmin()  {
+    public List<User> getAllNotAdmin() {
         userServiceLogger.debug("Get list of user's who are not admins");
         return userDao.getAllNotAdmin();
     }
 
-    public Boolean checkEmail (String email) {
+    public Boolean checkEmail(String email) {
         userServiceLogger.debug("Check valid email is");
         return userDao.checkUserByEmail(email);
     }
 
     public List<User> findAll() {
         userServiceLogger.debug("Find all users");
-      return  userDao.findAll();
+        return userDao.findAll();
     }
 
-    public void deleteById (Long id) {
+    public void deleteById(Long id) {
         userServiceLogger.debug("Delete user by id");
         userDao.delete(id);
     }

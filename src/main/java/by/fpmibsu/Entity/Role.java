@@ -1,6 +1,6 @@
 package by.fpmibsu.Entity;
 
-public class Role extends Entity{
+public class Role extends Entity {
     public void setRole(String role) {
         this.role = role;
     }
@@ -11,7 +11,8 @@ public class Role extends Entity{
         return role;
     }
 
-    public Role(){}
+    public Role() {
+    }
 
     public Role(String role) {
         this.role = role;

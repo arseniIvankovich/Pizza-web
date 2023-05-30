@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.Objects;
 
-@JsonPropertyOrder({"firstName_lastName","password","addresses","order","Email","Telephone","role"})
-public class User extends Entity{
+@JsonPropertyOrder({"firstName_lastName", "password", "addresses", "order", "Email", "Telephone", "role"})
+public class User extends Entity {
 
 
     private Address addresses;
@@ -22,7 +22,8 @@ public class User extends Entity{
 
     private Role role;
 
-    public User(){}
+    public User() {
+    }
 
     public User(Address addresses, String firstName_lastName, String password, String email, String telephone, Role role) {
         this.addresses = addresses;

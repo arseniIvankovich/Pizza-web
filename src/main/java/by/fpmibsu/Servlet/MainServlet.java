@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet("")
 public class MainServlet extends HttpServlet {
@@ -28,11 +27,10 @@ public class MainServlet extends HttpServlet {
         UserService userService = new UserService();
 
         String value = req.getParameter("profileButton");
-        if (value.equals("Войти")){
+        if (value.equals("Войти")) {
             mainServletLogger.info("Redirect to login form");
             resp.sendRedirect(req.getContextPath() + "/login");
-        }
-        else {
+        } else {
             User user = userService.findEntityById((Long) req.getSession().getAttribute("userId"));
             mainServletLogger.info("Enter to the personal account");
             if (user.getRole().getRole().equals("Администратор"))

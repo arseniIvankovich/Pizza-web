@@ -7,31 +7,37 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class RoleDaoImpl  implements RoleDao {
+public class RoleDaoImpl implements RoleDao {
     private final DataSource dataSource;
-    public RoleDaoImpl () {
+
+    public RoleDaoImpl() {
         this.dataSource = HikariCPDataSource.getDataSource();
     }
+
     static final Logger roleDaoLogger = LogManager.getLogger(RoleDaoImpl.class);
     static final Logger rootLogger = LogManager.getRootLogger();
+
     @Override
     public Role findEntityById(Long id) {
         Role role = new Role();
         final String SQL_SELECT_BY_ID = "SELECT \"RoleID\", \"Name\"\n" +
                 "\tFROM public.\"Role\" WHERE \"RoleID\" = ?;";
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)){
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_BY_ID)) {
             roleDaoLogger.info("Got connection to the db");
-            preparedStatement.setLong(1,id);
-            ResultSet resultSet= preparedStatement.executeQuery();
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 role.setId(resultSet.getLong("RoleID"));
                 role.setRole(resultSet.getString("Name"));
             }
         } catch (SQLException e) {
-            rootLogger.error("Error: ",e);
+            rootLogger.error("Error: ", e);
         }
 
         return role;
@@ -43,14 +49,14 @@ public class RoleDaoImpl  implements RoleDao {
                 "\tWHERE \"Name\" = ?;";
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)){
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)) {
             roleDaoLogger.info("Got connection to the db");
-            preparedStatement.setString(1,role.getRole());
+            preparedStatement.setString(1, role.getRole());
 
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            rootLogger.error("Error: ",e);
+            rootLogger.error("Error: ", e);
         }
         return false;
     }
@@ -62,16 +68,16 @@ public class RoleDaoImpl  implements RoleDao {
                 "\tWHERE \"RoleID\" = ?;";
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)){
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BY_ID)) {
             roleDaoLogger.info("Got connection to the db");
-            preparedStatement.setLong(1,id);
+            preparedStatement.setLong(1, id);
 
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            rootLogger.error("Error: ",e);
+            rootLogger.error("Error: ", e);
         }
-    return false;
+        return false;
     }
 
     @Override
@@ -82,14 +88,14 @@ public class RoleDaoImpl  implements RoleDao {
                 "\tVALUES (?);";
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS)){
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_CREATE_ADDRESS)) {
             roleDaoLogger.info("Got connection to the db");
-            preparedStatement.setString(1,role.getRole());
+            preparedStatement.setString(1, role.getRole());
 
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            rootLogger.error("Error: ",e);
+            rootLogger.error("Error: ", e);
         }
         return role;
     }
@@ -103,14 +109,14 @@ public class RoleDaoImpl  implements RoleDao {
 
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)){
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE)) {
             roleDaoLogger.info("Got connection to the db");
-            preparedStatement.setString(1,role.getRole());
-            preparedStatement.setLong(2,role.getId());
+            preparedStatement.setString(1, role.getRole());
+            preparedStatement.setLong(2, role.getId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            rootLogger.error("Error: ",e);
+            rootLogger.error("Error: ", e);
         }
 
 

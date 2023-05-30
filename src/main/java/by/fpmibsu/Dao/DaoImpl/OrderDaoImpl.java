@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class OrderDaoImpl implements OrderDao {
@@ -25,7 +24,7 @@ public class OrderDaoImpl implements OrderDao {
     static final Logger rootLogger = LogManager.getRootLogger();
 
     @Override
-    public Order findEntityById(Long id)  {
+    public Order findEntityById(Long id) {
         Order order = new Order();
         final String SQL_SELECT_BY_ID = "SELECT \"OrderID\", \"Status\", \"DeliveryDate\", \"PaymentMethod\"\n" +
                 "\tFROM public.\"Order\" WHERE \"OrderID\" = ?;";
@@ -73,19 +72,19 @@ public class OrderDaoImpl implements OrderDao {
                 order.setPizzas(pizzas);
             }
         } catch (SQLException e) {
-            rootLogger.error("Error: ",e);
+            rootLogger.error("Error: ", e);
 
         }
         return order;
     }
 
     @Override
-    public boolean delete(Order order)  {
+    public boolean delete(Order order) {
         return false;
     }
 
     @Override
-    public boolean delete(Long id)  {
+    public boolean delete(Long id) {
         final String SQL_DELETE_BY_ID = "DELETE FROM public.\"Order\"\n" +
                 "\tWHERE \"OrderID\" = ?;";
 
@@ -117,7 +116,7 @@ public class OrderDaoImpl implements OrderDao {
             preparedStatement.setString(3, order.getPaymentMethod());
             preparedStatement.executeUpdate();
 
-            Long index = this.getLastID(order.getStatus(),order.getDeliveryDate(),order.getPaymentMethod());
+            Long index = this.getLastID(order.getStatus(), order.getDeliveryDate(), order.getPaymentMethod());
 
             for (Pizza pizza : order.getPizzas())
                 addToMMPizza(index, pizza.getId(), pizza.getCounter());
@@ -128,13 +127,13 @@ public class OrderDaoImpl implements OrderDao {
             order.setId(index);
 
         } catch (SQLException e) {
-            rootLogger.error("Error: ",e);
+            rootLogger.error("Error: ", e);
         }
         return order;
     }
 
     @Override
-    public void update(Order order)  {
+    public void update(Order order) {
         final String SQL_UPDATE = "UPDATE public.\"Order\"\n" +
                 "\tSET \"Status\"=?, \"DeliveryDate\"=?, \"PaymentMethod\"=?\n" +
                 "\tWHERE \"OrderID\" = ?;";
@@ -155,28 +154,28 @@ public class OrderDaoImpl implements OrderDao {
 
     }
 
-    public Long getLastID(Boolean status,Timestamp deliveryDate,String paymentMethod)  {
+    public Long getLastID(Boolean status, Timestamp deliveryDate, String paymentMethod) {
         final String SQL_LAST_ID = "SELECT \"OrderID\" FROM public.\"Order\" WHERE \"Status\" = ? AND \"DeliveryDate\" = ? AND \"PaymentMethod\" = ? ORDER BY \"OrderID\" DESC LIMIT 1;";
 
         Long index = 0L;
         try (Connection connection = dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL_LAST_ID)) {
             orderDaoLogger.info("Got connection to the db");
-            preparedStatement.setBoolean(1,status);
-            preparedStatement.setTimestamp(2,deliveryDate);
-            preparedStatement.setString(3,paymentMethod);
+            preparedStatement.setBoolean(1, status);
+            preparedStatement.setTimestamp(2, deliveryDate);
+            preparedStatement.setString(3, paymentMethod);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next())
                 index = resultSet.getLong("OrderID");
         } catch (SQLException e) {
-            rootLogger.error("Error: ",e);
+            rootLogger.error("Error: ", e);
         }
         return index;
     }
 
 
     @Override
-    public void addToMMDrink(Long orderId, Long drinkId, Integer numberOfDrinks)  {
+    public void addToMMDrink(Long orderId, Long drinkId, Integer numberOfDrinks) {
         final String SQL_INNER_DRINK = "INSERT INTO public.\"Drink_order\"(\n" +
                 "\t\"OrderID\", \"DrinkID\", \"NumberOfDrinks\")\n" +
                 "\tVALUES (?, ?, ?);";
@@ -190,7 +189,7 @@ public class OrderDaoImpl implements OrderDao {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            rootLogger.error("Error: ",e);
+            rootLogger.error("Error: ", e);
         }
     }
 
@@ -209,10 +208,9 @@ public class OrderDaoImpl implements OrderDao {
             preparedStatement.setInt(3, numberOfPizzas);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            rootLogger.error("Error: ",e);
+            rootLogger.error("Error: ", e);
         }
     }
-
 
 
 }

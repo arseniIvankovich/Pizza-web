@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/order")
@@ -38,10 +37,14 @@ public class OrderServlet extends HttpServlet {
         UserService userService = new UserService();
         OrderService orderService = new OrderService();
         orderServletLogger.debug("Make order in this account");
-        req.setCharacterEncoding("UTF-8");
-        orderServletLogger.debug("Button action of creating order");
         String pizza = req.getParameter("pizza");
         String drink = req.getParameter("drinks");
+        if ((pizza== null && drink == null) || (pizza.equals("[]") && drink.equals("[]"))) {
+            orderServletLogger.warn("Empty order");
+            req.setAttribute("EmptyOrder",true);
+            req.getRequestDispatcher("/jsp/order.jsp").forward(req,resp);
+            return;
+        }
         String paymentMethod = req.getParameter("select");
         ObjectMapper objectMapper = new ObjectMapper();
         TypeFactory typeFactory = objectMapper.getTypeFactory();

@@ -1,18 +1,17 @@
 package by.fpmibsu.Entity;
 
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
 import java.util.Objects;
 
-public class Drink extends Entity{
+public class Drink extends Entity {
     private String name;
     private Double capacity;
     private Double price;
 
     private Integer counter = 0;
 
-    public Drink(){}
+    public Drink() {
+    }
 
     public Drink(String name, Double capacity, Double price) {
         this.name = name;
@@ -25,14 +24,6 @@ public class Drink extends Entity{
         this.name = name;
         this.capacity = capacity;
         this.price = price;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Drink drink = (Drink) o;
-        return Objects.equals(name, drink.name) && Objects.equals(capacity, drink.capacity) && Objects.equals(price, drink.price);
     }
 
     public Integer getCounter() {
@@ -69,6 +60,19 @@ public class Drink extends Entity{
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Drink drink = (Drink) o;
+        return Objects.equals(name, drink.name) && Objects.equals(capacity, drink.capacity) && Objects.equals(price, drink.price) && Objects.equals(counter, drink.counter);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, capacity, price, counter);
     }
 
     @Override

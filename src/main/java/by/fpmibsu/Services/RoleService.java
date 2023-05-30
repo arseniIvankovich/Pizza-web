@@ -6,16 +6,16 @@ import by.fpmibsu.Entity.Role;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.SQLException;
-
 public class RoleService {
     private RoleDao roleDao;
 
     public RoleService() {
         this.roleDao = new RoleDaoImpl();
     }
+
     static final Logger roleServiceLogger = LogManager.getLogger(RoleService.class);
-    public Role findEntityById(Long id)  {
+
+    public Role findEntityById(Long id) {
         roleServiceLogger.debug("Find role by id");
         return new RoleDaoImpl().findEntityById(id);
     }

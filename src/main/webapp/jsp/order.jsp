@@ -92,7 +92,11 @@
     </header>
 
 
-
+    <c:if test="${EmptyOrder == true}">
+        <script>
+            alert("Пустой заказ");
+        </script>
+    </c:if>
 
     <div class="wrapper">
             <form class="menu" method="post" action="/order">

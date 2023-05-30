@@ -2,13 +2,14 @@ package by.fpmibsu.Entity;
 
 import java.util.Objects;
 
-public class Address extends Entity{
+public class Address extends Entity {
     private String street;
     private Integer houseNumber;
     private Integer entrance;
     private Integer flatNumber;
 
-    public Address() {}
+    public Address() {
+    }
 
     public Address(String street, Integer houseNumber, Integer entrance, Integer flatNumber) {
         this.street = street;

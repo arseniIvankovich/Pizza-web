@@ -1,6 +1,5 @@
 package by.fpmibsu.Dao.DaoImpl;
 
-import by.fpmibsu.Dao.AddressDao;
 import by.fpmibsu.Dao.BaseAddressDao;
 import by.fpmibsu.Dao.HikariCPDataSource;
 import by.fpmibsu.Entity.BaseAddresses;
@@ -19,21 +18,23 @@ public class BaseAddressDaoImpl implements BaseAddressDao {
     public BaseAddressDaoImpl() {
         this.dataSource = HikariCPDataSource.getDataSource();
     }
+
     static final Logger baseAddressDaoLogger = LogManager.getLogger(BaseAddressDaoImpl.class);
     static final Logger rootLogger = LogManager.getRootLogger();
+
     @Override
     public Boolean checkStreet(String pattern) {
         final String SQL_SELECT_STREET = "SELECT \"AddressId\", \"Street\"\n" +
                 "\tFROM public.\"Addresses\" WHERE \"Street\" = ?;";
-       try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_STREET)) {
-           baseAddressDaoLogger.info("Got connection to the db");
-           preparedStatement.setString(1, pattern);
-           ResultSet resultSet = preparedStatement.executeQuery();
-           return resultSet.next();
-       }catch (SQLException e) {
-           rootLogger.error("Error: ", e);
-       }
-       return false;
+        try (Connection connection = dataSource.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SQL_SELECT_STREET)) {
+            baseAddressDaoLogger.info("Got connection to the db");
+            preparedStatement.setString(1, pattern);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            rootLogger.error("Error: ", e);
+        }
+        return false;
     }
 
     @Override

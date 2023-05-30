@@ -5,12 +5,12 @@ import by.fpmibsu.Dao.HikariCPDataSource;
 import by.fpmibsu.Entity.Address;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.postgresql.util.PSQLException;
 
 import javax.sql.DataSource;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class AddressDaoImpl implements AddressDao {
     private DataSource dataSource;
@@ -18,6 +18,7 @@ public class AddressDaoImpl implements AddressDao {
     public AddressDaoImpl() {
         this.dataSource = HikariCPDataSource.getDataSource();
     }
+
     static final Logger addressDaoLogger = LogManager.getLogger(AddressDaoImpl.class);
     static final Logger rootLogger = LogManager.getRootLogger();
 
@@ -86,7 +87,8 @@ public class AddressDaoImpl implements AddressDao {
                 address.setFlatNumber(resultSet.getInt("FlatNumber"));
             }
         } catch (SQLException e) {
-            rootLogger.error("Error: ", e);        }
+            rootLogger.error("Error: ", e);
+        }
 
         return address;
     }

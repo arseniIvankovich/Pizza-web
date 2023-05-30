@@ -14,6 +14,7 @@ import java.io.IOException;
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
     static final Logger logoutServletLogger = LogManager.getLogger(LogoutServlet.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logoutServletLogger.info("Logout of account");

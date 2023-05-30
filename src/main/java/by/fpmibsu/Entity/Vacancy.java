@@ -1,17 +1,17 @@
 package by.fpmibsu.Entity;
 
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Objects;
 
-public class Vacancy extends Entity{
+public class Vacancy extends Entity {
 
     private HashSet<User> user;
     private Double salary;
     private Integer trial;
     private String name;
 
-    public Vacancy(){}
+    public Vacancy() {
+    }
 
     public Vacancy(HashSet<User> user, Double salary, Integer trial, String name) {
         this.user = user;

@@ -1,7 +1,6 @@
 package by.fpmibsu.Filters;
 
 
-import by.fpmibsu.Servlet.CourierServlet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,6 +14,7 @@ import java.io.IOException;
 @WebFilter({"/order", "/profile", "/vacancy"})
 public class AuthFilter implements Filter {
     static final Logger courierServletLogger = LogManager.getLogger(AuthFilter.class);
+
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
@@ -24,11 +24,11 @@ public class AuthFilter implements Filter {
 
         if (session == null || session.getAttribute("userId") == null) {
             courierServletLogger.warn("Enter no authorized user");
-            servletRequest.setAttribute("authError",true);
-            servletRequest.getServletContext().getRequestDispatcher("/").forward(req,resp);
+            servletRequest.setAttribute("authError", true);
+            servletRequest.getServletContext().getRequestDispatcher("/").forward(req, resp);
 
 
         }
-        filterChain.doFilter(req,resp);
+        filterChain.doFilter(req, resp);
     }
 }

@@ -1,8 +1,6 @@
 package by.fpmibsu.Entity;
 
-import java.util.ArrayList;
 import java.sql.Timestamp;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +11,8 @@ public class Order extends Entity {
     private Timestamp deliveryDate;
     private String paymentMethod;
 
-    public Order(){}
+    public Order() {
+    }
 
     public Order(List<Drink> drinks, List<Pizza> pizzas, Boolean status, Timestamp deliveryDate, String paymentMethod) {
         this.drinks = drinks;
