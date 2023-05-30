@@ -14,4 +14,4 @@
 | testNG | Тестирование
 
 ## Архитектура
-![Image alt](https://drive.google.com/file/d/1c6h3GNOIkpMSvnAuWz36vo6Pgxb3OOeR/view?usp=drive_link)
+![ER-диаграмма](https://github.com/arseniIvankovich/Pizza-web/assets/93382768/e5753cfa-6e8e-4863-83c1-08e1c08fa116)
