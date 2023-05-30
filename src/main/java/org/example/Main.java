@@ -26,8 +26,6 @@ public class Main {
     private static final Logger logger = LogManager.getRootLogger();
     public static void main(String[] args) throws SQLException, IOException {
         UserService userService = new UserService();
-        User user = userService.findEntityById(10L);
-        String json = new ObjectMapper().writeValueAsString(user);
-        System.out.println(json);
+        System.out.println(userService.findEntityById(123L));
     }
 }

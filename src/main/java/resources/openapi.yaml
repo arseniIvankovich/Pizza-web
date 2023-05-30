@@ -1,0 +1,293 @@
+openapi: 3.0.3
+info:
+  title: Pizza-web - OpenAPI 3.0
+  description: |-
+    This is a sample Pizza-web Server based on the OpenAPI 3.0 specification. This API offers only basic CRUD operations like get all users or get user find using id.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Development server
+tags:
+  - name: user
+    description: Operations about user
+paths:
+  /api/users:
+    post:
+      tags:
+        - user
+      summary: Create user
+      operationId: createUser
+      requestBody:
+        description: Created user object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '210':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '500':
+          description: Invalid behavior on server
+        '400':
+          description: Ivalid json data
+
+    get:
+      tags:
+        - user
+      summary: Get user by user id
+      description: '  '
+      operationId: getUsers
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+
+        '500':
+          description: Invalid behavior on server
+
+  /api/users/{id}:
+    get:
+      tags:
+        - user
+      summary: Get user by user id
+      description: ''
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          description: 'The id that needs to be fetched. Use user1 for testing. '
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Ivalid json data
+
+        '500':
+          description: Invalid behavior on server
+
+    put:
+      tags:
+        - user
+      summary: Update user
+      description: This can only be done by the logged in user.
+      operationId: updateUser
+      parameters:
+        - name: id
+          in: path
+          description: name that need to be deleted
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Update an existent user in the store
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+        '400':
+          description: Ivalid json data
+
+        '500':
+          description: Invalid behavior on server
+
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+        - name: id
+          in: path
+          description: The user with id that needs to be deleted
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Ivalid json data
+
+        '500':
+          description: Invalid behavior on server
+
+
+components:
+  schemas:
+
+    Address:
+      type: "object"
+      properties:
+        street:
+          type: "string"
+          example: Ленина
+        houseNumber:
+          type: "integer"
+          format: "int32"
+          example: 1
+        entrance:
+          type: "integer"
+          format: "int32"
+          example: 1
+        flatNumber:
+          type: "integer"
+          format: "int32"
+          example: 1
+        id:
+          type: "integer"
+          format: "int64"
+          example: 1
+    Drink:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+          example: Sprite
+        capacity:
+          type: "number"
+          format: "double"
+          example: 0.5
+        price:
+          type: "number"
+          format: "double"
+          example: 1.99
+        counter:
+          type: "integer"
+          format: "int32"
+          example: 1
+        id:
+          type: "integer"
+          format: "int64"
+          example: 7
+    Pizza:
+      type: "object"
+      properties:
+        name:
+          type: "string"
+        ingredients:
+          type: "string"
+          example: сырный соус, ветчина, филе цыпленка, ананасы, сыр моцарелла, базилик
+        size:
+          type: "boolean"
+          example: true
+        doughType:
+          type: "boolean"
+          example: true
+        price:
+          type: "number"
+          format: "double"
+          example: 12.99
+        counter:
+          type: "integer"
+          format: "int32"
+          example: 1
+        weight:
+          type: "number"
+          format: "double"
+          example: 5000.0
+        id:
+          type: "integer"
+          format: "int64"
+          example: 9
+    Timestamp:
+      type: "object"
+      properties:
+        nanos:
+          type: "integer"
+          format: "int32"
+          example: 1683579600000
+    Order:
+      type: "object"
+      properties:
+        drinks:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Drink"
+        pizzas:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Pizza"
+        status:
+          type: "boolean"
+          example: false
+        deliveryDate:
+          $ref: "#/components/schemas/Timestamp"
+        paymentMethod:
+          type: "string"
+          example: наличные
+        id:
+          type: "integer"
+          format: "int64"
+          example: 24
+    Role:
+      type: "object"
+      properties:
+        role:
+          type: "string"
+          example: Пользователь
+        id:
+          type: "integer"
+          format: "int64"
+          example: 3
+    User:
+      type: "object"
+      properties:
+        addresses:
+          $ref: "#/components/schemas/Address"
+        order:
+          $ref: "#/components/schemas/Order"
+        firstName_lastName:
+          type: "string"
+          example: Вася Пупкин
+        password:
+          type: "string"
+          example: password
+        email:
+          type: "string"
+          example: pupkin@gmail.com
+        telephone:
+          type: "string"
+          example: 789457454
+        role:
+          $ref: "#/components/schemas/Role"
+        id:
+          type: "integer"
+          format: "int64"
+          example: 10
+    Users:
+      type: "array"
+      items:
+        $ref: "#/components/schemas/User"
+        
+       
+    

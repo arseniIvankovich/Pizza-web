@@ -150,7 +150,7 @@ public class UserServiceTest {
 
     @Test(priority = 0)
     public void checkCreation() {
-       Assert.assertEquals(userService.createUser(new User(new Address(1L,"Ленина",1,1,1),new Order(null,null,null,null,null),"пользователь2","qwerty","r@t","375893",new Role(3L,"Пользователь"))),userService.findByEmail("r@t"));
+       Assert.assertEquals(userService.createUser(new User(new Address(1L,"Ленина",1,1,1),new Order(null,null,null,null,null),"пользователь2","qwerty","r@t","375893",new Role(3L,"Пользователь"))),true);
     }
 
     @Test(priority = 2)

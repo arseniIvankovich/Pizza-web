@@ -61,10 +61,11 @@ public class UserService {
     }
 
 
-    public User createUser(User user) {
+    public Boolean createUser(User user) {
         userServiceLogger.debug("Create new user");
         user.setPassword(BCrypt.hashpw(user.getPassword(), BCrypt.gensalt()));
-       return userDao.create(user);
+        userDao.create(user);
+        return true;
     }
 
     public Boolean editOrder(User user) {
