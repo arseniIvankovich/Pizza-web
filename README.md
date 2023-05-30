@@ -15,4 +15,4 @@
 
 ## Архитектура
 ![ER-диаграмма](https://github.com/arseniIvankovich/Pizza-web/assets/93382768/e5753cfa-6e8e-4863-83c1-08e1c08fa116)
-*ER-диаграммы*
+*ER-диаграмма проекта*
