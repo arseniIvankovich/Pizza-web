@@ -620,10 +620,10 @@ body {
 .busket-button {
     height:fit-content;
     max-width: 160px;
-
     background: #E13333;
     border-radius: 50px;
     border: none;
+    padding: 2px 4px;
 }
 
 .busket-button-quantity {
@@ -695,11 +695,12 @@ body {
     background: #E13333;
     border-radius: 50px;
     border: none;
-    transition: .2s;
+    transition: .15s;
+    cursor: pointer;
 }
 
-.profile-button:hover {
-    transform: scale(1.05);
+.profile-button:active {
+    transform: scale(0.95);
 }
 
 .profile-button-orig:hover {
@@ -729,7 +730,7 @@ body {
 }
 
 .menu {
-    margin-top: 120px;
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -941,10 +942,10 @@ body {
 .drink-price-button {
     height:fit-content;
     max-width: 100px;
-
     background: #E13333;
     border-radius: 50px;
     border: none;
+    padding: 1px 2px;
 }
 
 .drink-price-button-text {
@@ -965,11 +966,12 @@ body {
     background: #E13333;
     border-radius: 50px;
     border: none;
-    transition: .3s;
+    transition: .15s;
+    cursor: pointer;
 }
 
-.drink-button:hover {
-    transform: scale(1.05);
+.drink-button:active {
+    transform: scale(0.95);
 }
 
 .drink-button-text {

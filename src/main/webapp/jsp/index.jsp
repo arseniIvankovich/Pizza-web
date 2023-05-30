@@ -117,9 +117,6 @@
             <p class="menu-header-text">
                 пицца
             </p>
-            <p class="menu-header-text">
-                фильтр
-            </p>
         </div>
 
         <div class="pizza-section">
@@ -141,9 +138,9 @@
                 </div>
                 <p class="ingredients-text">пицца-соус, пепперони, сыр моцарелла, базилик</p>
                 <div class="pizza-card-buttons">
-                    <button class="busket-button">
+                    <div class="busket-button">
                         <p class="busket-button-text" id="price-1">16.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="profile-button" id="busket-1">
                         <p class="profile-button-text">
                             В корзину
@@ -170,9 +167,9 @@
                 </div>
                 <p class="ingredients-text">сырный соус, сливочный сыр, сыр фета, сыр дорблю (может отличаться от изображения на сайте), сыр моцарелла, базилик</p>
                 <div class="pizza-card-buttons">
-                    <button class="busket-button">
+                    <div class="busket-button">
                         <p class="busket-button-text" id="price-2">18.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="profile-button" id="busket-2">
                         <p class="profile-button-text">
                             В корзину
@@ -199,9 +196,9 @@
                 </div>
                 <p class="ingredients-text">сырный соус, ветчина, филе цыпленка, ананасы, сыр моцарелла, базилик</p>
                 <div class="pizza-card-buttons">
-                    <button class="busket-button">
+                    <div class="busket-button">
                         <p class="busket-button-text" id="price-3">12.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="profile-button" id="busket-3">
                         <p class="profile-button-text">
                             В корзину
@@ -228,9 +225,9 @@
                 </div>
                 <p class="ingredients-text">пицца-соус, грудинка (свинина), филе цыпленка, свежий лук, соус барбекю, сыр моцарелла, базилик</p>
                 <div class="pizza-card-buttons">
-                    <button class="busket-button">
+                    <div class="busket-button">
                         <p class="busket-button-text" id="price-4">16.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="profile-button" id="busket-4">
                         <p class="profile-button-text">
                             В корзину
@@ -257,9 +254,9 @@
                 </div>
                 <p class="ingredients-text">соус пармеджано, креветки, сливочный сыр, сыр моцарелла, базилик</p>
                 <div class="pizza-card-buttons">
-                    <button class="busket-button">
+                    <div class="busket-button">
                         <p class="busket-button-text" id="price-5">14.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="profile-button" id="busket-5">
                         <p class="profile-button-text">
                             В корзину
@@ -286,9 +283,9 @@
                 </div>
                 <p class="ingredients-text">американский соус ранч, грудинка (свинина), свежий лук, соленые огурцы, свежие шампиньоны, сыр моцарелла, базилик</p>
                 <div class="pizza-card-buttons">
-                    <button class="busket-button">
+                    <div class="busket-button">
                         <p class="busket-button-text" id="price-6">18.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="profile-button" id="busket-6">
                         <p class="profile-button-text">
                             В корзину
@@ -302,9 +299,6 @@
             <p class="menu-header-text">
                 напитки
             </p>
-            <p class="menu-header-text">
-                фильтр
-            </p>
         </div>
 
         <div class="drinks-section">
@@ -315,9 +309,9 @@
                 </div>
                 <p class="drink-card-title">Coca-Cola, 0.5</p>
                 <div class="drink-card-buttons">
-                    <button class="drink-price-button">
+                    <div class="drink-price-button">
                         <p class="drink-price-button-text" id="dprice-1">1.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="drink-button" id="dbusket-1">
                         <p class="drink-button-text">
                             В корзину
@@ -333,9 +327,9 @@
                 </div>
                 <p class="drink-card-title">Coca-Cola, 1</p>
                 <div class="drink-card-buttons">
-                    <button class="drink-price-button">
+                    <div class="drink-price-button">
                         <p class="drink-price-button-text" id="dprice-2">2.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="drink-button" id="dbusket-2">
                         <p class="drink-button-text">
                             В корзину
@@ -351,9 +345,9 @@
                 </div>
                 <p class="drink-card-title">Coca-Cola Zero, 0.5</p>
                 <div class="drink-card-buttons">
-                    <button class="drink-price-button">
+                    <div class="drink-price-button">
                         <p class="drink-price-button-text" id="dprice-3">1.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="drink-button" id="dbusket-3">
                         <p class="drink-button-text">
                             В корзину
@@ -369,9 +363,9 @@
                 </div>
                 <p class="drink-card-title">Coca-Cola Zero, 1</p>
                 <div class="drink-card-buttons">
-                    <button class="drink-price-button">
+                    <div class="drink-price-button">
                         <p class="drink-price-button-text" id="dprice-4">2.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="drink-button" id="dbusket-4">
                         <p class="drink-button-text">
                             В корзину
@@ -387,9 +381,9 @@
                 </div>
                 <p class="drink-card-title">Fanta, 0.5</p>
                 <div class="drink-card-buttons">
-                    <button class="drink-price-button">
+                    <div class="drink-price-button">
                         <p class="drink-price-button-text" id="dprice-5">1.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="drink-button" id="dbusket-5">
                         <p class="drink-button-text">
                             В корзину
@@ -405,9 +399,9 @@
                 </div>
                 <p class="drink-card-title">Fanta, 1</p>
                 <div class="drink-card-buttons">
-                    <button class="drink-price-button">
+                    <div class="drink-price-button">
                         <p class="drink-price-button-text" id="dprice-6">2.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="drink-button" id="dbusket-6">
                         <p class="drink-button-text">
                             В корзину
@@ -423,9 +417,9 @@
                 </div>
                 <p class="drink-card-title">Sprite, 0.5</p>
                 <div class="drink-card-buttons">
-                    <button class="drink-price-button">
+                    <div class="drink-price-button">
                         <p class="drink-price-button-text" id="dprice-7">1.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="drink-button" id="dbusket-7">
                         <p class="drink-button-text">
                             В корзину
@@ -441,9 +435,9 @@
                 </div>
                 <p class="drink-card-title">Sprite, 1</p>
                 <div class="drink-card-buttons">
-                    <button class="drink-price-button">
+                    <div class="drink-price-button">
                         <p class="drink-price-button-text" id="dprice-8">2.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="drink-button" id="dbusket-8">
                         <p class="drink-button-text">
                             В корзину
@@ -459,9 +453,9 @@
                 </div>
                 <p class="drink-card-title">Ballentine's, 0.5</p>
                 <div class="drink-card-buttons">
-                    <button class="drink-price-button">
+                    <div class="drink-price-button">
                         <p class="drink-price-button-text" id="dprice-9">62.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="drink-button" id="dbusket-9">
                         <p class="drink-button-text">
                             В корзину
@@ -477,9 +471,9 @@
                 </div>
                 <p class="drink-card-title">Bonaqua, 0.5</p>
                 <div class="drink-card-buttons">
-                    <button class="drink-price-button">
+                    <div class="drink-price-button">
                         <p class="drink-price-button-text" id="dprice-10">1.99 BYN</p>
-                    </button>
+                    </div>
                     <button class="drink-button" id="dbusket-10">
                         <p class="drink-button-text">
                             В корзину
