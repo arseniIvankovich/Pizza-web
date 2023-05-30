@@ -113,7 +113,8 @@ order_item.forEach(element => {
     let price_button = element.querySelector(".busket-button-text-orig");
 
     let minus = element.querySelector(".order-item-sign-minus");
-    minus.addEventListener("click", function() {
+    minus.addEventListener("click", function(e) {
+        e.preventDefault();
         let flag = false;//pizza
         if (element.id / 10000 >= 1) flag = true;//drink
         let object;
@@ -182,7 +183,8 @@ order_item.forEach(element => {
 order_item.forEach(element => {
     let price_button = element.querySelector(".busket-button-text-orig");
     let plus = element.querySelector(".order-item-sign-plus");
-    plus.addEventListener("click", function() {
+    plus.addEventListener("click", function(e) {
+        e.preventDefault();
         let flag = false;//pizza
         if (element.id / 10000 >= 1) flag = true;//drink
         let object;

@@ -95,8 +95,7 @@
 
 
     <div class="wrapper">
-<%--        <div >--%>
-            <div class="menu">
+            <form class="menu" method="post" action="/order">
             <div class="left-box">
 
                 <p class="order-header">Оформление заказа</p>
@@ -109,9 +108,7 @@
                     </button>
                         <input type="text" class="pizza" name="pizza">
                         <input type="text" class="drinks" name="drinks">
-                    <form method="post" action="/order">
-                        <input type="submit" name="order" class="order-button" value="Оформить заказ">
-                    </form>
+                    <input type="submit" name="order" class="order-button" value="Оформить заказ">
                 </div>
             </div>
 
@@ -134,8 +131,7 @@
                 <p class="address-header">Комментарий к заказу:</p>
                 <textarea type="text" class="text-area"></textarea>
             </div>
-            </div>
-<%--        </div>--%>
+            </form>
     </div>
 
 
