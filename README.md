@@ -10,7 +10,7 @@
 |    postgreSQL    |      СУБД   
  |    Tomcat     | Контейнер сервлетов
 |		HikariCP | Connection pool 
-| log4j2|Логгирование
+| log4j2|Логирование
 | testNG | Тестирование
 
 ## Архитектура
