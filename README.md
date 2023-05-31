@@ -17,7 +17,7 @@
 ![ER-диаграмма](https://github.com/arseniIvankovich/Pizza-web/assets/93382768/e5753cfa-6e8e-4863-83c1-08e1c08fa116)
 *ER-диаграмма проекта*
 
-##Use case diagrams
+## Use case diagrams
 
 ![unnamed](https://github.com/arseniIvankovich/Pizza-web/assets/93382768/7330fd84-d420-4925-bd58-f72e496e1048)
 
