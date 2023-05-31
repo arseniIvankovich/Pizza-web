@@ -40,3 +40,9 @@ build/
 
 ##
 *.cmd
+*.exe
+*.json
+/main/webapp
+*.bat
+*.man
+/corepack
